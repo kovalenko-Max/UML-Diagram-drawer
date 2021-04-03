@@ -30,7 +30,6 @@ namespace UML_Diagram_drawer
         private void InitializeComponent()
         {
             this.pictureBoxMain = new System.Windows.Forms.PictureBox();
-            this.buttonCreateTableObject = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).BeginInit();
             this.SuspendLayout();
             // 
@@ -39,7 +38,7 @@ namespace UML_Diagram_drawer
             this.pictureBoxMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxMain.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxMain.BackColor = System.Drawing.Color.White;
             this.pictureBoxMain.Location = new System.Drawing.Point(12, 12);
             this.pictureBoxMain.Name = "pictureBoxMain";
             this.pictureBoxMain.Size = new System.Drawing.Size(960, 437);
@@ -48,22 +47,11 @@ namespace UML_Diagram_drawer
             this.pictureBoxMain.Click += new System.EventHandler(this.pictureBoxMain_Click);
             this.pictureBoxMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBoxMain_MouseDown);
             // 
-            // buttonCreateTableObject
-            // 
-            this.buttonCreateTableObject.Location = new System.Drawing.Point(768, 21);
-            this.buttonCreateTableObject.Name = "buttonCreateTableObject";
-            this.buttonCreateTableObject.Size = new System.Drawing.Size(189, 68);
-            this.buttonCreateTableObject.TabIndex = 1;
-            this.buttonCreateTableObject.Text = "Create";
-            this.buttonCreateTableObject.UseVisualStyleBackColor = true;
-            this.buttonCreateTableObject.MouseDown += new System.Windows.Forms.MouseEventHandler(this.buttonCreateTableObject_MouseDown);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 461);
-            this.Controls.Add(this.buttonCreateTableObject);
             this.Controls.Add(this.pictureBoxMain);
             this.Name = "FormMain";
             this.Text = "Form1";
@@ -76,7 +64,6 @@ namespace UML_Diagram_drawer
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBoxMain;
-        private System.Windows.Forms.Button buttonCreateTableObject;
     }
 }
 
