@@ -17,8 +17,10 @@ namespace UML_Diagram_drawer
         private Bitmap _bitmap;
         private Graphics _graphics;
         private Pen _pen;
-        private Point _pointStart;
+
+        public static Point _pointStart;
         private Point _pointEnd;
+
         private Panel _panel = new Panel();
         private GroupBox _groupBox = new GroupBox();
         private TextBox _textBox = new TextBox();
@@ -37,18 +39,18 @@ namespace UML_Diagram_drawer
             _pen = new Pen(Color.Green, 2);
             _graphics = Graphics.FromImage(_bitmap);
 
-            //_pen.StartCap = LineCap.RoundAnchor;
-            //_pen.EndCap = LineCap.ArrowAnchor;
-
-            //_graphics.DrawLine(_pen, 0, 0, 200, 300);
             pictureBoxMain.Image = _bitmap;
+            PointerDrawer.Initialize(pictureBoxMain, _bitmap, _graphics, _pen);
+
 
             //this.Controls.Add(new TextBox() { Name = "test", Location = new Point(2, 3), Text = "I lave Lysya!" });
             //this.Controls.Add(new Panel() { Name = "TestName" });
             _groupBox.Name = "TestName";
-            _groupBox.Location = new Point(2, 3);
-            _groupBox.Size = new Size(100, 500);
+            _groupBox.Location = new Point(10, 10);
+            _groupBox.Size = new Size(300, 500);
+            _groupBox.BackColor = Color.Red;
             this.Controls.Add(_groupBox);
+            _groupBox.BringToFront();
             this.KeyPreview = true;
 
             _textBox.Name = "textBoxMain";
@@ -58,7 +60,8 @@ namespace UML_Diagram_drawer
 
             _textBox.KeyPress += new KeyPressEventHandler(MyTestPressEnter);
             _textBox.MouseClick += new MouseEventHandler(MyTestMouseClick);
-            
+
+            ContackPoint cp = new ContackPoint(_groupBox,this);
             _groupBox.Controls.Add(_textBox);
 
         }
@@ -83,61 +86,17 @@ namespace UML_Diagram_drawer
             {
                 _pointEnd = e.Location;
 
-                DrawStraightBrokenLine(_pointStart, _pointEnd);
+                PointerDrawer.DrawSuccession(_pointStart, _pointEnd);
                 _pointStart = Point.Empty;
             }
-        }
-
-        private void DrawStraightBrokenLine(Point startP, Point endP)
-        {
-            Point tempPointStart = Point.Empty;
-            Point tempPointEnd = Point.Empty;
-
-            tempPointStart.X = (endP.X + startP.X) / 2;
-            tempPointStart.Y = startP.Y;
-
-            //_pen.StartCap = LineCap.RoundAnchor;
-            _graphics.DrawLine(_pen, startP, tempPointStart);
-            //_pen.StartCap = LineCap.Custom;
-
-            tempPointEnd.X = (endP.X + startP.X) / 2;
-            tempPointEnd.Y = endP.Y;
-
-            _graphics.DrawLine(_pen, tempPointStart, tempPointEnd);
-
-            DrawEndPointerRhombus(tempPointEnd, endP);
-            //_pen.EndCap = LineCap.ArrowAnchor;
-            //_graphics.DrawLine(_pen, tempPointEnd, endP);
-            //_pen.EndCap = LineCap.Custom;
-        }
-
-        private void DrawEndPointerArrow(Point startP, Point endP)
-        {
-            int offsetX = 10;
-            int offsetY = offsetX / 2;
-
-            _graphics.DrawLine(_pen, startP.X, startP.Y, endP.X - offsetX, endP.Y);
-            _graphics.DrawLine(_pen, endP.X - offsetX, endP.Y, endP.X - offsetX, endP.Y - offsetY);
-            _graphics.DrawLine(_pen, endP.X - offsetX, endP.Y - offsetY, endP.X, endP.Y);
-            _graphics.DrawLine(_pen, endP.X, endP.Y, endP.X - offsetX, endP.Y + offsetY);
-            _graphics.DrawLine(_pen, endP.X - offsetX, endP.Y + offsetY, endP.X - offsetX, endP.Y);
-        }
-
-        private void DrawEndPointerRhombus(Point startP, Point endP)
-        {
-            int offsetX = 10;
-            int offsetY = offsetX - 2;
-
-            _graphics.DrawLine(_pen, startP.X, startP.Y, endP.X - offsetX * 2, endP.Y);
-            _graphics.DrawLine(_pen, endP.X - offsetX * 2, endP.Y, endP.X - offsetX, endP.Y - offsetY);
-            _graphics.DrawLine(_pen, endP.X - offsetX, endP.Y - offsetY, endP.X, endP.Y);
-            _graphics.DrawLine(_pen, endP.X, endP.Y, endP.X - offsetX, endP.Y + offsetY);
-            _graphics.DrawLine(_pen, endP.X - offsetX, endP.Y + offsetY, endP.X - offsetX * 2, endP.Y);
+            PointerDrawer.Eraser(e.Location);
         }
 
         private void pictureBoxMain_Click(object sender, EventArgs e)
         {
             pictureBoxMain.Invalidate();
         }
+
+        
     }
 }
