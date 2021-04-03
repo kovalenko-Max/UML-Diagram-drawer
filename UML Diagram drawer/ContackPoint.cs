@@ -52,5 +52,10 @@ namespace UML_Diagram_drawer
             _location.Y = controlObj.Location.Y + controlObj.Height / 2;
             _location.X = controlObj.Location.X + controlObj.Width;
         }
+        public void RestartLocation()
+        {
+            SetLocation();
+            _pointer.Location = _location;
+        }
     }
 }
