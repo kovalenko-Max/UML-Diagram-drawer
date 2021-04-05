@@ -14,12 +14,10 @@ namespace UML_Diagram_drawer
     public partial class FormMain : Form
     {
 
-        private Bitmap _bitmap;
+        private Bitmap _bitmapMain;
         private Graphics _graphics;
-        private Pen _pen;
 
-        public static Point _pointStart;
-        private Point _pointEnd;
+        private Point _pointStart;
 
         public FormMain()
         {
@@ -28,31 +26,33 @@ namespace UML_Diagram_drawer
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            _bitmap = new Bitmap(pictureBoxMain.Width, pictureBoxMain.Height);
-            _pen = new Pen(Color.Green, 2);
-            _graphics = Graphics.FromImage(_bitmap);
+            _bitmapMain = new Bitmap(pictureBoxMain.Width, pictureBoxMain.Height);
+            _graphics = Graphics.FromImage(_bitmapMain);
 
-            pictureBoxMain.Image = _bitmap;
+            pictureBoxMain.Image = _bitmapMain;
         }
 
         private void pictureBoxMain_MouseDown(object sender, MouseEventArgs e)
         {
-            if (_pointStart.IsEmpty)
-            {
-                _pointStart = e.Location;
-            }
-            else
-            {
-                _pointEnd = e.Location;
-                Pointer pointer = new Pointer(pictureBoxMain, _bitmap, _graphics, _pen);
-                pointer.DrawSuccession(_pointStart, _pointEnd, false);
-                _pointStart = Point.Empty;
-            }
+            DrawArrow(e.Location);
         }
 
         private void pictureBoxMain_Click(object sender, EventArgs e)
         {
             pictureBoxMain.Invalidate();
+        }
+
+        private void DrawArrow(Point point)
+        {
+            if (_pointStart.IsEmpty)
+            {
+                _pointStart = point;
+            }
+            else
+            {
+                new ArrowSuccession(_graphics,Color.Red).Draw(_pointStart, point);
+                _pointStart = Point.Empty;
+            }
         }
     }
 }
