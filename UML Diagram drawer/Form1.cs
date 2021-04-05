@@ -48,7 +48,7 @@ namespace UML_Diagram_drawer
             }
             else
             {
-                new ArrowSuccession(_pointStart, point,_graphics, Color.Red).Draw();
+                new ArrowSuccession(_pointStart, point, _graphics, Color.Red);
 
                 _pointStart = Point.Empty;
                 pictureBoxMain.MouseDown -= DrawSuccessionArrow_MouseDown;
@@ -65,7 +65,7 @@ namespace UML_Diagram_drawer
             }
             else
             {
-                new ArrowRealization(_pointStart, point,_graphics, Color.Red).Draw();
+                new ArrowRealization(_pointStart, point, _graphics, Color.Red);
                 _pointStart = Point.Empty;
                 pictureBoxMain.MouseDown -= DrawRealization_MouseDown;
             }

@@ -18,10 +18,14 @@ namespace UML_Diagram_drawer
             Width = width;
             Pen = new Pen(Color, Width);
             Pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            Draw(From, To);
         }
 
-        public override void Draw()
+        public override void Draw(Point fromPoint, Point toPoint)
         {
+            From = fromPoint;
+            To = toPoint;
+
             DrawStraightBrokenLine(wipeFromEndArrow: SizeArrowhead);
             DrawArrowheadSuccession();
         }

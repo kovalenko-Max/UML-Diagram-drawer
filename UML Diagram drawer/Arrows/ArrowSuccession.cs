@@ -9,7 +9,7 @@ namespace UML_Diagram_drawer
 {
     class ArrowSuccession : AbstactArrow
     {
-        public ArrowSuccession(Point from, Point to, Graphics graphics, Color color , int width = 5)
+        public ArrowSuccession(Point from, Point to, Graphics graphics, Color color, int width = 5)
         {
             From = from;
             To = to;
@@ -17,10 +17,14 @@ namespace UML_Diagram_drawer
             Color = color;
             Width = width;
             Pen = new Pen(Color, Width);
+            Draw(From, To);
         }
 
-        public override void Draw()
+        public override void Draw(Point fromPoint, Point toPoint)
         {
+            From = fromPoint;
+            To = toPoint;
+
             DrawStraightBrokenLine(wipeFromEndArrow: SizeArrowhead);
             DrawArrowheadSuccession();
         }
