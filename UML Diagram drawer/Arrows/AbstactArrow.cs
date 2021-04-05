@@ -44,7 +44,7 @@ namespace UML_Diagram_drawer
             }
         }
 
-        public abstract void Draw(Point fromP, Point ToP);
+        public abstract void Draw();
 
         public void DrawStraightBrokenLine(int wipeFromStartArrow = 0, int wipeFromEndArrow = 0)
         {

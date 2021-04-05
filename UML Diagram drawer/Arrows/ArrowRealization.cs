@@ -9,19 +9,20 @@ namespace UML_Diagram_drawer
 {
     class ArrowRealization : AbstactArrow
     {
-        public ArrowRealization(Point from, Point to, Pen pen, Graphics graphics)
+        public ArrowRealization(Point from, Point to, Graphics graphics, Color color, int width = 5)
         {
-            SizeArrowhead = 20;
             From = from;
             To = to;
-            Pen = pen;
             Graphics = graphics;
+            Color = color;
+            Width = width;
+            Pen = new Pen(Color, Width);
             Pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
         }
 
-        public void Draw()
+        public override void Draw()
         {
-            Graphics.DrawLine(Pen, From, To);
+            DrawStraightBrokenLine(wipeFromEndArrow: SizeArrowhead);
             DrawArrowheadSuccession();
         }
 
@@ -51,10 +52,6 @@ namespace UML_Diagram_drawer
             }
             Pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
             Graphics.DrawPolygon(Pen, points);
-        }
-        public override void Draw(Point fromP, Point ToP)
-        {
-            throw new NotImplementedException();
         }
     }
 }

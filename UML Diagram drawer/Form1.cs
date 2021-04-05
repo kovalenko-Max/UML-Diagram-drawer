@@ -48,18 +48,32 @@ namespace UML_Diagram_drawer
             }
             else
             {
-                new ArrowSuccession(_graphics,Color.Red).Draw(_pointStart, point);
+                new ArrowSuccession(_pointStart, point,_graphics, Color.Red).Draw();
+
                 _pointStart = Point.Empty;
                 pictureBoxMain.MouseDown -= DrawSuccessionArrow_MouseDown;
             }
         }
 
+        private void DrawRealization_MouseDown(object sender, MouseEventArgs e)
+        {
+            Point point = e.Location;
+
+            if (_pointStart.IsEmpty)
+            {
+                _pointStart = point;
+            }
+            else
+            {
+                new ArrowRealization(_pointStart, point,_graphics, Color.Red).Draw();
+                _pointStart = Point.Empty;
+                pictureBoxMain.MouseDown -= DrawRealization_MouseDown;
+            }
+        }
+
         private void buttonRealization_Click(object sender, EventArgs e)
         {
-            Pen arrowPen = new Pen(Brushes.Red, 5);
-            ArrowRealization arrowRealization = new ArrowRealization(new Point(10, 10), new Point(300, 300), arrowPen, _graphics);
-            arrowRealization.Draw();
-            pictureBoxMain.Invalidate();
+            pictureBoxMain.MouseDown += DrawRealization_MouseDown;
         }
 
         private void button_Succession_Click(object sender, EventArgs e)
