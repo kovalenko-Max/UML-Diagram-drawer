@@ -35,24 +35,20 @@ namespace UML_Diagram_drawer
             // 
             // pictureBoxMain
             // 
-            this.pictureBoxMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxMain.BackColor = System.Drawing.Color.White;
-            this.pictureBoxMain.Location = new System.Drawing.Point(16, 15);
-            this.pictureBoxMain.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBoxMain.Location = new System.Drawing.Point(12, 12);
             this.pictureBoxMain.Name = "pictureBoxMain";
-            this.pictureBoxMain.Size = new System.Drawing.Size(1280, 538);
+            this.pictureBoxMain.Size = new System.Drawing.Size(637, 579);
             this.pictureBoxMain.TabIndex = 0;
             this.pictureBoxMain.TabStop = false;
-            this.pictureBoxMain.Click += new System.EventHandler(this.pictureBoxMain_Click);
             this.pictureBoxMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBoxMain_MouseDown);
+            this.pictureBoxMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBoxMain_MouseMove);
+            this.pictureBoxMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBoxMain_MouseUp);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1312, 567);
+            this.ClientSize = new System.Drawing.Size(661, 603);
             this.Controls.Add(this.pictureBoxMain);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormMain";

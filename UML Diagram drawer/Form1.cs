@@ -13,11 +13,11 @@ namespace UML_Diagram_drawer
 {
     public partial class FormMain : Form
     {
-
         private Bitmap _bitmapMain;
+        private Bitmap _bitmapTemp;
         private Graphics _graphics;
 
-        private Point _pointStart;
+        private Point _pointStart = Point.Empty;
 
         public FormMain()
         {
@@ -28,7 +28,6 @@ namespace UML_Diagram_drawer
         {
             _bitmapMain = new Bitmap(pictureBoxMain.Width, pictureBoxMain.Height);
             _graphics = Graphics.FromImage(_bitmapMain);
-
             pictureBoxMain.Image = _bitmapMain;
         }
 
@@ -42,6 +41,18 @@ namespace UML_Diagram_drawer
             pictureBoxMain.Invalidate();
         }
 
+        private void pictureBoxMain_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (!_pointStart.IsEmpty)
+            {
+                _bitmapTemp = (Bitmap)_bitmapMain.Clone();
+                _graphics = Graphics.FromImage(_bitmapTemp);
+                DrawArrow(e.Location);
+                pictureBoxMain.Image = _bitmapTemp;
+                GC.Collect();
+            }
+        }
+
         private void DrawArrow(Point point)
         {
             if (_pointStart.IsEmpty)
@@ -50,9 +61,15 @@ namespace UML_Diagram_drawer
             }
             else
             {
-                new ArrowSuccession(_graphics,Color.Red).Draw(_pointStart, point);
-                _pointStart = Point.Empty;
+                new ArrowSuccession(_graphics, Color.Red).Draw(_pointStart, point);
             }
+        }
+
+        private void pictureBoxMain_MouseUp(object sender, MouseEventArgs e)
+        {
+            DrawArrow(e.Location);
+            _bitmapMain = _bitmapTemp;
+            _pointStart = Point.Empty;
         }
     }
 }
