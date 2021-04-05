@@ -12,13 +12,36 @@ namespace UML_Diagram_drawer
     {
         private int _width = 5;
         private int _sizeArrowhead;
+        private Point _from = Point.Empty;
+        private Point _to = Point.Empty;
 
         public bool IsHorizontal { get; set; }
         public Graphics Graphics { get; set; }
         public Pen Pen { get; set; }
-        public Point From { get; set; }
-        public Point To { get; set; }
         public Color Color { get; set; }
+        public Point From
+        {
+            get
+            {
+                return _from;
+            }
+            set
+            {
+                _from = value;
+            }
+        }
+        public Point To
+        {
+            get
+            {
+                return _to;
+            }
+            set
+            {
+                _to = value;
+            }
+        }
+
         public int Width
         {
             get
