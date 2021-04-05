@@ -48,9 +48,11 @@ namespace UML_Diagram_drawer
 
         public void DrawStraightBrokenLine(int wipeFromStartArrow = 0, int wipeFromEndArrow = 0)
         {
+            Point[] points;
+
             if (IsHorizontal)
             {
-                Point[] points = new Point[]
+                points = new Point[]
                 {
                     new Point(From.X+wipeFromStartArrow,From.Y),
                     new Point((To.X + From.X) / 2,From.Y),
@@ -63,7 +65,7 @@ namespace UML_Diagram_drawer
             else
             {
                 wipeFromEndArrow = To.Y > From.Y ? wipeFromEndArrow * (-1) : wipeFromEndArrow;
-                Point[] points = new Point[]
+                points = new Point[]
                 {
                     new Point(From.X,From.Y+wipeFromStartArrow),
                     new Point(To.X, From.Y),
