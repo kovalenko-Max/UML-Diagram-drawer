@@ -32,18 +32,16 @@ namespace UML_Diagram_drawer
             pictureBoxMain.Image = _bitmapMain;
         }
 
-        private void pictureBoxMain_MouseDown(object sender, MouseEventArgs e)
-        {
-            DrawArrow(e.Location);
-        }
 
         private void pictureBoxMain_Click(object sender, EventArgs e)
         {
             pictureBoxMain.Invalidate();
         }
 
-        private void DrawArrow(Point point)
+        private void DrawSuccessionArrow_MouseDown(object sender, MouseEventArgs e)
         {
+            Point point = e.Location;
+
             if (_pointStart.IsEmpty)
             {
                 _pointStart = point;
@@ -52,7 +50,21 @@ namespace UML_Diagram_drawer
             {
                 new ArrowSuccession(_graphics,Color.Red).Draw(_pointStart, point);
                 _pointStart = Point.Empty;
+                pictureBoxMain.MouseDown -= DrawSuccessionArrow_MouseDown;
             }
+        }
+
+        private void buttonRealization_Click(object sender, EventArgs e)
+        {
+            Pen arrowPen = new Pen(Brushes.Red, 5);
+            ArrowRealization arrowRealization = new ArrowRealization(new Point(10, 10), new Point(300, 300), arrowPen, _graphics);
+            arrowRealization.Draw();
+            pictureBoxMain.Invalidate();
+        }
+
+        private void button_Succession_Click(object sender, EventArgs e)
+        {
+            pictureBoxMain.MouseDown += DrawSuccessionArrow_MouseDown;
         }
     }
 }
