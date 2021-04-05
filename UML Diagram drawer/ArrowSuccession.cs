@@ -22,7 +22,17 @@ namespace UML_Diagram_drawer
             From = fromPoint;
             To = toPoint;
 
-            DrawStraightBrokenLine(wipeFromEndArrow: SizeArrowhead);
+            DrawStraightBrokenLine(Graphics, wipeFromEndArrow: SizeArrowhead);
+            DrawArrowheadSuccession();
+        }
+
+        public void Draw(Graphics graphics, Point fromPoint, Point toPoint)
+        {
+            From = fromPoint;
+            To = toPoint;
+            Graphics = graphics;
+
+            DrawStraightBrokenLine(graphics,wipeFromEndArrow: SizeArrowhead);
             DrawArrowheadSuccession();
         }
 

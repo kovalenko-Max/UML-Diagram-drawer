@@ -13,63 +13,77 @@ namespace UML_Diagram_drawer
 {
     public partial class FormMain : Form
     {
-        private Bitmap _bitmapMain;
-        private Bitmap _bitmapTemp;
         private Graphics _graphics;
+        //private ArrowSuccession tempArrow;
 
-        private Point _pointStart = Point.Empty;
+        //private List<AbstactArrow> _arrows = new List<AbstactArrow>();
 
         public FormMain()
         {
             InitializeComponent();
+            panelMain.Controls.Add(new PanelWithMouseDraw());
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            _bitmapMain = new Bitmap(pictureBoxMain.Width, pictureBoxMain.Height);
-            _graphics = Graphics.FromImage(_bitmapMain);
-            pictureBoxMain.Image = _bitmapMain;
+            _graphics = panelMain.CreateGraphics();
         }
 
-        private void pictureBoxMain_MouseDown(object sender, MouseEventArgs e)
-        {
-            DrawArrow(e.Location);
-        }
-
-        private void pictureBoxMain_Click(object sender, EventArgs e)
-        {
-            pictureBoxMain.Invalidate();
-        }
-
-        private void pictureBoxMain_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (!_pointStart.IsEmpty)
-            {
-                _bitmapTemp = (Bitmap)_bitmapMain.Clone();
-                _graphics = Graphics.FromImage(_bitmapTemp);
-                DrawArrow(e.Location);
-                pictureBoxMain.Image = _bitmapTemp;
-                GC.Collect();
-            }
-        }
+        //private void CreateArrow()
+        //{
+        //    tempArrow = new ArrowSuccession(_graphics, Color.Red);
+        //}
 
         private void DrawArrow(Point point)
         {
-            if (_pointStart.IsEmpty)
-            {
-                _pointStart = point;
-            }
-            else
-            {
-                new ArrowSuccession(_graphics, Color.Red).Draw(_pointStart, point);
-            }
+            //if(tempArrow is null)
+            //{
+            //    CreateArrow();
+            //}
+
+            //if (tempArrow.From.IsEmpty)
+            //{
+            //    tempArrow.From = point;
+            //}
+            //else
+            //{
+            //    tempArrow.Draw(tempArrow.From, point);
+            //}
         }
 
-        private void pictureBoxMain_MouseUp(object sender, MouseEventArgs e)
+        //private void ReDraw()
+        //{
+        //    _graphics.Clear(Color.White);
+        //    foreach (var item in _arrows)
+        //    {
+        //        item.Draw(item.From, item.To);
+        //    }
+        //}
+
+        private void panelMain_MouseUp(object sender, MouseEventArgs e)
         {
-            DrawArrow(e.Location);
-            _bitmapMain = _bitmapTemp;
-            _pointStart = Point.Empty;
+            //DrawArrow(e.Location);
+            //_arrows.Add(tempArrow);
+            //tempArrow = null;
+        }
+
+        private void panelMain_MouseMove(object sender, MouseEventArgs e)
+        {
+            //if (!(tempArrow is null) && !tempArrow.From.IsEmpty)
+            //{
+            //    DrawArrow(e.Location);
+            //    ReDraw();
+            //}
+        }
+
+        private void panelMain_MouseDown(object sender, MouseEventArgs e)
+        {
+            //DrawArrow(e.Location);
+        }
+
+        private void panelMain_Paint(object sender, PaintEventArgs e)
+        {
+            //ReDraw();
         }
     }
 }

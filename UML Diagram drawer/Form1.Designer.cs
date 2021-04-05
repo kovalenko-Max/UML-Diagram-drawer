@@ -29,39 +29,40 @@ namespace UML_Diagram_drawer
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBoxMain = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).BeginInit();
+            this.panelMain = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // pictureBoxMain
+            // panelMain
             // 
-            this.pictureBoxMain.Location = new System.Drawing.Point(12, 12);
-            this.pictureBoxMain.Name = "pictureBoxMain";
-            this.pictureBoxMain.Size = new System.Drawing.Size(637, 579);
-            this.pictureBoxMain.TabIndex = 0;
-            this.pictureBoxMain.TabStop = false;
-            this.pictureBoxMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBoxMain_MouseDown);
-            this.pictureBoxMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBoxMain_MouseMove);
-            this.pictureBoxMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBoxMain_MouseUp);
+            this.panelMain.AutoSize = true;
+            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMain.Location = new System.Drawing.Point(0, 0);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Size = new System.Drawing.Size(716, 565);
+            this.panelMain.TabIndex = 0;
+            this.panelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMain_Paint);
+            this.panelMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelMain_MouseDown);
+            this.panelMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelMain_MouseMove);
+            this.panelMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelMain_MouseUp);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(661, 603);
-            this.Controls.Add(this.pictureBoxMain);
+            this.ClientSize = new System.Drawing.Size(716, 565);
+            this.Controls.Add(this.panelMain);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormMain";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FormMain_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBoxMain;
+        private System.Windows.Forms.Panel panelMain;
     }
 }
 
