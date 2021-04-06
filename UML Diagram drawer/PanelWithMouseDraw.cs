@@ -12,7 +12,6 @@ namespace UML_Diagram_drawer
     {
         private Point _fromPoint = Point.Empty;
         private Point _toPoint = Point.Empty;
-        private Graphics _graphics;
 
         private ArrowSuccession tempArrow;
 
@@ -24,20 +23,21 @@ namespace UML_Diagram_drawer
             DoubleBuffered = true;
         }
 
-        private void CreateArrow()
+        private void CreateArrow(Graphics graphics)
         {
-            if (!(_graphics is null)&&tempArrow is null)
+            if (tempArrow is null)
             {
-                tempArrow = new ArrowSuccession(_graphics, Color.Red);
+                tempArrow = new ArrowSuccession(graphics, Color.Red);
             }
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
+
             if (e.Button == MouseButtons.Left)
             {
-                
+
                 _fromPoint = e.Location;
             }
             else
@@ -52,15 +52,14 @@ namespace UML_Diagram_drawer
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);
+
             if (!_fromPoint.IsEmpty && !_toPoint.IsEmpty)
             {
                 _arrows.Add(tempArrow);
             }
 
-            
             _fromPoint = Point.Empty;
             _toPoint = Point.Empty;
-
             tempArrow = null;
             Invalidate();
         }
@@ -68,6 +67,7 @@ namespace UML_Diagram_drawer
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
+
             if (e.Button == MouseButtons.Left)
             {
                 _toPoint = e.Location;
@@ -78,17 +78,16 @@ namespace UML_Diagram_drawer
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            _graphics = e.Graphics;
-            CreateArrow();
+            CreateArrow(e.Graphics);
 
             foreach (var arrow in _arrows)
             {
-                 arrow.Draw(_graphics, arrow.From, arrow.To);
+                arrow.Draw(e.Graphics, arrow.From, arrow.To);
             }
 
             if (!_fromPoint.IsEmpty && !_toPoint.IsEmpty)
             {
-                tempArrow.Draw(_graphics, _fromPoint, _toPoint);
+                tempArrow.Draw(e.Graphics, _fromPoint, _toPoint);
             }
         }
     }
