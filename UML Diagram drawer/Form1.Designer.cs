@@ -30,32 +30,12 @@ namespace UML_Diagram_drawer
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBoxMain = new System.Windows.Forms.PictureBox();
             this.button_Realization = new System.Windows.Forms.Button();
             this.button_Succession = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).BeginInit();
+            this.pictureBoxMain = new System.Windows.Forms.PictureBox();
             this.panelMain = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panelMain
-            // 
-            this.panelMain.AutoSize = true;
-            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMain.Location = new System.Drawing.Point(0, 0);
-            this.panelMain.Margin = new System.Windows.Forms.Padding(2);
-            this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(537, 459);
-            this.panelMain.TabIndex = 0;
-            this.pictureBoxMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxMain.BackColor = System.Drawing.Color.White;
-            this.pictureBoxMain.Location = new System.Drawing.Point(12, 38);
-            this.pictureBoxMain.Name = "pictureBoxMain";
-            this.pictureBoxMain.Size = new System.Drawing.Size(960, 454);
-            this.pictureBoxMain.TabIndex = 0;
-            this.pictureBoxMain.TabStop = false;
-            this.pictureBoxMain.Click += new System.EventHandler(this.pictureBoxMain_Click);
             // 
             // button_Realization
             // 
@@ -78,29 +58,52 @@ namespace UML_Diagram_drawer
             this.button_Succession.UseVisualStyleBackColor = true;
             this.button_Succession.Click += new System.EventHandler(this.button_Succession_Click);
             // 
+            // pictureBoxMain
+            // 
+            this.pictureBoxMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxMain.BackColor = System.Drawing.Color.White;
+            this.pictureBoxMain.Location = new System.Drawing.Point(37, 38);
+            this.pictureBoxMain.Name = "pictureBoxMain";
+            this.pictureBoxMain.Size = new System.Drawing.Size(958, 413);
+            this.pictureBoxMain.TabIndex = 0;
+            this.pictureBoxMain.TabStop = false;
+            this.pictureBoxMain.Click += new System.EventHandler(this.pictureBoxMain_Click);
+            // 
+            // panelMain
+            // 
+            this.panelMain.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelMain.AutoSize = true;
+            this.panelMain.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panelMain.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.panelMain.Location = new System.Drawing.Point(0, 37);
+            this.panelMain.Margin = new System.Windows.Forms.Padding(2);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Size = new System.Drawing.Size(984, 467);
+            this.panelMain.TabIndex = 0;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(537, 459);
-            this.Controls.Add(this.panelMain);
             this.ClientSize = new System.Drawing.Size(984, 504);
+            this.Controls.Add(this.panelMain);
             this.Controls.Add(this.button_Succession);
             this.Controls.Add(this.button_Realization);
-            this.Controls.Add(this.pictureBoxMain);
             this.Name = "FormMain";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FormMain_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBoxMain;
         private System.Windows.Forms.Button button_Realization;
         private System.Windows.Forms.Button button_Succession;
+        private System.Windows.Forms.PictureBox pictureBoxMain;
         private System.Windows.Forms.Panel panelMain;
     }
 }

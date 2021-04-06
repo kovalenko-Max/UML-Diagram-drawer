@@ -82,12 +82,14 @@ namespace UML_Diagram_drawer
 
             foreach (var arrow in _arrows)
             {
-                arrow.Draw(e.Graphics, arrow.From, arrow.To);
+                arrow.Graphics = e.Graphics;
+                arrow.Draw();
             }
 
             if (!_fromPoint.IsEmpty && !_toPoint.IsEmpty)
             {
-                tempArrow.Draw(e.Graphics, _fromPoint, _toPoint);
+                tempArrow.Graphics = e.Graphics;
+                tempArrow.Draw();
             }
         }
     }

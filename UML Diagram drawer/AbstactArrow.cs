@@ -69,7 +69,7 @@ namespace UML_Diagram_drawer
 
         public abstract void Draw();
 
-        public void DrawStraightBrokenLine(Graphics graphics, int wipeFromStartArrow = 0, int wipeFromEndArrow = 0)
+        public void DrawStraightBrokenLine(int wipeFromStartArrow = 0, int wipeFromEndArrow = 0)
         {
             if (!From.IsEmpty && !To.IsEmpty)
             {
