@@ -91,7 +91,7 @@ namespace UML_Diagram_drawer
             else
             {
                 wipeFromEndArrow = To.Y < From.Y ? wipeFromEndArrow : wipeFromEndArrow * (-1);
-                wipeFromStartArrow = To.X > From.Y ? wipeFromStartArrow : wipeFromStartArrow * (-1);
+                wipeFromStartArrow = To.X > From.X ? wipeFromStartArrow : wipeFromStartArrow * (-1);
 
                 points = new Point[]
                 {
