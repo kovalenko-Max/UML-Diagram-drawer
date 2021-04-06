@@ -10,12 +10,19 @@ namespace UML_Diagram_drawer
 {
     class PanelWithMouseDraw : Panel
     {
+
+        bool Check = false;
         private Point _fromPoint = Point.Empty;
         private Point _toPoint = Point.Empty;
+        private Point _movePoint = Point.Empty;
 
         private ArrowSuccession tempArrow;
 
         private List<ArrowSuccession> _arrows = new List<ArrowSuccession>();
+
+        private Squere tempSquere;
+
+        private List<Squere> squeres = new List<Squere>();
 
         public PanelWithMouseDraw()
         {
@@ -30,15 +37,30 @@ namespace UML_Diagram_drawer
                 tempArrow = new ArrowSuccession(graphics, Color.Red);
             }
         }
+        private void CreateSqueres(Point point)
+        {
+            if (tempSquere is null)
+            {
+                tempSquere = new Squere(Color.Red);
+                tempSquere.Location = point;
+                
+            }
+        }
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
 
+            if (e.Button == MouseButtons.Right)
+            {
+                _fromPoint = e.Location;
+                CreateSqueres(e.Location);
+            }
             if (e.Button == MouseButtons.Left)
             {
-
                 _fromPoint = e.Location;
+                _movePoint = e.Location;
+                Check = true;
             }
             else
             {
@@ -55,11 +77,11 @@ namespace UML_Diagram_drawer
 
             if (!_fromPoint.IsEmpty && !_toPoint.IsEmpty)
             {
-                _arrows.Add(tempArrow);
+               // _arrows.Add(tempArrow);
             }
-
-            _fromPoint = Point.Empty;
-            _toPoint = Point.Empty;
+            Check = false;
+            //_fromPoint = Point.Empty;
+            //_toPoint = Point.Empty;
             tempArrow = null;
             Invalidate();
         }
@@ -71,6 +93,7 @@ namespace UML_Diagram_drawer
             if (e.Button == MouseButtons.Left)
             {
                 _toPoint = e.Location;
+                _movePoint = e.Location;
             }
 
             Invalidate();
@@ -84,10 +107,18 @@ namespace UML_Diagram_drawer
             {
                 arrow.Draw(e.Graphics, arrow.From, arrow.To);
             }
-
+            if(tempSquere != null)
+            {
+                tempSquere.Draw(e.Graphics);
+            }
+            if (Check)
+            {
+                tempSquere.Location = _movePoint;
+                tempSquere.OnCollisionEnter(e.Graphics,_fromPoint);
+            }
             if (!_fromPoint.IsEmpty && !_toPoint.IsEmpty)
             {
-                tempArrow.Draw(e.Graphics, _fromPoint, _toPoint);
+                //tempArrow.Draw(e.Graphics, _fromPoint, _toPoint);
             }
         }
     }
