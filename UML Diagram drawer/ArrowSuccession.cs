@@ -22,37 +22,40 @@ namespace UML_Diagram_drawer
             if (!From.IsEmpty && !To.IsEmpty)
             {
                 DrawStraightBrokenLine(wipeFromEndArrow: SizeArrowhead);
-                DrawArrowheadSuccession();
+                DrawArrowhead();
             }
         }
 
-        private void DrawArrowheadSuccession()
+        private void DrawArrowhead()
         {
             Point[] points;
 
-            if (IsHorizontal)
+            if (!From.IsEmpty && !To.IsEmpty)
             {
-                int coefX = From.X < To.X ? To.X - SizeArrowhead : To.X + SizeArrowhead;
-                points = new Point[]
+                if (IsHorizontal)
                 {
+                    int coefX = From.X < To.X ? To.X - SizeArrowhead : To.X + SizeArrowhead;
+                    points = new Point[]
+                    {
                     new Point(coefX, To.Y+SizeArrowhead/2),
                     new Point(coefX, To.Y-SizeArrowhead/2),
                     new Point(To.X, To.Y)
-                };
+                    };
 
-                Graphics.DrawPolygon(Pen, points);
-            }
-            else
-            {
-                int coefY = From.Y < To.Y ? To.Y - SizeArrowhead : To.Y + SizeArrowhead;
-                points = new Point[]
+                    Graphics.DrawPolygon(Pen, points);
+                }
+                else
                 {
+                    int coefY = From.Y < To.Y ? To.Y - SizeArrowhead : To.Y + SizeArrowhead;
+                    points = new Point[]
+                    {
                     new Point(To.X+SizeArrowhead/2, coefY),
                     new Point(To.X-SizeArrowhead/2, coefY),
                     new Point(To.X, To.Y)
-                };
+                    };
 
-                Graphics.DrawPolygon(Pen, points);
+                    Graphics.DrawPolygon(Pen, points);
+                }
             }
         }
     }
