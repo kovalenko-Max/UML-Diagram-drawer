@@ -75,22 +75,27 @@ namespace UML_Diagram_drawer
 
             if (IsHorizontal)
             {
+                wipeFromEndArrow = To.X > From.X ? wipeFromEndArrow * (-1) : wipeFromEndArrow;
+                wipeFromStartArrow = To.X > From.X ? wipeFromStartArrow : wipeFromStartArrow * (-1);
+
                 points = new Point[]
                 {
                     new Point(From.X+wipeFromStartArrow,From.Y),
                     new Point((To.X + From.X) / 2,From.Y),
                     new Point((To.X + From.X) / 2,To.Y),
-                    new Point(To.X-wipeFromEndArrow,To.Y)
+                    new Point(To.X+wipeFromEndArrow,To.Y)
                 };
 
                 Graphics.DrawLines(Pen, points);
             }
             else
             {
-                wipeFromEndArrow = To.Y > From.Y ? wipeFromEndArrow * (-1) : wipeFromEndArrow;
+                wipeFromEndArrow = To.Y < From.Y ? wipeFromEndArrow : wipeFromEndArrow * (-1);
+                wipeFromStartArrow = To.X > From.X ? wipeFromStartArrow : wipeFromStartArrow * (-1);
+
                 points = new Point[]
                 {
-                    new Point(From.X,From.Y+wipeFromStartArrow),
+                    new Point(From.X+wipeFromStartArrow,From.Y),
                     new Point(To.X, From.Y),
                     new Point(To.X,To.Y+wipeFromEndArrow)
                 };
