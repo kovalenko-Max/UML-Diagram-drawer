@@ -11,10 +11,10 @@ namespace UML_Diagram_drawer
     {
         public ArrowComposition(Graphics graphics, Color color, int width = 5)
         {
+            Pen = new Pen(Color, Width);
             Graphics = graphics;
             Color = color;
             Width = width;
-            Pen = new Pen(Color, Width);
         }
 
         public override void Draw()

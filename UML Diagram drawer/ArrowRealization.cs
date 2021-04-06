@@ -11,11 +11,11 @@ namespace UML_Diagram_drawer
     {
         public ArrowRealization(Graphics graphics, Color color, int width = 5)
         {
+            Pen = new Pen(Color, Width);
+            Pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             Graphics = graphics;
             Color = color;
             Width = width;
-            Pen = new Pen(Color, Width);
-            Pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
         }
 
         public override void Draw()

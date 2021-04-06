@@ -8,17 +8,31 @@ using System.Windows.Forms;
 
 namespace UML_Diagram_drawer
 {
-    public abstract class AbstactArrow
+    public abstract class AbstactArrow:ISelected
     {
         private int _width = 5;
         private int _sizeArrowhead;
         private Point _from = Point.Empty;
         private Point _to = Point.Empty;
+        private Color _selectColor = Color.Blue;
+        private Color _defaultColor = Color.Black;
+        private Color _color;
 
         public bool IsHorizontal { get; set; }
         public Graphics Graphics { get; set; }
         public Pen Pen { get; set; }
-        public Color Color { get; set; }
+        public Color Color
+        {
+            get
+            {
+                return _color;
+            }
+            set
+            {
+                _color = value;
+                Pen.Color = _color;
+            }
+        }
         public Point From
         {
             get
@@ -41,6 +55,7 @@ namespace UML_Diagram_drawer
                 _to = value;
             }
         }
+        public Point[] Points { get; set; }
 
         public int Width
         {
@@ -73,14 +88,14 @@ namespace UML_Diagram_drawer
         {
             if (!From.IsEmpty && !To.IsEmpty)
             {
-                Point[] points;
+                Point[] Points;
 
                 if (IsHorizontal)
                 {
                     wipeFromEndArrow = To.X > From.X ? wipeFromEndArrow * (-1) : wipeFromEndArrow;
                     wipeFromStartArrow = To.X > From.X ? wipeFromStartArrow : wipeFromStartArrow * (-1);
 
-                    points = new Point[]
+                    Points = new Point[]
                     {
                         new Point(From.X+wipeFromStartArrow,From.Y),
                         new Point((To.X + From.X) / 2,From.Y),
@@ -88,23 +103,35 @@ namespace UML_Diagram_drawer
                         new Point(To.X+wipeFromEndArrow,To.Y)
                     };
 
-                    Graphics.DrawLines(Pen, points);
+                    Graphics.DrawLines(Pen, Points);
                 }
                 else
                 {
                     wipeFromEndArrow = To.Y < From.Y ? wipeFromEndArrow : wipeFromEndArrow * (-1);
                     wipeFromStartArrow = To.X > From.X ? wipeFromStartArrow : wipeFromStartArrow * (-1);
 
-                    points = new Point[]
+                    Points = new Point[]
                     {
                         new Point(From.X+wipeFromStartArrow,From.Y),
                         new Point(To.X, From.Y),
                         new Point(To.X,To.Y+wipeFromEndArrow)
                     };
 
-                    Graphics.DrawLines(Pen, points);
+                    Graphics.DrawLines(Pen, Points);
                 }
             }
+        }
+
+        public void Select()
+        {
+            Color = _selectColor;
+            Draw();
+        }
+
+        public void RemoveSelect()
+        {
+            Color = _defaultColor;
+            Draw();
         }
     }
 }

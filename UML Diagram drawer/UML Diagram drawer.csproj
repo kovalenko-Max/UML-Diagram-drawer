@@ -64,6 +64,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="AbstactArrow.cs" />
+    <Compile Include="ISelected.cs" />
     <Compile Include="PanelWithMouseDraw.cs">
       <SubType>Component</SubType>
     </Compile>
