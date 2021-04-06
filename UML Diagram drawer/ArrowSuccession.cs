@@ -1,0 +1,69 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace UML_Diagram_drawer
+{
+    class ArrowSuccession : AbstactArrow
+    {
+        public ArrowSuccession(Graphics graphics, Color color, int width = 5)
+        {
+            Graphics = graphics;
+            Color = color;
+            Width = width;
+            Pen = new Pen(Color, Width);
+        }
+
+        public override void Draw(Point fromPoint, Point toPoint)
+        {
+            From = fromPoint;
+            To = toPoint;
+
+            DrawStraightBrokenLine(Graphics, wipeFromEndArrow: SizeArrowhead);
+            DrawArrowheadSuccession();
+        }
+
+        public void Draw(Graphics graphics, Point fromPoint, Point toPoint)
+        {
+            From = fromPoint;
+            To = toPoint;
+            Graphics = graphics;
+
+            DrawStraightBrokenLine(graphics,wipeFromEndArrow: SizeArrowhead);
+            DrawArrowheadSuccession();
+        }
+
+        private void DrawArrowheadSuccession()
+        {
+            Point[] points;
+
+            if (IsHorizontal)
+            {
+                int coefX = From.X < To.X ? To.X - SizeArrowhead : To.X + SizeArrowhead;
+                points = new Point[]
+                {
+                    new Point(coefX, To.Y+SizeArrowhead/2),
+                    new Point(coefX, To.Y-SizeArrowhead/2),
+                    new Point(To.X, To.Y)
+                };
+
+                Graphics.DrawPolygon(Pen, points);
+            }
+            else
+            {
+                int coefY = From.Y < To.Y ? To.Y - SizeArrowhead : To.Y + SizeArrowhead;
+                points = new Point[]
+                {
+                    new Point(To.X+SizeArrowhead/2, coefY),
+                    new Point(To.X-SizeArrowhead/2, coefY),
+                    new Point(To.X, To.Y)
+                };
+
+                Graphics.DrawPolygon(Pen, points);
+            }
+        }
+    }
+}
