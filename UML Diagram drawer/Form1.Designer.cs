@@ -101,6 +101,7 @@ namespace UML_Diagram_drawer
         private System.Windows.Forms.PictureBox pictureBoxMain;
         private System.Windows.Forms.Button button_Realization;
         private System.Windows.Forms.Button button_Succession;
+        private System.Windows.Forms.Panel panelMain;
     }
 }
 
