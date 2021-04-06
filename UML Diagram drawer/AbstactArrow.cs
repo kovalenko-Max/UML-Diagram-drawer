@@ -71,36 +71,39 @@ namespace UML_Diagram_drawer
 
         public void DrawStraightBrokenLine(int wipeFromStartArrow = 0, int wipeFromEndArrow = 0)
         {
-            Point[] points;
-
-            if (IsHorizontal)
+            if (!From.IsEmpty && !To.IsEmpty)
             {
-                wipeFromEndArrow = To.X > From.X ? wipeFromEndArrow * (-1) : wipeFromEndArrow;
-                wipeFromStartArrow = To.X > From.X ? wipeFromStartArrow : wipeFromStartArrow * (-1);
+                Point[] points;
 
-                points = new Point[]
+                if (IsHorizontal)
                 {
-                    new Point(From.X+wipeFromStartArrow,From.Y),
-                    new Point((To.X + From.X) / 2,From.Y),
-                    new Point((To.X + From.X) / 2,To.Y),
-                    new Point(To.X+wipeFromEndArrow,To.Y)
-                };
+                    wipeFromEndArrow = To.X > From.X ? wipeFromEndArrow * (-1) : wipeFromEndArrow;
+                    wipeFromStartArrow = To.X > From.X ? wipeFromStartArrow : wipeFromStartArrow * (-1);
 
-                Graphics.DrawLines(Pen, points);
-            }
-            else
-            {
-                wipeFromEndArrow = To.Y < From.Y ? wipeFromEndArrow : wipeFromEndArrow * (-1);
-                wipeFromStartArrow = To.X > From.X ? wipeFromStartArrow : wipeFromStartArrow * (-1);
+                    points = new Point[]
+                    {
+                        new Point(From.X+wipeFromStartArrow,From.Y),
+                        new Point((To.X + From.X) / 2,From.Y),
+                        new Point((To.X + From.X) / 2,To.Y),
+                        new Point(To.X+wipeFromEndArrow,To.Y)
+                    };
 
-                points = new Point[]
+                    Graphics.DrawLines(Pen, points);
+                }
+                else
                 {
-                    new Point(From.X+wipeFromStartArrow,From.Y),
-                    new Point(To.X, From.Y),
-                    new Point(To.X,To.Y+wipeFromEndArrow)
-                };
+                    wipeFromEndArrow = To.Y < From.Y ? wipeFromEndArrow : wipeFromEndArrow * (-1);
+                    wipeFromStartArrow = To.X > From.X ? wipeFromStartArrow : wipeFromStartArrow * (-1);
 
-                Graphics.DrawLines(Pen, points);
+                    points = new Point[]
+                    {
+                        new Point(From.X+wipeFromStartArrow,From.Y),
+                        new Point(To.X, From.Y),
+                        new Point(To.X,To.Y+wipeFromEndArrow)
+                    };
+
+                    Graphics.DrawLines(Pen, points);
+                }
             }
         }
     }
