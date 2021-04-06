@@ -21,14 +21,12 @@ namespace UML_Diagram_drawer
         public FormMain()
         {
             InitializeComponent();
+            panelMain.Controls.Add(new PanelWithMouseDraw());
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            _bitmapMain = new Bitmap(pictureBoxMain.Width, pictureBoxMain.Height);
-            _graphics = Graphics.FromImage(_bitmapMain);
 
-            pictureBoxMain.Image = _bitmapMain;
         }
 
 

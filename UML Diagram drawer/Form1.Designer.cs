@@ -34,10 +34,18 @@ namespace UML_Diagram_drawer
             this.button_Realization = new System.Windows.Forms.Button();
             this.button_Succession = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).BeginInit();
+            this.panelMain = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // pictureBoxMain
+            // panelMain
             // 
+            this.panelMain.AutoSize = true;
+            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMain.Location = new System.Drawing.Point(0, 0);
+            this.panelMain.Margin = new System.Windows.Forms.Padding(2);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Size = new System.Drawing.Size(537, 459);
+            this.panelMain.TabIndex = 0;
             this.pictureBoxMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -74,6 +82,8 @@ namespace UML_Diagram_drawer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(537, 459);
+            this.Controls.Add(this.panelMain);
             this.ClientSize = new System.Drawing.Size(984, 504);
             this.Controls.Add(this.button_Succession);
             this.Controls.Add(this.button_Realization);
@@ -81,8 +91,8 @@ namespace UML_Diagram_drawer
             this.Name = "FormMain";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FormMain_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
