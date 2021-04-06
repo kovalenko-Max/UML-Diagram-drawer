@@ -13,7 +13,6 @@ namespace UML_Diagram_drawer
 {
     public partial class FormMain : Form
     {
-
         private Bitmap _bitmapMain;
         private Graphics _graphics;
 
