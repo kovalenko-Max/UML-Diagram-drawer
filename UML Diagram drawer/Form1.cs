@@ -13,7 +13,6 @@ namespace UML_Diagram_drawer
 {
     public partial class FormMain : Form
     {
-        private Bitmap _bitmapMain;
         private Graphics _graphics;
 
         private Point _pointStart;
@@ -22,17 +21,6 @@ namespace UML_Diagram_drawer
         {
             InitializeComponent();
             panelMain.Controls.Add(new PanelWithMouseDraw());
-        }
-
-        private void FormMain_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void pictureBoxMain_Click(object sender, EventArgs e)
-        {
-            pictureBoxMain.Invalidate();
         }
 
         private void DrawSuccessionArrow_MouseDown(object sender, MouseEventArgs e)

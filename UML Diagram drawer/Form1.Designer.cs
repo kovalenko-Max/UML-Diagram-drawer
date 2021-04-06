@@ -32,9 +32,7 @@ namespace UML_Diagram_drawer
         {
             this.button_Realization = new System.Windows.Forms.Button();
             this.button_Succession = new System.Windows.Forms.Button();
-            this.pictureBoxMain = new System.Windows.Forms.PictureBox();
             this.panelMain = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).BeginInit();
             this.SuspendLayout();
             // 
             // button_Realization
@@ -58,19 +56,6 @@ namespace UML_Diagram_drawer
             this.button_Succession.UseVisualStyleBackColor = true;
             this.button_Succession.Click += new System.EventHandler(this.button_Succession_Click);
             // 
-            // pictureBoxMain
-            // 
-            this.pictureBoxMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxMain.BackColor = System.Drawing.Color.White;
-            this.pictureBoxMain.Location = new System.Drawing.Point(37, 38);
-            this.pictureBoxMain.Name = "pictureBoxMain";
-            this.pictureBoxMain.Size = new System.Drawing.Size(958, 413);
-            this.pictureBoxMain.TabIndex = 0;
-            this.pictureBoxMain.TabStop = false;
-            this.pictureBoxMain.Click += new System.EventHandler(this.pictureBoxMain_Click);
-            // 
             // panelMain
             // 
             this.panelMain.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -93,8 +78,6 @@ namespace UML_Diagram_drawer
             this.Controls.Add(this.button_Realization);
             this.Name = "FormMain";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.FormMain_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -103,7 +86,6 @@ namespace UML_Diagram_drawer
         #endregion
         private System.Windows.Forms.Button button_Realization;
         private System.Windows.Forms.Button button_Succession;
-        private System.Windows.Forms.PictureBox pictureBoxMain;
         private System.Windows.Forms.Panel panelMain;
     }
 }
