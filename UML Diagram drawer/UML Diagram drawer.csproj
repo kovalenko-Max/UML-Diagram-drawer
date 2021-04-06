@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="ArrowSuccession.cs" />
     <Compile Include="ArrowRealization.cs" />
+    <Compile Include="ArrowAssociation.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
