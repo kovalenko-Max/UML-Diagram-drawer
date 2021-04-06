@@ -23,6 +23,7 @@ namespace UML_Diagram_drawer
             {
                 DrawStraightBrokenLine(wipeFromEndArrow: SizeArrowhead);
                 DrawArrowhead();
+                _prevTo = To;
             }
         }
 
@@ -31,6 +32,8 @@ namespace UML_Diagram_drawer
             if (!From.IsEmpty && !To.IsEmpty)
             {
                 Point[] points;
+
+                IsHorizontal = (!_prevTo.IsEmpty) && (_prevTo.Y == To.Y);
 
                 if (IsHorizontal)
                 {

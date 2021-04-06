@@ -89,6 +89,8 @@ namespace UML_Diagram_drawer
             if (!_fromPoint.IsEmpty && !_toPoint.IsEmpty)
             {
                 tempArrow.Graphics = e.Graphics;
+                tempArrow.From = _fromPoint;
+                tempArrow.To = _toPoint;
                 tempArrow.Draw();
             }
         }

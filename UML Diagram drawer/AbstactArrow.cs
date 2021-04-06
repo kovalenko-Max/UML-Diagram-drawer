@@ -14,6 +14,7 @@ namespace UML_Diagram_drawer
         private int _sizeArrowhead;
         private Point _from = Point.Empty;
         private Point _to = Point.Empty;
+        protected Point _prevTo = Point.Empty;
 
         public bool IsHorizontal { get; set; }
         public Graphics Graphics { get; set; }

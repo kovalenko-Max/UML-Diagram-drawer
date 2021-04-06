@@ -22,11 +22,11 @@ namespace UML_Diagram_drawer
             if (!From.IsEmpty && !To.IsEmpty)
             {
                 DrawStraightBrokenLine();
-                DrawArrowheadAssociation();
+                DrawArrowHead();
             }                
         }
 
-        private void DrawArrowheadAssociation()
+        private void DrawArrowHead()
         {
             Point[] points;
 
