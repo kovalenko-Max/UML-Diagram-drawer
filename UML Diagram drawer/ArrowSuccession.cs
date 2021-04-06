@@ -23,6 +23,7 @@ namespace UML_Diagram_drawer
             {
                 DrawStraightBrokenLine(wipeFromEndArrow: SizeArrowhead);
                 DrawArrowhead();
+
             }
         }
 
