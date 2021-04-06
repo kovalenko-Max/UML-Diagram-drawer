@@ -13,8 +13,6 @@ namespace UML_Diagram_drawer
 {
     public partial class FormMain : Form
     {
-        private Graphics _graphics;
-
         public FormMain()
         {
             InitializeComponent();
@@ -23,7 +21,7 @@ namespace UML_Diagram_drawer
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            _graphics = panelMain.CreateGraphics();
+
         }
     }
 }
