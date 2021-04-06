@@ -12,13 +12,36 @@ namespace UML_Diagram_drawer
     {
         private int _width = 5;
         private int _sizeArrowhead;
+        private Point _from = Point.Empty;
+        private Point _to = Point.Empty;
 
         public bool IsHorizontal { get; set; }
         public Graphics Graphics { get; set; }
         public Pen Pen { get; set; }
-        public Point From { get; set; }
-        public Point To { get; set; }
         public Color Color { get; set; }
+        public Point From
+        {
+            get
+            {
+                return _from;
+            }
+            set
+            {
+                _from = value;
+            }
+        }
+        public Point To
+        {
+            get
+            {
+                return _to;
+            }
+            set
+            {
+                _to = value;
+            }
+        }
+
         public int Width
         {
             get
@@ -48,24 +71,31 @@ namespace UML_Diagram_drawer
 
         public void DrawStraightBrokenLine(int wipeFromStartArrow = 0, int wipeFromEndArrow = 0)
         {
+            Point[] points;
+
             if (IsHorizontal)
             {
-                Point[] points = new Point[]
+                wipeFromEndArrow = To.X > From.X ? wipeFromEndArrow * (-1) : wipeFromEndArrow;
+                wipeFromStartArrow = To.X > From.X ? wipeFromStartArrow : wipeFromStartArrow * (-1);
+
+                points = new Point[]
                 {
                     new Point(From.X+wipeFromStartArrow,From.Y),
                     new Point((To.X + From.X) / 2,From.Y),
                     new Point((To.X + From.X) / 2,To.Y),
-                    new Point(To.X-wipeFromEndArrow,To.Y)
+                    new Point(To.X+wipeFromEndArrow,To.Y)
                 };
 
                 Graphics.DrawLines(Pen, points);
             }
             else
             {
-                wipeFromEndArrow = To.Y > From.Y ? wipeFromEndArrow * (-1) : wipeFromEndArrow;
-                Point[] points = new Point[]
+                wipeFromEndArrow = To.Y < From.Y ? wipeFromEndArrow : wipeFromEndArrow * (-1);
+                wipeFromStartArrow = To.X > From.X ? wipeFromStartArrow : wipeFromStartArrow * (-1);
+
+                points = new Point[]
                 {
-                    new Point(From.X,From.Y+wipeFromStartArrow),
+                    new Point(From.X+wipeFromStartArrow,From.Y),
                     new Point(To.X, From.Y),
                     new Point(To.X,To.Y+wipeFromEndArrow)
                 };

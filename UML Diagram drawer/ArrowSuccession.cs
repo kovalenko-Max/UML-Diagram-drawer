@@ -9,7 +9,7 @@ namespace UML_Diagram_drawer
 {
     class ArrowSuccession : AbstactArrow
     {
-        public ArrowSuccession(Point from, Point to, Graphics graphics, Color color, int width = 5)
+        public ArrowSuccession(Graphics graphics, Color color, int width = 5)
         {
             From = from;
             To = to;
@@ -31,10 +31,12 @@ namespace UML_Diagram_drawer
 
         private void DrawArrowheadSuccession()
         {
+            Point[] points;
+
             if (IsHorizontal)
             {
                 int coefX = From.X < To.X ? To.X - SizeArrowhead : To.X + SizeArrowhead;
-                Point[] points = new Point[]
+                points = new Point[]
                 {
                     new Point(coefX, To.Y+SizeArrowhead/2),
                     new Point(coefX, To.Y-SizeArrowhead/2),
@@ -46,7 +48,7 @@ namespace UML_Diagram_drawer
             else
             {
                 int coefY = From.Y < To.Y ? To.Y - SizeArrowhead : To.Y + SizeArrowhead;
-                Point[] points = new Point[]
+                points = new Point[]
                 {
                     new Point(To.X+SizeArrowhead/2, coefY),
                     new Point(To.X-SizeArrowhead/2, coefY),
