@@ -22,7 +22,7 @@ namespace UML_Diagram_drawer
             From = fromP;
             To = toP;
 
-            DrawStraightBrokenLine();
+            DrawStraightBrokenLine(wipeFromStartArrow:SizeArrowhead);
             DrawRhombusAggregation();
             DrawArrowheadAggregation();
         }
@@ -41,7 +41,6 @@ namespace UML_Diagram_drawer
             };
             
             Graphics.DrawPolygon(Pen, points);
-            Graphics.FillPolygon(new SolidBrush(Color.White), points, System.Drawing.Drawing2D.FillMode.Alternate);
         }
 
         private void DrawArrowheadAggregation()
