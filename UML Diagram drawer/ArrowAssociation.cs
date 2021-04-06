@@ -17,11 +17,8 @@ namespace UML_Diagram_drawer
             Pen = new Pen(Color, Width);
         }
 
-        public override void Draw(Point fromP, Point toP)
+        public override void Draw()
         {
-            From = fromP;
-            To = toP;
-
             DrawStraightBrokenLine();
             DrawArrowheadAssociation();
         }
