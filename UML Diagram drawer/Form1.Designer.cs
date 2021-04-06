@@ -18,6 +18,7 @@ namespace UML_Diagram_drawer
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 

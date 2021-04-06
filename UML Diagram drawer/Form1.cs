@@ -48,14 +48,17 @@ namespace UML_Diagram_drawer
             }
             else
             {
-                new ArrowSuccession(_pointStart, point, _graphics, Color.Red);
-
+                ArrowSuccession successionArrow = new ArrowSuccession(_graphics, Color.Red);
+                successionArrow.From = _pointStart;
+                successionArrow.To = point;
+                successionArrow.Draw();
                 _pointStart = Point.Empty;
+
                 pictureBoxMain.MouseDown -= DrawSuccessionArrow_MouseDown;
             }
         }
 
-        private void DrawRealization_MouseDown(object sender, MouseEventArgs e)
+        private void DrawRealizationArrow_MouseDown(object sender, MouseEventArgs e)
         {
             Point point = e.Location;
 
@@ -65,15 +68,19 @@ namespace UML_Diagram_drawer
             }
             else
             {
-                new ArrowRealization(_pointStart, point, _graphics, Color.Red);
+                ArrowRealization arrowRealization = new ArrowRealization(_graphics, Color.Red);
+                arrowRealization.From = _pointStart;
+                arrowRealization.To = point;
+                arrowRealization.Draw();
                 _pointStart = Point.Empty;
-                pictureBoxMain.MouseDown -= DrawRealization_MouseDown;
+
+                pictureBoxMain.MouseDown -= DrawRealizationArrow_MouseDown;
             }
         }
 
         private void buttonRealization_Click(object sender, EventArgs e)
         {
-            pictureBoxMain.MouseDown += DrawRealization_MouseDown;
+            pictureBoxMain.MouseDown += DrawRealizationArrow_MouseDown;
         }
 
         private void button_Succession_Click(object sender, EventArgs e)

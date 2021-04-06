@@ -11,22 +11,19 @@ namespace UML_Diagram_drawer
     {
         public ArrowSuccession(Graphics graphics, Color color, int width = 5)
         {
-            From = from;
-            To = to;
             Graphics = graphics;
             Color = color;
             Width = width;
             Pen = new Pen(Color, Width);
-            Draw(From, To);
         }
 
-        public override void Draw(Point fromPoint, Point toPoint)
+        public override void Draw()
         {
-            From = fromPoint;
-            To = toPoint;
-
-            DrawStraightBrokenLine(wipeFromEndArrow: SizeArrowhead);
-            DrawArrowheadSuccession();
+            if (!From.IsEmpty && !To.IsEmpty)
+            {
+                DrawStraightBrokenLine(wipeFromEndArrow: SizeArrowhead);
+                DrawArrowheadSuccession();
+            }
         }
 
         private void DrawArrowheadSuccession()

@@ -67,7 +67,7 @@ namespace UML_Diagram_drawer
             }
         }
 
-        public abstract void Draw(Point fromPoint, Point toPoint);
+        public abstract void Draw();
 
         public void DrawStraightBrokenLine(int wipeFromStartArrow = 0, int wipeFromEndArrow = 0)
         {
