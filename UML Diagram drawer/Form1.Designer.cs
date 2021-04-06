@@ -43,27 +43,6 @@ namespace UML_Diagram_drawer
             this.panelMain.Size = new System.Drawing.Size(537, 459);
             this.panelMain.TabIndex = 0;
             // 
-            // button_Realization
-            // 
-            this.button_Realization.Location = new System.Drawing.Point(12, 9);
-            this.button_Realization.Name = "button_Realization";
-            this.button_Realization.Size = new System.Drawing.Size(75, 23);
-            this.button_Realization.TabIndex = 1;
-            this.button_Realization.Text = "Realization";
-            this.button_Realization.UseVisualStyleBackColor = true;
-            this.button_Realization.Click += new System.EventHandler(this.buttonRealization_Click);
-            // 
-            // button_Succession
-            // 
-            this.button_Succession.Location = new System.Drawing.Point(93, 9);
-            this.button_Succession.Name = "button_Succession";
-            this.button_Succession.Size = new System.Drawing.Size(75, 23);
-            this.button_Succession.TabIndex = 2;
-            this.button_Succession.TabStop = false;
-            this.button_Succession.Text = "Succession";
-            this.button_Succession.UseVisualStyleBackColor = true;
-            this.button_Succession.Click += new System.EventHandler(this.button_Succession_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

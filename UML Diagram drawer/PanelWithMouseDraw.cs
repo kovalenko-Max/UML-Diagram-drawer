@@ -37,8 +37,8 @@ namespace UML_Diagram_drawer
 
             if (e.Button == MouseButtons.Left)
             {
-
                 _fromPoint = e.Location;
+                tempArrow.From = _fromPoint;
             }
             else
             {
@@ -55,12 +55,15 @@ namespace UML_Diagram_drawer
 
             if (!_fromPoint.IsEmpty && !_toPoint.IsEmpty)
             {
+                tempArrow.From = _fromPoint;
+                tempArrow.To = _toPoint;
                 _arrows.Add(tempArrow);
             }
 
             _fromPoint = Point.Empty;
             _toPoint = Point.Empty;
             tempArrow = null;
+
             Invalidate();
         }
 
@@ -82,12 +85,15 @@ namespace UML_Diagram_drawer
 
             foreach (var arrow in _arrows)
             {
-                arrow.Draw(e.Graphics, arrow.From, arrow.To);
+                arrow.Graphics = e.Graphics;
+                arrow.Draw();
             }
 
             if (!_fromPoint.IsEmpty && !_toPoint.IsEmpty)
             {
-                tempArrow.Draw(e.Graphics, _fromPoint, _toPoint);
+                tempArrow.Graphics = e.Graphics;
+                tempArrow.To = _toPoint;
+                tempArrow.Draw();
             }
         }
     }
