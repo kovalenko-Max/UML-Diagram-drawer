@@ -43,7 +43,7 @@ namespace UML_Diagram_drawer
             this.button_Realization.TabIndex = 1;
             this.button_Realization.Text = "Realization";
             this.button_Realization.UseVisualStyleBackColor = true;
-            this.button_Realization.Click += new System.EventHandler(this.buttonRealization_Click);
+            //this.button_Realization.Click += new System.EventHandler(this.buttonRealization_Click);
             // 
             // button_Succession
             // 
@@ -54,7 +54,7 @@ namespace UML_Diagram_drawer
             this.button_Succession.TabStop = false;
             this.button_Succession.Text = "Succession";
             this.button_Succession.UseVisualStyleBackColor = true;
-            this.button_Succession.Click += new System.EventHandler(this.button_Succession_Click);
+            //this.button_Succession.Click += new System.EventHandler(this.button_Succession_Click);
             // 
             // panelMain
             // 
