@@ -33,7 +33,7 @@ namespace UML_Diagram_drawer
             {
                 Point[] points;
 
-                IsHorizontal = (!_prevTo.IsEmpty) && (_prevTo.Y == To.Y);
+                IsHorizontal = (!_prevTo.IsEmpty) && (_prevTo.Y < To.Y);
 
                 if (IsHorizontal)
                 {
