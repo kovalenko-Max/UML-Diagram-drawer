@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 
 namespace UML_Diagram_drawer
 {
-    class ArrowSuccession : AbstactArrow
+    class ArrowRealization : AbstactArrow
     {
-        public ArrowSuccession(Graphics graphics, Color color, int width = 5)
+        public ArrowRealization(Graphics graphics, Color color, int width = 5)
         {
             Graphics = graphics;
             Color = color;
             Width = width;
             Pen = new Pen(Color, Width);
+            Pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
         }
 
         public override void Draw()
@@ -41,8 +42,6 @@ namespace UML_Diagram_drawer
                         new Point(coefX, To.Y-SizeArrowhead/2),
                         new Point(To.X, To.Y)
                     };
-
-                    Graphics.DrawPolygon(Pen, points);
                 }
                 else
                 {
@@ -53,9 +52,10 @@ namespace UML_Diagram_drawer
                         new Point(To.X-SizeArrowhead/2, coefY),
                         new Point(To.X, To.Y)
                     };
-
-                    Graphics.DrawPolygon(Pen, points);
                 }
+
+                Pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+                Graphics.DrawPolygon(Pen, points);
             }
         }
     }
