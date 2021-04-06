@@ -21,7 +21,6 @@ namespace UML_Diagram_drawer
         {
             if (!From.IsEmpty && !To.IsEmpty)
             {
-
                 DrawStraightBrokenLine(wipeFromStartArrow: SizeArrowhead);
                 DrawRhombusAggregation();
                 DrawArrowheadAggregation();
