@@ -19,8 +19,11 @@ namespace UML_Diagram_drawer
 
         public override void Draw()
         {
-            DrawStraightBrokenLine();
-            DrawArrowheadAssociation();
+            if (!From.IsEmpty && !To.IsEmpty)
+            {
+                DrawStraightBrokenLine();
+                DrawArrowheadAssociation();
+            }                
         }
 
         private void DrawArrowheadAssociation()
