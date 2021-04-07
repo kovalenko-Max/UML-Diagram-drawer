@@ -1,4 +1,4 @@
-﻿
+﻿﻿
 namespace UML_Diagram_drawer
 {
     partial class FormMain

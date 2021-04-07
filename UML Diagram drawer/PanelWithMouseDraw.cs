@@ -12,6 +12,7 @@ namespace UML_Diagram_drawer
     {
         private Point _fromPoint = Point.Empty;
         private Point _toPoint = Point.Empty;
+        private Point _brokePoint = Point.Empty;
 
         private ArrowSuccession tempArrow;
 
@@ -35,7 +36,7 @@ namespace UML_Diagram_drawer
         {
             base.OnMouseDown(e);
 
-            if (e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left || e.Button == MouseButtons.Right)
             {
                 _fromPoint = e.Location;
                 tempArrow.From = _fromPoint;
@@ -56,12 +57,14 @@ namespace UML_Diagram_drawer
             if (!_fromPoint.IsEmpty && !_toPoint.IsEmpty)
             {
                 tempArrow.From = _fromPoint;
+                tempArrow.Broke = _brokePoint;
                 tempArrow.To = _toPoint;
                 _arrows.Add(tempArrow);
             }
 
             _fromPoint = Point.Empty;
             _toPoint = Point.Empty;
+            _brokePoint = Point.Empty;
             tempArrow = null;
 
             Invalidate();
@@ -71,9 +74,17 @@ namespace UML_Diagram_drawer
         {
             base.OnMouseMove(e);
 
+            if (e.Button == MouseButtons.Right)
+            {
+                _toPoint = e.Location;
+                _brokePoint.X = _fromPoint.X;
+                _brokePoint.Y = _toPoint.Y;
+            }
             if (e.Button == MouseButtons.Left)
             {
                 _toPoint = e.Location;
+                _brokePoint.X = _toPoint.X;
+                _brokePoint.Y = _fromPoint.Y;
             }
 
             Invalidate();
@@ -92,6 +103,8 @@ namespace UML_Diagram_drawer
             if (!_fromPoint.IsEmpty && !_toPoint.IsEmpty)
             {
                 tempArrow.Graphics = e.Graphics;
+                tempArrow.From = _fromPoint;
+                tempArrow.Broke = _brokePoint;
                 tempArrow.To = _toPoint;
                 tempArrow.Draw();
             }

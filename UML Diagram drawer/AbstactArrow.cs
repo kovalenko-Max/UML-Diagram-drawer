@@ -13,6 +13,7 @@ namespace UML_Diagram_drawer
         private int _width = 5;
         private int _sizeArrowhead;
         private Point _from = Point.Empty;
+        private Point _broke = Point.Empty;
         private Point _to = Point.Empty;
 
         public bool IsHorizontal { get; set; }
@@ -28,6 +29,17 @@ namespace UML_Diagram_drawer
             set
             {
                 _from = value;
+            }
+        }
+        public Point Broke
+        {
+            get
+            {
+                return _broke;
+            }
+            set
+            {
+                _broke = value;
             }
         }
         public Point To
@@ -73,38 +85,17 @@ namespace UML_Diagram_drawer
         {
             if (!From.IsEmpty && !To.IsEmpty)
             {
-                Point[] points;
-
-                if (IsHorizontal)
+                Point[] points = new Point[]
                 {
-                    wipeFromEndArrow = To.X > From.X ? wipeFromEndArrow * (-1) : wipeFromEndArrow;
-                    wipeFromStartArrow = To.X > From.X ? wipeFromStartArrow : wipeFromStartArrow * (-1);
+                    new Point(From.X, From.Y),
+                    new Point(Broke.X, Broke.Y),
+                    new Point(Broke.X, Broke.Y),
+                    new Point(To.X, To.Y),
+                };
+                Graphics.DrawLines(Pen, points);
 
-                    points = new Point[]
-                    {
-                        new Point(From.X+wipeFromStartArrow,From.Y),
-                        new Point((To.X + From.X) / 2,From.Y),
-                        new Point((To.X + From.X) / 2,To.Y),
-                        new Point(To.X+wipeFromEndArrow,To.Y)
-                    };
-
-                    Graphics.DrawLines(Pen, points);
-                }
-                else
-                {
-                    wipeFromEndArrow = To.Y < From.Y ? wipeFromEndArrow : wipeFromEndArrow * (-1);
-                    wipeFromStartArrow = To.X > From.X ? wipeFromStartArrow : wipeFromStartArrow * (-1);
-
-                    points = new Point[]
-                    {
-                        new Point(From.X+wipeFromStartArrow,From.Y),
-                        new Point(To.X, From.Y),
-                        new Point(To.X,To.Y+wipeFromEndArrow)
-                    };
-
-                    Graphics.DrawLines(Pen, points);
-                }
             }
         }
+        
     }
 }
