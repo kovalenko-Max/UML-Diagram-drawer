@@ -17,6 +17,8 @@ namespace UML_Diagram_drawer
         private Color _selectColor = Color.Blue;
         private Color _defaultColor = Color.Black;
         private Color _color;
+        private Point[] _points;
+        private Rectangle[] _rectangls;
 
         public bool IsHorizontal { get; set; }
         public Graphics Graphics { get; set; }
@@ -55,7 +57,6 @@ namespace UML_Diagram_drawer
                 _to = value;
             }
         }
-        public Point[] Points { get; set; }
 
         public int Width
         {
@@ -119,6 +120,7 @@ namespace UML_Diagram_drawer
 
                     Graphics.DrawLines(Pen, Points);
                 }
+                
             }
         }
 
@@ -132,6 +134,40 @@ namespace UML_Diagram_drawer
         {
             Color = _defaultColor;
             Draw();
+        }
+
+        private void CreateRectangls()
+        {
+            _rectangls = new Rectangle[_points.Count() - 1];
+            for (int i = 0; i < _rectangls.Count(); i++)
+            {
+                if (_points[i].X < _points[i + 1].X) 
+                {
+                    int width = _points[i + 1].X - _points[i].X;
+                    int height = SizeArrowhead;
+                    _rectangls[i] = new Rectangle(_points[i].X,_points[i].Y-SizeArrowhead/2,width,height);
+                }
+                else if(_points[i].X > _points[i + 1].X)
+                {
+                    int width = (_points[i + 1].X - _points[i].X)*(-1);
+                    int height = SizeArrowhead;
+                    _rectangls[i] = new Rectangle(_points[i+1].X, _points[i].Y - SizeArrowhead / 2, width, height);
+                }
+                else if(_points[i].Y < _points[i + 1].Y)
+                {
+                    int width = SizeArrowhead;
+                    int height = (_points[i + 1].Y - _points[i].Y) * (-1);
+                    _rectangls[i] = new Rectangle(_points[i].X - SizeArrowhead / 2, _points[i].Y, width, height);
+                }
+                else if(_points[i].Y > _points[i + 1].Y)
+                {
+                    int width = SizeArrowhead;
+                    int height = (_points[i + 1].Y - _points[i].Y) * (-1);
+                    _rectangls[i] = new Rectangle(_points[i].X - SizeArrowhead / 2, _points[i+1].Y, width, height);
+                }
+            }
+
+            Graphics.DrawRectangles(Pen, _rectangls);
         }
     }
 }
