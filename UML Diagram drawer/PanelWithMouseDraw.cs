@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UML_Diagram_drawer.Arrow;
 
 namespace UML_Diagram_drawer
 {
@@ -12,6 +13,8 @@ namespace UML_Diagram_drawer
     {
         private Point _fromPoint = Point.Empty;
         private Point _toPoint = Point.Empty;
+
+        public Pen pen = new Pen(Brushes.Blue, 5);
 
         private ArrowSuccession tempArrow;
 
@@ -27,7 +30,7 @@ namespace UML_Diagram_drawer
         {
             if (tempArrow is null)
             {
-                tempArrow = new ArrowSuccession(graphics, Color.Red);
+                tempArrow = new ArrowSuccession(pen, graphics);
             }
         }
 
@@ -38,7 +41,7 @@ namespace UML_Diagram_drawer
             if (e.Button == MouseButtons.Left)
             {
                 _fromPoint = e.Location;
-                tempArrow.From = _fromPoint;
+                tempArrow.StartPoint = _fromPoint;
             }
             else
             {
@@ -55,8 +58,8 @@ namespace UML_Diagram_drawer
 
             if (!_fromPoint.IsEmpty && !_toPoint.IsEmpty)
             {
-                tempArrow.From = _fromPoint;
-                tempArrow.To = _toPoint;
+                tempArrow.StartPoint = _fromPoint;
+                tempArrow.EndPoint = _toPoint;
                 _arrows.Add(tempArrow);
             }
 
@@ -92,7 +95,7 @@ namespace UML_Diagram_drawer
             if (!_fromPoint.IsEmpty && !_toPoint.IsEmpty)
             {
                 tempArrow.Graphics = e.Graphics;
-                tempArrow.To = _toPoint;
+                tempArrow.EndPoint = _toPoint;
                 tempArrow.Draw();
             }
         }
