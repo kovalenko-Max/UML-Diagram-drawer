@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 
-
 namespace UML_Diagram_drawer.Arrow
 {
     class ArrowSuccession : AbstactArrow

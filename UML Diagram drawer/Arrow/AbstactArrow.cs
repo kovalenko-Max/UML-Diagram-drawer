@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace UML_Diagram_drawer.Arrow
 {
-    public abstract class AbstactArrow
+    public abstract class AbstactArrow : ISelectable
     {
         protected int _sizeArrowhead;
 
@@ -17,8 +12,12 @@ namespace UML_Diagram_drawer.Arrow
         public Pen Pen { get; set; }
         public Point StartPoint { get; set; }
         public Point EndPoint { get; set; }
-        public ContactPoint ContactPoint { get; set; }
-       
+        public bool IsSelected { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool IsMove { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Point StartMovePoint { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Rectangle[] Rectangles { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Point[] Points { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         public AbstactArrow(Pen pen, Graphics graphics, Point startPoint, Point endPoint)
         {
             Pen = pen;
@@ -76,5 +75,24 @@ namespace UML_Diagram_drawer.Arrow
             }
         }
 
+        public void CreateRectangles()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Move(int deltaX, int deltaY)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Select(Point point)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveSelect()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
