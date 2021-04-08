@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace UML_Diagram_drawer
 {
-    public abstract class AbstactArrow :Control, ISelected,IMove
+    public abstract class AbstactArrow : ISelectable
     {
         private int _width = 5;
         private int _selectWigth = 10;
@@ -75,6 +75,7 @@ namespace UML_Diagram_drawer
                 _sizeArrowhead = _width * 3;
             }
         }
+
         public int SizeArrowhead
         {
             get
@@ -131,6 +132,7 @@ namespace UML_Diagram_drawer
 
         public bool Select(Point point)
         {
+
             foreach (Rectangle rectangle in _rectangls)
             {
                 if (rectangle.Contains(point))
@@ -138,11 +140,15 @@ namespace UML_Diagram_drawer
                     IsSelected = true;
                     Color = _selectColor;
                     Width = _selectWigth;
+
                     return true;
                 }
             }
 
+
             return false;
+
+            //throw new ArgumentException("Rectangles is null");
         }
 
         public void RemoveSelect()
@@ -157,9 +163,9 @@ namespace UML_Diagram_drawer
 
         public override bool Equals(object obj)
         {
-            if(!(obj is null))
+            if (!(obj is null))
             {
-                if(obj is AbstactArrow)
+                if (obj is AbstactArrow)
                 {
                     var temp = (AbstactArrow)obj;
                     if (From == temp.From && To == temp.To)
@@ -217,28 +223,16 @@ namespace UML_Diagram_drawer
             }
         }
 
-        public void Move(Point point)
+        public void Move(int deltaX, int deltaY)
         {
-            IsMove = true;
-            _from.X = From.X + (point.X - _tempPointStartMove.X);
-            _from.Y = From.Y + (point.Y - _tempPointStartMove.Y);
-            _to.X = To.X + (point.X - _tempPointStartMove.X);
-            _to.Y = To.Y + (point.Y - _tempPointStartMove.Y);
-        }
+            int fX = From.X + deltaX;
+            int fY = From.Y + deltaY;
 
-        public void StartMove(Point point)
-        {
-            if (!IsMove)
-            { 
-                IsMove = true;
-                _tempPointStartMove = point;
-            }
-        }
+            int tX = To.X + deltaX;
+            int tY = To.Y + deltaY;
 
-        public void EndMove()
-        {
-            IsMove = false;
-            _tempPointStartMove = Point.Empty;
+            From = new Point(fX, fY);
+            To = new Point(tX, tY);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace UML_Diagram_drawer
         private AbstactArrow _drawingArrow;
         private AbstactArrow _selectArrow;
         private List<AbstactArrow> _arrows = new List<AbstactArrow>();
-        private List<ISelected> _selectedObjects = new List<ISelected>();
+        private List<ISelectable> _selectedObjects = new List<ISelectable>();
         private Graphics _graphics;
 
         public bool IsDrawArrow { get; set; }
@@ -32,12 +32,12 @@ namespace UML_Diagram_drawer
 
             if (e.Button == MouseButtons.Left)
             {
-                DrawArrowOnMouseDown(e.Location);
-
-                RemoveAllSelectArrow();
                 _selectPoint = e.Location;
+
+                DrawArrowOnMouseDown(e.Location);
+                RemoveAllSelectArrow();
                 SelectArrow();
-                MoveArrow();
+
             }
             else
             {
@@ -45,20 +45,24 @@ namespace UML_Diagram_drawer
             }
 
             Invalidate();
-            
+
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
 
-            _lastMousePosition = e.Location;
-
             if (e.Button == MouseButtons.Left)
             {
-                MoveArrow();
-                Invalidate();
+                foreach (var item in _selectedObjects)
+                {
+                    item.Move(e.X - _lastMousePosition.X, e.Y - _lastMousePosition.Y);
+                    _lastMousePosition = e.Location;
+                }
             }
+            _lastMousePosition = e.Location;
+
+            Invalidate();
         }
 
         protected override void OnMouseUp(MouseEventArgs e)
@@ -68,7 +72,6 @@ namespace UML_Diagram_drawer
             if (e.Button == MouseButtons.Left)
             {
                 DrawArrowOnMouseUp(e.Location);
-                EndMove();
             }
 
             Invalidate();
@@ -104,7 +107,16 @@ namespace UML_Diagram_drawer
                     arrow.RemoveSelect();
                     _selectedObjects.Remove(arrow);
                 }
+
             }
+            _selectArrow = null;
+        }
+
+        public void Delete()
+        {
+            _arrows.Clear();
+            _selectedObjects.Clear();
+            Invalidate();
         }
 
         private void RemoveAllSelectArrow()
@@ -122,48 +134,27 @@ namespace UML_Diagram_drawer
             }
             if (!isSelect)
             {
-                foreach (var arrow in _arrows)
+                foreach (var arrow in _selectedObjects)
                 {
                     if (arrow.IsSelected)
                     {
                         arrow.RemoveSelect();
-                        _selectedObjects.Remove(arrow);
+                        //_selectedObjects.Remove(arrow);
                     }
                 }
+                _selectedObjects.Clear();
+                _selectArrow = null;
             }
         }
 
-        private void MoveArrow()
-        {
-            if(!(_selectArrow is null))
-            {
-                if (_selectArrow.Select(_lastMousePosition))
-                {
-                    _selectArrow.StartMove(_lastMousePosition);
-                    _selectArrow.Move(_lastMousePosition);
-                }
-            }
-        }
-        private void EndMove()
-        {
-            if (!(_selectArrow is null))
-            {
-                if (_selectArrow.Select(_lastMousePosition))
-                {
-                    _selectArrow.EndMove();
-                }
-            }
-        }
         private void SelectArrow()
         {
             if (!IsDrawArrow)
             {
                 foreach (var arrow in _arrows)
                 {
-                    if (arrow.Select(_lastMousePosition))
+                    if (arrow.Select(_lastMousePosition)&&arrow!=_selectArrow)
                     {
-                        //arrow.Color = _selectedColor;
-                        //arrow.Width = _selectedWight;
                         _selectArrow = arrow;
                         _selectedObjects.Add(arrow);
                         break;

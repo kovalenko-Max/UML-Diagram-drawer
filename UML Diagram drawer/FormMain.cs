@@ -14,6 +14,9 @@ namespace UML_Diagram_drawer
     public partial class FormMain : Form
     {
         private PanelWithMouseDraw _drawingPanel;
+
+
+
         public FormMain()
         {
             InitializeComponent();
@@ -31,5 +34,12 @@ namespace UML_Diagram_drawer
             _drawingPanel.IsDrawArrow = true;
            
         }
+
+        private void buttonDeleteOBJ_Click(object sender, EventArgs e)
+        {
+            _drawingPanel.Delete();
+        }
+
+        
     }
 }

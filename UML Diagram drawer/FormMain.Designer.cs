@@ -31,8 +31,8 @@ namespace UML_Diagram_drawer
         private void InitializeComponent()
         {
             this.panelMain = new System.Windows.Forms.Panel();
-            this.buttonDrawArrow = new System.Windows.Forms.Button();
             this.buttonDeleteOBJ = new System.Windows.Forms.Button();
+            this.buttonDrawArrow = new System.Windows.Forms.Button();
             this.panelMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,6 +48,16 @@ namespace UML_Diagram_drawer
             this.panelMain.Size = new System.Drawing.Size(537, 459);
             this.panelMain.TabIndex = 0;
             // 
+            // buttonDeleteOBJ
+            // 
+            this.buttonDeleteOBJ.Location = new System.Drawing.Point(94, 13);
+            this.buttonDeleteOBJ.Name = "buttonDeleteOBJ";
+            this.buttonDeleteOBJ.Size = new System.Drawing.Size(75, 23);
+            this.buttonDeleteOBJ.TabIndex = 1;
+            this.buttonDeleteOBJ.Text = "Delete";
+            this.buttonDeleteOBJ.UseVisualStyleBackColor = true;
+            this.buttonDeleteOBJ.Click += new System.EventHandler(this.buttonDeleteOBJ_Click);
+            // 
             // buttonDrawArrow
             // 
             this.buttonDrawArrow.Location = new System.Drawing.Point(12, 12);
@@ -57,15 +67,6 @@ namespace UML_Diagram_drawer
             this.buttonDrawArrow.Text = "DrawArrow";
             this.buttonDrawArrow.UseVisualStyleBackColor = true;
             this.buttonDrawArrow.Click += new System.EventHandler(this.buttonDrawArrow_Click);
-            // 
-            // buttonDeleteOBJ
-            // 
-            this.buttonDeleteOBJ.Location = new System.Drawing.Point(94, 13);
-            this.buttonDeleteOBJ.Name = "buttonDeleteOBJ";
-            this.buttonDeleteOBJ.Size = new System.Drawing.Size(75, 23);
-            this.buttonDeleteOBJ.TabIndex = 1;
-            this.buttonDeleteOBJ.Text = "Delete";
-            this.buttonDeleteOBJ.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
