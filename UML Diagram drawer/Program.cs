@@ -6,8 +6,9 @@ using System.Windows.Forms;
 
 namespace UML_Diagram_drawer
 {
-    static class Program
+    public static class Program
     {
+        public static FormMain _form;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,7 +17,8 @@ namespace UML_Diagram_drawer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMain());
+            _form = new FormMain();
+            Application.Run(_form);
         }
     }
 }

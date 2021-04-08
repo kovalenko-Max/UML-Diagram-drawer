@@ -13,15 +13,23 @@ namespace UML_Diagram_drawer
 {
     public partial class FormMain : Form
     {
+        private PanelWithMouseDraw _drawingPanel;
         public FormMain()
         {
             InitializeComponent();
-            panelMain.Controls.Add(new PanelWithMouseDraw());
+            _drawingPanel = new PanelWithMouseDraw();
+            panelMain.Controls.Add(_drawingPanel);
         }
-
+        
         private void FormMain_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonDrawArrow_Click(object sender, EventArgs e)
+        {
+            _drawingPanel.IsDrawArrow = true;
+           
         }
     }
 }
