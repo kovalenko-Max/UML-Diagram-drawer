@@ -60,7 +60,7 @@
     <Compile Include="Form\AbstactFormClass.cs" />
     <Compile Include="ISelectable.cs" />
     <Compile Include="Side.cs" />
-    <Compile Include="ContactPoint.cs" />
+    <Compile Include="Form\ContactPoint.cs" />
     <Compile Include="Form1.cs" />
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
