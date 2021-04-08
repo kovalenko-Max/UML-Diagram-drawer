@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using UML_Diagram_drawer.Arrow;
-using UML_Diagram_drawer.Form;
+using UML_Diagram_drawer.Arrows;
+using UML_Diagram_drawer.Forms;
 
 namespace UML_Diagram_drawer
 {

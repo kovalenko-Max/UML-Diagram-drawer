@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Drawing;
 
-namespace UML_Diagram_drawer.Arrow
+namespace UML_Diagram_drawer.Arrows
 {
-    class ArrowAggregation : AbstactArrow
+    class ArrowComposition : AbstactArrow
     {
-        public ArrowAggregation(Pen pen, Graphics graphics, Point startPoint, Point endPoint) : base(pen, graphics, startPoint, endPoint)
+        public ArrowComposition(Pen pen, Graphics graphics, Point startPoint, Point endPoint) : base(pen, graphics, startPoint, endPoint)
         {
         }
 
-        public ArrowAggregation(Pen pen, Graphics graphics) : base(pen, graphics)
+        public ArrowComposition(Pen pen, Graphics graphics) : base(pen, graphics)
         {
         }
 
@@ -17,13 +17,13 @@ namespace UML_Diagram_drawer.Arrow
         {
             if (!StartPoint.IsEmpty && !EndPoint.IsEmpty)
             {
-                DrawStraightBrokenLine(wipeFromStartArrow: _sizeArrowhead);
-                DrawRhombusAggregation();
-                DrawArrowheadAggregation();
+                DrawStraightBrokenLine();
+                DrawFillRhombusComposition();
+                DrawArrowheadComposition();
             }
         }
 
-        private void DrawRhombusAggregation()
+        private void DrawFillRhombusComposition()
         {
             int coefX = StartPoint.X < EndPoint.X ? StartPoint.X + _sizeArrowhead : StartPoint.X - _sizeArrowhead;
             int coefX2 = StartPoint.X < EndPoint.X ? StartPoint.X + _sizeArrowhead / 2 : StartPoint.X - _sizeArrowhead / 2;
@@ -37,9 +37,10 @@ namespace UML_Diagram_drawer.Arrow
             };
 
             Graphics.DrawPolygon(Pen, points);
+            Graphics.FillPolygon(new SolidBrush(Pen.Color), points, System.Drawing.Drawing2D.FillMode.Alternate);
         }
 
-        private void DrawArrowheadAggregation()
+        private void DrawArrowheadComposition()
         {
             Point[] points;
 

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-namespace UML_Diagram_drawer
+namespace UML_Diagram_drawer.Forms
 {
     public class ContactPoint
     {

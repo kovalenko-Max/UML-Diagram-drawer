@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace UML_Diagram_drawer.Arrow
+namespace UML_Diagram_drawer.Arrows
 {
     public abstract class AbstactArrow : ISelectable
     {

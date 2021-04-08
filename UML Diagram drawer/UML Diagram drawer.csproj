@@ -52,20 +52,22 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Arrow\ArrowSuccession.cs" />
-    <Compile Include="Arrow\ArrowComposition.cs" />
-    <Compile Include="Arrow\ArrowRealization.cs" />
-    <Compile Include="Arrow\ArrowAggregation.cs" />
-    <Compile Include="Arrow\ArrowAssociation.cs" />
-    <Compile Include="Form\AbstactFormClass.cs" />
+    <Compile Include="Arrows\ArrowSuccession.cs" />
+    <Compile Include="Arrows\ArrowComposition.cs" />
+    <Compile Include="Arrows\ArrowRealization.cs" />
+    <Compile Include="Arrows\ArrowAggregation.cs" />
+    <Compile Include="Arrows\ArrowAssociation.cs" />
+    <Compile Include="Forms\AbstactFormClass.cs" />
     <Compile Include="ISelectable.cs" />
     <Compile Include="Side.cs" />
-    <Compile Include="Form\ContactPoint.cs" />
-    <Compile Include="Form1.cs" />
+    <Compile Include="Forms\ContactPoint.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Arrow\AbstactArrow.cs" />
+    <Compile Include="Arrows\AbstactArrow.cs" />
     <Compile Include="PanelWithMouseDraw.cs">
       <SubType>Component</SubType>
     </Compile>
