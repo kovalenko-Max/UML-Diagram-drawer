@@ -17,7 +17,7 @@ namespace UML_Diagram_drawer
         Rectangle[] Rectangles { get; set; }
         Point[] Points { get; set; }
 
-        void CreateRectangles();
+        void CreateSelectionBorders();
 
         void Move(int deltaX, int deltaY);
 

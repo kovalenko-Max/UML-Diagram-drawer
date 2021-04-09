@@ -40,7 +40,10 @@ namespace UML_Diagram_drawer.Arrows
 
         public abstract void Draw();
 
-        public abstract void CreateSelectionBorders();
+        public void CreateSelectionBorders()
+        {
+            throw new NotImplementedException();
+        }
 
         public void DrawStraightBrokenLine(int wipeFromStartArrow = 0, int wipeFromEndArrow = 0)
         {
@@ -80,10 +83,6 @@ namespace UML_Diagram_drawer.Arrows
             }
         }
 
-        public void CreateRectangles()
-        {
-            throw new NotImplementedException();
-        }
 
         public void Move(int deltaX, int deltaY)
         {

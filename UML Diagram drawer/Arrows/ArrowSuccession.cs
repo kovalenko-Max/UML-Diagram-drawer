@@ -13,11 +13,6 @@ namespace UML_Diagram_drawer.Arrows
         {
         }
 
-        public override void CreateSelectionBorders()
-        {
-            throw new NotImplementedException();
-        }
-
         public override void Draw()
         {
             if (!StartPoint.Location.IsEmpty && !EndPoint.Location.IsEmpty)

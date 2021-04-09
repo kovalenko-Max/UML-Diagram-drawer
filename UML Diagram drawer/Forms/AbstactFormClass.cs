@@ -19,7 +19,7 @@ namespace UML_Diagram_drawer.Forms
         public Rectangle[] Rectangles { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Point[] Points { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public void CreateRectangles()
+        public void CreateSelectionBorders()
         {
             throw new NotImplementedException();
         }
