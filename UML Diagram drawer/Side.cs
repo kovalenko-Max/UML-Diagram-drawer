@@ -1,6 +1,6 @@
 ﻿namespace UML_Diagram_drawer
 {
-    enum Side
+    public enum Side
     {
         Right,
         Down,

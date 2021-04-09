@@ -9,8 +9,18 @@ namespace UML_Diagram_drawer.Forms
 {
     public class ContactPoint
     {
-        Point Location { get; set; }
-        Side side { get; set; }
+        public Point Location { get; set; }
+        public Side Side { get; set; }
+
+        public ContactPoint(Point location)
+        {
+            Location = location;
+        }
+        public ContactPoint(Point location, Side side)
+        {
+            Location = location;
+            Side = side;
+        }
 
         public override bool Equals(object obj)
         {
@@ -19,7 +29,7 @@ namespace UML_Diagram_drawer.Forms
             if(obj is ContactPoint)
             {
                 ContactPoint contactPoint = (ContactPoint)obj;
-                result = (Location == contactPoint.Location) && (side == contactPoint.side);
+                result = (Location == contactPoint.Location) && (Side == contactPoint.Side);
             }
 
             return result;
@@ -27,7 +37,7 @@ namespace UML_Diagram_drawer.Forms
 
         public override string ToString()
         {
-            return $"{Location.ToString()} {side}";
+            return $"{Location.ToString()} {Side}";
         }
     }
 }

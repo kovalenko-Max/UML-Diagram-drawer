@@ -42,7 +42,7 @@ namespace UML_Diagram_drawer
             if (e.Button == MouseButtons.Left)
             {
                 _fromPoint = e.Location;
-                tempArrow.StartPoint = _fromPoint;
+                tempArrow.StartPoint.Location = _fromPoint;
             }
             else
             {
@@ -59,8 +59,8 @@ namespace UML_Diagram_drawer
 
             if (!_fromPoint.IsEmpty && !_toPoint.IsEmpty)
             {
-                tempArrow.StartPoint = _fromPoint;
-                tempArrow.EndPoint = _toPoint;
+                tempArrow.StartPoint.Location = _fromPoint;
+                tempArrow.EndPoint.Location = _toPoint;
                 _arrows.Add(tempArrow);
             }
 
@@ -96,7 +96,7 @@ namespace UML_Diagram_drawer
             if (!_fromPoint.IsEmpty && !_toPoint.IsEmpty)
             {
                 tempArrow.Graphics = e.Graphics;
-                tempArrow.EndPoint = _toPoint;
+                tempArrow.EndPoint.Location = _toPoint;
                 tempArrow.Draw();
             }
         }

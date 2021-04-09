@@ -20,7 +20,7 @@ namespace UML_Diagram_drawer.Arrows
 
         public override void Draw()
         {
-            if (!StartPoint.IsEmpty && !EndPoint.IsEmpty)
+            if (!StartPoint.Location.IsEmpty && !EndPoint.Location.IsEmpty)
             {
                 DrawStraightBrokenLine(wipeFromEndArrow: _sizeArrowhead);
                 DrawArrowhead();
@@ -29,30 +29,32 @@ namespace UML_Diagram_drawer.Arrows
 
         private void DrawArrowhead()
         {
-            if (!StartPoint.IsEmpty && !EndPoint.IsEmpty)
+            if (!StartPoint.Location.IsEmpty && !EndPoint.Location.IsEmpty)
             {
                 Point[] points;
 
                 if (IsHorizontal)
                 {
-                    int coefX = StartPoint.X < EndPoint.X ? EndPoint.X - _sizeArrowhead : EndPoint.X + _sizeArrowhead;
+                    int coefX = StartPoint.Location.X < EndPoint.Location.X 
+                        ? EndPoint.Location.X - _sizeArrowhead : EndPoint.Location.X + _sizeArrowhead;
                     points = new Point[]
                     {
-                    new Point(coefX, EndPoint.Y+_sizeArrowhead/2),
-                    new Point(coefX, EndPoint.Y-_sizeArrowhead/2),
-                    new Point(EndPoint.X, EndPoint.Y)
+                    new Point(coefX, EndPoint.Location.Y+_sizeArrowhead/2),
+                    new Point(coefX, EndPoint.Location.Y-_sizeArrowhead/2),
+                    new Point(EndPoint.Location.X, EndPoint.Location.Y)
                     };
 
                     Graphics.DrawPolygon(Pen, points);
                 }
                 else
                 {
-                    int coefY = StartPoint.Y < EndPoint.Y ? EndPoint.Y - _sizeArrowhead : EndPoint.Y + _sizeArrowhead;
+                    int coefY = StartPoint.Location.Y < EndPoint.Location.Y 
+                        ? EndPoint.Location.Y - _sizeArrowhead : EndPoint.Location.Y + _sizeArrowhead;
                     points = new Point[]
                     {
-                    new Point(EndPoint.X+_sizeArrowhead/2, coefY),
-                    new Point(EndPoint.X-_sizeArrowhead/2, coefY),
-                    new Point(EndPoint.X, EndPoint.Y)
+                    new Point(EndPoint.Location.X+_sizeArrowhead/2, coefY),
+                    new Point(EndPoint.Location.X-_sizeArrowhead/2, coefY),
+                    new Point(EndPoint.Location.X, EndPoint.Location.Y)
                     };
 
                     Graphics.DrawPolygon(Pen, points);
