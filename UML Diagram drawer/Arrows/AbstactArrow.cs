@@ -17,7 +17,7 @@ namespace UML_Diagram_drawer.Arrows
         public bool IsMove { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Point StartMovePoint { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Rectangle[] Rectangles { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Point[] Points { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Point[] Points { get; set; }
 
         public AbstactArrow(Pen pen, Graphics graphics, Point startPoint, Point endPoint)
         {
@@ -47,16 +47,25 @@ namespace UML_Diagram_drawer.Arrows
 
         protected Point[] GetPoints()
         {
-            Point[] points = new Point[4];
+            Points = new Point[4];
+            Points[0] = (StartPoint.Location);
 
-            points[0] = (StartPoint.Location);
-            int middle = (StartPoint.Location.X + EndPoint.Location.X) / 2;
+            if (StartPoint.Side == Side.Left || StartPoint.Side == Side.Right)
+            {
+                int middle = (StartPoint.Location.X + EndPoint.Location.X) / 2;
+                Points[1] = new Point(middle, StartPoint.Location.Y);
+                Points[2] = new Point(middle, EndPoint.Location.Y);
+            }
+            else
+            {
+                int middle = (StartPoint.Location.Y + EndPoint.Location.Y) / 2;
+                Points[1] = new Point(StartPoint.Location.X, middle);
+                Points[2] = new Point(EndPoint.Location.X, middle);
+            }
 
-            points[1] = new Point(middle, StartPoint.Location.Y);
-            points[2] = new Point(middle, EndPoint.Location.Y);
-            points[3] = EndPoint.Location;
+            Points[3] = EndPoint.Location;
 
-            return points;
+            return Points;
         }
 
         public void DrawStraightBrokenLine()

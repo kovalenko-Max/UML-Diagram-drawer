@@ -24,36 +24,42 @@ namespace UML_Diagram_drawer.Arrows
 
         private void DrawArrowhead()
         {
+            Point[] arrowHeadPoints = new Point[3];
             if (!StartPoint.Location.IsEmpty && !EndPoint.Location.IsEmpty)
             {
-                Point[] points;
-
-                if (IsHorizontal)
+                if(Points[Points.Length - 2].Y == EndPoint.Location.Y)
                 {
-                    int coefX = StartPoint.Location.X < EndPoint.Location.X 
-                        ? EndPoint.Location.X - _sizeArrowhead : EndPoint.Location.X + _sizeArrowhead;
-                    points = new Point[]
+                    if (Points[Points.Length - 2].X < EndPoint.Location.X)
                     {
-                    new Point(coefX, EndPoint.Location.Y+_sizeArrowhead/2),
-                    new Point(coefX, EndPoint.Location.Y-_sizeArrowhead/2),
-                    new Point(EndPoint.Location.X, EndPoint.Location.Y)
-                    };
-
-                    Graphics.DrawPolygon(Pen, points);
+                        arrowHeadPoints[0] = EndPoint.Location;
+                        arrowHeadPoints[1] = new Point(EndPoint.Location.X - _sizeArrowhead, EndPoint.Location.Y + _sizeArrowhead);
+                        arrowHeadPoints[2] = new Point(EndPoint.Location.X - _sizeArrowhead, EndPoint.Location.Y - _sizeArrowhead);
+                    }
+                    else
+                    {
+                        arrowHeadPoints[0] = EndPoint.Location;
+                        arrowHeadPoints[1] = new Point(EndPoint.Location.X + _sizeArrowhead, EndPoint.Location.Y + _sizeArrowhead);
+                        arrowHeadPoints[2] = new Point(EndPoint.Location.X + _sizeArrowhead, EndPoint.Location.Y - _sizeArrowhead);
+                    }
                 }
+                
                 else
                 {
-                    int coefY = StartPoint.Location.Y < EndPoint.Location.Y 
-                        ? EndPoint.Location.Y - _sizeArrowhead : EndPoint.Location.Y + _sizeArrowhead;
-                    points = new Point[]
+                    if (Points[Points.Length - 2].Y < EndPoint.Location.Y)
                     {
-                    new Point(EndPoint.Location.X+_sizeArrowhead/2, coefY),
-                    new Point(EndPoint.Location.X-_sizeArrowhead/2, coefY),
-                    new Point(EndPoint.Location.X, EndPoint.Location.Y)
-                    };
-
-                    Graphics.DrawPolygon(Pen, points);
+                        arrowHeadPoints[0] = EndPoint.Location;
+                        arrowHeadPoints[1] = new Point(EndPoint.Location.X + _sizeArrowhead, EndPoint.Location.Y - _sizeArrowhead);
+                        arrowHeadPoints[2] = new Point(EndPoint.Location.X - _sizeArrowhead, EndPoint.Location.Y - _sizeArrowhead);
+                    }
+                    else
+                    {
+                        arrowHeadPoints[0] = EndPoint.Location;
+                        arrowHeadPoints[1] = new Point(EndPoint.Location.X + _sizeArrowhead, EndPoint.Location.Y + _sizeArrowhead);
+                        arrowHeadPoints[2] = new Point(EndPoint.Location.X - _sizeArrowhead, EndPoint.Location.Y + _sizeArrowhead);
+                    }
                 }
+
+                Graphics.DrawPolygon(Pen, arrowHeadPoints);
             }
         }
     }

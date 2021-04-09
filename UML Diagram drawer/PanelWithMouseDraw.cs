@@ -42,7 +42,8 @@ namespace UML_Diagram_drawer
             if (e.Button == MouseButtons.Left)
             {
                 _fromPoint = e.Location;
-                tempArrow.StartPoint.Location = _fromPoint;
+                tempArrow.StartPoint = new ContactPoint(_fromPoint, Side.Up);
+                    //.Location = _fromPoint;
             }
             else
             {
@@ -60,6 +61,7 @@ namespace UML_Diagram_drawer
             if (!_fromPoint.IsEmpty && !_toPoint.IsEmpty)
             {
                 tempArrow.StartPoint.Location = _fromPoint;
+                //tempArrow.StartPoint.Side = Side.Up;
                 tempArrow.EndPoint.Location = _toPoint;
                 _arrows.Add(tempArrow);
             }
