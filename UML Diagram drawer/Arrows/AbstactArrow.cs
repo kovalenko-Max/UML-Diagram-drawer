@@ -45,42 +45,23 @@ namespace UML_Diagram_drawer.Arrows
             throw new NotImplementedException();
         }
 
+        protected Point[] GetPoints()
+        {
+            Point[] points = new Point[4];
+
+            points[0] = (StartPoint.Location);
+            int middle = (StartPoint.Location.X + EndPoint.Location.X) / 2;
+
+            points[1] = new Point(middle, StartPoint.Location.Y);
+            points[2] = new Point(middle, EndPoint.Location.Y);
+            points[3] = EndPoint.Location;
+
+            return points;
+        }
+
         public void DrawStraightBrokenLine(int wipeFromStartArrow = 0, int wipeFromEndArrow = 0)
         {
-            if (!StartPoint.Location.IsEmpty && !EndPoint.Location.IsEmpty)
-            {
-                Point[] points;
-
-                if (IsHorizontal)
-                {
-                    wipeFromEndArrow = EndPoint.Location.X > StartPoint.Location.X ? wipeFromEndArrow * (-1) : wipeFromEndArrow;
-                    wipeFromStartArrow = EndPoint.Location.X > StartPoint.Location.X ? wipeFromStartArrow : wipeFromStartArrow * (-1);
-
-                    points = new Point[]
-                    {
-                        new Point(StartPoint.Location.X+wipeFromStartArrow,StartPoint.Location.Y),
-                        new Point((EndPoint.Location.X + StartPoint.Location.X) / 2,StartPoint.Location.Y),
-                        new Point((EndPoint.Location.X + StartPoint.Location.X) / 2,EndPoint.Location.Y),
-                        new Point(EndPoint.Location.X+wipeFromEndArrow,EndPoint.Location.Y)
-                    };
-
-                    Graphics.DrawLines(Pen, points);
-                }
-                else
-                {
-                    wipeFromEndArrow = EndPoint.Location.Y < StartPoint.Location.Y ? wipeFromEndArrow : wipeFromEndArrow * (-1);
-                    wipeFromStartArrow = EndPoint.Location.X > StartPoint.Location.X ? wipeFromStartArrow : wipeFromStartArrow * (-1);
-
-                    points = new Point[]
-                    {
-                        new Point(StartPoint.Location.X+wipeFromStartArrow,StartPoint.Location.Y),
-                        new Point(EndPoint.Location.X, StartPoint.Location.Y),
-                        new Point(EndPoint.Location.X,EndPoint.Location.Y+wipeFromEndArrow)
-                    };
-
-                    Graphics.DrawLines(Pen, points);
-                }
-            }
+                        
         }
 
 
