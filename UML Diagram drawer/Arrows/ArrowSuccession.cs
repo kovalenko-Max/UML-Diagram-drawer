@@ -17,7 +17,7 @@ namespace UML_Diagram_drawer.Arrows
         {
             if (!StartPoint.Location.IsEmpty && !EndPoint.Location.IsEmpty)
             {
-                DrawStraightBrokenLine(wipeFromEndArrow: _sizeArrowhead);
+                DrawStraightBrokenLine();
                 DrawArrowhead();
             }
         }

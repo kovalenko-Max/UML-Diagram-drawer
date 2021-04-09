@@ -59,9 +59,9 @@ namespace UML_Diagram_drawer.Arrows
             return points;
         }
 
-        public void DrawStraightBrokenLine(int wipeFromStartArrow = 0, int wipeFromEndArrow = 0)
+        public void DrawStraightBrokenLine()
         {
-                        
+            Graphics.DrawLines(Pen, GetPoints());
         }
 
 
