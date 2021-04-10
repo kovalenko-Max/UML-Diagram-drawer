@@ -153,7 +153,7 @@ namespace UML_Diagram_drawer
             {
                 foreach (var arrow in _arrows)
                 {
-                    if (arrow.Select(_lastMousePosition)&&arrow!=_selectArrow)
+                    if (arrow.Select(_lastMousePosition) && arrow != _selectArrow)
                     {
                         _selectArrow = arrow;
                         _selectedObjects.Add(arrow);

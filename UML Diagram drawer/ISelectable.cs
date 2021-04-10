@@ -14,9 +14,11 @@ namespace UML_Diagram_drawer
         bool IsMove { get; set; }
         Pen Pen { get; set; }
         Graphics Graphics { get; set; }
+
         void Draw();
 
         bool Select(Point point);
+
         void RemoveSelect();
 
         void Move(int deltaX, int deltaY);

@@ -23,7 +23,7 @@ namespace UML_Diagram_drawer
         private Point[] _points;
         private Rectangle[] _rectangls;
 
-        public bool IsSelected { get; set; } = false;
+        public bool IsSelected { get; set; }
         public bool IsHorizontal { get; set; } = true;
         public Graphics Graphics { get; set; }
         public Pen Pen { get; set; }
@@ -137,9 +137,18 @@ namespace UML_Diagram_drawer
             {
                 if (rectangle.Contains(point))
                 {
-                    IsSelected = true;
-                    Color = _selectColor;
-                    Width = _selectWigth;
+                    //if (IsSelected)
+                    //{
+                    //    IsSelected = false;
+                    //    Color = _defaultColor;
+                    //    Width = _defaultWidth;
+                    //}
+                    //else
+                    //{
+                        IsSelected = true;
+                        Color = _selectColor;
+                        Width = _selectWigth;
+                    //}
 
                     return true;
                 }
@@ -225,14 +234,10 @@ namespace UML_Diagram_drawer
 
         public void Move(int deltaX, int deltaY)
         {
-            int fX = From.X + deltaX;
-            int fY = From.Y + deltaY;
-
-            int tX = To.X + deltaX;
-            int tY = To.Y + deltaY;
-
-            From = new Point(fX, fY);
-            To = new Point(tX, tY);
+            From = new Point(From.X + deltaX, From.Y + deltaY);
+            To = new Point(To.X + deltaX, To.Y + deltaY);
         }
+
+
     }
 }

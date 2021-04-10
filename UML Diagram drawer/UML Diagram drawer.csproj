@@ -57,6 +57,9 @@
     <Compile Include="ArrowRealization.cs" />
     <Compile Include="ArrowAggregation.cs" />
     <Compile Include="ArrowAssociation.cs" />
+    <Compile Include="CanvasPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>

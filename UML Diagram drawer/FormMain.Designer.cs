@@ -47,6 +47,11 @@ namespace UML_Diagram_drawer
             this.panelMain.Name = "panelMain";
             this.panelMain.Size = new System.Drawing.Size(537, 459);
             this.panelMain.TabIndex = 0;
+            this.panelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMain_Paint);
+            this.panelMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelMain_MouseDown);
+            this.panelMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelMain_MouseMove);
+            this.panelMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelMain_MouseUp);
+            this.panelMain.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.panelMain_PreviewKeyDown);
             // 
             // buttonDeleteOBJ
             // 
