@@ -25,6 +25,7 @@ namespace UML_Diagram_drawer.Arrows
         private void DrawArrowhead()
         {
             Point[] arrowHeadPoints = new Point[3];
+
             if (!StartPoint.Location.IsEmpty && !EndPoint.Location.IsEmpty)
             {
                 if(Points[Points.Length - 2].Y == EndPoint.Location.Y)
@@ -42,7 +43,6 @@ namespace UML_Diagram_drawer.Arrows
                         arrowHeadPoints[2] = new Point(EndPoint.Location.X + _sizeArrowhead, EndPoint.Location.Y - _sizeArrowhead);
                     }
                 }
-                
                 else
                 {
                     if (Points[Points.Length - 2].Y < EndPoint.Location.Y)
