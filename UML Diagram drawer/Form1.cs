@@ -16,7 +16,7 @@ namespace UML_Diagram_drawer
         public FormMain()
         {
             InitializeComponent();
-            panelMain.Controls.Add(new PanelWithMouseDraw());
+            panelMain.Controls.Add(new CanvasPanel());
         }
 
         private void FormMain_Load(object sender, EventArgs e)

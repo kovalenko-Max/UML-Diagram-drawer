@@ -11,9 +11,7 @@ namespace UML_Diagram_drawer
     {
         bool IsSelected { get; set; }
         Pen Pen { get; set; }
-        bool IsMove { get; set; }
         Graphics Graphics { get; set; }
-        Point StartMovePoint { get; set; }
         Rectangle[] Rectangles { get; set; }
         Point[] Points { get; set; }
 
