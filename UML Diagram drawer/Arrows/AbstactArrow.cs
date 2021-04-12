@@ -13,11 +13,11 @@ namespace UML_Diagram_drawer.Arrows
         public Pen Pen { get; set; }
         public ContactPoint StartPoint { get; set; }
         public ContactPoint EndPoint { get; set; }
-        public bool IsSelected { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool IsMove { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Point StartMovePoint { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Rectangle[] Rectangles { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Point[] Points { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool IsSelected { get; set; }
+        public bool IsMove { get; set; }
+        public Point StartMovePoint { get; set; }
+        public Rectangle[] Rectangles { get; set; }
+        public Point[] Points { get; set; }
 
         public AbstactArrow(Pen pen, Graphics graphics, Point startPoint, Point endPoint)
         {
@@ -82,7 +82,6 @@ namespace UML_Diagram_drawer.Arrows
                 }
             }
         }
-
 
         public void Move(int deltaX, int deltaY)
         {

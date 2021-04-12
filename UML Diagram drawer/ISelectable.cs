@@ -10,8 +10,8 @@ namespace UML_Diagram_drawer
     interface ISelectable
     {
         bool IsSelected { get; set; }
-        Pen Pen { get; set; }
         bool IsMove { get; set; }
+        Pen Pen { get; set; }
         Graphics Graphics { get; set; }
         Point StartMovePoint { get; set; }
         Rectangle[] Rectangles { get; set; }
