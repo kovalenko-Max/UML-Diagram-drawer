@@ -6,6 +6,8 @@ namespace UML_Diagram_drawer.Arrows
 {
     public abstract class AbstactArrow : ISelectable
     {
+        const int indentFromBorder = 50;
+
         protected int _sizeArrowhead;
 
         public bool IsHorizontal { get; set; }
@@ -47,37 +49,49 @@ namespace UML_Diagram_drawer.Arrows
 
         protected Point[] GetPoints()
         {
-        //    if ((StartPoint.Side == Side.Left && EndPoint.Side == Side.Right)
-        //        || (StartPoint.Side == Side.Right && EndPoint.Side == Side.Left))
-        //    {
-        //        Points = zigzagArroyLeftRighr();
-        //    }
-        //    else if ((StartPoint.Side == Side.Up && EndPoint.Side == Side.Bottom)
-        //        || (StartPoint.Side == Side.Bottom && EndPoint.Side == Side.Up))
-        //    {
-        //        Points = zigzagArroyUpDown();
-        //    }
-        //    else if ((StartPoint.Side == Side.Bottom && (EndPoint.Side == Side.Left) || (EndPoint.Side == Side.Right))
-        //        || (StartPoint.Side == Side.Up && (EndPoint.Side == Side.Left) || (EndPoint.Side == Side.Right)))
-        //    {
-        //        Points = RectangularArrowUpBottom();
-        //    }
-        //    else if ((StartPoint.Side == Side.Left && (EndPoint.Side == Side.Up) || (EndPoint.Side == Side.Bottom))
-        //        || (StartPoint.Side == Side.Right && (EndPoint.Side == Side.Up) || (EndPoint.Side == Side.Bottom)))
-        //    {
-        //        Points = RectangularArrowLeftRight();
-        //    }
+            if ((StartPoint.Side == Side.Left && EndPoint.Side == Side.Right)
+                || (StartPoint.Side == Side.Right && EndPoint.Side == Side.Left))
+            {
+                Points = zigzagArroyLeftRighr();
+            }
+            else if ((StartPoint.Side == Side.Up && EndPoint.Side == Side.Bottom)
+                || (StartPoint.Side == Side.Bottom && EndPoint.Side == Side.Up))
+            {
+                Points = zigzagArroyUpDown();
+            }
+            else if ((StartPoint.Side == Side.Bottom && EndPoint.Side == Side.Left || (EndPoint.Side == Side.Right))
+                || (StartPoint.Side == Side.Up && (EndPoint.Side == Side.Left) || (EndPoint.Side == Side.Right)))
+            {
+                Points = RectangularArrowUpBottom();
+            }
+            else if ((StartPoint.Side == Side.Left && (EndPoint.Side == Side.Up || EndPoint.Side == Side.Bottom))
+                || (StartPoint.Side == Side.Right && (EndPoint.Side == Side.Up || EndPoint.Side == Side.Bottom)))
+            {
+                Points = RectangularArrowLeftRight();
+            }
 
-             if (true)
+            if((EndPoint.Location.Y >= StartPoint.Location.Y + indentFromBorder) && ((StartPoint.Side == Side.Left && EndPoint.Location.X > StartPoint.Location.X)
+                || (StartPoint.Side == Side.Right && EndPoint.Location.X < StartPoint.Location.X)))
             {
                 Points = new Point[5];
                 Points[0] = StartPoint.Location;
-                Points[1] = new Point(StartPoint.Location.X, StartPoint.Location.Y + 50);
+                Points[1] = new Point(StartPoint.Location.X, StartPoint.Location.Y + indentFromBorder);
                 int middle = (StartPoint.Location.X + EndPoint.Location.X) / 2;
-                Points[2] = new Point(middle, StartPoint.Location.Y + 50);
+                Points[2] = new Point(middle, StartPoint.Location.Y + indentFromBorder);
                 Points[3] = new Point(middle, EndPoint.Location.Y);
                 Points[4] = EndPoint.Location;
             }
+
+            //if ((StartPoint.Side == Side.Left && (EndPoint.Side == Side.Up || EndPoint.Side == Side.Bottom) && EndPoint.Location.Y >= StartPoint.Location.Y + indentFromBorder))
+            //{
+            //    Points = new Point[5];
+            //    Points[0] = StartPoint.Location;
+            //    Points[1] = new Point(StartPoint.Location.X + indentFromBorder, StartPoint.Location.Y);
+            //    int middle = (StartPoint.Location.Y + EndPoint.Location.Y) / 2;
+            //    Points[2] = new Point(StartPoint.Location.X + indentFromBorder, middle);
+            //    Points[3] = new Point(EndPoint.Location.X, middle);
+            //    Points[4] = EndPoint.Location;
+            //}
 
             return Points;
 
