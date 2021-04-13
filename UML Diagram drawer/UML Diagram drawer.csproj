@@ -60,14 +60,17 @@
     <Compile Include="CanvasPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DefaultValue.cs" />
     <Compile Include="Forms\AbstactFormClass.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms\AddFieldModuleForm.cs" />
     <Compile Include="Forms\AddMethodModuleForm.cs" />
+    <Compile Include="Forms\Button.cs" />
     <Compile Include="Forms\ClassNameModuleForm.cs" />
     <Compile Include="Forms\FieldsModuleForm.cs" />
     <Compile Include="Forms\MethodsModuleForm.cs" />
+    <Compile Include="MainGraphics.cs" />
     <Compile Include="ISelectable.cs" />
     <Compile Include="Forms\AbstractModuleForm.cs" />
     <Compile Include="Side.cs" />

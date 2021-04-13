@@ -11,7 +11,6 @@ namespace UML_Diagram_drawer.Forms
     {
         public AddMethodModuleForm()
         {
-            Font = new Font("Arial" ,8);
             StringFormat = new StringFormat();
             StringFormat.LineAlignment = StringAlignment.Center;
             StringFormat.Alignment = StringAlignment.Center;

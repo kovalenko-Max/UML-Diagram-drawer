@@ -49,7 +49,8 @@ namespace UML_Diagram_drawer
             base.OnPaint(e);
             if (_form != null)
             {
-                _form.Graphics = e.Graphics;
+                //_form.Graphics = e.Graphics;
+                MainGraphics.Graphics = e.Graphics;
                 _form.Draw();
             }
         }

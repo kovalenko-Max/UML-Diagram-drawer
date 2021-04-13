@@ -8,15 +8,13 @@ using System.Windows.Forms;
 
 namespace UML_Diagram_drawer
 {
-    public abstract class AbstractModuleForm 
+    public abstract class AbstractModuleForm
     {
         private bool _isCreatetDefaultField = true;
-        private Size _defaultSize = new Size(200, 25);
+        private Size _defaultSize = DefaultValue.ModuleFormSize;
         private Pen _defaultPen = new Pen(Color.Black, 5);
         private string _defaultText;
         private Rectangle _rectangle;
-
-        public Font Font = new Font("Arial", 14);
         public Size Size { get; set; }
         public Point Location { get; set; }
         public List<TextField> TextFields { get; set; }
@@ -77,29 +75,80 @@ namespace UML_Diagram_drawer
             TextFields = new List<TextField>();
         }
 
-        public void Draw(Graphics graphics)
+        public void Draw()
         {
             if (!Location.IsEmpty)
             {
+                _rectangle = new Rectangle(Location, GetSize());
+                MainGraphics.Graphics.DrawRectangle(Pen, _rectangle);
+
                 //Size = new Size(Size.Width, Size.Height * TextFields.Count + 40);
-                _rectangle = new Rectangle(Location, Size);
-                graphics.DrawRectangle(Pen, _rectangle);
+                //_rectangle = new Rectangle(Location, Size);
+                //MainGraphics.Graphics.DrawRectangle(Pen, _rectangle);
                 if (_isCreatetDefaultField)
                 {
-                    AddTextField(graphics);
+                    AddTextField();
+                    AddTextField();
+
                     _isCreatetDefaultField = false;
                 }
+                DrawTextFields();
             }
         }
 
-        public virtual void AddTextField(Graphics graphics)
+        public virtual void AddTextField()
         {
-            var textFietld = new TextField();
+            var textFietld = TextField.GetTextField(_defaultText, StringFormat, GetPointForNewTextField());
             TextFields.Add(textFietld);
-            TextFields[TextFields.Count - 1].Text = _defaultText;
-            TextFields[TextFields.Count - 1].Font = Font;
-            TextFields[TextFields.Count - 1].StringFormat = StringFormat;
-            TextFields[TextFields.Count - 1].Draw(graphics, _rectangle);
+        }
+
+        private Size GetSize()
+        {
+            Size result = Size.Empty;
+            if (TextFields.Count > 0)
+            {
+                int wigth = DefaultValue.ModuleFormSize.Width;
+                int height = 0;
+                for (int i = 0; i < TextFields.Count; i++)
+                {
+                    height += TextFields[i].Rectangle.Height;
+                }
+                result = new Size(wigth, height);
+            }
+            else
+            {
+                result = DefaultValue.ModuleFormSize;
+            }
+
+            return result;
+        }
+
+        private Point GetPointForNewTextField()
+        {
+            Point result = Point.Empty;
+            if (TextFields.Count > 0)
+            {
+                int pointX = Location.X;
+                int pointY = 0;
+                for (int i = 0; i < TextFields.Count; i++)
+                {
+                    pointY += TextFields[i].Rectangle.Height;
+                }
+                result = new Point(pointX, pointY);
+            }
+            else
+            {
+                result = Location;
+            }
+
+            return result;
+        }
+        public void DrawTextFields()
+        {
+            foreach (TextField text in TextFields)
+            {
+                text.Draw();
+            }
         }
     }
 }

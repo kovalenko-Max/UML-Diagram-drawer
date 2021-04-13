@@ -12,47 +12,37 @@ namespace UML_Diagram_drawer
     {
         private Font _defaultFont = new Font("Arial", 14);
         private string _defaultText = "Text";
-        private Rectangle _rectangle;
-        public Size Size
-        {
-            get
-            {
-                if (_rectangle != null)
-                {
-                    return _rectangle.Size;
-                }
 
-                throw new ArgumentNullException("Rectangle is null");
-            }
-            set
-            {
-                if (_rectangle != null)
-                {
-                    _rectangle.Size = value;
-                }
-                else
-                {
-                    throw new ArgumentNullException("Rectangle is null");
-                }
-            }
-        }
         public StringFormat StringFormat { get; set; }
         public Font Font { get; set; }
         public string Text { get; set; }
+        public Point Location { get; set; }
+        public Rectangle Rectangle { get; set; }
 
-        public TextField()
+        private TextField(string text,StringFormat strFormat,Point location)
         {
-            Text = _defaultText;
+            Text = text;
+            StringFormat = strFormat;
             Font = _defaultFont;
-            _rectangle = new Rectangle();
+            Location = location;
+            Rectangle = new Rectangle(Location,DefaultValue.TextFieldSize);
         }
 
-        public void Draw(Graphics graphics, Rectangle rectangle)
+        public static TextField GetTextField(string text, StringFormat strFormat, Point location)
+        {
+            if (text != null && strFormat != null && location != null)
+            {
+                return new TextField(text, strFormat, location);
+            }
+            
+            throw new ArgumentNullException("Value is null");
+        }
+
+        public void Draw()
         {
             if (Text != string.Empty && StringFormat != null)
             {
-                _rectangle = rectangle;
-                graphics.DrawString(Text, Font, new SolidBrush(Color.Black), _rectangle, StringFormat);
+                MainGraphics.Graphics.DrawString(Text, Font, new SolidBrush(Color.Black), Rectangle, StringFormat);
             }
         }
         

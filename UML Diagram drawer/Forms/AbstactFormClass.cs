@@ -10,17 +10,17 @@ namespace UML_Diagram_drawer.Forms
 {
     class AbstactFormClass :Panel, ISelectable
     {
-
         private int _wightLine = 5;
         private Size _defaultSize = new Size(200, 75);
+
         //public Point Location { get; set; }
+        //public Size Size { get; set; }
+
         public ContactPoint[] ContactPoints { get; set; }
         public bool IsSelected { get; set; }
         public Pen Pen { get; set; }
-        public Graphics Graphics { get; set; }
         public Rectangle[] Rectangles { get; set; }
         public Point[] Points { get; set; }
-        //public Size Size { get; set; }
         public Size DefaultSize
         {
             get
@@ -50,13 +50,13 @@ namespace UML_Diagram_drawer.Forms
             Pen = new Pen(Color.Black, _wightLine);
             base.Size = Size;
             base.BackColor = Color.Transparent;
-
         }
+
         protected override void OnMouseEnter(EventArgs e)
         {
             base.OnMouseEnter(e);
-
         }
+
         public void CreateSelectionBorders()
         {
 
@@ -68,7 +68,7 @@ namespace UML_Diagram_drawer.Forms
             {
                 DrawModuleForm();
                 Rectangles[0]= new Rectangle(Location, DefaultSize);
-                Graphics.DrawRectangle(Pen, Rectangles[0]);
+                MainGraphics.Graphics.DrawRectangle(Pen, Rectangles[0]);
             }
         }
 
@@ -98,11 +98,11 @@ namespace UML_Diagram_drawer.Forms
                 ClassName.Size = ClassName.DefaultSize;
                 Fields = new FieldsModuleForm();
                 Fields.Location = new Point(ClassName.Location.X, ClassName.Location.Y + ClassName.Size.Height);
-                Fields.Draw(Graphics);
+                Fields.Draw();
 
                 AddMethodModuleForm emptyMetod = new AddMethodModuleForm();
                 emptyMetod.Location = new Point(Fields.Location.X, Fields.Location.Y + Fields.Size.Height);
-                emptyMetod.Draw(Graphics);
+                emptyMetod.Draw();
             }
             else if (FieldsBool && MethodsBool)
             {
@@ -110,35 +110,35 @@ namespace UML_Diagram_drawer.Forms
 
                 Fields = new FieldsModuleForm();
                 Fields.Location = new Point(ClassName.Location.X, ClassName.Location.Y + ClassName.Size.Height);
-                Fields.Draw(Graphics);
+                Fields.Draw();
 
                 Methods = new MethodsModuleForm();
                 Methods.Location = new Point(Fields.Location.X, Fields.Location.Y + Fields.Size.Height);
-                Methods.Draw(Graphics);
+                Methods.Draw();
             }
             else if (!FieldsBool && MethodsBool)
             {
                 ClassName.Size = ClassName.DefaultSize;
                 AddFieldModuleForm emptyField = new AddFieldModuleForm();
                 emptyField.Location = new Point(ClassName.Location.X, ClassName.Location.Y + ClassName.Size.Height);
-                emptyField.Draw(Graphics); 
+                emptyField.Draw(); 
 
                 Methods = new MethodsModuleForm();
                 Methods.Location = new Point(emptyField.Location.X, emptyField.Location.Y + emptyField.Size.Height);
-                Methods.Draw(Graphics);
+                Methods.Draw();
             }
             else if(!FieldsBool && !MethodsBool)
             {
                 ClassName.Size = ClassName.DefaultSize;
                 AddFieldModuleForm emptyField = new AddFieldModuleForm();
                 emptyField.Location = new Point(ClassName.Location.X, ClassName.Location.Y + ClassName.Size.Height);
-                emptyField.Draw(Graphics);
+                emptyField.Draw();
 
                 AddMethodModuleForm emptyMetod = new AddMethodModuleForm();
                 emptyMetod.Location = new Point(emptyField.Location.X, emptyField.Location.Y + emptyField.Size.Height);
-                emptyMetod.Draw(Graphics);
+                emptyMetod.Draw();
             }
-            ClassName.Draw(Graphics);
+            ClassName.Draw();
         }
     }
 }
