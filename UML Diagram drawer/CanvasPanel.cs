@@ -8,23 +8,27 @@ using UML_Diagram_drawer.Forms;
 
 namespace UML_Diagram_drawer
 {
-    class CanvasPanel : Panel
+    public class CanvasPanel : Panel
     {
-        private AbstactFormClass _form;
+        public AbstactFormClassV1 _form;
 
         public CanvasPanel()
         {
             Dock = DockStyle.Fill;
             this.DoubleBuffered = true;
         }
-
+        public void TextCheng(string str)
+        {
+            _form.ClassName.TextFields[0].Text += str;
+            Invalidate();
+        }
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
 
             if (_form == null)
             {
-                _form = new AbstactFormClass(isDrawFields: true, isDrawMethods: true);
+                _form = new AbstactFormClassV1(isDrawFields: true, isDrawMethods: true);
                 this.Controls.Add(_form);
             }
 

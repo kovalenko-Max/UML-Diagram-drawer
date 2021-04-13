@@ -31,17 +31,27 @@ namespace UML_Diagram_drawer
         private void InitializeComponent()
         {
             this.panelMain = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.panelMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMain
             // 
             this.panelMain.AutoSize = true;
+            this.panelMain.Controls.Add(this.textBox1);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(0, 0);
             this.panelMain.Margin = new System.Windows.Forms.Padding(2);
             this.panelMain.Name = "panelMain";
             this.panelMain.Size = new System.Drawing.Size(537, 459);
             this.panelMain.TabIndex = 0;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(347, 55);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 0;
             // 
             // FormMain
             // 
@@ -52,6 +62,8 @@ namespace UML_Diagram_drawer
             this.Name = "FormMain";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FormMain_Load);
+            this.panelMain.ResumeLayout(false);
+            this.panelMain.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -60,6 +72,7 @@ namespace UML_Diagram_drawer
         #endregion
 
         private System.Windows.Forms.Panel panelMain;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace UML_Diagram_drawer
 {
-    public abstract class AbstractModuleForm
+    public abstract class AbstractModuleFormV1
     {
         private bool _isCreatetDefaultField = true;
         private Size _defaultSize = DefaultValue.ModuleFormSize;
@@ -17,7 +17,7 @@ namespace UML_Diagram_drawer
         private Rectangle _rectangle;
         public Size Size { get; set; }
         public Point Location { get; set; }
-        public List<TextField> TextFields { get; set; }
+        public List<TextFieldV1> TextFields { get; set; }
         public StringFormat StringFormat { get; set; }
         public Pen Pen { get; set; }
         public Size DefaultSize
@@ -53,52 +53,47 @@ namespace UML_Diagram_drawer
                 _defaultText = value;
             }
         }
+        public bool Visible { get; set; }
 
-        public AbstractModuleForm()
+        public AbstractModuleFormV1()
         {
             Size = DefaultSize;
             Pen = DefaultPen;
-            TextFields = new List<TextField>();
+            TextFields = new List<TextFieldV1>();
         }
 
-        public AbstractModuleForm(Size size)
+        public AbstractModuleFormV1(Size size)
         {
             Size = size;
             Pen = DefaultPen;
-            TextFields = new List<TextField>();
+            TextFields = new List<TextFieldV1>();
         }
 
-        public AbstractModuleForm(Size size, Pen pen)
+        public AbstractModuleFormV1(Size size, Pen pen)
         {
             Size = size;
             Pen = pen;
-            TextFields = new List<TextField>();
+            TextFields = new List<TextFieldV1>();
         }
 
         public void Draw()
         {
-            if (!Location.IsEmpty)
+            if (!Location.IsEmpty&&Visible)
             {
                 _rectangle = new Rectangle(Location, GetSize());
                 MainGraphics.Graphics.DrawRectangle(Pen, _rectangle);
-
-                //Size = new Size(Size.Width, Size.Height * TextFields.Count + 40);
-                //_rectangle = new Rectangle(Location, Size);
-                //MainGraphics.Graphics.DrawRectangle(Pen, _rectangle);
                 if (_isCreatetDefaultField)
                 {
                     AddTextField();
-                    AddTextField();
-
                     _isCreatetDefaultField = false;
                 }
                 DrawTextFields();
             }
         }
 
-        public virtual void AddTextField()
+        public void AddTextField()
         {
-            var textFietld = TextField.GetTextField(_defaultText, StringFormat, GetPointForNewTextField());
+            var textFietld = TextFieldV1.GetTextField(_defaultText, StringFormat, GetPointForNewTextField());
             TextFields.Add(textFietld);
         }
 
@@ -143,9 +138,10 @@ namespace UML_Diagram_drawer
 
             return result;
         }
+
         public void DrawTextFields()
         {
-            foreach (TextField text in TextFields)
+            foreach (TextFieldV1 text in TextFields)
             {
                 text.Draw();
             }

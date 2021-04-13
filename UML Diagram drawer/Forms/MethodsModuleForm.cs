@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UML_Diagram_drawer.Forms
 {
-    class MethodsModuleForm :AbstractModuleForm
+    class MethodsModuleForm :AbstractModuleFormV1
     {
         public MethodsModuleForm()
         {
