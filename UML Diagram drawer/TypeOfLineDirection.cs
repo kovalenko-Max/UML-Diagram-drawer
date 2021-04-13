@@ -8,11 +8,19 @@ namespace UML_Diagram_drawer
 {
     public enum TypeOfLineDirection
     {
-        ZikzakLeftRightLine,
-        ZikzakUpDownLine,
-        RectangeleLeftRightLine,
-        RectangelUpDownLine,
-        FromeButomToFlankLine,
-        FromUpToFlankLina
+        FourPointsZikzakLeftRightLine,
+        FourPointsZikzakUpDownLine,
+        ThreePointsRectangeleLeftRightLine,
+        ThreePointsRectangelUpDownLine,
+
+        FivePointsFromeButomToFlankLine,
+        FivePointsFromUpToFlankLine,
+        FivePointsFromRightToBottomOrUpLine,
+        FivePointsFromLeftToBottomOrUpLine,
+
+        FourPointsFromUpToUp,
+        FourPointsFromBottomToBottom,
+        FourPointsFromLeftToLeft,
+        FourPointsFromRightToRight
     }
 }
