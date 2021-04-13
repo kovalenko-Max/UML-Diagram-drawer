@@ -22,6 +22,11 @@ namespace UML_Diagram_drawer.Forms
             Side = side;
         }
 
+        public void Draw()
+        {
+            MainGraphics.Graphics.DrawRectangle(new Pen(Color.Red, 5),new Rectangle(new Point(Location.X- 10,Location.Y - 10),new Size(10,10)));
+        }
+
         public override bool Equals(object obj)
         {
             bool result = false;

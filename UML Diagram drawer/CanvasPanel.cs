@@ -10,30 +10,22 @@ namespace UML_Diagram_drawer
 {
     public class CanvasPanel : Panel
     {
-        public AbstactFormClassV1 _form;
-
+        public List<FormUML> Forms;
         public CanvasPanel()
         {
             Dock = DockStyle.Fill;
             this.DoubleBuffered = true;
+            Forms = new List<FormUML>();
         }
-        public void TextCheng(string str)
-        {
-            _form.ClassName.TextFields[0].Text += str;
-            Invalidate();
-        }
+        
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
-
-            if (_form == null)
+            if (e.Button == MouseButtons.Left)
             {
-                _form = new AbstactFormClassV1(isDrawFields: true, isDrawMethods: true);
-                this.Controls.Add(_form);
+                Forms.Add(new FormUML());
+                Forms[Forms.Count - 1].Location = e.Location;
             }
-
-            _form.Location = e.Location;
-
             Invalidate();
         }
         protected override void OnMouseMove(MouseEventArgs e)
@@ -51,11 +43,11 @@ namespace UML_Diagram_drawer
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            if (_form != null)
+            MainGraphics.Graphics = e.Graphics;
+
+            foreach (var form in Forms)
             {
-                //_form.Graphics = e.Graphics;
-                MainGraphics.Graphics = e.Graphics;
-                _form.Draw();
+                form.Draw();
             }
         }
     }

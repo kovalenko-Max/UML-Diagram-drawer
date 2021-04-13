@@ -7,7 +7,7 @@ namespace UML_Diagram_drawer.Arrows
     public abstract class AbstactArrow : ISelectable
     {
         protected int _sizeArrowhead;
-
+        
         public bool IsHorizontal { get; set; }
         public Graphics Graphics { get; set; }
         public Pen Pen { get; set; }
