@@ -57,6 +57,7 @@
     <Compile Include="Arrows\ArrowRealization.cs" />
     <Compile Include="Arrows\ArrowAggregation.cs" />
     <Compile Include="Arrows\ArrowAssociation.cs" />
+    <Compile Include="TypeOfLineDirection.cs" />
     <Compile Include="Forms\AbstactFormClass.cs" />
     <Compile Include="ISelectable.cs" />
     <Compile Include="Side.cs" />

@@ -42,10 +42,9 @@ namespace UML_Diagram_drawer.Arrows
 
         public abstract void Draw();
 
-        private int kindOfLineSwithcer()
+        private TypeOfLineDirection kindOfLineSwithcer()
         {
-            int result = 1;
-
+            TypeOfLineDirection typeOfLineDirection;
             if (StartPoint.Side == Side.Right)
             {
 
@@ -58,15 +57,15 @@ namespace UML_Diagram_drawer.Arrows
             {
                 if (EndPoint.Location.Y <= StartPoint.Location.Y + indentFromBorder)
                 {
-                    result = 90;
+                    typeOfLineDirection =  TypeOfLineDirection.FromeButomToFlankLine;
                 }
                 else if (EndPoint.Side == Side.Up)
                 {
-                    result = 2;
+                    typeOfLineDirection = TypeOfLineDirection.RectangelUpDownLine;
                 }
                 else
                 {
-                    result = 3;
+                    typeOfLineDirection = TypeOfLineDirection.RectangelUpDownLine;
                 }
 
             }
@@ -74,19 +73,19 @@ namespace UML_Diagram_drawer.Arrows
             {
                 if (EndPoint.Location.Y >= StartPoint.Location.Y - indentFromBorder)
                 {
-                    result = 91;
+                    typeOfLineDirection = TypeOfLineDirection.FromUpToFlankLina;
                 }
                 else if (EndPoint.Side == Side.Bottom)
                 {
-                    result = 2;
+                    typeOfLineDirection = TypeOfLineDirection.ZikzakUpDownLine;
                 }
                 else
                 {
-                    result = 3;
+                    typeOfLineDirection = TypeOfLineDirection.RectangelUpDownLine;
                 }
             }
 
-            return result;
+            return typeOfLineDirection;
         }
 
         public void CreateSelectionBorders()
