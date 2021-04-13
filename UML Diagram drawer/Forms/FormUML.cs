@@ -23,10 +23,15 @@ namespace UML_Diagram_drawer.Forms
             _rectangle = new Rectangle(Location, Default.Size.FormSize);
             SecondPoint = new Point(Location.X + _rectangle.Width, Location.Y + _rectangle.Height);
             MainGraphics.Graphics.DrawRectangle(Default.Draw.Pen, Location.X, Location.Y, _rectangle.Width, _rectangle.Height);
+
             SetContactPoint();
             DrawCP();
         }
 
+        public void Move(int deltaX,int deltaY)
+        {
+            Location = new Point(Location.X + deltaX, Location.Y + deltaY);
+        }
         private void DrawCP()
         {
             BottomContactPoint.Draw();

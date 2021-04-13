@@ -24,7 +24,24 @@ namespace UML_Diagram_drawer.Forms
 
         public void Draw()
         {
-            MainGraphics.Graphics.DrawRectangle(new Pen(Color.Red, 5),new Rectangle(new Point(Location.X- 10,Location.Y - 10),new Size(10,10)));
+            Point secondPoint;
+            if(Side == Side.Bottom)
+            {
+                secondPoint = new Point(Location.X, Location.Y - 20);
+            }
+            else if (Side == Side.Down)
+            {
+                secondPoint = new Point(Location.X, Location.Y + 20);
+            }
+            else if(Side == Side.Left)
+            {
+                secondPoint = new Point(Location.X - 20, Location.Y);
+            }
+            else
+            {
+                secondPoint = new Point(Location.X + 20, Location.Y);
+            }
+            MainGraphics.Graphics.DrawLine(new Pen(Color.Red, 10), Location, secondPoint);
         }
 
         public override bool Equals(object obj)

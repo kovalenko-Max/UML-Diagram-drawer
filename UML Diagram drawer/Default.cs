@@ -26,7 +26,7 @@ namespace UML_Diagram_drawer
         public static class Size
         {
             private static int _defaultFormWidth = 200;
-            private static int _defaultFormHeight = 50;
+            private static int _defaultFormHeight = 100;
             private static int _defaultModuleFormHeight = 50;
 
             public static System.Drawing.Size FormSize = new System.Drawing.Size(_defaultFormWidth, _defaultFormHeight);
