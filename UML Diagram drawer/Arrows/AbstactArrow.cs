@@ -86,8 +86,6 @@ namespace UML_Diagram_drawer.Arrows
                 }
             }
 
-
-
             return result;
         }
 
