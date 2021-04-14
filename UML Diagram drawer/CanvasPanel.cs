@@ -12,6 +12,8 @@ namespace UML_Diagram_drawer
     {
         public List<FormUML> Forms;
         public FormUML CurrentForm;
+        public ContactPoint SelectContactPoint;
+        public bool IsDraw { get; set; }
         public CanvasPanel()
         {
             Dock = DockStyle.Fill;
@@ -20,9 +22,9 @@ namespace UML_Diagram_drawer
         }
         public void CreateForm()
         {
-            if(CurrentForm == null)
+            if (CurrentForm == null)
             {
-            CurrentForm = new FormUML();
+                CurrentForm = new FormUML();
 
             }
         }
@@ -32,10 +34,25 @@ namespace UML_Diagram_drawer
 
             if (e.Button == MouseButtons.Left)
             {
-                CreateForm();
-                CurrentForm.Location = e.Location;
-                Forms.Add(CurrentForm);
-
+                if (IsDraw)
+                {
+                    CreateForm();
+                    CurrentForm.Location = e.Location;
+                    Forms.Add(CurrentForm);
+                }
+                else
+                {
+                    foreach (var form in Forms)
+                    {
+                        foreach (var contactPoint in form.ContactPoints)
+                        {
+                            if (contactPoint.FindClosestContactPoint(e.Location))
+                            {
+                                SelectContactPoint = form.ConnectArrow(e.Location);
+                            }
+                        }
+                    }
+                }
             }
 
             Invalidate();
@@ -46,7 +63,10 @@ namespace UML_Diagram_drawer
 
             if (e.Button == MouseButtons.Left)
             {
-                CurrentForm.Location = e.Location;
+                if (IsDraw)
+                {
+                    CurrentForm.Location = e.Location;
+                }
             }
 
             Invalidate();
@@ -54,8 +74,15 @@ namespace UML_Diagram_drawer
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);
-            
-            CurrentForm = null;
+            if (e.Button == MouseButtons.Left)
+            {
+                if (IsDraw)
+                {
+                    CurrentForm = null;
+                    IsDraw = false;
+                }
+            }
+
             Invalidate();
         }
         protected override void OnPaint(PaintEventArgs e)
