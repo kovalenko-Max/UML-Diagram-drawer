@@ -90,7 +90,7 @@ namespace UML_Diagram_drawer.Forms
             location = new Point(Location.X, Location.Y + _rectangle.Height / 2);
             ContactPoints[2] = new ContactPoint(location, Side.Left);
             location = new Point(Location.X + _rectangle.Width / 2, Location.Y + _rectangle.Height);
-            ContactPoints[3] = new ContactPoint(location, Side.Down);
+            ContactPoints[3] = new ContactPoint(location, Side.Bottom);
         }
     }
 }

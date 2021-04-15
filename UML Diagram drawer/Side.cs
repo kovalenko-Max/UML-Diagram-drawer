@@ -6,6 +6,6 @@
         Right,
         Bottom,
         Left,
-        Bottom
+        Up
     }
 }
