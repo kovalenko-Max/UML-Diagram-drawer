@@ -13,15 +13,23 @@ namespace UML_Diagram_drawer
 {
     public partial class FormMain : Form
     {
+        public CanvasPanel Canvas = new CanvasPanel();
+
         public FormMain()
         {
             InitializeComponent();
-            panelMain.Controls.Add(new PanelWithMouseDraw());
+            Canvas = new CanvasPanel();
+            panelMain.Controls.Add(Canvas);
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Canvas.IsDraw = true;   
         }
     }
 }

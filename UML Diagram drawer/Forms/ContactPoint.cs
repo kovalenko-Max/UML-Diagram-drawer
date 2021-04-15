@@ -9,8 +9,13 @@ namespace UML_Diagram_drawer.Forms
 {
     public class ContactPoint
     {
+        private bool _isEmpty;
+        private Rectangle _rectangle;
         public Point Location { get; set; }
         public Side Side { get; set; }
+        public bool IsSelect { get; set; }
+
+        public static ContactPoint Empty = new ContactPoint(Point.Empty);
 
         public ContactPoint(Point location)
         {
@@ -22,11 +27,49 @@ namespace UML_Diagram_drawer.Forms
             Side = side;
         }
 
+        
+
+        public void Draw()
+        {
+            Point secondPoint;
+            if (Side == Side.Bottom)
+            {
+                secondPoint = new Point(Location.X, Location.Y - 20);
+            }
+            else if (Side == Side.Down)
+            {
+                secondPoint = new Point(Location.X, Location.Y + 20);
+            }
+            else if (Side == Side.Left)
+            {
+                secondPoint = new Point(Location.X - 20, Location.Y);
+            }
+            else
+            {
+                secondPoint = new Point(Location.X + 20, Location.Y);
+            }
+            MainGraphics.Graphics.DrawLine(new Pen(Color.Red, 10), Location, secondPoint);
+            _rectangle = new Rectangle(new Point(Location.X, Location.Y - 5), new Size(secondPoint.X - Location.X, secondPoint.Y - Location.Y));
+        }
+
+        public bool Select(Point point)
+        {
+            bool result = false;
+
+            if (FindClosestContactPoint(point))
+            {
+                result = true;
+                IsSelect = true;
+            }
+
+            return result;
+        }
+
         public override bool Equals(object obj)
         {
             bool result = false;
 
-            if(obj is ContactPoint)
+            if (obj is ContactPoint)
             {
                 ContactPoint contactPoint = (ContactPoint)obj;
                 result = (Location == contactPoint.Location) && (Side == contactPoint.Side);
@@ -38,6 +81,19 @@ namespace UML_Diagram_drawer.Forms
         public override string ToString()
         {
             return $"{Location.ToString()} {Side}";
+        }
+
+        public bool FindClosestContactPoint(Point point)
+        {
+            int radius = 30;
+            bool result = false;
+
+            if (Math.Pow(point.X - Location.X, 2) + Math.Pow(point.Y - Location.Y, 2) < Math.Pow(radius, 2))
+            {
+                result = true;
+            }
+
+            return result;
         }
     }
 }

@@ -57,6 +57,12 @@
     <Compile Include="Arrows\ArrowRealization.cs" />
     <Compile Include="Arrows\ArrowAggregation.cs" />
     <Compile Include="Arrows\ArrowAssociation.cs" />
+    <Compile Include="CanvasPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Default.cs" />
+    <Compile Include="Forms\FormUML.cs" />
+    <Compile Include="MainGraphics.cs" />
     <Compile Include="TypeOfLineDirection.cs" />
     <Compile Include="Forms\AbstactFormClass.cs" />
     <Compile Include="ISelectable.cs" />

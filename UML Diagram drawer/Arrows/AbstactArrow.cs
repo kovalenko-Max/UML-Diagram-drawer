@@ -9,7 +9,7 @@ namespace UML_Diagram_drawer.Arrows
         const int indentFromBorder = 50;
 
         protected int _sizeArrowhead;
-
+        
         public bool IsHorizontal { get; set; }
         public Graphics Graphics { get; set; }
         public Pen Pen { get; set; }
