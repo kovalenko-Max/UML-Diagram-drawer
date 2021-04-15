@@ -27,7 +27,7 @@ namespace UML_Diagram_drawer
         private AbstactArrow _arrow;
         private FormUML _formUML;
 
-        
+
 
         public FormMain()
         {
@@ -63,22 +63,26 @@ namespace UML_Diagram_drawer
 
         private void MouseDown_DrawArrow(object sender, MouseEventArgs e)
         {
-            
+
             foreach (var form in FormsList)
             {
                 foreach (var contactPoint in form.ContactPoints)
                 {
-                    if (contactPoint.FindClosestContactPoint(e.Location))
+                    if (contactPoint.Select(e.Location))
                     {
                         _currntCountactPoint = form.ConnectArrow(e.Location);
                     }
                 }
             }
 
-            _arrow.StartPoint = _currntCountactPoint;
-            pictureBoxMain.MouseMove += MouseMove_DrawArrow;
-            pictureBoxMain.MouseUp += MouseUp_DrawArrow;
-            pictureBoxMain.Invalidate();
+            if(!(_currntCountactPoint is null))
+            {
+                _arrow.StartPoint = _currntCountactPoint;
+                _currntCountactPoint = null;
+                pictureBoxMain.MouseMove += MouseMove_DrawArrow;
+                pictureBoxMain.MouseUp += MouseUp_DrawArrow;
+                pictureBoxMain.Invalidate();
+            }
         }
 
         private void MouseMove_DrawArrow(object sender, MouseEventArgs e)
@@ -93,15 +97,38 @@ namespace UML_Diagram_drawer
 
         private void MouseUp_DrawArrow(object sender, MouseEventArgs e)
         {
+            foreach (var form in FormsList)
+            {
+                foreach (var contactPoint in form.ContactPoints)
+                {
+                    if (contactPoint.Select(e.Location))
+                    {
+                        _currntCountactPoint = form.ConnectArrow(e.Location);
+                    }
+                }
+            }
+
             if (!(_arrow is null))
             {
-                _arrow.EndPoint.Location = e.Location;
-                _arrow.EndPoint.Side = Side.Up;
+                if (!(_currntCountactPoint is null))
+                {
+                    _arrow.EndPoint = _currntCountactPoint;
+                    _currntCountactPoint = null;
+                    
+                    pictureBoxMain.MouseDown -= MouseDown_DrawArrow;
+                    pictureBoxMain.MouseMove -= MouseMove_DrawArrow;
+                    pictureBoxMain.MouseUp -= MouseUp_DrawArrow;
+                }
+                else
+                {
+                    ArrowsList.Remove(_arrow);
+                    _arrow = CreateArrow();
+                    ArrowsList.Add(_arrow);
+                    pictureBoxMain.MouseMove -= MouseMove_DrawArrow;
+                    pictureBoxMain.MouseUp -= MouseUp_DrawArrow;
+                }
+                pictureBoxMain.Invalidate();
             }
-            pictureBoxMain.Invalidate();
-            pictureBoxMain.MouseDown -= MouseDown_DrawArrow;
-            pictureBoxMain.MouseMove -= MouseMove_DrawArrow;
-            pictureBoxMain.MouseUp -= MouseUp_DrawArrow;
         }
 
         private void PictureBoxMain_Paint(object sender, PaintEventArgs e)

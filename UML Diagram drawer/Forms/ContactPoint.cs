@@ -31,11 +31,11 @@ namespace UML_Diagram_drawer.Forms
         public void Draw()
         {
             Point secondPoint;
-            if (Side == Side.Bottom)
+            if (Side == Side.Up)
             {
                 secondPoint = new Point(Location.X, Location.Y - 20);
             }
-            else if (Side == Side.Down)
+            else if (Side == Side.Bottom)
             {
                 secondPoint = new Point(Location.X, Location.Y + 20);
             }
@@ -48,7 +48,7 @@ namespace UML_Diagram_drawer.Forms
                 secondPoint = new Point(Location.X + 20, Location.Y);
             }
             MainGraphics.Graphics.DrawLine(new Pen(Color.Red, 10), Location, secondPoint);
-            _rectangle = new Rectangle(new Point(Location.X, Location.Y - 5), new Size(secondPoint.X - Location.X, secondPoint.Y - Location.Y));
+           // _rectangle = new Rectangle(new Point(Location.X, Location.Y - 5), new Size(secondPoint.X - Location.X, secondPoint.Y - Location.Y));
         }
 
         public bool Select(Point point)
