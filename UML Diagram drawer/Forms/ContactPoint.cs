@@ -36,7 +36,7 @@ namespace UML_Diagram_drawer.Forms
             {
                 secondPoint = new Point(Location.X, Location.Y - 20);
             }
-            else if (Side == Side.Bottom)
+            else if (Side == Side.Up)
             {
                 secondPoint = new Point(Location.X, Location.Y + 20);
             }

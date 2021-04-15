@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UML_Diagram_drawer.Forms;
+using UML_Diagram_drawer.Arrows;
+using System.Drawing;
 
 namespace UML_Diagram_drawer
 {
@@ -12,20 +14,26 @@ namespace UML_Diagram_drawer
     {
         public List<FormUML> Forms;
         public FormUML CurrentForm;
+
+        public List<AbstactArrow> ArrowsList;
+        public AbstactArrow CurrentArrow;
+
         public ContactPoint SelectContactPoint;
-        public bool IsDraw { get; set; }
+        public Pen pen = new Pen(Brushes.Black, 3);
+
+        public bool IsFormDraw { get; set; }
         public CanvasPanel()
         {
             Dock = DockStyle.Fill;
             this.DoubleBuffered = true;
             Forms = new List<FormUML>();
+            ArrowsList = new List<AbstactArrow>();
         }
         public void CreateForm()
         {
             if (CurrentForm == null)
             {
                 CurrentForm = new FormUML();
-
             }
         }
         protected override void OnMouseDown(MouseEventArgs e)
@@ -34,7 +42,7 @@ namespace UML_Diagram_drawer
 
             if (e.Button == MouseButtons.Left)
             {
-                if (IsDraw)
+                if (IsFormDraw)
                 {
                     CreateForm();
                     CurrentForm.Location = e.Location;
@@ -63,7 +71,7 @@ namespace UML_Diagram_drawer
 
             if (e.Button == MouseButtons.Left)
             {
-                if (IsDraw)
+                if (IsFormDraw)
                 {
                     CurrentForm.Location = e.Location;
                 }
@@ -76,10 +84,10 @@ namespace UML_Diagram_drawer
             base.OnMouseUp(e);
             if (e.Button == MouseButtons.Left)
             {
-                if (IsDraw)
+                if (IsFormDraw)
                 {
                     CurrentForm = null;
-                    IsDraw = false;
+                    IsFormDraw = false;
                 }
             }
 
@@ -95,5 +103,12 @@ namespace UML_Diagram_drawer
                 form.Draw();
             }
         }
+
+        public void OnMouseDown_Arrow(MouseEventArgs e)
+        {
+            CurrentArrow = new ArrowSuccession(pen, MainGraphics.Graphics);
+            CurrentArrow.StartPoint.Location = e.Location;
+        }
+
     }
 }
