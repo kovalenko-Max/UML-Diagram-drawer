@@ -39,16 +39,21 @@ namespace UML_Diagram_drawer.Forms
 
         public void AddTextField()
         {
+            TextField tempTextField = new TextField() { Location = new Point(this.Location.X, this.Location.Y + GetNewLocationY()) };
+            TextFields.Add(tempTextField);
+        }
+
+        private int GetNewLocationY()
+        {
             int currentLocationY = 0;
             for (int i = 0; i < TextFields.Count; i++)
             {
                 currentLocationY += TextFields[i].Size.Height;
             }
 
-            TextField tempTextField = new TextField() { Location = new Point(this.Location.X, this.Location.Y + currentLocationY) };
-            TextFields.Add(tempTextField);
+            return currentLocationY;
         }
-
+        
         private Rectangle GetRectangle()
         {
             if (_rectangle.IsEmpty)
@@ -56,7 +61,8 @@ namespace UML_Diagram_drawer.Forms
                 _rectangle = new Rectangle(Location, Default.Size.ModuleFormSize);
             }
 
-            Size = new Size(_rectangle.Width, _rectangle.Height);
+            Size = new Size(_rectangle.Width, GetNewLocationY());
+            _rectangle.Size = Size;
             _rectangle.Location = this.Location;
 
             return _rectangle;

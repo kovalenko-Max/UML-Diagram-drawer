@@ -31,5 +31,15 @@ namespace UML_Diagram_drawer
         {
             Canvas.IsDraw = true;   
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Canvas.Forms[Canvas.Forms.Count-1].Modules[1].AddTextField();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Canvas.Forms[Canvas.Forms.Count - 1].Modules[2].AddTextField();
+        }
     }
 }

@@ -63,6 +63,12 @@ namespace UML_Diagram_drawer.Forms
             if (!IsSelected)
             {
                 IsSelected = false;
+                Pen = Default.Draw.Pen;
+
+                foreach (var item in Modules)
+                {
+                    item.Pen = Pen;
+                }
             }
         }
 
@@ -74,6 +80,12 @@ namespace UML_Diagram_drawer.Forms
                 if (_rectangle.Contains(point))
                 {
                     Pen = Default.Draw.PenSelect;
+
+                    foreach (var item in Modules)
+                    {
+                        item.Pen = Pen;
+                    }
+
                     IsSelected = true;
                     result = true;
                 }
@@ -115,7 +127,7 @@ namespace UML_Diagram_drawer.Forms
             {
                 currentSizeY += Modules[i].Size.Height;
             }
-            _rectangle.Size = new Size(_rectangle.Size.Width, currentSizeY) ;
+            _rectangle.Size = new Size(_rectangle.Size.Width, currentSizeY);
             _rectangle.Location = this.Location;
             return _rectangle;
         }

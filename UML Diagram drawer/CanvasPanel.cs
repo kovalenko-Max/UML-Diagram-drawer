@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,8 @@ namespace UML_Diagram_drawer
     {
         public List<FormUML> Forms;
         public FormUML CurrentForm;
-
+        public FormUML SelectForm;
+        public Point LastMousePosition;
         public ContactPoint SelectContactPoint;
         public bool IsDraw { get; set; }
 
@@ -22,14 +24,15 @@ namespace UML_Diagram_drawer
             this.DoubleBuffered = true;
             Forms = new List<FormUML>();
         }
+
         public void CreateForm()
         {
             if (CurrentForm == null)
             {
                 CurrentForm = new FormUML();
-
             }
         }
+
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
@@ -44,14 +47,21 @@ namespace UML_Diagram_drawer
                 }
                 else
                 {
+                    //foreach (var form in Forms)
+                    //{
+                    //    foreach (var contactPoint in form.ContactPoints)
+                    //    {
+                    //        if (contactPoint.Select(e.Location))
+                    //        {
+                    //            SelectContactPoint = form.ConnectArrow(e.Location);
+                    //        }
+                    //    }
+                    //}
                     foreach (var form in Forms)
                     {
-                        foreach (var contactPoint in form.ContactPoints)
+                        if (form.Select(e.Location))
                         {
-                            if (contactPoint.Select(e.Location))
-                            {
-                                SelectContactPoint = form.ConnectArrow(e.Location);
-                            }
+                            SelectForm = form;
                         }
                     }
                 }
@@ -59,6 +69,7 @@ namespace UML_Diagram_drawer
 
             Invalidate();
         }
+
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
@@ -69,10 +80,20 @@ namespace UML_Diagram_drawer
                 {
                     CurrentForm.Location = e.Location;
                 }
+                else
+                {
+                    if (SelectForm != null)
+                    {
+                        SelectForm.Move(e.X - LastMousePosition.X, e.Y - LastMousePosition.Y);
+                        LastMousePosition = e.Location;
+                    }
+                }
             }
+            LastMousePosition = e.Location;
 
             Invalidate();
         }
+
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);
@@ -83,10 +104,15 @@ namespace UML_Diagram_drawer
                     CurrentForm = null;
                     IsDraw = false;
                 }
+                else
+                {
+                    SelectForm = null;
+                }
             }
 
             Invalidate();
         }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
