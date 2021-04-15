@@ -9,11 +9,9 @@ namespace UML_Diagram_drawer.Forms
 {
     public class ContactPoint
     {
-        private bool _isEmpty;
-        private Rectangle _rectangle;
+        private int _selectRadius = 30;
         public Point Location { get; set; }
         public Side Side { get; set; }
-        public bool IsSelect { get; set; }
 
         public static ContactPoint Empty = new ContactPoint(Point.Empty);
 
@@ -21,6 +19,7 @@ namespace UML_Diagram_drawer.Forms
         {
             Location = location;
         }
+
         public ContactPoint(Point location, Side side)
         {
             Location = location;
@@ -36,7 +35,7 @@ namespace UML_Diagram_drawer.Forms
             {
                 secondPoint = new Point(Location.X, Location.Y - 20);
             }
-            else if (Side == Side.Up)
+            else if (Side == Side.Down)
             {
                 secondPoint = new Point(Location.X, Location.Y + 20);
             }
@@ -56,10 +55,9 @@ namespace UML_Diagram_drawer.Forms
         {
             bool result = false;
 
-            if (FindClosestContactPoint(point))
+            if (Contains(point))
             {
                 result = true;
-                IsSelect = true;
             }
 
             return result;
@@ -83,17 +81,17 @@ namespace UML_Diagram_drawer.Forms
             return $"{Location.ToString()} {Side}";
         }
 
-        public bool FindClosestContactPoint(Point point)
+        private bool Contains(Point point)
         {
-            int radius = 30;
             bool result = false;
 
-            if (Math.Pow(point.X - Location.X, 2) + Math.Pow(point.Y - Location.Y, 2) < Math.Pow(radius, 2))
+            if (Math.Pow(point.X - Location.X, 2) + Math.Pow(point.Y - Location.Y, 2) < Math.Pow(_selectRadius, 2))
             {
                 result = true;
             }
 
             return result;
         }
+
     }
 }

@@ -54,7 +54,7 @@ namespace UML_Diagram_drawer
                     {
                         foreach (var contactPoint in form.ContactPoints)
                         {
-                            if (contactPoint.FindClosestContactPoint(e.Location))
+                            if (contactPoint.Select(e.Location))
                             {
                                 SelectContactPoint = form.ConnectArrow(e.Location);
                             }

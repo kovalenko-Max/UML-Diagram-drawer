@@ -10,17 +10,12 @@ namespace UML_Diagram_drawer
     interface ISelectable
     {
         bool IsSelected { get; set; }
-        Pen Pen { get; set; }
-        Rectangle[] Rectangles { get; set; }
-        Point[] Points { get; set; }
-
-        void CreateSelectionBorders();
 
         void Move(int deltaX, int deltaY);
 
         void Draw();
 
-        void Select(Point point);
+        bool Select(Point point);
 
         void RemoveSelect();
     }

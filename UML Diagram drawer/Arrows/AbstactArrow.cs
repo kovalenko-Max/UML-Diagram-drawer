@@ -233,7 +233,7 @@ namespace UML_Diagram_drawer.Arrows
             throw new NotImplementedException();
         }
 
-        public void Select(Point point)
+        public bool Select(Point point)
         {
             throw new NotImplementedException();
         }
