@@ -143,7 +143,7 @@ namespace UML_Diagram_drawer.Forms
         {
             ContactPoints = new ContactPoint[4];
             Point location = new Point(Location.X + _rectangle.Width / 2, Location.Y);
-            ContactPoints[0] = new ContactPoint(location, Side.Bottom);
+            ContactPoints[0] = new ContactPoint(location, Side.Up);
 
             location = new Point(Location.X + _rectangle.Width, Location.Y + _rectangle.Height / 2);
             ContactPoints[1] = new ContactPoint(location, Side.Right);
@@ -152,7 +152,7 @@ namespace UML_Diagram_drawer.Forms
             ContactPoints[2] = new ContactPoint(location, Side.Left);
 
             location = new Point(Location.X + _rectangle.Width / 2, Location.Y + _rectangle.Height);
-            ContactPoints[3] = new ContactPoint(location, Side.Up);
+            ContactPoints[3] = new ContactPoint(location, Side.Bottom);
         }
     }
 }

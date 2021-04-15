@@ -45,7 +45,7 @@ namespace UML_Diagram_drawer
             this.pictureBoxMain.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxMain.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxMain.Name = "pictureBoxMain";
-            this.pictureBoxMain.Size = new System.Drawing.Size(537, 459);
+            this.pictureBoxMain.Size = new System.Drawing.Size(1400, 673);
             this.pictureBoxMain.TabIndex = 0;
             this.pictureBoxMain.TabStop = false;
             this.pictureBoxMain.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBoxMain_Paint);
@@ -74,7 +74,7 @@ namespace UML_Diagram_drawer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(537, 459);
+            this.ClientSize = new System.Drawing.Size(1400, 673);
             this.Controls.Add(this.button_AddArrow);
             this.Controls.Add(this.button_AddForm);
             this.Controls.Add(this.pictureBoxMain);

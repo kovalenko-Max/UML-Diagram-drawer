@@ -27,8 +27,6 @@ namespace UML_Diagram_drawer
         private AbstactArrow _arrow;
         private FormUML _formUML;
 
-
-
         public FormMain()
         {
             InitializeComponent();
@@ -90,7 +88,7 @@ namespace UML_Diagram_drawer
             if (!(_arrow is null))
             {
                 _arrow.EndPoint.Location = e.Location;
-                _arrow.EndPoint.Side = Side.Up;
+                
             }
             pictureBoxMain.Invalidate();
         }

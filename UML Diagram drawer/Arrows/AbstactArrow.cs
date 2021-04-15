@@ -9,7 +9,7 @@ namespace UML_Diagram_drawer.Arrows
         const int indentFromBorder = 50;
 
         protected int _sizeArrowhead;
-        
+
         public bool IsHorizontal { get; set; }
 
         public Graphics Graphics { get; set; }
@@ -49,7 +49,11 @@ namespace UML_Diagram_drawer.Arrows
 
             if (StartPoint.Side == Side.Right)
             {
-                if (EndPoint.Location.X <= StartPoint.Location.X + indentFromBorder)
+                if(EndPoint.Side == Side.Bottom)
+                {
+                    typeOfLineDirection = TypeOfLineDirection.ThreePointsRectangeleLeftRightLine;
+                }
+                else if (EndPoint.Location.X <= StartPoint.Location.X + indentFromBorder)
                 {
                     typeOfLineDirection = TypeOfLineDirection.FivePointsFromLeftToBottomOrUpLine;
                 }
@@ -87,6 +91,11 @@ namespace UML_Diagram_drawer.Arrows
             }
             else if (StartPoint.Side == Side.Up)
             {
+                if(EndPoint.Location == Point.Empty)
+                {
+                    EndPoint.Side = Side.Bottom;
+                }
+
                 if (EndPoint.Location.Y >= StartPoint.Location.Y - indentFromBorder)
                 {
                     typeOfLineDirection = TypeOfLineDirection.FivePointsFromUpToFlankLine;
@@ -106,8 +115,8 @@ namespace UML_Diagram_drawer.Arrows
 
         protected Point[] GetPoints()
         {
-           // switch (kindOfLineSwithcer())
-            switch (TypeOfLineDirection.FourPointsFromRightToRight)
+            switch (kindOfLineSwithcer())
+            // switch (TypeOfLineDirection.FourPointsFromRightToRight)
             {
                 case TypeOfLineDirection.FourPointsZikzakLeftRightLine:
                     Points = new Point[4];
