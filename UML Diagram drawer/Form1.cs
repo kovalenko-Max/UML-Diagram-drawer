@@ -15,7 +15,6 @@ namespace UML_Diagram_drawer
 {
     public partial class FormMain : Form
     {
-        //public CanvasPanel Canvas = new CanvasPanel();
         public List<FormUML> FormsList;
         public FormUML CurrentForm;
 
@@ -31,8 +30,6 @@ namespace UML_Diagram_drawer
         public FormMain()
         {
             InitializeComponent();
-            //Canvas = new CanvasPanel();
-            //panelMain.Controls.Add(Canvas);
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -41,7 +38,7 @@ namespace UML_Diagram_drawer
             FormsList = new List<FormUML>();
         }
 
-        private void button_AddForm_Click(object sender, EventArgs e)
+        private void Button_AddForm_Click(object sender, EventArgs e)
         {
             _formUML = CreateFormUML();
             FormsList.Add(_formUML);
@@ -55,7 +52,7 @@ namespace UML_Diagram_drawer
             pictureBoxMain.Invalidate();
         }
 
-        private void button_AddArrow_Click(object sender, EventArgs e)
+        private void Button_AddArrow_Click(object sender, EventArgs e)
         {
             pictureBoxMain.MouseDown += MouseDown_DrawArrow;
             _arrow = CreateArrow();
@@ -94,7 +91,7 @@ namespace UML_Diagram_drawer
             pictureBoxMain.MouseUp -= MouseUp_DrawArrow;
         }
 
-        private void pictureBoxMain_Paint(object sender, PaintEventArgs e)
+        private void PictureBoxMain_Paint(object sender, PaintEventArgs e)
         {
             MainGraphics.Graphics = e.Graphics;
 

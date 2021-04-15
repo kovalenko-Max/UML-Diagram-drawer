@@ -48,7 +48,7 @@ namespace UML_Diagram_drawer
             this.pictureBoxMain.Size = new System.Drawing.Size(537, 459);
             this.pictureBoxMain.TabIndex = 0;
             this.pictureBoxMain.TabStop = false;
-            this.pictureBoxMain.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxMain_Paint);
+            this.pictureBoxMain.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBoxMain_Paint);
             // 
             // button_AddForm
             // 
@@ -58,7 +58,7 @@ namespace UML_Diagram_drawer
             this.button_AddForm.TabIndex = 1;
             this.button_AddForm.Text = "Add Form";
             this.button_AddForm.UseVisualStyleBackColor = true;
-            this.button_AddForm.Click += new System.EventHandler(this.button_AddForm_Click);
+            this.button_AddForm.Click += new System.EventHandler(this.Button_AddForm_Click);
             // 
             // button_AddArrow
             // 
@@ -68,7 +68,7 @@ namespace UML_Diagram_drawer
             this.button_AddArrow.TabIndex = 2;
             this.button_AddArrow.Text = "Add Arrow";
             this.button_AddArrow.UseVisualStyleBackColor = true;
-            this.button_AddArrow.Click += new System.EventHandler(this.button_AddArrow_Click);
+            this.button_AddArrow.Click += new System.EventHandler(this.Button_AddArrow_Click);
             // 
             // FormMain
             // 
