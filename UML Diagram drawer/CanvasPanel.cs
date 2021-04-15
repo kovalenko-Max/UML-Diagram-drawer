@@ -12,8 +12,10 @@ namespace UML_Diagram_drawer
     {
         public List<FormUML> Forms;
         public FormUML CurrentForm;
+
         public ContactPoint SelectContactPoint;
         public bool IsDraw { get; set; }
+
         public CanvasPanel()
         {
             Dock = DockStyle.Fill;
@@ -46,7 +48,7 @@ namespace UML_Diagram_drawer
                     {
                         foreach (var contactPoint in form.ContactPoints)
                         {
-                            if (contactPoint.FindClosestContactPoint(e.Location))
+                            if (contactPoint.Select(e.Location))
                             {
                                 SelectContactPoint = form.ConnectArrow(e.Location);
                             }

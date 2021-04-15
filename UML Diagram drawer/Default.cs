@@ -13,14 +13,19 @@ namespace UML_Diagram_drawer
         {
             private static int _penWidth = 5;
             private static Color _color = Color.Black;
+            private static Color _colorSelect = Color.Blue;
 
+            public static SolidBrush FillBrush = new SolidBrush(Color.Gray);
             public static Pen Pen = new Pen(_color, _penWidth);
+            public static Pen PenSelect = new Pen(_colorSelect, _penWidth);
         }
 
         public static class Text
         {
             public static StringFormat TitleStringFormat = new StringFormat();
+            public static SolidBrush Brush = new SolidBrush(Color.Black);
             public static Font Font = new Font("Arial", 14);
+            public static string SomeText = "Some text";
         }
 
         public static class Size

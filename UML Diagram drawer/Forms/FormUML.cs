@@ -12,27 +12,27 @@ namespace UML_Diagram_drawer.Forms
         private Rectangle _rectangle;
         public Point Location { get; set; }
         public Point SecondPoint { get; set; }
-
-        public ContactPoint BottomContactPoint { get; set; }
-        public ContactPoint LeftContactPoint { get; set; }
-        public ContactPoint RightContactPoint { get; set; }
-        public ContactPoint DownContactPoint { get; set; }
         public ContactPoint[] ContactPoints { get; set; }
         public bool IsSelected { get; set; }
         public Pen Pen { get; set; }
-        public Rectangle[] Rectangles { get; set; }
-        public Point[] Points { get; set; }
+        public Module[] Modules { get; set; }
 
+        public FormUML()
+        {
+            Pen = Default.Draw.Pen;
+            Modules = new Module[3];
+            SetContactPoint();
+            CreateModules();
+        }
 
         public ContactPoint ConnectArrow(Point point)
         {
-            var result = ContactPoint.Empty;
+            ContactPoint result = ContactPoint.Empty;
 
-            foreach (var contactPoint in ContactPoints)
+            foreach (ContactPoint contactPoint in ContactPoints)
             {
-                if (contactPoint.FindClosestContactPoint(point))
+                if (contactPoint.Select(point))
                 {
-                    contactPoint.Select(point);
                     result = contactPoint;
                 }
             }
@@ -40,21 +40,17 @@ namespace UML_Diagram_drawer.Forms
             return result;
         }
 
-
-
-        public void CreateSelectionBorders()
-        {
-            throw new NotImplementedException();
-        }
-
         public void Draw()
         {
-            _rectangle = new Rectangle(Location, Default.Size.FormSize);
-            SecondPoint = new Point(Location.X + _rectangle.Width, Location.Y + _rectangle.Height);
-            MainGraphics.Graphics.DrawRectangle(Default.Draw.Pen, Location.X, Location.Y, _rectangle.Width, _rectangle.Height);
+            //int pointX = Location.X + _rectangle.Width;
+            //int pointY = Location.Y + _rectangle.Height;
+            //SecondPoint = new Point(pointX, pointY);
 
-            SetContactPoint();
-            DrawCP();
+            MainGraphics.Graphics.FillRectangle(Default.Draw.FillBrush, GetRectangle());
+            MainGraphics.Graphics.DrawRectangle(Pen, GetRectangle());
+
+            DrawModules();
+            SetNewLocationContactPoint();
         }
 
         public void Move(int deltaX, int deltaY)
@@ -64,20 +60,76 @@ namespace UML_Diagram_drawer.Forms
 
         public void RemoveSelect()
         {
-            throw new NotImplementedException();
-        }
-
-        public void Select(Point point)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void DrawCP()
-        {
-            foreach (var contactPoint in ContactPoints)
+            if (!IsSelected)
             {
-                contactPoint.Draw();
+                IsSelected = false;
             }
+        }
+
+        public bool Select(Point point)
+        {
+            if (_rectangle != null)
+            {
+                bool result = false;
+                if (_rectangle.Contains(point))
+                {
+                    Pen = Default.Draw.PenSelect;
+                    IsSelected = true;
+                    result = true;
+                }
+
+                return result;
+            }
+            else
+            {
+                throw new ArgumentNullException("Rectangle is null");
+            }
+        }
+
+        private void CreateModules()
+        {
+            Modules[0] = new Module() { ModuleType = ModuleType.Title };
+            Modules[1] = new Module() { ModuleType = ModuleType.Field };
+            Modules[2] = new Module() { ModuleType = ModuleType.Method };
+        }
+
+        private void DrawModules()
+        {
+            int currentLocationY = 0;
+            foreach (Module module in Modules)
+            {
+                module.Location = new Point(this.Location.X, this.Location.Y + currentLocationY);
+                currentLocationY += module.Size.Height;
+                module.Draw();
+            }
+        }
+
+        private Rectangle GetRectangle()
+        {
+            if (_rectangle.IsEmpty)
+            {
+                _rectangle = new Rectangle(Location, Default.Size.FormSize);
+            }
+            int currentSizeY = 0;
+            for (int i = 0; i < Modules.Length; i++)
+            {
+                currentSizeY += Modules[i].Size.Height;
+            }
+            _rectangle.Size = new Size(_rectangle.Size.Width, currentSizeY) ;
+            _rectangle.Location = this.Location;
+            return _rectangle;
+        }
+
+        private void SetNewLocationContactPoint()
+        {
+            Point location = new Point(Location.X + _rectangle.Width / 2, Location.Y);
+            ContactPoints[0].Location = location;
+            location = new Point(Location.X + _rectangle.Width, Location.Y + _rectangle.Height / 2);
+            ContactPoints[1].Location = location;
+            location = new Point(Location.X, Location.Y + _rectangle.Height / 2);
+            ContactPoints[2].Location = location;
+            location = new Point(Location.X + _rectangle.Width / 2, Location.Y + _rectangle.Height);
+            ContactPoints[3].Location = location;
         }
 
         private void SetContactPoint()
