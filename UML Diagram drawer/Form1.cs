@@ -21,11 +21,13 @@ namespace UML_Diagram_drawer
         public List<AbstactArrow> ArrowsList;
         public AbstactArrow CurrentArrow;
 
-        public ContactPoint SelectContactPoint;
+        private ContactPoint _currntCountactPoint;
         public Pen pen = new Pen(Brushes.Black, 3);
 
         private AbstactArrow _arrow;
         private FormUML _formUML;
+
+        
 
         public FormMain()
         {
@@ -61,8 +63,19 @@ namespace UML_Diagram_drawer
 
         private void MouseDown_DrawArrow(object sender, MouseEventArgs e)
         {
-            _arrow.StartPoint.Location = e.Location;
-            _arrow.StartPoint.Side = Side.Bottom;
+            
+            foreach (var form in FormsList)
+            {
+                foreach (var contactPoint in form.ContactPoints)
+                {
+                    if (contactPoint.FindClosestContactPoint(e.Location))
+                    {
+                        _currntCountactPoint = form.ConnectArrow(e.Location);
+                    }
+                }
+            }
+
+            _arrow.StartPoint = _currntCountactPoint;
             pictureBoxMain.MouseMove += MouseMove_DrawArrow;
             pictureBoxMain.MouseUp += MouseUp_DrawArrow;
             pictureBoxMain.Invalidate();
