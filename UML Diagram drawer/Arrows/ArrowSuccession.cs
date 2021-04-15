@@ -59,7 +59,7 @@ namespace UML_Diagram_drawer.Arrows
                     }
                 }
 
-                Graphics.DrawPolygon(Pen, arrowHeadPoints);
+                MainGraphics.Graphics.DrawPolygon(Pen, arrowHeadPoints);
             }
         }
     }

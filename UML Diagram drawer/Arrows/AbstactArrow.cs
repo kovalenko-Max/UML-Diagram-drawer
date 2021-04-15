@@ -11,6 +11,7 @@ namespace UML_Diagram_drawer.Arrows
         protected int _sizeArrowhead;
         
         public bool IsHorizontal { get; set; }
+
         public Graphics Graphics { get; set; }
         public Pen Pen { get; set; }
         public ContactPoint StartPoint { get; set; }
@@ -105,8 +106,8 @@ namespace UML_Diagram_drawer.Arrows
 
         protected Point[] GetPoints()
         {
-            switch (kindOfLineSwithcer())
-           // switch (TypeOfLineDirection.FourPointsFromRightToRight)
+           // switch (kindOfLineSwithcer())
+            switch (TypeOfLineDirection.FourPointsFromRightToRight)
             {
                 case TypeOfLineDirection.FourPointsZikzakLeftRightLine:
                     Points = new Point[4];
@@ -219,7 +220,7 @@ namespace UML_Diagram_drawer.Arrows
 
         public void DrawStraightBrokenLine()
         {
-            Graphics.DrawLines(Pen, GetPoints());
+            MainGraphics.Graphics.DrawLines(Pen, GetPoints());
         }
 
         public void CreateSelectionBorders()
