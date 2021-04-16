@@ -35,6 +35,22 @@ namespace UML_Diagram_drawer.Forms
             Text = Default.Text.SomeText;
         }
 
+        public TextField(string text)
+        {
+            Pen = Default.Draw.Pen;
+            Font = Default.Text.Font;
+            Brush = Default.Text.Brush;
+            Text = text;
+        }
+
+        public TextField(string text, Pen pen, Font font, SolidBrush brush)
+        {
+            Pen = pen;
+            Font = font;
+            Brush = brush;
+            Text = text;
+        }
+
         public void Draw()
         {
             MainGraphics.Graphics.DrawString(Text, Font, Brush, (RectangleF)GetRectangle());
@@ -43,7 +59,7 @@ namespace UML_Diagram_drawer.Forms
         public override bool Equals(object obj)
         {
             bool result = false;
-            if(obj is TextField)
+            if (obj is TextField)
             {
                 TextField textField = (TextField)obj;
                 if (this.Text == textField.Text && this.Location == textField.Location)

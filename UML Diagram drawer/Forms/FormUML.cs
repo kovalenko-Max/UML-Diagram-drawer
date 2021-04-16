@@ -96,9 +96,9 @@ namespace UML_Diagram_drawer.Forms
 
         private void CreateModules()
         {
-            Modules[0] = new Module() { ModuleType = ModuleType.Title };
-            Modules[1] = new Module() { ModuleType = ModuleType.Field };
-            Modules[2] = new Module() { ModuleType = ModuleType.Method };
+            Modules[0] = new Module() { Type = ModuleType.Title };
+            Modules[1] = new Module() { Type = ModuleType.Field };
+            Modules[2] = new Module() { Type = ModuleType.Method };
         }
 
         private void DrawModules()

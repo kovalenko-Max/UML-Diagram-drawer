@@ -15,7 +15,7 @@ namespace UML_Diagram_drawer.Forms
         public Point Location { get; set; }
         public Pen Pen { get; set; }
         public List<TextField> TextFields { get; set; }
-        public ModuleType ModuleType { get; set; }
+        public ModuleType Type { get; set; }
         public Size Size
         {
             get
@@ -62,6 +62,28 @@ namespace UML_Diagram_drawer.Forms
         public void RemoveConcreteTextField(TextField textField)
         {
             TextFields.Remove(textField);
+        }
+
+        public override bool Equals(object obj)
+        {
+            bool result = false;
+            if (obj is Module)
+            {
+                Module module = (Module)obj;
+                if (this.Type == module.Type && this.Location == module.Location && this.TextFields.Count == module.TextFields.Count)
+                {
+                    result = true;
+                }
+            }
+
+            return result;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder result = new StringBuilder();
+            result.Append(Type + " " + Location);
+            return result.ToString();
         }
 
         private int GetNewLocationY()
