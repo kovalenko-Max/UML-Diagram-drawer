@@ -16,21 +16,26 @@ namespace UML_Diagram_drawer
         public FormMain()
         {
             InitializeComponent();
-            //panelMain.Controls.Add(new PanelWithMouseDraw());
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
         }
 
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-            //new ArrowAssociation(System.Drawing.Pen, colorDialog1.Color);
-        }
-
         private void toolStripButton12_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
+
+            if(colorDialog1.Color==Color.Black)
+            {
+                toolStripButton12.ForeColor = Color.White;
+            }
+            else
+            {
+                toolStripButton12.ForeColor = Color.Black;
+            }
+
+            toolStripButton12.BackColor = colorDialog1.Color;
         }
 
         private void pictureBox1_MouseEnter(object sender, EventArgs e)
@@ -43,6 +48,41 @@ namespace UML_Diagram_drawer
         {
             toolStrip1.Visible = false;
             pictureBox1.Visible = true;
+        }
+
+        private void toolStripButtonArrowAssociation_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButtonArrowSuccession_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButtonArrowRealization_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButtonArrowAggregation_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButtonArrowAggregationAndAssociation_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButtonArrowComposition_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButtonArrowCompositionAndAssociation_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
