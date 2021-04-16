@@ -16,12 +16,23 @@ namespace UML_Diagram_drawer.Forms
         public Pen Pen { get; set; }
         public List<TextField> TextFields { get; set; }
         public ModuleType ModuleType { get; set; }
-        public Size Size { get; set; }
+        public Size Size
+        {
+            get
+            {
+                return _rectangle.Size;
+            }
+            private set
+            {
+                _rectangle.Size = value;
+            }
+        }
 
         public Module()
         {
             Pen = Default.Draw.Pen;
             TextFields = new List<TextField>();
+            _rectangle = new Rectangle(Location, Default.Size.ModuleFormSize);
         }
 
         public void Draw()
@@ -43,6 +54,16 @@ namespace UML_Diagram_drawer.Forms
             TextFields.Add(tempTextField);
         }
 
+        public void RemoveTextField()
+        {
+            TextFields.RemoveAt(TextFields.Count - 1);
+        }
+
+        public void RemoveConcreteTextField(TextField textField)
+        {
+            TextFields.Remove(textField);
+        }
+
         private int GetNewLocationY()
         {
             int currentLocationY = 0;
@@ -53,16 +74,11 @@ namespace UML_Diagram_drawer.Forms
 
             return currentLocationY;
         }
-        
+
         private Rectangle GetRectangle()
         {
-            if (_rectangle.IsEmpty)
-            {
-                _rectangle = new Rectangle(Location, Default.Size.ModuleFormSize);
-            }
-
-            Size = new Size(_rectangle.Width, GetNewLocationY());
-            _rectangle.Size = Size;
+            int addHeight = GetNewLocationY() == 0 ? Default.Size.ModuleFormSize.Height : 0;
+            _rectangle.Size = new Size(_rectangle.Width, addHeight + GetNewLocationY());
             _rectangle.Location = this.Location;
 
             return _rectangle;

@@ -42,10 +42,6 @@ namespace UML_Diagram_drawer.Forms
 
         public void Draw()
         {
-            //int pointX = Location.X + _rectangle.Width;
-            //int pointY = Location.Y + _rectangle.Height;
-            //SecondPoint = new Point(pointX, pointY);
-
             MainGraphics.Graphics.FillRectangle(Default.Draw.FillBrush, GetRectangle());
             MainGraphics.Graphics.DrawRectangle(Pen, GetRectangle());
 
@@ -127,7 +123,9 @@ namespace UML_Diagram_drawer.Forms
             {
                 currentSizeY += Modules[i].Size.Height;
             }
-            _rectangle.Size = new Size(_rectangle.Size.Width, currentSizeY);
+
+            int addedHeight = currentSizeY == 0 ? Default.Size.ModuleFormSize.Height*3:0;
+            _rectangle.Size = new Size(_rectangle.Size.Width, addedHeight+currentSizeY);
             _rectangle.Location = this.Location;
             return _rectangle;
         }
