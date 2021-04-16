@@ -16,12 +16,33 @@ namespace UML_Diagram_drawer
         public FormMain()
         {
             InitializeComponent();
-            panelMain.Controls.Add(new PanelWithMouseDraw());
+            //panelMain.Controls.Add(new PanelWithMouseDraw());
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+        }
 
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            //new ArrowAssociation(System.Drawing.Pen, colorDialog1.Color);
+        }
+
+        private void toolStripButton12_Click(object sender, EventArgs e)
+        {
+            colorDialog1.ShowDialog();
+        }
+
+        private void pictureBox1_MouseEnter(object sender, EventArgs e)
+        {
+            toolStrip1.Visible = true;
+            pictureBox1.Visible = false;
+        }
+
+        private void toolStrip1_MouseLeave(object sender, EventArgs e)
+        {
+            toolStrip1.Visible = false;
+            pictureBox1.Visible = true;
         }
     }
 }
