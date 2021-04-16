@@ -10,17 +10,40 @@ namespace UML_Diagram_drawer.Forms
     public class FormUML : ISelectable
     {
         private Rectangle _rectangle;
-        public Point Location { get; set; }
-        public Point SecondPoint { get; set; }
+        public FormType Type { get; set; }
         public ContactPoint[] ContactPoints { get; set; }
         public bool IsSelected { get; set; }
         public Pen Pen { get; set; }
         public Module[] Modules { get; set; }
-
-        public FormUML()
+        public Size SIze
         {
+            get
+            {
+                return _rectangle.Size;
+            }
+            set
+            {
+                _rectangle.Size = value;
+            }
+        }
+        public Point Location
+        {
+            get
+            {
+                return _rectangle.Location;
+            }
+            set
+            {
+                _rectangle.Location = value;
+            }
+        }
+
+        public FormUML(FormType type)
+        {
+            Type = type;
             Pen = Default.Draw.Pen;
             Modules = new Module[3];
+            _rectangle = new Rectangle(Location, Default.Size.FormSize);
             SetContactPoint();
             CreateModules();
         }
@@ -94,6 +117,29 @@ namespace UML_Diagram_drawer.Forms
             }
         }
 
+        public override bool Equals(object obj)
+        {
+            bool result = false;
+            if(obj is FormUML)
+            {
+                FormUML form = (FormUML)obj;
+                if (this.Type == form.Type && this.Location == form.Location && this.Modules == form.Modules)
+                {
+                    result = true;
+                }
+            }
+
+            return result;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder result = new StringBuilder();
+            result.Append(Type + " " + Location);
+
+            return result.ToString();
+        }
+
         private void CreateModules()
         {
             Modules[0] = new Module() { Type = ModuleType.Title };
@@ -114,19 +160,14 @@ namespace UML_Diagram_drawer.Forms
 
         private Rectangle GetRectangle()
         {
-            if (_rectangle.IsEmpty)
-            {
-                _rectangle = new Rectangle(Location, Default.Size.FormSize);
-            }
             int currentSizeY = 0;
             for (int i = 0; i < Modules.Length; i++)
             {
                 currentSizeY += Modules[i].Size.Height;
             }
 
-            int addedHeight = currentSizeY == 0 ? Default.Size.ModuleFormSize.Height*3:0;
-            _rectangle.Size = new Size(_rectangle.Size.Width, addedHeight+currentSizeY);
-            _rectangle.Location = this.Location;
+            int addedHeight = currentSizeY == 0 ? Default.Size.ModuleFormSize.Height * 3 : 0;
+            _rectangle.Size = new Size(_rectangle.Size.Width, addedHeight + currentSizeY);
             return _rectangle;
         }
 
