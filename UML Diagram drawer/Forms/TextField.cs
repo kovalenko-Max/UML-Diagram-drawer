@@ -40,6 +40,29 @@ namespace UML_Diagram_drawer.Forms
             MainGraphics.Graphics.DrawString(Text, Font, Brush, (RectangleF)GetRectangle());
         }
 
+        public override bool Equals(object obj)
+        {
+            bool result = false;
+            if(obj is TextField)
+            {
+                TextField textField = (TextField)obj;
+                if (this.Text == textField.Text && this.Location == textField.Location)
+                {
+                    result = true;
+                }
+            }
+
+            return result;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder result = new StringBuilder(Text);
+            result.Append(" " + Location);
+
+            return result.ToString();
+        }
+
         private Rectangle GetRectangle()
         {
             if (_rectangle.IsEmpty)
