@@ -142,7 +142,6 @@ namespace UML_Diagram_drawer
             {
                 form.Draw();
             }
-
         }
 
         private AbstactArrow CreateArrow()

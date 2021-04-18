@@ -27,7 +27,7 @@ namespace UML_Diagram_drawer.Forms
 
         public void Draw()
         {
-            MainGraphics.Graphics.DrawString(Text, Font, Brush, (RectangleF)GetRectangle());
+            MainGraphics.Graphics.DrawString(Text , Font, Brush, (RectangleF)GetRectangle());
         }
 
         private Rectangle GetRectangle()

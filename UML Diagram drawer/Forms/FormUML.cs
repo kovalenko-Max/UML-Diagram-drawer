@@ -52,10 +52,9 @@ namespace UML_Diagram_drawer.Forms
             //int pointX = Location.X + _rectangle.Width;
             //int pointY = Location.Y + _rectangle.Height;
             //SecondPoint = new Point(pointX, pointY);
-
-            MainGraphics.Graphics.FillRectangle(Default.Draw.FillBrush, GetRectangle());
+          
             MainGraphics.Graphics.DrawRectangle(Pen, GetRectangle());
-
+            MainGraphics.Graphics.FillRectangle(Default.Draw.FillBrush, GetRectangle());
             DrawModules();
             SetNewLocationContactPoint();
         }
