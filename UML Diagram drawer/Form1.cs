@@ -17,7 +17,6 @@ namespace UML_Diagram_drawer
     public partial class FormMain : System.Windows.Forms.Form
     {
         public List<AbstractForm> FormsList;
-        public AbstractForm CurrentForm;
 
         public List<AbstactArrow> ArrowsList;
         public AbstactArrow CurrentArrow;
@@ -37,10 +36,12 @@ namespace UML_Diagram_drawer
         {
             ArrowsList = new List<AbstactArrow>();
             FormsList = new List<AbstractForm>();
+            pictureBoxMain.MouseDown += MouseDown_FormMoving;
         }
 
         private void Button_AddForm_Click(object sender, EventArgs e)
         {
+            pictureBoxMain.MouseDown -= MouseDown_FormMoving;
             _formUML = CreateFormUML();
             FormsList.Add(_formUML);
             pictureBoxMain.MouseClick += MouseClick_DrawFormUML;
@@ -51,10 +52,12 @@ namespace UML_Diagram_drawer
             _formUML.Location = e.Location;
             pictureBoxMain.MouseClick -= MouseClick_DrawFormUML;
             pictureBoxMain.Invalidate();
+            pictureBoxMain.MouseDown += MouseDown_FormMoving;
         }
 
         private void Button_AddArrow_Click(object sender, EventArgs e)
         {
+            pictureBoxMain.MouseDown -= MouseDown_FormMoving;
             pictureBoxMain.MouseDown += MouseDown_DrawArrow;
             _arrow = CreateArrow();
             ArrowsList.Add(_arrow);
@@ -62,7 +65,6 @@ namespace UML_Diagram_drawer
 
         private void MouseDown_DrawArrow(object sender, MouseEventArgs e)
         {
-
             foreach (var form in FormsList)
             {
                 foreach (var contactPoint in form.ContactPoints)
@@ -74,7 +76,7 @@ namespace UML_Diagram_drawer
                 }
             }
 
-            if(!(_currntCountactPoint is null))
+            if (!(_currntCountactPoint is null))
             {
                 _arrow.StartPoint = _currntCountactPoint;
                 _currntCountactPoint = null;
@@ -89,8 +91,9 @@ namespace UML_Diagram_drawer
             if (!(_arrow is null))
             {
                 _arrow.EndPoint.Location = e.Location;
-                
+
             }
+
             pictureBoxMain.Invalidate();
         }
 
@@ -113,10 +116,11 @@ namespace UML_Diagram_drawer
                 {
                     _arrow.EndPoint = _currntCountactPoint;
                     _currntCountactPoint = null;
-                    
+
                     pictureBoxMain.MouseDown -= MouseDown_DrawArrow;
                     pictureBoxMain.MouseMove -= MouseMove_DrawArrow;
                     pictureBoxMain.MouseUp -= MouseUp_DrawArrow;
+                    pictureBoxMain.MouseDown += MouseDown_FormMoving;
                 }
                 else
                 {
@@ -125,9 +129,44 @@ namespace UML_Diagram_drawer
                     ArrowsList.Add(_arrow);
                     pictureBoxMain.MouseMove -= MouseMove_DrawArrow;
                     pictureBoxMain.MouseUp -= MouseUp_DrawArrow;
+                    pictureBoxMain.MouseDown += MouseDown_FormMoving;
                 }
+
                 pictureBoxMain.Invalidate();
             }
+        }
+
+        private void MouseDown_FormMoving(object sender, MouseEventArgs e)
+        {
+            if (FormsList.Count > 0)
+            {
+                foreach (var form in FormsList)
+                {
+                    if (form.Select(e.Location))
+                    {
+                        _formUML = form;
+                        pictureBoxMain.MouseMove += MouseMove_FormMoving;
+                        pictureBoxMain.MouseUp += MouseUp_FormMoving;
+                    }
+                }
+            }
+        }
+
+        private void MouseMove_FormMoving(object sender, MouseEventArgs e)
+        {
+            if (_formUML != null)
+            {
+                _formUML.Move(e.X, e.Y);
+                pictureBoxMain.Invalidate();
+            }
+        }
+
+        private void MouseUp_FormMoving(object sender, MouseEventArgs e)
+        {
+            _formUML = null;
+            pictureBoxMain.MouseMove -= MouseMove_FormMoving;
+            pictureBoxMain.MouseUp += MouseUp_FormMoving;
+            pictureBoxMain.Invalidate();
         }
 
         private void PictureBoxMain_Paint(object sender, PaintEventArgs e)

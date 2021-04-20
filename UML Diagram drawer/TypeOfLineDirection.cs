@@ -26,6 +26,7 @@ namespace UML_Diagram_drawer
         FourPointsFromUpToUp,
         FourPointsFromBottomToBottom,
         FourPointsFromLeftToLeft,
-        FourPointsFromRightToRight
+        FourPointsFromRightToRight,
+        FourPointsFromRightToRightWithArounding
     }
 }

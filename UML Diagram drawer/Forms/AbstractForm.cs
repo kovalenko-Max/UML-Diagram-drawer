@@ -80,7 +80,8 @@ namespace UML_Diagram_drawer.Forms
 
         public void Move(int deltaX, int deltaY)
         {
-            Location = new Point(Location.X + deltaX, Location.Y + deltaY);
+            //Location = new Point(Location.X + deltaX, Location.Y + deltaY);
+            Location = new Point(deltaX, deltaY);
         }
 
         public void RemoveSelect()
@@ -99,19 +100,20 @@ namespace UML_Diagram_drawer.Forms
 
         public bool Select(Point point)
         {
-            if (!IsSelected && _rectangle.Contains(point))
-            {
-                Pen = Default.Draw.PenSelect;
+            //if (!IsSelected && _rectangle.Contains(point))
+            //{
+            //    //Pen = Default.Draw.PenSelect;
 
-                foreach (AbstactModule module in _modules)
-                {
-                    module.Pen = Pen;
-                }
+            //    //foreach (AbstactModule module in _modules)
+            //    //{
+            //    //    module.Pen = Pen;
+            //    //}
 
-                IsSelected = true;
-            }
+            //    IsSelected = true;
+            //}
+            //return IsSelected;
 
-            return IsSelected;
+            return _rectangle.Contains(point);
         }
 
         public bool Contains(Point point)
