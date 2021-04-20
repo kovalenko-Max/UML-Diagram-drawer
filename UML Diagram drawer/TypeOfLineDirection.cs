@@ -17,7 +17,10 @@ namespace UML_Diagram_drawer
         FivePointsFromUpToFlankLine,
         FivePointsFromRightToUpOfBottomLine,
         FivePointsFromRightToUpOfBottomLineWithArounding,
+
         SixPointsFromRightToLeftOfRightLineWithArounding,
+        SixPointsFromLeftToRightOfLeftLineWithArounding,
+        
         //FivePointsFromLowerRightToUpLine,
         //FivePointsFromUpperRightToBottomLine,
 
@@ -26,6 +29,7 @@ namespace UML_Diagram_drawer
         FourPointsFromUpToUp,
         FourPointsFromBottomToBottom,
         FourPointsFromLeftToLeft,
+        FourPointsFromLeftToLeftWithArounding,
         FourPointsFromRightToRight,
         FourPointsFromRightToRightWithArounding
     }

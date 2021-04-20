@@ -67,8 +67,7 @@ namespace UML_Diagram_drawer.Arrows
 
             else if (StartPoint.Side == Side.Left)
             {
-                //typeOfLineDirection = TypeOfLineDirection.FourPointsZikzakLeftRightLine;
-                if (EndPoint.Location.X <= StartPoint.Location.X + indentFromBorder)
+                if (EndPoint.Location.X <= StartPoint.Location.X - indentFromBorder)
                 {
                     if(EndPoint.Side == Side.Up || EndPoint.Side == Side.Bottom)
                     {
@@ -99,13 +98,12 @@ namespace UML_Diagram_drawer.Arrows
                     }
                     else if (EndPoint.Side == Side.Right)
                     {
-                        typeOfLineDirection = TypeOfLineDirection.FourPointsFromRightToRightWithArounding;
+                        typeOfLineDirection = TypeOfLineDirection.SixPointsFromLeftToRightOfLeftLineWithArounding;
                     }
                     else if (EndPoint.Side == Side.Left)
                     {
-                        typeOfLineDirection = TypeOfLineDirection.SixPointsFromRightToLeftOfRightLineWithArounding;
+                        typeOfLineDirection = TypeOfLineDirection.FourPointsFromLeftToLeftWithArounding;
                     }
-                    //typeOfLineDirection = TypeOfLineDirection.FivePointsFromLeftToBottomOrUpLine;
                 }
             }
 
@@ -269,6 +267,20 @@ namespace UML_Diagram_drawer.Arrows
                     Points[5] = EndPoint.Location;
                     break;
 
+                case TypeOfLineDirection.SixPointsFromLeftToRightOfLeftLineWithArounding:
+                    Points = new Point[6];
+
+                    x = StartPoint.Location.X - indentFromBorder;
+                    Points[0] = StartPoint.Location;
+                    Points[1] = new Point(x, StartPoint.Location.Y);
+                    Points[2] = new Point(x, middleY);
+
+                    x = EndPoint.Location.X + indentFromBorder;
+                    Points[3] = new Point(x, middleY);
+                    Points[4] = new Point(x, EndPoint.Location.Y);
+                    Points[5] = EndPoint.Location;
+                    break;
+
                 case TypeOfLineDirection.FourPointsFromUpToUp:
                     Points = new Point[4];
                     Points[0] = StartPoint.Location;
@@ -293,6 +305,17 @@ namespace UML_Diagram_drawer.Arrows
                     Points[2] = new Point(x, EndPoint.Location.Y);
                     Points[3] = EndPoint.Location;
                     break;
+
+                case TypeOfLineDirection.FourPointsFromLeftToLeftWithArounding:
+                    Points = new Point[4];
+                    Points[0] = StartPoint.Location;
+                    x = StartPoint.Location.X - indentFromBorder;
+                    Points[1] = new Point(x, StartPoint.Location.Y);
+                    Points[2] = new Point(x, EndPoint.Location.Y);
+                    Points[3] = EndPoint.Location;
+                    break;
+
+
 
                 case TypeOfLineDirection.FourPointsFromRightToRightWithArounding:
                     Points = new Point[4];
