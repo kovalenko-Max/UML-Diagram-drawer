@@ -26,11 +26,11 @@ namespace UML_Diagram_drawer.Forms
             Side = side;
         }
 
-        public bool Select(Point point)
+        public bool Contains(Point point)
         {
             bool result = false;
 
-            if (Contains(point))
+            if (Math.Pow(point.X - Location.X, 2) + Math.Pow(point.Y - Location.Y, 2) < Math.Pow(_selectRadius, 2))
             {
                 result = true;
             }
@@ -53,20 +53,7 @@ namespace UML_Diagram_drawer.Forms
 
         public override string ToString()
         {
-            return $"{Location.ToString()} {Side}";
+            return $"{Location} {Side}";
         }
-
-        private bool Contains(Point point)
-        {
-            bool result = false;
-
-            if (Math.Pow(point.X - Location.X, 2) + Math.Pow(point.Y - Location.Y, 2) < Math.Pow(_selectRadius, 2))
-            {
-                result = true;
-            }
-
-            return result;
-        }
-
     }
 }

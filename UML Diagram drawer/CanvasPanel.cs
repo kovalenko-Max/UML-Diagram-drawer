@@ -5,31 +5,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UML_Diagram_drawer.Factory;
 using UML_Diagram_drawer.Forms;
 
 namespace UML_Diagram_drawer
 {
     public class CanvasPanel : Panel
     {
-        public List<FormUML> Forms;
-        public FormUML CurrentForm;
-        public FormUML SelectForm;
+        public List<AbstractForm> Forms;
+        public AbstractForm CurrentForm;
+        public AbstractForm SelectForm;
         public Point LastMousePosition;
         public ContactPoint SelectContactPoint;
+        public TextField selectText;
         public bool IsDraw { get; set; }
-
+        public bool IsRedactor { get; set; }
+        public bool IsRemove { get; set; }
         public CanvasPanel()
         {
             Dock = DockStyle.Fill;
             this.DoubleBuffered = true;
-            Forms = new List<FormUML>();
+            Forms = new List<AbstractForm>();
         }
 
-        public void CreateForm()
+        private void CreateForm()
         {
             if (CurrentForm == null)
             {
-                CurrentForm = new FormUML();
+                //var t=new ClassFormFactory();
+                CurrentForm = new InterfaceFormFactory().GetForm();
+            }
+        }
+
+        public void RedactorTextField(string text)
+        {
+            if (IsRedactor)
+            {
+                selectText.Brush = new SolidBrush(Color.Red);
+                selectText.Text = text;
             }
         }
 
@@ -57,11 +70,18 @@ namespace UML_Diagram_drawer
                     //        }
                     //    }
                     //}
-                    foreach (var form in Forms)
+                    //foreach (var form in Forms)
+                    //{
+                    //    if (form.Select(e.Location))
+                    //    {
+                    //        SelectForm = form;
+                    //    }
+                    //}
+                    if (IsRedactor)
                     {
-                        if (form.Select(e.Location))
+                        foreach (var form in Forms)
                         {
-                            SelectForm = form;
+                            //form.ChangeTextField(e.Location)
                         }
                     }
                 }
