@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UML_Diagram_drawer.Factory;
 using UML_Diagram_drawer.Forms;
 using UML_Diagram_drawer.Arrows;
 using System.Drawing;
@@ -12,30 +14,40 @@ namespace UML_Diagram_drawer
 {
     public class CanvasPanel : Panel
     {
-        public List<FormUML> Forms;
-        public FormUML CurrentForm;
-
-        public List<AbstactArrow> ArrowsList;
-        public AbstactArrow CurrentArrow;
-
+        public List<AbstractForm> Forms;
+        public AbstractForm CurrentForm;
+        public AbstractForm SelectForm;
+        public Point LastMousePosition;
         public ContactPoint SelectContactPoint;
-        public Pen pen = new Pen(Brushes.Black, 3);
-
-        public bool IsFormDraw { get; set; }
+        public TextField selectText;
+        public bool IsDraw { get; set; }
+        public bool IsRedactor { get; set; }
+        public bool IsRemove { get; set; }
         public CanvasPanel()
         {
             Dock = DockStyle.Fill;
             this.DoubleBuffered = true;
-            Forms = new List<FormUML>();
-            ArrowsList = new List<AbstactArrow>();
+            Forms = new List<AbstractForm>();
         }
-        public void CreateForm()
+
+        private void CreateForm()
         {
             if (CurrentForm == null)
             {
-                CurrentForm = new FormUML();
+                //var t=new ClassFormFactory();
+                CurrentForm = new InterfaceFormFactory().GetForm();
             }
         }
+
+        public void RedactorTextField(string text)
+        {
+            if (IsRedactor)
+            {
+                selectText.Brush = new SolidBrush(Color.Red);
+                selectText.Text = text;
+            }
+        }
+
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
@@ -50,14 +62,28 @@ namespace UML_Diagram_drawer
                 }
                 else
                 {
-                    foreach (var form in Forms)
+                    //foreach (var form in Forms)
+                    //{
+                    //    foreach (var contactPoint in form.ContactPoints)
+                    //    {
+                    //        if (contactPoint.Select(e.Location))
+                    //        {
+                    //            SelectContactPoint = form.ConnectArrow(e.Location);
+                    //        }
+                    //    }
+                    //}
+                    //foreach (var form in Forms)
+                    //{
+                    //    if (form.Select(e.Location))
+                    //    {
+                    //        SelectForm = form;
+                    //    }
+                    //}
+                    if (IsRedactor)
                     {
-                        foreach (var contactPoint in form.ContactPoints)
+                        foreach (var form in Forms)
                         {
-                            if (contactPoint.Select(e.Location))
-                            {
-                                SelectContactPoint = form.ConnectArrow(e.Location);
-                            }
+                            //form.ChangeTextField(e.Location)
                         }
                     }
                 }
@@ -65,6 +91,7 @@ namespace UML_Diagram_drawer
 
             Invalidate();
         }
+
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
@@ -75,10 +102,20 @@ namespace UML_Diagram_drawer
                 {
                     CurrentForm.Location = e.Location;
                 }
+                else
+                {
+                    if (SelectForm != null)
+                    {
+                        SelectForm.Move(e.X - LastMousePosition.X, e.Y - LastMousePosition.Y);
+                        LastMousePosition = e.Location;
+                    }
+                }
             }
+            LastMousePosition = e.Location;
 
             Invalidate();
         }
+
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);
@@ -89,10 +126,15 @@ namespace UML_Diagram_drawer
                     CurrentForm = null;
                     IsFormDraw = false;
                 }
+                else
+                {
+                    SelectForm = null;
+                }
             }
 
             Invalidate();
         }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
