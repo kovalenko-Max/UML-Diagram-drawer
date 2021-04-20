@@ -26,8 +26,6 @@ namespace UML_Diagram_drawer.Forms
             Side = side;
         }
 
-        
-
         public void Draw()
         {
             Point secondPoint;
