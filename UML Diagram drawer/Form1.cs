@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UML_Diagram_drawer.Forms;
@@ -198,6 +199,36 @@ namespace UML_Diagram_drawer
         private AbstactArrow CreateArrow()
         {
             return new ArrowSuccession(pen, MainGraphics.Graphics);
+        }
+
+        private void toolStripButtonSaveFile_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.ShowDialog();
+            string pathSaveFile = saveFileDialog1.FileName;
+            string fileData = JsonSerialize();
+            SaveAndLoad.SaveFile(pathSaveFile, fileData);
+        }
+
+        private void toolStripButtonOpenFile_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+            string pathOpenFile = saveFileDialog1.FileName;
+            string fileDataForms = SaveAndLoad.OpenFile(pathOpenFile, TypeOfData.Forms);
+            string fileDataArrows = SaveAndLoad.OpenFile(pathOpenFile, TypeOfData.Arrows);
+            JsonDeserialize(fileDataForms, fileDataArrows);
+        }
+
+        public string JsonSerialize()
+        {
+            string fileData = JsonSerializer.Serialize<List<AbstractForm>>(FormsList);
+            fileData += JsonSerializer.Serialize<List<AbstactArrow>>(ArrowsList);
+            return fileData;
+        }
+
+        public void JsonDeserialize(string fileDataForms, string fileDataArrows)
+        {
+            FormsList = JsonSerializer.Deserialize<List<AbstractForm>>(fileDataForms);
+            ArrowsList = JsonSerializer.Deserialize<List<AbstactArrow>>(fileDataArrows);        
         }
     }
 }
