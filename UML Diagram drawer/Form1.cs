@@ -10,13 +10,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UML_Diagram_drawer.Forms;
 using UML_Diagram_drawer.Arrows;
+using Form = System.Windows.Forms.Form;
+using UML_Diagram_drawer.Factory;
 
 namespace UML_Diagram_drawer
 {
     public partial class FormMain : Form
     {
-        public List<FormUML> FormsList;
-        public FormUML CurrentForm;
+        public List<AbstractForm> FormsList;
+        public AbstractForm CurrentForm;
 
         public List<AbstactArrow> ArrowsList;
         public AbstactArrow CurrentArrow;
@@ -25,7 +27,7 @@ namespace UML_Diagram_drawer
         public Pen pen = new Pen(Brushes.Black, 3);
 
         private AbstactArrow _arrow;
-        private FormUML _formUML;
+        private AbstractForm _formUML;
 
         public FormMain()
         {
@@ -35,7 +37,7 @@ namespace UML_Diagram_drawer
         private void FormMain_Load(object sender, EventArgs e)
         {
             ArrowsList = new List<AbstactArrow>();
-            FormsList = new List<FormUML>();
+            FormsList = new List<AbstractForm>();
         }
 
         private void Button_AddForm_Click(object sender, EventArgs e)
@@ -66,7 +68,7 @@ namespace UML_Diagram_drawer
             {
                 foreach (var contactPoint in form.ContactPoints)
                 {
-                    if (contactPoint.Select(e.Location))
+                    if (contactPoint.Contains(e.Location))
                     {
                         _currntCountactPoint = form.ConnectArrow(e.Location);
                     }
@@ -99,7 +101,7 @@ namespace UML_Diagram_drawer
             {
                 foreach (var contactPoint in form.ContactPoints)
                 {
-                    if (contactPoint.Select(e.Location))
+                    if (contactPoint.Contains(e.Location))
                     {
                         _currntCountactPoint = form.ConnectArrow(e.Location);
                     }
@@ -138,7 +140,7 @@ namespace UML_Diagram_drawer
                 arrow.Draw();
             }
 
-            foreach (FormUML form in FormsList)
+            foreach (AbstractForm form in FormsList)
             {
                 form.Draw();
             }
@@ -149,9 +151,9 @@ namespace UML_Diagram_drawer
             return new ArrowSuccession(pen, MainGraphics.Graphics);
         }
 
-        private FormUML CreateFormUML()
+        private AbstractForm CreateFormUML()
         {
-            return new FormUML();
+            return new ClassFormFactory().GetForm();
         }
     }
 }
