@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UML_Diagram_drawer.Factory;
 using UML_Diagram_drawer.Forms;
 using UML_Diagram_drawer.Arrows;
 using System.Drawing;
@@ -29,13 +31,15 @@ namespace UML_Diagram_drawer
             Forms = new List<FormUML>();
             ArrowsList = new List<AbstactArrow>();
         }
-        public void CreateForm()
+
+        private void CreateForm()
         {
             if (CurrentForm == null)
             {
                 CurrentForm = new FormUML();
             }
         }
+
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
@@ -50,14 +54,28 @@ namespace UML_Diagram_drawer
                 }
                 else
                 {
-                    foreach (var form in Forms)
+                    //foreach (var form in Forms)
+                    //{
+                    //    foreach (var contactPoint in form.ContactPoints)
+                    //    {
+                    //        if (contactPoint.Select(e.Location))
+                    //        {
+                    //            SelectContactPoint = form.ConnectArrow(e.Location);
+                    //        }
+                    //    }
+                    //}
+                    //foreach (var form in Forms)
+                    //{
+                    //    if (form.Select(e.Location))
+                    //    {
+                    //        SelectForm = form;
+                    //    }
+                    //}
+                    if (IsRedactor)
                     {
-                        foreach (var contactPoint in form.ContactPoints)
+                        foreach (var form in Forms)
                         {
-                            if (contactPoint.Select(e.Location))
-                            {
-                                SelectContactPoint = form.ConnectArrow(e.Location);
-                            }
+                            //form.ChangeTextField(e.Location)
                         }
                     }
                 }
@@ -65,6 +83,7 @@ namespace UML_Diagram_drawer
 
             Invalidate();
         }
+
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
@@ -75,10 +94,20 @@ namespace UML_Diagram_drawer
                 {
                     CurrentForm.Location = e.Location;
                 }
+                else
+                {
+                    if (SelectForm != null)
+                    {
+                        SelectForm.Move(e.X - LastMousePosition.X, e.Y - LastMousePosition.Y);
+                        LastMousePosition = e.Location;
+                    }
+                }
             }
+            LastMousePosition = e.Location;
 
             Invalidate();
         }
+
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);
@@ -89,10 +118,15 @@ namespace UML_Diagram_drawer
                     CurrentForm = null;
                     IsFormDraw = false;
                 }
+                else
+                {
+                    SelectForm = null;
+                }
             }
 
             Invalidate();
         }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);

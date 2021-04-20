@@ -61,9 +61,16 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Default.cs" />
-    <Compile Include="Forms\FormUML.cs" />
-    <Compile Include="Forms\Module.cs" />
-    <Compile Include="Forms\ModuleType.cs" />
+    <Compile Include="Factory\FormFactory\ClassFormFactory.cs" />
+    <Compile Include="Factory\FormFactory\IFormsFactory.cs" />
+    <Compile Include="Factory\FormFactory\InterfaceFormFactory.cs" />
+    <Compile Include="Forms\Form.cs" />
+    <Compile Include="Forms\FormType.cs" />
+    <Compile Include="Forms\AbstractForm.cs" />
+    <Compile Include="Forms\Modules\AbstactModule.cs" />
+    <Compile Include="Forms\Modules\FieldModule.cs" />
+    <Compile Include="Forms\Modules\MethodModule.cs" />
+    <Compile Include="Forms\Modules\TitleModule.cs" />
     <Compile Include="Forms\TextField.cs" />
     <Compile Include="MainGraphics.cs" />
     <Compile Include="TypeOfLineDirection.cs" />

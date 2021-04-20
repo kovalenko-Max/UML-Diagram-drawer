@@ -22,10 +22,56 @@ namespace UML_Diagram_drawer
 
         public static class Text
         {
-            public static StringFormat TitleStringFormat = new StringFormat();
+            private static StringFormat _titleStringFormat = new StringFormat();
+            private static StringFormat _methodStringFormat = new StringFormat();
+            private static StringFormat _fieldStringFormat = new StringFormat();
+            
+            public static StringFormat TitleStringFormat
+            {
+                get
+                {
+                    _titleStringFormat.Alignment = StringAlignment.Center;
+                    _titleStringFormat.LineAlignment = StringAlignment.Center;
+                    return _titleStringFormat;
+                }
+                set
+                {
+                    _titleStringFormat = value;
+                }
+            }
+            public static StringFormat MethodStringFormat
+            {
+                get
+                {
+                    _methodStringFormat.Alignment = StringAlignment.Near;
+                    _methodStringFormat.LineAlignment = StringAlignment.Center;
+                    return _methodStringFormat;
+                }
+                set
+                {
+                    _methodStringFormat = value;
+                }
+            }
+            public static StringFormat FieldStringFormat
+            {
+                get
+                {
+                    _fieldStringFormat.Alignment = StringAlignment.Near;
+                    _fieldStringFormat.LineAlignment = StringAlignment.Center;
+                    return _fieldStringFormat;
+                }
+                set
+                {
+                    _fieldStringFormat = value;
+                }
+            }
             public static SolidBrush Brush = new SolidBrush(Color.Black);
             public static Font Font = new Font("Arial", 14);
             public static string SomeText = "Some text";
+            public static string TitleClassText = "Class Name";
+            public static string TitleInterfaceText = "<interfase>\nInterfase name";
+            public static string FieldText = " + field : type";
+            public static string MethodText = " + method()";
         }
 
         public static class Size
