@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UML_Diagram_drawer.Factory;
 
 namespace UML_Diagram_drawer
 {
@@ -83,6 +84,11 @@ namespace UML_Diagram_drawer
             public static System.Drawing.Size FormSize = new System.Drawing.Size(_defaultFormWidth, _defaultFormHeight);
             public static System.Drawing.Size TextFieldSize = new System.Drawing.Size(_defaultFormWidth, _defaultModuleFormHeight);
             public static System.Drawing.Size ModuleFormSize = new System.Drawing.Size(_defaultFormWidth, _defaultModuleFormHeight);
+        }
+
+        public static class Factory
+        {
+            public static IFormsFactory Form = new ClassFormFactory();
         }
     }
 }

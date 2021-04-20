@@ -33,7 +33,6 @@ namespace UML_Diagram_drawer
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            this.panelMain = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -52,7 +51,7 @@ namespace UML_Diagram_drawer
             this.toolStripButtonArrowComposition = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonArrowCompositionAndAssociation = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonCreateClassForm = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
@@ -63,56 +62,13 @@ namespace UML_Diagram_drawer
             this.toolStripButton15 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.panelMain.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pictureBoxMain = new System.Windows.Forms.PictureBox();
             this.button_AddForm = new System.Windows.Forms.Button();
             this.button_AddArrow = new System.Windows.Forms.Button();
+            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBoxMain
-            // 
-            this.pictureBoxMain.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.pictureBoxMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxMain.Location = new System.Drawing.Point(0, 0);
-            this.pictureBoxMain.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBoxMain.Name = "pictureBoxMain";
-            this.pictureBoxMain.Size = new System.Drawing.Size(1400, 673);
-            this.pictureBoxMain.TabIndex = 0;
-            this.pictureBoxMain.TabStop = false;
-            this.pictureBoxMain.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBoxMain_Paint);
-            this.panelMain.Controls.Add(this.toolStrip1);
-            this.panelMain.Controls.Add(this.pictureBox1);
-            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMain.Location = new System.Drawing.Point(0, 0);
-            this.panelMain.Margin = new System.Windows.Forms.Padding(2);
-            this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(1264, 681);
-            this.panelMain.TabIndex = 0;
-            // 
-            // button_AddForm
-            // 
-            this.button_AddForm.Location = new System.Drawing.Point(8, 8);
-            this.button_AddForm.Name = "button_AddForm";
-            this.button_AddForm.Size = new System.Drawing.Size(75, 23);
-            this.button_AddForm.TabIndex = 1;
-            this.button_AddForm.Text = "Add Form";
-            this.button_AddForm.UseVisualStyleBackColor = true;
-            this.button_AddForm.Click += new System.EventHandler(this.Button_AddForm_Click);
-            // 
-            // button_AddArrow
-            // 
-            this.button_AddArrow.Location = new System.Drawing.Point(100, 8);
-            this.button_AddArrow.Name = "button_AddArrow";
-            this.button_AddArrow.Size = new System.Drawing.Size(75, 23);
-            this.button_AddArrow.TabIndex = 2;
-            this.button_AddArrow.Text = "Add Arrow";
-            this.button_AddArrow.UseVisualStyleBackColor = true;
-            this.button_AddArrow.Click += new System.EventHandler(this.Button_AddArrow_Click);
             // 
             // toolStrip1
             // 
@@ -134,7 +90,7 @@ namespace UML_Diagram_drawer
             this.toolStripButtonArrowComposition,
             this.toolStripButtonArrowCompositionAndAssociation,
             this.toolStripSeparator1,
-            this.toolStripButton8,
+            this.toolStripButtonCreateClassForm,
             this.toolStripButton9,
             this.toolStripButton10,
             this.toolStripButton11,
@@ -148,11 +104,9 @@ namespace UML_Diagram_drawer
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(1264, 47);
+            this.toolStrip1.Size = new System.Drawing.Size(1400, 47);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            this.toolStrip1.Visible = false;
-            this.toolStrip1.MouseLeave += new System.EventHandler(this.toolStrip1_MouseLeave);
             // 
             // newToolStripButton
             // 
@@ -311,14 +265,15 @@ namespace UML_Diagram_drawer
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 47);
             // 
-            // toolStripButton8
+            // toolStripButtonCreateClassForm
             // 
-            this.toolStripButton8.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton8.Image")));
-            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton8.Name = "toolStripButton8";
-            this.toolStripButton8.Size = new System.Drawing.Size(45, 44);
-            this.toolStripButton8.Text = "Form1";
-            this.toolStripButton8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButtonCreateClassForm.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCreateClassForm.Image")));
+            this.toolStripButtonCreateClassForm.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonCreateClassForm.Name = "toolStripButtonCreateClassForm";
+            this.toolStripButtonCreateClassForm.Size = new System.Drawing.Size(45, 44);
+            this.toolStripButtonCreateClassForm.Text = "Form1";
+            this.toolStripButtonCreateClassForm.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButtonCreateClassForm.Click += new System.EventHandler(this.toolStripButtonCreateClassForm_Click);
             // 
             // toolStripButton9
             // 
@@ -406,48 +361,60 @@ namespace UML_Diagram_drawer
             this.helpToolStripButton.Size = new System.Drawing.Size(23, 44);
             this.helpToolStripButton.Text = "He&lp";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Gray;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1264, 20);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseEnter += new System.EventHandler(this.pictureBox1_MouseEnter);
-            // 
             // colorDialog1
             // 
             this.colorDialog1.HelpRequest += new System.EventHandler(this.toolStripButton12_Click);
+            // 
+            // pictureBoxMain
+            // 
+            this.pictureBoxMain.BackColor = System.Drawing.Color.White;
+            this.pictureBoxMain.Location = new System.Drawing.Point(0, 2);
+            this.pictureBoxMain.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBoxMain.Name = "pictureBoxMain";
+            this.pictureBoxMain.Size = new System.Drawing.Size(1400, 671);
+            this.pictureBoxMain.TabIndex = 0;
+            this.pictureBoxMain.TabStop = false;
+            this.pictureBoxMain.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBoxMain_Paint);
+            // 
+            // button_AddForm
+            // 
+            this.button_AddForm.Location = new System.Drawing.Point(0, 211);
+            this.button_AddForm.Name = "button_AddForm";
+            this.button_AddForm.Size = new System.Drawing.Size(75, 23);
+            this.button_AddForm.TabIndex = 1;
+            this.button_AddForm.Text = "Add Form";
+            this.button_AddForm.UseVisualStyleBackColor = true;
+            // 
+            // button_AddArrow
+            // 
+            this.button_AddArrow.Location = new System.Drawing.Point(0, 240);
+            this.button_AddArrow.Name = "button_AddArrow";
+            this.button_AddArrow.Size = new System.Drawing.Size(75, 23);
+            this.button_AddArrow.TabIndex = 2;
+            this.button_AddArrow.Text = "Add Arrow";
+            this.button_AddArrow.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1264, 681);
-            this.Controls.Add(this.panelMain);
             this.ClientSize = new System.Drawing.Size(1400, 673);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.button_AddArrow);
             this.Controls.Add(this.button_AddForm);
             this.Controls.Add(this.pictureBoxMain);
             this.Name = "FormMain";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FormMain_Load);
-            this.panelMain.ResumeLayout(false);
-            this.panelMain.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).EndInit();
             this.ResumeLayout(false);
-
+            this.PerformLayout();
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButtonArrowSuccession;
@@ -457,7 +424,7 @@ namespace UML_Diagram_drawer
         private System.Windows.Forms.ToolStripButton toolStripButtonArrowAggregationAndAssociation;
         private System.Windows.Forms.ToolStripButton toolStripButtonArrowComposition;
         private System.Windows.Forms.ToolStripButton toolStripButtonArrowCompositionAndAssociation;
-        private System.Windows.Forms.ToolStripButton toolStripButton8;
+        private System.Windows.Forms.ToolStripButton toolStripButtonCreateClassForm;
         private System.Windows.Forms.ToolStripButton toolStripButton9;
         private System.Windows.Forms.ToolStripButton toolStripButton10;
         private System.Windows.Forms.ToolStripButton toolStripButton11;
@@ -478,7 +445,6 @@ namespace UML_Diagram_drawer
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton helpToolStripButton;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBoxMain;
         private System.Windows.Forms.Button button_AddForm;
         private System.Windows.Forms.Button button_AddArrow;

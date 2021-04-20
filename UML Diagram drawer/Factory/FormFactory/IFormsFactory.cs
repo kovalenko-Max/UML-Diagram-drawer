@@ -7,7 +7,7 @@ using UML_Diagram_drawer.Forms;
 
 namespace UML_Diagram_drawer.Factory
 {
-    interface IFormsFactory
+    public interface IFormsFactory
     {
         AbstractForm GetForm();
     }

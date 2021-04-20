@@ -17,17 +17,19 @@ namespace UML_Diagram_drawer
 {
     public partial class FormMain : Form
     {
+        private ContactPoint _currntCountactPoint;
+        private AbstactArrow _arrow;
+        private AbstractForm _formUML;
+        private IFormsFactory _formFactory;
+
         public List<AbstractForm> FormsList;
         public AbstractForm CurrentForm;
 
         public List<AbstactArrow> ArrowsList;
         public AbstactArrow CurrentArrow;
 
-        private ContactPoint _currntCountactPoint;
         public Pen pen = new Pen(Brushes.Black, 3);
 
-        private AbstactArrow _arrow;
-        private AbstractForm _formUML;
 
         public FormMain()
         {
@@ -38,13 +40,14 @@ namespace UML_Diagram_drawer
         {
             ArrowsList = new List<AbstactArrow>();
             FormsList = new List<AbstractForm>();
+            _formFactory = Default.Factory.Form;
         }
 
         private void toolStripButton12_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
 
-            if(colorDialog1.Color==Color.Black)
+            if (colorDialog1.Color == Color.Black)
             {
                 toolStripButton12.ForeColor = Color.White;
             }
@@ -54,28 +57,8 @@ namespace UML_Diagram_drawer
             }
 
             toolStripButton12.BackColor = colorDialog1.Color;
-        private void Button_AddForm_Click(object sender, EventArgs e)
-        {
-            _formUML = CreateFormUML();
-            FormsList.Add(_formUML);
-            pictureBoxMain.MouseClick += MouseClick_DrawFormUML;
-        }
-        private void pictureBox1_MouseEnter(object sender, EventArgs e)
-        {
-            toolStrip1.Visible = true;
-            pictureBox1.Visible = false;
         }
 
-        private void toolStrip1_MouseLeave(object sender, EventArgs e)
-        {
-            toolStrip1.Visible = false;
-            pictureBox1.Visible = true;
-        }
-
-        private void toolStripButtonArrowAssociation_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void toolStripButtonArrowSuccession_Click(object sender, EventArgs e)
         {
@@ -107,19 +90,24 @@ namespace UML_Diagram_drawer
 
         }
 
-
+        private void toolStripButtonArrowAssociation_Click(object sender, EventArgs e)
+        {
+            pictureBoxMain.MouseDown += MouseDown_DrawArrow;
+            _arrow = CreateArrow();
+            ArrowsList.Add(_arrow);
+        }
+        private void toolStripButtonCreateClassForm_Click(object sender, EventArgs e)
+        {
+            _formFactory = new ClassFormFactory();
+            _formUML = _formFactory.GetForm();
+            FormsList.Add(_formUML);
+            pictureBoxMain.MouseClick += MouseClick_DrawFormUML;
+        }
         private void MouseClick_DrawFormUML(object sender, MouseEventArgs e)
         {
             _formUML.Location = e.Location;
             pictureBoxMain.MouseClick -= MouseClick_DrawFormUML;
             pictureBoxMain.Invalidate();
-        }
-
-        private void Button_AddArrow_Click(object sender, EventArgs e)
-        {
-            pictureBoxMain.MouseDown += MouseDown_DrawArrow;
-            _arrow = CreateArrow();
-            ArrowsList.Add(_arrow);
         }
 
         private void MouseDown_DrawArrow(object sender, MouseEventArgs e)
@@ -210,11 +198,6 @@ namespace UML_Diagram_drawer
         private AbstactArrow CreateArrow()
         {
             return new ArrowSuccession(pen, MainGraphics.Graphics);
-        }
-
-        private AbstractForm CreateFormUML()
-        {
-            return new ClassFormFactory().GetForm();
         }
     }
 }
