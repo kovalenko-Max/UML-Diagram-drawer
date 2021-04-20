@@ -40,12 +40,73 @@ namespace UML_Diagram_drawer
             FormsList = new List<AbstractForm>();
         }
 
+        private void toolStripButton12_Click(object sender, EventArgs e)
+        {
+            colorDialog1.ShowDialog();
+
+            if(colorDialog1.Color==Color.Black)
+            {
+                toolStripButton12.ForeColor = Color.White;
+            }
+            else
+            {
+                toolStripButton12.ForeColor = Color.Black;
+            }
+
+            toolStripButton12.BackColor = colorDialog1.Color;
         private void Button_AddForm_Click(object sender, EventArgs e)
         {
             _formUML = CreateFormUML();
             FormsList.Add(_formUML);
             pictureBoxMain.MouseClick += MouseClick_DrawFormUML;
         }
+        private void pictureBox1_MouseEnter(object sender, EventArgs e)
+        {
+            toolStrip1.Visible = true;
+            pictureBox1.Visible = false;
+        }
+
+        private void toolStrip1_MouseLeave(object sender, EventArgs e)
+        {
+            toolStrip1.Visible = false;
+            pictureBox1.Visible = true;
+        }
+
+        private void toolStripButtonArrowAssociation_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButtonArrowSuccession_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButtonArrowRealization_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButtonArrowAggregation_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButtonArrowAggregationAndAssociation_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButtonArrowComposition_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButtonArrowCompositionAndAssociation_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
         private void MouseClick_DrawFormUML(object sender, MouseEventArgs e)
         {
