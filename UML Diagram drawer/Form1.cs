@@ -205,30 +205,61 @@ namespace UML_Diagram_drawer
         {
             saveFileDialog1.ShowDialog();
             string pathSaveFile = saveFileDialog1.FileName;
-            string fileData = JsonSerialize();
-            SaveAndLoad.SaveFile(pathSaveFile, fileData);
+            if (pathSaveFile != String.Empty)
+            {
+                string fileDataForms = JsonSerialize(TypeOfData.Forms);
+                SaveAndLoad.SaveFile(pathSaveFile, fileDataForms);
+                string fileDataArrows = JsonSerialize(TypeOfData.Arrows);
+                SaveAndLoad.SaveFile(pathSaveFile, fileDataArrows);
+            }
         }
 
         private void toolStripButtonOpenFile_Click(object sender, EventArgs e)
         {
             openFileDialog1.ShowDialog();
-            string pathOpenFile = saveFileDialog1.FileName;
-            string fileDataForms = SaveAndLoad.OpenFile(pathOpenFile, TypeOfData.Forms);
-            string fileDataArrows = SaveAndLoad.OpenFile(pathOpenFile, TypeOfData.Arrows);
-            JsonDeserialize(fileDataForms, fileDataArrows);
+            string pathOpenFile = openFileDialog1.FileName;
+            if (pathOpenFile != String.Empty)
+            {
+                string fileDataForms = SaveAndLoad.OpenFile(pathOpenFile, TypeOfData.Forms);
+                string fileDataArrows = SaveAndLoad.OpenFile(pathOpenFile, TypeOfData.Arrows);
+                JsonDeserialize(fileDataForms, fileDataArrows);
+            }
         }
 
-        public string JsonSerialize()
+        public string JsonSerialize(TypeOfData type)
         {
-            string fileData = JsonSerializer.Serialize<List<AbstractForm>>(FormsList);
-            fileData += JsonSerializer.Serialize<List<AbstactArrow>>(ArrowsList);
-            return fileData;
+            if (type == TypeOfData.Forms)
+            {
+                string fileDataForms = JsonSerializer.Serialize<List<AbstractForm>>(FormsList);
+                return fileDataForms;
+            }
+            else if (type == TypeOfData.Arrows)
+            {
+                string fileDataArrows = JsonSerializer.Serialize<List<AbstactArrow>>(ArrowsList);
+                return fileDataArrows;
+            }
+            throw new Exception();
         }
 
         public void JsonDeserialize(string fileDataForms, string fileDataArrows)
         {
-            FormsList = JsonSerializer.Deserialize<List<AbstractForm>>(fileDataForms);
-            ArrowsList = JsonSerializer.Deserialize<List<AbstactArrow>>(fileDataArrows);        
+            if (fileDataForms != String.Empty)
+            {
+                FormsList = JsonSerializer.Deserialize<List<AbstractForm>>(fileDataForms);
+            }
+            else
+            {
+                FormsList = new List<AbstractForm>();
+            }
+
+            if (fileDataArrows != null)
+            {
+                ArrowsList = JsonSerializer.Deserialize<List<AbstactArrow>>(fileDataArrows);
+            }
+            else
+            {
+                ArrowsList = new List<AbstactArrow>();
+            }
         }
     }
 }

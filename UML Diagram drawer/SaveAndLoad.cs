@@ -16,7 +16,7 @@ namespace UML_Diagram_drawer
     {
         public static void SaveFile(string path, string fileData)
         {
-            StringWriter saveSW = new StringWriter(path, false);
+            StreamWriter saveSW = new StreamWriter(path, false);
 
             using (saveSW)
             {
@@ -26,7 +26,7 @@ namespace UML_Diagram_drawer
 
         public static string OpenFile(string path, TypeOfData type)
         {
-            StringReader openSR = new StringReader(path);
+            StreamReader openSR = new StreamReader(path);
             string fileDataForms = String.Empty;
             string fileDataArrows = String.Empty;
 

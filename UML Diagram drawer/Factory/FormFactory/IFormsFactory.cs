@@ -9,6 +9,6 @@ namespace UML_Diagram_drawer.Factory
 {
     public interface IFormsFactory
     {
-        AbstractForm GetForm();
+        Form GetForm();
     }
 }
