@@ -10,9 +10,9 @@ namespace UML_Diagram_drawer.Forms
 {
     public abstract class AbstractForm : ISelectable
     {
-        protected List<AbstactModule> _modules;
         protected Rectangle _rectangle;
 
+        public List<AbstactModule> Modules;
         public string TitleText { get; set; }
         public ContactPoint[] ContactPoints { get; set; }
         public bool IsSelected { get; set; }
@@ -48,10 +48,22 @@ namespace UML_Diagram_drawer.Forms
             TitleText = titleText;
             Pen = Default.Draw.Pen;
             Brush = Default.Draw.FillBrush;
-            _modules = new List<AbstactModule>();
+            Modules = new List<AbstactModule>();
             _rectangle = new Rectangle(Location, Default.Size.FormSize);
             SetContactPoint();
             CreateModules(createFields, createMethods);
+        }
+
+        public AbstractForm(AbstractForm form)
+        {
+            Type = form.Type;
+            TitleText = form.TitleText;
+            Pen = form.Pen;
+            Brush = form.Brush;
+            SIze = form.SIze;
+            Location = form.Location;
+            ContactPoints = form.ContactPoints;
+            Modules = form.Modules;
         }
 
         public ContactPoint ConnectArrow(Point point)
@@ -90,7 +102,7 @@ namespace UML_Diagram_drawer.Forms
                 IsSelected = false;
                 Pen = Default.Draw.Pen;
 
-                foreach (var item in _modules)
+                foreach (var item in Modules)
                 {
                     item.Pen = Pen;
                 }
@@ -103,7 +115,7 @@ namespace UML_Diagram_drawer.Forms
             {
                 Pen = Default.Draw.PenSelect;
 
-                foreach (AbstactModule module in _modules)
+                foreach (AbstactModule module in Modules)
                 {
                     module.Pen = Pen;
                 }
@@ -123,7 +135,7 @@ namespace UML_Diagram_drawer.Forms
         {
             if (text != null)
             {
-                foreach (AbstactModule module in _modules)
+                foreach (AbstactModule module in Modules)
                 {
                     if (module.GetType() == type)
                     {
@@ -151,7 +163,7 @@ namespace UML_Diagram_drawer.Forms
 
         public void RemoveTextField(Point point)
         {
-            foreach (AbstactModule module in _modules)
+            foreach (AbstactModule module in Modules)
             {
                 module.RemoveTextField(point);
             }
@@ -172,7 +184,7 @@ namespace UML_Diagram_drawer.Forms
             if (Contains(point))
             {
                 TextField result = null;
-                foreach (AbstactModule module in _modules)
+                foreach (AbstactModule module in Modules)
                 {
                     if (module.Contains(point))
                     {
@@ -188,23 +200,23 @@ namespace UML_Diagram_drawer.Forms
 
         protected void CreateModules(bool createFields = true, bool createMethods = true)
         {
-            _modules.Add(new TitleModule() { DefaultText = TitleText });
+            Modules.Add(new TitleModule() { DefaultText = TitleText });
 
             if (createFields)
             {
-                _modules.Add(new FieldModule() { DefaultText = Default.Text.FieldText });
+                Modules.Add(new FieldModule() { DefaultText = Default.Text.FieldText });
             }
 
             if (createMethods)
             {
-                _modules.Add(new MethodModule() { DefaultText = Default.Text.MethodText });
+                Modules.Add(new MethodModule() { DefaultText = Default.Text.MethodText });
             }
         }
 
         protected void DrawModules()
         {
             int currentLocationY = 0;
-            foreach (AbstactModule module in _modules)
+            foreach (AbstactModule module in Modules)
             {
                 module.Location = new Point(this.Location.X, this.Location.Y + currentLocationY);
                 currentLocationY += module.Size.Height;
@@ -215,9 +227,9 @@ namespace UML_Diagram_drawer.Forms
         protected Rectangle GetRectangle()
         {
             int currentSizeY = 0;
-            for (int i = 0; i < _modules.Count; i++)
+            for (int i = 0; i < Modules.Count; i++)
             {
-                currentSizeY += _modules[i].Size.Height;
+                currentSizeY += Modules[i].Size.Height;
             }
 
             int addedHeight = currentSizeY == 0 ? Default.Size.ModuleFormSize.Height * 3 : 0;

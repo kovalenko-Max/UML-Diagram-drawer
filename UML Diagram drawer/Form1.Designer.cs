@@ -107,6 +107,7 @@ namespace UML_Diagram_drawer
             this.toolStrip1.Size = new System.Drawing.Size(1400, 47);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.toolStrip1_MouseDown);
             // 
             // newToolStripButton
             // 
@@ -157,6 +158,7 @@ namespace UML_Diagram_drawer
             this.cutToolStripButton.Name = "cutToolStripButton";
             this.cutToolStripButton.Size = new System.Drawing.Size(23, 44);
             this.cutToolStripButton.Text = "C&ut";
+            this.cutToolStripButton.Click += new System.EventHandler(this.cutToolStripButton_Click);
             // 
             // copyToolStripButton
             // 
@@ -166,6 +168,8 @@ namespace UML_Diagram_drawer
             this.copyToolStripButton.Name = "copyToolStripButton";
             this.copyToolStripButton.Size = new System.Drawing.Size(23, 44);
             this.copyToolStripButton.Text = "&Copy";
+            this.copyToolStripButton.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.copyToolStripButton.Click += new System.EventHandler(this.copyToolStripButton_Click);
             // 
             // pasteToolStripButton
             // 
@@ -175,6 +179,8 @@ namespace UML_Diagram_drawer
             this.pasteToolStripButton.Name = "pasteToolStripButton";
             this.pasteToolStripButton.Size = new System.Drawing.Size(23, 44);
             this.pasteToolStripButton.Text = "&Paste";
+            this.pasteToolStripButton.Click += new System.EventHandler(this.pasteToolStripButton_Click);
+            this.pasteToolStripButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PasteObject_MouseDown);
             // 
             // toolStripSeparator3
             // 
@@ -412,6 +418,7 @@ namespace UML_Diagram_drawer
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion

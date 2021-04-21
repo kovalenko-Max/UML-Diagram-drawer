@@ -11,13 +11,18 @@ namespace UML_Diagram_drawer.Forms
     {
         public Form(FormType type, bool createFields, bool createMethods, string titleText) : base(type, createFields, createMethods, titleText) { }
 
+        public Form(AbstractForm form):base(form)
+        {
+
+        }
+
         public override bool Equals(object obj)
         {
             bool result = false;
             if (obj is Form)
             {
                 Form form = (Form)obj;
-                if (Type == form.Type && Location == form.Location && _modules == form._modules)
+                if (Type == form.Type && Location == form.Location && Modules == form.Modules)
                 {
                     result = true;
                 }
@@ -25,5 +30,6 @@ namespace UML_Diagram_drawer.Forms
 
             return result;
         }
+
     }
 }

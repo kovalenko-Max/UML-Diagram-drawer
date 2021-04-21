@@ -16,7 +16,7 @@ namespace UML_Diagram_drawer.Arrows
         public Pen Pen { get; set; }
         public ContactPoint StartPoint { get; set; }
         public ContactPoint EndPoint { get; set; }
-        public bool IsSelected { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool IsSelected { get; set; }
         public bool IsMove { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Point StartMovePoint { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Rectangle[] Rectangles { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -244,7 +244,8 @@ namespace UML_Diagram_drawer.Arrows
 
         public bool Select(Point point)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return false;
         }
 
         public void RemoveSelect()
