@@ -7,19 +7,17 @@ namespace UML_Diagram_drawer.Arrows
     public abstract class AbstactArrow : ISelectable
     {
         const int indentFromBorder = 50;
-
         protected int _sizeArrowhead;
 
         public bool IsHorizontal { get; set; }
-
         public Graphics Graphics { get; set; }
         public Pen Pen { get; set; }
         public ContactPoint StartPoint { get; set; }
         public ContactPoint EndPoint { get; set; }
-        public bool IsSelected { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool IsMove { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Point StartMovePoint { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Rectangle[] Rectangles { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public bool IsSelected { get ; set ; }
+        public bool IsMove { get ; set; }
+        public Point StartMovePoint { get ; set ; }
+        public Rectangle[] Rectangles { get ; set ; }
         public Point[] Points { get; set; }
 
         public AbstactArrow(Pen pen, Graphics graphics, Point startPoint, Point endPoint)

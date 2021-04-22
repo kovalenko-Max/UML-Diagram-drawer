@@ -9,11 +9,32 @@ namespace UML_Diagram_drawer.Forms
 {
     public abstract class AbstactModule
     {
-        protected bool _isAddFirstText = true;
         protected Rectangle _rectangle;
-
+        protected Pen _pen;
         public string DefaultText { get; set; }
-        public Pen Pen { get; set; }
+        public float WidthLine
+        {
+            get
+            {
+                return _pen.Width;
+            }
+            set
+            {
+                _pen.Width = value;
+            }
+        }
+        public Color Color
+        {
+            get
+            {
+                return _pen.Color;
+            }
+            set
+            {
+                _pen.Color = value;
+            }
+        }
+        public Font Font { get; set; }
         public List<TextField> TextFields { get; set; }
         public StringFormat StringFormat { get; set; }
         public Size Size
@@ -22,7 +43,7 @@ namespace UML_Diagram_drawer.Forms
             {
                 return _rectangle.Size;
             }
-            private set
+            set
             {
                 _rectangle.Size = value;
             }
@@ -41,31 +62,39 @@ namespace UML_Diagram_drawer.Forms
 
         public AbstactModule()
         {
-            Pen = Default.Draw.Pen;
-            TextFields = new List<TextField>();
+            _pen = Default.Draw.Pen;
+            Font = Default.Text.Font;
             _rectangle = new Rectangle(Location, Default.Size.ModuleFormSize);
+            TextFields = new List<TextField>();
+        }
+
+        public AbstactModule(string defaultText,StringFormat stringFormat)
+        {
+            _pen = Default.Draw.Pen;
+            Font = Default.Text.Font;
+            DefaultText = defaultText;
+            _rectangle = new Rectangle(Location, Default.Size.ModuleFormSize);
+            StringFormat = stringFormat;
+            TextFields = new List<TextField>();
+            TextFields.Add(new TextField(DefaultText)
+            {
+                StringFormat = stringFormat,
+                Location = new Point(Location.X, Location.Y + GetDesiredSize().Height)
+            });
         }
 
         public virtual void Draw()
         {
-            MainGraphics.Graphics.DrawRectangle(Pen, GetRectangle());
-
-            if (_isAddFirstText)
-            {
-                AddTextField(DefaultText);
-                _isAddFirstText = false;
-            }
-
+            MainGraphics.Graphics.DrawRectangle(_pen, _rectangle);
             DrawTextField();
         }
 
         public void AddTextField()
         {
-            TextField tempTextField = new TextField()
+            TextField tempTextField = new TextField(DefaultText)
             {
-                Text = DefaultText,
-                Location = new Point(this.Location.X, this.Location.Y + GetNewLocationY())
-                
+                Location = new Point(Location.X, Location.Y + GetDesiredSize().Height),
+                Font = Font
             };
 
             TextFields.Add(tempTextField);
@@ -75,11 +104,10 @@ namespace UML_Diagram_drawer.Forms
         {
             if (text != null)
             {
-                TextField tempTextField = new TextField()
+                TextField tempTextField = new TextField(text)
                 {
-                    StringFormat = this.StringFormat,
-                    Text = text,
-                    Location = new Point(this.Location.X, this.Location.Y + GetNewLocationY())
+                    StringFormat = StringFormat,
+                    Location = new Point(Location.X, Location.Y + GetDesiredSize().Height)
                 };
 
                 TextFields.Add(tempTextField);
@@ -154,24 +182,41 @@ namespace UML_Diagram_drawer.Forms
             return result.ToString();
         }
 
-        protected int GetNewLocationY()
+        public int GetMaximumWidth()
         {
-            int currentLocationY = 0;
-            for (int i = 0; i < TextFields.Count; i++)
+            int max = 0;
+            foreach (TextField text in TextFields)
             {
-                currentLocationY += TextFields[i].Size.Height;
+                int value = text.GetDesiredSize().Width;
+                if (max < value)
+                {
+                    max = value;
+                }
             }
-
-            return currentLocationY;
+            return max;
         }
 
-        protected Rectangle GetRectangle()
+        public Size GetDesiredSize()
         {
-            int addHeight = GetNewLocationY() == 0 ? Default.Size.ModuleFormSize.Height : 0;
-            _rectangle.Size = new Size(_rectangle.Width, addHeight + GetNewLocationY());
-            _rectangle.Location = this.Location;
+            Size addedSize = Size.Empty;
+            for (int i = 0; i < TextFields.Count; i++)
+            {
+                if (addedSize.Width < TextFields[i].GetDesiredSize().Height)
+                {
+                    addedSize.Width = TextFields[i].GetDesiredSize().Width;
+                }
+                addedSize.Height += TextFields[i].GetDesiredSize().Height;
+            }
 
-            return _rectangle;
+            return addedSize;
+        }
+
+        public void SetWidth(int width)
+        {
+            foreach (TextField text in TextFields)
+            {
+                text.Size = new Size(width, text.Size.Height);
+            }
         }
 
         protected void DrawTextField()

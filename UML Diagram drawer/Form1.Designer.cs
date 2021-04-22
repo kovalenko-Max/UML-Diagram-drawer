@@ -64,8 +64,6 @@ namespace UML_Diagram_drawer
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.pictureBoxMain = new System.Windows.Forms.PictureBox();
-            this.button_AddForm = new System.Windows.Forms.Button();
-            this.button_AddArrow = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).BeginInit();
             this.SuspendLayout();
@@ -292,6 +290,7 @@ namespace UML_Diagram_drawer
             this.toolStripButton10.Size = new System.Drawing.Size(45, 44);
             this.toolStripButton10.Text = "Form3";
             this.toolStripButton10.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton10.Click += new System.EventHandler(this.toolStripButton10_Click);
             // 
             // toolStripButton11
             // 
@@ -301,6 +300,7 @@ namespace UML_Diagram_drawer
             this.toolStripButton11.Size = new System.Drawing.Size(45, 44);
             this.toolStripButton11.Text = "Form4";
             this.toolStripButton11.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton11.Click += new System.EventHandler(this.toolStripButton11_Click);
             // 
             // toolStripSeparator2
             // 
@@ -376,24 +376,6 @@ namespace UML_Diagram_drawer
             this.pictureBoxMain.TabStop = false;
             this.pictureBoxMain.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBoxMain_Paint);
             // 
-            // button_AddForm
-            // 
-            this.button_AddForm.Location = new System.Drawing.Point(0, 211);
-            this.button_AddForm.Name = "button_AddForm";
-            this.button_AddForm.Size = new System.Drawing.Size(75, 23);
-            this.button_AddForm.TabIndex = 1;
-            this.button_AddForm.Text = "Add Form";
-            this.button_AddForm.UseVisualStyleBackColor = true;
-            // 
-            // button_AddArrow
-            // 
-            this.button_AddArrow.Location = new System.Drawing.Point(0, 240);
-            this.button_AddArrow.Name = "button_AddArrow";
-            this.button_AddArrow.Size = new System.Drawing.Size(75, 23);
-            this.button_AddArrow.TabIndex = 2;
-            this.button_AddArrow.Text = "Add Arrow";
-            this.button_AddArrow.UseVisualStyleBackColor = true;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -401,8 +383,6 @@ namespace UML_Diagram_drawer
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1400, 673);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.button_AddArrow);
-            this.Controls.Add(this.button_AddForm);
             this.Controls.Add(this.pictureBoxMain);
             this.Name = "FormMain";
             this.Text = "Form1";
@@ -412,6 +392,7 @@ namespace UML_Diagram_drawer
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
@@ -446,8 +427,6 @@ namespace UML_Diagram_drawer
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton helpToolStripButton;
         private System.Windows.Forms.PictureBox pictureBoxMain;
-        private System.Windows.Forms.Button button_AddForm;
-        private System.Windows.Forms.Button button_AddArrow;
     }
 }
 

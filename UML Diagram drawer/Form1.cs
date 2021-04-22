@@ -27,9 +27,8 @@ namespace UML_Diagram_drawer
 
         public List<AbstactArrow> ArrowsList;
         public AbstactArrow CurrentArrow;
-
+        
         public Pen pen = new Pen(Brushes.Black, 3);
-
 
         public FormMain()
         {
@@ -43,6 +42,7 @@ namespace UML_Diagram_drawer
             _formFactory = Default.Factory.Form;
         }
 
+        #region Tool Strip
         private void toolStripButton12_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
@@ -58,7 +58,6 @@ namespace UML_Diagram_drawer
 
             toolStripButton12.BackColor = colorDialog1.Color;
         }
-
 
         private void toolStripButtonArrowSuccession_Click(object sender, EventArgs e)
         {
@@ -96,6 +95,7 @@ namespace UML_Diagram_drawer
             _arrow = CreateArrow();
             ArrowsList.Add(_arrow);
         }
+
         private void toolStripButtonCreateClassForm_Click(object sender, EventArgs e)
         {
             _formFactory = new ClassFormFactory();
@@ -103,10 +103,13 @@ namespace UML_Diagram_drawer
             FormsList.Add(_formUML);
             pictureBoxMain.MouseClick += MouseClick_DrawFormUML;
         }
+        #endregion
+
         private void MouseClick_DrawFormUML(object sender, MouseEventArgs e)
         {
             _formUML.Location = e.Location;
             pictureBoxMain.MouseClick -= MouseClick_DrawFormUML;
+            pictureBoxMain.MouseClick += MouseClick_SelectObject;
             pictureBoxMain.Invalidate();
         }
 
@@ -180,6 +183,33 @@ namespace UML_Diagram_drawer
             }
         }
 
+        private void MouseClick_SelectObject(object sender, MouseEventArgs e)
+        {
+            //foreach (AbstactArrow arrow in ArrowsList)
+            //{
+            //    if (arrow.Select(e.Location))
+            //    {
+            //        _arrow = arrow;
+            //        ArrowsList.Add(_arrow);
+            //        ArrowsList.Remove(_arrow);
+            //        return;
+            //    }
+            //}
+
+            foreach (AbstractForm form in FormsList)
+            {
+                if (form.Contains(e.Location))
+                {
+                    _formUML = form;
+                    _formUML.Select(e.Location);
+                    FormsList.Add(_formUML);
+                    FormsList.Remove(_formUML);
+                    return;
+                }
+            }
+            pictureBoxMain.Invalidate();
+        }
+
         private void PictureBoxMain_Paint(object sender, PaintEventArgs e)
         {
             MainGraphics.Graphics = e.Graphics;
@@ -198,6 +228,17 @@ namespace UML_Diagram_drawer
         private AbstactArrow CreateArrow()
         {
             return new ArrowSuccession(pen, MainGraphics.Graphics);
+        }
+
+        private void toolStripButton11_Click(object sender, EventArgs e)
+        {
+            FormEditor form = new FormEditor(_formUML);
+            form.Show();
+        }
+
+        private void toolStripButton10_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

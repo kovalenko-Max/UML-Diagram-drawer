@@ -13,6 +13,9 @@ namespace UML_Diagram_drawer.Forms.Modules
         {
             StringFormat = Default.Text.FieldStringFormat;
         }
+        public FieldModule(string defaultText, StringFormat stringFormat) : base(defaultText, stringFormat)
+        {
+        }
 
         public override bool Equals(object obj)
         {

@@ -40,19 +40,6 @@ namespace UML_Diagram_drawer
                     _titleStringFormat = value;
                 }
             }
-            public static StringFormat MethodStringFormat
-            {
-                get
-                {
-                    _methodStringFormat.Alignment = StringAlignment.Near;
-                    _methodStringFormat.LineAlignment = StringAlignment.Center;
-                    return _methodStringFormat;
-                }
-                set
-                {
-                    _methodStringFormat = value;
-                }
-            }
             public static StringFormat FieldStringFormat
             {
                 get
@@ -66,13 +53,26 @@ namespace UML_Diagram_drawer
                     _fieldStringFormat = value;
                 }
             }
+            public static StringFormat MethodStringFormat
+            {
+                get
+                {
+                    _methodStringFormat.Alignment = StringAlignment.Near;
+                    _methodStringFormat.LineAlignment = StringAlignment.Center;
+                    return _methodStringFormat;
+                }
+                set
+                {
+                    _methodStringFormat = value;
+                }
+            }
             public static SolidBrush Brush = new SolidBrush(Color.Black);
             public static Font Font = new Font("Arial", 14);
             public static string SomeText = "Some text";
             public static string TitleClassText = "Class Name";
             public static string TitleInterfaceText = "<interfase>\nInterfase name";
             public static string FieldText = " + field : type";
-            public static string MethodText = " + method()";
+            public static string MethodText = "1234567890123456789012345678901234567890";//\n1234567890\n1234567890\n1234567890\n234567890\n1234567890\n1234567890\n1234567890\n234567890\n1234567890\n1234567890\n1234567890";//" + method()";
         }
 
         public static class Size

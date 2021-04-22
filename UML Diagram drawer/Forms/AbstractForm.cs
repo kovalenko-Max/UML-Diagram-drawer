@@ -12,14 +12,35 @@ namespace UML_Diagram_drawer.Forms
     {
         protected List<AbstactModule> _modules;
         protected Rectangle _rectangle;
-
+        protected Pen _pen;
         public string TitleText { get; set; }
-        public ContactPoint[] ContactPoints { get; set; }
         public bool IsSelected { get; set; }
-        public Pen Pen { get; set; }
+        public float WidthLine
+        {
+            get
+            {
+                return _pen.Width;
+            }
+            set
+            {
+                _pen.Width = value;
+            }
+        }
+        public ContactPoint[] ContactPoints { get; set; }
+        public Color Color
+        {
+            get
+            {
+                return _pen.Color;
+            }
+            set
+            {
+                _pen.Color = value;
+            }
+        }
         public SolidBrush Brush { get; set; }
         public FormType Type { get; set; }
-        public Size SIze
+        public Size Size
         {
             get
             {
@@ -46,7 +67,7 @@ namespace UML_Diagram_drawer.Forms
         {
             Type = type;
             TitleText = titleText;
-            Pen = Default.Draw.Pen;
+            _pen = Default.Draw.Pen;
             Brush = Default.Draw.FillBrush;
             _modules = new List<AbstactModule>();
             _rectangle = new Rectangle(Location, Default.Size.FormSize);
@@ -71,11 +92,12 @@ namespace UML_Diagram_drawer.Forms
 
         public void Draw()
         {
-            MainGraphics.Graphics.FillRectangle(Brush, GetRectangle());
-            MainGraphics.Graphics.DrawRectangle(Pen, GetRectangle());
-
+            ResizeRectangle();
+            SetWidthToModule();
+            MainGraphics.Graphics.FillRectangle(Brush, _rectangle);
             DrawModules();
             SetContactPoint();
+            MainGraphics.Graphics.DrawRectangle(_pen, _rectangle);
         }
 
         public void Move(int deltaX, int deltaY)
@@ -88,11 +110,12 @@ namespace UML_Diagram_drawer.Forms
             if (!IsSelected)
             {
                 IsSelected = false;
-                Pen = Default.Draw.Pen;
+                _pen = Default.Draw.Pen;
 
-                foreach (var item in _modules)
+                foreach (AbstactModule module in _modules)
                 {
-                    item.Pen = Pen;
+                    module.Color = Color;
+                    module.WidthLine = WidthLine;
                 }
             }
         }
@@ -101,11 +124,12 @@ namespace UML_Diagram_drawer.Forms
         {
             if (!IsSelected && _rectangle.Contains(point))
             {
-                Pen = Default.Draw.PenSelect;
+                _pen = Default.Draw.PenSelect;
 
                 foreach (AbstactModule module in _modules)
                 {
-                    module.Pen = Pen;
+                    module.Color = Color;
+                    module.WidthLine = WidthLine;
                 }
 
                 IsSelected = true;
@@ -117,6 +141,14 @@ namespace UML_Diagram_drawer.Forms
         public bool Contains(Point point)
         {
             return _rectangle.Contains(point);
+        }
+
+        public void Resize(int value)
+        {
+            foreach (AbstactModule module in _modules)
+            {
+                module.Font = new Font(module.Font.FontFamily, value);
+            }
         }
 
         public void AddTextField(string text, Type type)
@@ -167,6 +199,24 @@ namespace UML_Diagram_drawer.Forms
             return result.ToString();
         }
 
+        public void SetWidthToModule()
+        {
+            int maxWidth = 0;
+            foreach (AbstactModule module in _modules)
+            {
+                int value = module.GetMaximumWidth();
+                if (maxWidth < value)
+                {
+                    maxWidth = value;
+                }
+            }
+
+            foreach (AbstactModule module in _modules)
+            {
+                module.SetWidth(maxWidth);
+            }
+        }
+
         protected TextField SelectTextField(Point point)
         {
             if (Contains(point))
@@ -188,16 +238,16 @@ namespace UML_Diagram_drawer.Forms
 
         protected void CreateModules(bool createFields = true, bool createMethods = true)
         {
-            _modules.Add(new TitleModule() { DefaultText = TitleText });
+            _modules.Add(new TitleModule(TitleText, Default.Text.TitleStringFormat));
 
             if (createFields)
             {
-                _modules.Add(new FieldModule() { DefaultText = Default.Text.FieldText });
+                _modules.Add(new FieldModule(Default.Text.FieldText,Default.Text.FieldStringFormat));
             }
 
             if (createMethods)
             {
-                _modules.Add(new MethodModule() { DefaultText = Default.Text.MethodText });
+                _modules.Add(new MethodModule(Default.Text.MethodText, Default.Text.MethodStringFormat));
             }
         }
 
@@ -207,23 +257,32 @@ namespace UML_Diagram_drawer.Forms
             foreach (AbstactModule module in _modules)
             {
                 module.Location = new Point(this.Location.X, this.Location.Y + currentLocationY);
+                module.Size = new Size(Size.Width, module.Size.Height);
                 currentLocationY += module.Size.Height;
                 module.Draw();
             }
         }
 
-        protected Rectangle GetRectangle()
+        protected Size GetDesiredSize()
         {
-            int currentSizeY = 0;
+            Size desiredSize = Size.Empty;
             for (int i = 0; i < _modules.Count; i++)
             {
-                currentSizeY += _modules[i].Size.Height;
+                if (desiredSize.Width < _modules[i].GetDesiredSize().Width)
+                {
+                    desiredSize.Width = _modules[i].GetDesiredSize().Width;
+                }
+                desiredSize.Height += _modules[i].GetDesiredSize().Height;
             }
 
-            int addedHeight = currentSizeY == 0 ? Default.Size.ModuleFormSize.Height * 3 : 0;
-            _rectangle.Size = new Size(_rectangle.Size.Width, addedHeight + currentSizeY);
+            return desiredSize;
+        }
 
-            return _rectangle;
+        protected void ResizeRectangle()
+        {
+            int addedWidth = GetDesiredSize().Width == 0 ? Default.Size.ModuleFormSize.Width : 0;
+            int addedHeight = GetDesiredSize().Height == 0 ? Default.Size.ModuleFormSize.Height * _modules.Count : 0;
+            Size = new Size(addedWidth + GetDesiredSize().Width, addedHeight + GetDesiredSize().Height);
         }
 
         protected void SetContactPoint()

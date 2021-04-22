@@ -10,7 +10,6 @@ namespace UML_Diagram_drawer.Forms
     public class TextField
     {
         private Rectangle _rectangle;
-        public Pen Pen { get; set; }
         public Font Font { get; set; }
         public StringFormat StringFormat { get; set; }
         public SolidBrush Brush { get; set; }
@@ -40,7 +39,6 @@ namespace UML_Diagram_drawer.Forms
 
         public TextField()
         {
-            Pen = Default.Draw.Pen;
             Font = Default.Text.Font;
             Brush = Default.Text.Brush;
             Text = Default.Text.SomeText;
@@ -49,31 +47,21 @@ namespace UML_Diagram_drawer.Forms
 
         public TextField(string text)
         {
-            Pen = Default.Draw.Pen;
             Font = Default.Text.Font;
             Brush = Default.Text.Brush;
             Text = text;
             _rectangle = new Rectangle(Location, Default.Size.TextFieldSize);
         }
 
-        public TextField(string text, Pen pen, Font font, SolidBrush brush,StringFormat stringFormat)
-        {
-            Pen = pen;
-            Font = font;
-            Brush = brush;
-            Text = text;
-            StringFormat = stringFormat;
-            _rectangle = new Rectangle(Location, Default.Size.TextFieldSize);
-        }
-
         public void Draw()
         {
-            MainGraphics.Graphics.DrawString(Text, Font, Brush, (RectangleF)_rectangle,StringFormat);
+           // _rectangle.Size = new Size(_rectangle.Width, GetDesiredSize().Height);
+            MainGraphics.Graphics.DrawString(Text, Font, Brush, (RectangleF)_rectangle, StringFormat);
         }
 
         public bool Contains(Point point)
         {
-            return _rectangle.Contains(point);   
+            return _rectangle.Contains(point);
         }
 
         public override bool Equals(object obj)
@@ -97,6 +85,27 @@ namespace UML_Diagram_drawer.Forms
             result.Append(" " + Location);
 
             return result.ToString();
+        }
+
+        public Size GetDesiredSize()
+        {
+            SizeF newSize = MainGraphics.Graphics.MeasureString(Text, Font);
+            Size result = Default.Size.TextFieldSize;
+            if (newSize.ToSize().Width > Default.Size.TextFieldSize.Width
+                && newSize.ToSize().Height > Default.Size.TextFieldSize.Height)
+            {
+                result = newSize.ToSize();
+            }
+            else if (newSize.ToSize().Width > Default.Size.TextFieldSize.Width)
+            {
+                result.Width= newSize.ToSize().Width+10;
+            }
+            else if (newSize.ToSize().Height > Default.Size.TextFieldSize.Height)
+            {
+                result.Height = newSize.ToSize().Height;
+            }
+
+            return result;
         }
     }
 }
