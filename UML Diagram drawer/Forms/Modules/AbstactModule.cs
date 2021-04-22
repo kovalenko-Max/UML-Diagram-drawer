@@ -13,7 +13,7 @@ namespace UML_Diagram_drawer.Forms
         protected Rectangle _rectangle;
 
         public string DefaultText { get; set; }
-        public Pen Pen { get; set; }
+        protected Pen Pen { get; set; }
         public List<TextField> TextFields { get; set; }
         public StringFormat StringFormat { get; set; }
         public Size Size

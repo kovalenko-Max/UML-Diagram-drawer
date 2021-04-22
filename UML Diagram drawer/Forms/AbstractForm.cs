@@ -10,13 +10,13 @@ namespace UML_Diagram_drawer.Forms
 {
     public abstract class AbstractForm : ISelectable
     {
-        protected List<AbstactModule> _modules;
+        public List<AbstactModule> _modules;
         protected Rectangle _rectangle;
 
         public string TitleText { get; set; }
         public ContactPoint[] ContactPoints { get; set; }
         public bool IsSelected { get; set; }
-        public Pen Pen { get; set; }
+        protected Pen Pen { get; set; }
         public SolidBrush Brush { get; set; }
         public FormType Type { get; set; }
         public Size SIze
@@ -42,6 +42,10 @@ namespace UML_Diagram_drawer.Forms
             }
         }
 
+        public AbstractForm()
+        {
+
+        }
         public AbstractForm(FormType type, bool createFields, bool createMethods, string titleText)
         {
             Type = type;
@@ -92,7 +96,7 @@ namespace UML_Diagram_drawer.Forms
 
                 foreach (var item in _modules)
                 {
-                    item.Pen = Pen;
+                    //item.Pen = Pen;
                 }
             }
         }
@@ -105,7 +109,7 @@ namespace UML_Diagram_drawer.Forms
 
                 foreach (AbstactModule module in _modules)
                 {
-                    module.Pen = Pen;
+                    //module.Pen = Pen;
                 }
 
                 IsSelected = true;

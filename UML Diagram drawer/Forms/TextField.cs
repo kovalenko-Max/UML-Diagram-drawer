@@ -10,7 +10,6 @@ namespace UML_Diagram_drawer.Forms
     public class TextField
     {
         private Rectangle _rectangle;
-        public Pen Pen { get; set; }
         public Font Font { get; set; }
         public StringFormat StringFormat { get; set; }
         public SolidBrush Brush { get; set; }
@@ -40,7 +39,6 @@ namespace UML_Diagram_drawer.Forms
 
         public TextField()
         {
-            Pen = Default.Draw.Pen;
             Font = Default.Text.Font;
             Brush = Default.Text.Brush;
             Text = Default.Text.SomeText;
@@ -49,7 +47,6 @@ namespace UML_Diagram_drawer.Forms
 
         public TextField(string text)
         {
-            Pen = Default.Draw.Pen;
             Font = Default.Text.Font;
             Brush = Default.Text.Brush;
             Text = text;
@@ -58,7 +55,6 @@ namespace UML_Diagram_drawer.Forms
 
         public TextField(string text, Pen pen, Font font, SolidBrush brush,StringFormat stringFormat)
         {
-            Pen = pen;
             Font = font;
             Brush = brush;
             Text = text;

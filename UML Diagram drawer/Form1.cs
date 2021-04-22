@@ -6,7 +6,8 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
+//using System.Text.Json;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UML_Diagram_drawer.Forms;
@@ -125,7 +126,7 @@ namespace UML_Diagram_drawer
                 }
             }
 
-            if(!(_currntCountactPoint is null))
+            if (!(_currntCountactPoint is null))
             {
                 _arrow.StartPoint = _currntCountactPoint;
                 _currntCountactPoint = null;
@@ -140,7 +141,7 @@ namespace UML_Diagram_drawer
             if (!(_arrow is null))
             {
                 _arrow.EndPoint.Location = e.Location;
-                
+
             }
             pictureBoxMain.Invalidate();
         }
@@ -164,7 +165,7 @@ namespace UML_Diagram_drawer
                 {
                     _arrow.EndPoint = _currntCountactPoint;
                     _currntCountactPoint = null;
-                    
+
                     pictureBoxMain.MouseDown -= MouseDown_DrawArrow;
                     pictureBoxMain.MouseMove -= MouseMove_DrawArrow;
                     pictureBoxMain.MouseUp -= MouseUp_DrawArrow;
@@ -198,31 +199,26 @@ namespace UML_Diagram_drawer
 
         private AbstactArrow CreateArrow()
         {
-            return new ArrowSuccession(pen, MainGraphics.Graphics);
+            return new ArrowSuccession(pen);
         }
 
         private void toolStripButtonSaveFile_Click(object sender, EventArgs e)
         {
-            saveFileDialog1.ShowDialog();
-            string pathSaveFile = saveFileDialog1.FileName;
-            if (pathSaveFile != String.Empty)
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 string fileDataForms = JsonSerialize(TypeOfData.Forms);
-                SaveAndLoad.SaveFile(pathSaveFile, fileDataForms);
                 string fileDataArrows = JsonSerialize(TypeOfData.Arrows);
-                SaveAndLoad.SaveFile(pathSaveFile, fileDataArrows);
+                SaveAndLoad.SaveFile(saveFileDialog1.FileName, fileDataForms, fileDataArrows);
             }
         }
 
         private void toolStripButtonOpenFile_Click(object sender, EventArgs e)
         {
-            openFileDialog1.ShowDialog();
-            string pathOpenFile = openFileDialog1.FileName;
-            if (pathOpenFile != String.Empty)
+            MessageBox.Show("Переустановить виндовс?", "Во халепа", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                string fileDataForms = SaveAndLoad.OpenFile(pathOpenFile, TypeOfData.Forms);
-                string fileDataArrows = SaveAndLoad.OpenFile(pathOpenFile, TypeOfData.Arrows);
-                JsonDeserialize(fileDataForms, fileDataArrows);
+                string[] fileData = SaveAndLoad.OpenFile(openFileDialog1.FileName, TypeOfData.Forms);
+                JsonDeserialize(fileData);
             }
         }
 
@@ -230,31 +226,48 @@ namespace UML_Diagram_drawer
         {
             if (type == TypeOfData.Forms)
             {
-                string fileDataForms = JsonSerializer.Serialize<List<AbstractForm>>(FormsList);
+                string fileDataForms = JsonConvert.SerializeObject(FormsList, Formatting.Indented,
+                    new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All
+                    });
                 return fileDataForms;
             }
             else if (type == TypeOfData.Arrows)
             {
-                string fileDataArrows = JsonSerializer.Serialize<List<AbstactArrow>>(ArrowsList);
+                string fileDataArrows = JsonConvert.SerializeObject(ArrowsList, Formatting.Indented,
+                    new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All
+                    });
                 return fileDataArrows;
             }
             throw new Exception();
         }
 
-        public void JsonDeserialize(string fileDataForms, string fileDataArrows)
+        public void JsonDeserialize(string[] fileData)
         {
-            if (fileDataForms != String.Empty)
+            if (fileData[0] != String.Empty)
             {
-                FormsList = JsonSerializer.Deserialize<List<AbstractForm>>(fileDataForms);
+                FormsList = JsonConvert.DeserializeObject<List<AbstractForm>>(fileData[0],
+                    new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All
+                    });
             }
             else
             {
                 FormsList = new List<AbstractForm>();
             }
 
-            if (fileDataArrows != null)
+            if (fileData[1] != null)
             {
-                ArrowsList = JsonSerializer.Deserialize<List<AbstactArrow>>(fileDataArrows);
+
+                ArrowsList = JsonConvert.DeserializeObject<List<AbstactArrow>>(fileData[1],
+                    new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All
+                    });
             }
             else
             {

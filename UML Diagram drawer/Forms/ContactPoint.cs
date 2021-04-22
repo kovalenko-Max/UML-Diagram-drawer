@@ -15,6 +15,10 @@ namespace UML_Diagram_drawer.Forms
 
         public static ContactPoint Empty = new ContactPoint(Point.Empty);
 
+        public ContactPoint()
+        {
+
+        }
         public ContactPoint(Point location)
         {
             Location = location;

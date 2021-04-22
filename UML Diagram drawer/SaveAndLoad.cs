@@ -14,36 +14,23 @@ namespace UML_Diagram_drawer
 {
     public static class SaveAndLoad
     {
-        public static void SaveFile(string path, string fileData)
-        {
-            StreamWriter saveSW = new StreamWriter(path, false);
-
-            using (saveSW)
+        private static string _splitter = "123ImSplitter!PleaseDontTouchMe!321";
+        public static void SaveFile(string path, string fileDataFroms, string fileDataArrows)
+        {            
+            using (StreamWriter saveSW = new StreamWriter(path, false))
             {
-                saveSW.WriteLine();
+                saveSW.WriteLine($"{fileDataFroms}{Environment.NewLine}{_splitter}{Environment.NewLine}{fileDataArrows}");
             }
         }
 
-        public static string OpenFile(string path, TypeOfData type)
+        public static string[] OpenFile(string path, TypeOfData type)
         {
-            StreamReader openSR = new StreamReader(path);
-            string fileDataForms = String.Empty;
-            string fileDataArrows = String.Empty;
-
-            using (openSR)
+            string[] fileData = new string[] { String.Empty };
+            using (StreamReader openSR = new StreamReader(path))
             {                
-                fileDataForms = openSR.ReadLine();
-                fileDataArrows = openSR.ReadLine();
+                fileData = openSR.ReadToEnd().Split(new[] { _splitter }, StringSplitOptions.None);
             }
-            if(type == TypeOfData.Forms)
-            {
-                return fileDataForms;
-            }
-            else if(type == TypeOfData.Arrows)
-            {
-                return fileDataArrows;
-            }
-            throw new Exception();
+            return fileData;
         }
     }
 }
