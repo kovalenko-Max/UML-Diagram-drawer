@@ -13,7 +13,7 @@ namespace UML_Diagram_drawer.Forms.Modules
         {
             StringFormat = Default.Text.FieldStringFormat;
         }
-        public FieldModule(string defaultText, StringFormat stringFormat) : base(defaultText, stringFormat)
+        public FieldModule(ModuleType type,string defaultText, StringFormat stringFormat) : base(type,defaultText, stringFormat)
         {
         }
 

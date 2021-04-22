@@ -14,7 +14,7 @@ namespace UML_Diagram_drawer.Forms.Modules
             StringFormat = Default.Text.MethodStringFormat;
         }
 
-        public MethodModule(string defaultText, StringFormat stringFormat) : base(defaultText, stringFormat)
+        public MethodModule(ModuleType type, string defaultText, StringFormat stringFormat) : base(type, defaultText, stringFormat)
         {
         }
 

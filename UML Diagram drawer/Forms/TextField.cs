@@ -55,7 +55,7 @@ namespace UML_Diagram_drawer.Forms
 
         public void Draw()
         {
-           // _rectangle.Size = new Size(_rectangle.Width, GetDesiredSize().Height);
+            _rectangle.Size = new Size(_rectangle.Width, GetDesiredSize().Height);
             MainGraphics.Graphics.DrawString(Text, Font, Brush, (RectangleF)_rectangle, StringFormat);
         }
 
@@ -94,7 +94,7 @@ namespace UML_Diagram_drawer.Forms
             if (newSize.ToSize().Width > Default.Size.TextFieldSize.Width
                 && newSize.ToSize().Height > Default.Size.TextFieldSize.Height)
             {
-                result = newSize.ToSize();
+                result = new Size(newSize.ToSize().Width + 10, newSize.ToSize().Height + 10);
             }
             else if (newSize.ToSize().Width > Default.Size.TextFieldSize.Width)
             {
@@ -102,7 +102,7 @@ namespace UML_Diagram_drawer.Forms
             }
             else if (newSize.ToSize().Height > Default.Size.TextFieldSize.Height)
             {
-                result.Height = newSize.ToSize().Height;
+                result.Height = newSize.ToSize().Height+40;
             }
 
             return result;

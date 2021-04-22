@@ -14,18 +14,23 @@ namespace UML_Diagram_drawer
     public partial class FormEditor : System.Windows.Forms.Form
     {
         private AbstractForm _form;
+        PictureBox pictureBox;
+
         private int x = (Default.Size.FormSize.Width * 100) / 30;
         private int y = (Default.Size.FormSize.Height * 100) / 30;
+
         public FormEditor()
         {
             InitializeComponent();
         }
 
-        public FormEditor(AbstractForm form)
+        public FormEditor(AbstractForm form, PictureBox pb)
         {
             _form = form;
+            pictureBox = pb;
             InitializeComponent();
         }
+
         private void FormEditor_Load(object sender, EventArgs e)
         {
             trackBarLineThickness.Value = (int)_form.WidthLine;
@@ -45,10 +50,27 @@ namespace UML_Diagram_drawer
 
         private void trackBarSizeForm_Scroll(object sender, EventArgs e)
         {
-            //int x1 = (x * trackBarSizeForm.Value) / 100;
-            //int y1 = (y * trackBarSizeForm.Value) / 100;
-            //_form.SIze = new Size(x1,y1);
             _form.Resize(trackBarSizeForm.Value);
+            pictureBox.Invalidate();
+        }
+
+        private void buttonSelectFont_Click(object sender, EventArgs e)
+        {
+            fontDialog1.ShowDialog();
+            _form.SetFont(fontDialog1.Font);
+            pictureBox.Invalidate();
+        }
+
+        private void buttonAddField_Click(object sender, EventArgs e)
+        {
+            _form.AddTextField(Forms.Modules.ModuleType.Field);
+            pictureBox.Invalidate();
+        }
+
+        private void buttonAddMethod_Click(object sender, EventArgs e)
+        {
+            _form.AddTextField(Forms.Modules.ModuleType.Method);
+            pictureBox.Invalidate();
         }
     }
 }

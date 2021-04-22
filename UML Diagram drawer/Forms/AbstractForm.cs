@@ -97,7 +97,6 @@ namespace UML_Diagram_drawer.Forms
             MainGraphics.Graphics.FillRectangle(Brush, _rectangle);
             DrawModules();
             SetContactPoint();
-            MainGraphics.Graphics.DrawRectangle(_pen, _rectangle);
         }
 
         public void Move(int deltaX, int deltaY)
@@ -147,17 +146,24 @@ namespace UML_Diagram_drawer.Forms
         {
             foreach (AbstactModule module in _modules)
             {
-                module.Font = new Font(module.Font.FontFamily, value);
+                module.Resize(value);
             }
         }
 
-        public void AddTextField(string text, Type type)
+        public void SetFont(Font font)
+        {
+            foreach (AbstactModule module in _modules)
+            {
+                module.SetFont(font);
+            }
+        }
+        public void AddTextField(string text, ModuleType type)
         {
             if (text != null)
             {
                 foreach (AbstactModule module in _modules)
                 {
-                    if (module.GetType() == type)
+                    if (module.Type == type)
                     {
                         module.AddTextField(text);
                     }
@@ -168,7 +174,16 @@ namespace UML_Diagram_drawer.Forms
                 throw new ArgumentException("Text is null");
             }
         }
-
+        public void AddTextField(ModuleType type)
+        {
+            foreach (AbstactModule module in _modules)
+            {
+                if (module.Type == type)
+                {
+                    module.AddTextField();
+                }
+            }
+        }
         public void ChangeTextField(Point point, string text)
         {
             if (text != null)
@@ -199,7 +214,7 @@ namespace UML_Diagram_drawer.Forms
             return result.ToString();
         }
 
-        public void SetWidthToModule()
+        private void SetWidthToModule()
         {
             int maxWidth = 0;
             foreach (AbstactModule module in _modules)
@@ -238,16 +253,16 @@ namespace UML_Diagram_drawer.Forms
 
         protected void CreateModules(bool createFields = true, bool createMethods = true)
         {
-            _modules.Add(new TitleModule(TitleText, Default.Text.TitleStringFormat));
+            _modules.Add(new TitleModule(ModuleType.Title, TitleText, Default.Text.TitleStringFormat));
 
             if (createFields)
             {
-                _modules.Add(new FieldModule(Default.Text.FieldText,Default.Text.FieldStringFormat));
+                _modules.Add(new FieldModule(ModuleType.Field, Default.Text.FieldText, Default.Text.FieldStringFormat));
             }
 
             if (createMethods)
             {
-                _modules.Add(new MethodModule(Default.Text.MethodText, Default.Text.MethodStringFormat));
+                _modules.Add(new MethodModule(ModuleType.Method, Default.Text.MethodText, Default.Text.MethodStringFormat));
             }
         }
 
@@ -257,7 +272,7 @@ namespace UML_Diagram_drawer.Forms
             foreach (AbstactModule module in _modules)
             {
                 module.Location = new Point(this.Location.X, this.Location.Y + currentLocationY);
-                module.Size = new Size(Size.Width, module.Size.Height);
+                module.Size = new Size(Size.Width, module.GetDesiredSize().Height);
                 currentLocationY += module.Size.Height;
                 module.Draw();
             }

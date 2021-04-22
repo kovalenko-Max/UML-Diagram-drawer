@@ -13,7 +13,7 @@ namespace UML_Diagram_drawer.Forms.Modules
         {
             StringFormat = Default.Text.TitleStringFormat;
         }
-        public TitleModule(string defaultText, StringFormat stringFormat) : base(defaultText, stringFormat)
+        public TitleModule(ModuleType type, string defaultText, StringFormat stringFormat) : base(type, defaultText, stringFormat)
         {
         }
 

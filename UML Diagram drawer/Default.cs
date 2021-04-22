@@ -72,7 +72,7 @@ namespace UML_Diagram_drawer
             public static string TitleClassText = "Class Name";
             public static string TitleInterfaceText = "<interfase>\nInterfase name";
             public static string FieldText = " + field : type";
-            public static string MethodText = "1234567890123456789012345678901234567890";//\n1234567890\n1234567890\n1234567890\n234567890\n1234567890\n1234567890\n1234567890\n234567890\n1234567890\n1234567890\n1234567890";//" + method()";
+            public static string MethodText = " + method()";
         }
 
         public static class Size

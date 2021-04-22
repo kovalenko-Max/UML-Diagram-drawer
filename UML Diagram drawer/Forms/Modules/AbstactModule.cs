@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UML_Diagram_drawer.Forms.Modules;
 
 namespace UML_Diagram_drawer.Forms
 {
@@ -11,6 +12,7 @@ namespace UML_Diagram_drawer.Forms
     {
         protected Rectangle _rectangle;
         protected Pen _pen;
+        public ModuleType Type { get; set; }
         public string DefaultText { get; set; }
         public float WidthLine
         {
@@ -68,8 +70,9 @@ namespace UML_Diagram_drawer.Forms
             TextFields = new List<TextField>();
         }
 
-        public AbstactModule(string defaultText,StringFormat stringFormat)
+        public AbstactModule(ModuleType type, string defaultText, StringFormat stringFormat)
         {
+            Type = type;
             _pen = Default.Draw.Pen;
             Font = Default.Text.Font;
             DefaultText = defaultText;
@@ -85,15 +88,21 @@ namespace UML_Diagram_drawer.Forms
 
         public virtual void Draw()
         {
+            _rectangle.Height = GetDesiredSize().Height;
             MainGraphics.Graphics.DrawRectangle(_pen, _rectangle);
             DrawTextField();
         }
 
         public void AddTextField()
         {
+            int addedY = 0;
+            foreach (TextField text in TextFields)
+            {
+                addedY += text.Size.Height;
+            }
             TextField tempTextField = new TextField(DefaultText)
             {
-                Location = new Point(Location.X, Location.Y + GetDesiredSize().Height),
+                Location = new Point(Location.X, Location.Y + addedY),
                 Font = Font
             };
 
@@ -104,10 +113,16 @@ namespace UML_Diagram_drawer.Forms
         {
             if (text != null)
             {
+                int addedY = 0;
+                foreach (TextField textField in TextFields)
+                {
+                    addedY += textField.Size.Height;
+                }
+
                 TextField tempTextField = new TextField(text)
                 {
                     StringFormat = StringFormat,
-                    Location = new Point(Location.X, Location.Y + GetDesiredSize().Height)
+                    Location = new Point(Location.X, Location.Y + addedY)
                 };
 
                 TextFields.Add(tempTextField);
@@ -152,6 +167,21 @@ namespace UML_Diagram_drawer.Forms
             return _rectangle.Contains(point);
         }
 
+        public void SetFont(Font font)
+        {
+            foreach (TextField text in TextFields)
+            {
+                text.Font = font;
+            }
+        }
+
+        public void Resize(int value)
+        {
+            foreach (var item in TextFields)
+            {
+                item.Font = new Font(item.Font.FontFamily, value);
+            }
+        }
         public TextField SelectTextField(Point point)
         {
             if (Contains(point))

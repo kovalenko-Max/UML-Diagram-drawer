@@ -232,7 +232,7 @@ namespace UML_Diagram_drawer
 
         private void toolStripButton11_Click(object sender, EventArgs e)
         {
-            FormEditor form = new FormEditor(_formUML);
+            FormEditor form = new FormEditor(_formUML,pictureBoxMain);
             form.Show();
         }
 

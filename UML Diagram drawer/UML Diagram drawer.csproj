@@ -101,6 +101,7 @@
     <Compile Include="Forms\Modules\AbstactModule.cs" />
     <Compile Include="Forms\Modules\FieldModule.cs" />
     <Compile Include="Forms\Modules\MethodModule.cs" />
+    <Compile Include="Forms\Modules\ModuleType.cs" />
     <Compile Include="Forms\Modules\TitleModule.cs" />
     <Compile Include="Forms\TextField.cs" />
     <Compile Include="MainGraphics.cs" />

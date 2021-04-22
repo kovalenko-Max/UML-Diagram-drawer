@@ -104,6 +104,7 @@ namespace UML_Diagram_drawer
             this.buttonSelectFont.TabIndex = 4;
             this.buttonSelectFont.Text = "Font";
             this.buttonSelectFont.UseVisualStyleBackColor = true;
+            this.buttonSelectFont.Click += new System.EventHandler(this.buttonSelectFont_Click);
             // 
             // buttonAddMethod
             // 
@@ -114,6 +115,7 @@ namespace UML_Diagram_drawer
             this.buttonAddMethod.TabIndex = 1;
             this.buttonAddMethod.Text = "Add Method";
             this.buttonAddMethod.UseVisualStyleBackColor = true;
+            this.buttonAddMethod.Click += new System.EventHandler(this.buttonAddMethod_Click);
             // 
             // buttonAddField
             // 
@@ -124,6 +126,7 @@ namespace UML_Diagram_drawer
             this.buttonAddField.TabIndex = 0;
             this.buttonAddField.Text = "Add Field";
             this.buttonAddField.UseVisualStyleBackColor = true;
+            this.buttonAddField.Click += new System.EventHandler(this.buttonAddField_Click);
             // 
             // buttonLineThickness
             // 
