@@ -10,7 +10,7 @@ namespace UML_Diagram_drawer.Forms
 {
     public abstract class AbstractForm : ISelectable
     {
-        protected List<AbstactModule> _modules;
+        public List<AbstactModule> _modules;
         protected Rectangle _rectangle;
         protected Pen _pen;
         public string TitleText { get; set; }
@@ -63,6 +63,10 @@ namespace UML_Diagram_drawer.Forms
             }
         }
 
+        public AbstractForm()
+        {
+
+        }
         public AbstractForm(FormType type, bool createFields, bool createMethods, string titleText)
         {
             Type = type;

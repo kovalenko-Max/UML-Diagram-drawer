@@ -10,29 +10,31 @@ namespace UML_Diagram_drawer.Arrows
         protected int _sizeArrowhead;
 
         public bool IsHorizontal { get; set; }
-        public Graphics Graphics { get; set; }
-        public Pen Pen { get; set; }
+
+        protected Pen Pen { get; set; }
         public ContactPoint StartPoint { get; set; }
         public ContactPoint EndPoint { get; set; }
-        public bool IsSelected { get ; set ; }
-        public bool IsMove { get ; set; }
-        public Point StartMovePoint { get ; set ; }
-        public Rectangle[] Rectangles { get ; set ; }
+        public bool IsSelected { get; set; }
+        public bool IsMove { get; set; }
+        public Point StartMovePoint { get; set; }
+        public Rectangle[] Rectangles { get; set; }
         public Point[] Points { get; set; }
 
-        public AbstactArrow(Pen pen, Graphics graphics, Point startPoint, Point endPoint)
+        public AbstactArrow()
+        {
+
+        }
+        public AbstactArrow(Pen pen, Point startPoint, Point endPoint)
         {
             Pen = pen;
             _sizeArrowhead = (int)Pen.Width * 3;
-            Graphics = graphics;
 
             StartPoint = new ContactPoint(startPoint);
             EndPoint = new ContactPoint(endPoint);
         }
-        public AbstactArrow(Pen pen, Graphics graphics)
+        public AbstactArrow(Pen pen)
         {
             Pen = pen;
-            Graphics = graphics;
             _sizeArrowhead = (int)Pen.Width * 3;
 
             StartPoint = new ContactPoint(Point.Empty);

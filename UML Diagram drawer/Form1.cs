@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
+//using System.Text.Json;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UML_Diagram_drawer.Forms;
@@ -127,7 +129,7 @@ namespace UML_Diagram_drawer
                 }
             }
 
-            if(!(_currntCountactPoint is null))
+            if (!(_currntCountactPoint is null))
             {
                 _arrow.StartPoint = _currntCountactPoint;
                 _currntCountactPoint = null;
@@ -142,7 +144,7 @@ namespace UML_Diagram_drawer
             if (!(_arrow is null))
             {
                 _arrow.EndPoint.Location = e.Location;
-                
+
             }
             pictureBoxMain.Invalidate();
         }
@@ -166,7 +168,7 @@ namespace UML_Diagram_drawer
                 {
                     _arrow.EndPoint = _currntCountactPoint;
                     _currntCountactPoint = null;
-                    
+
                     pictureBoxMain.MouseDown -= MouseDown_DrawArrow;
                     pictureBoxMain.MouseMove -= MouseMove_DrawArrow;
                     pictureBoxMain.MouseUp -= MouseUp_DrawArrow;
@@ -227,7 +229,80 @@ namespace UML_Diagram_drawer
 
         private AbstactArrow CreateArrow()
         {
-            return new ArrowSuccession(pen, MainGraphics.Graphics);
+            return new ArrowSuccession(pen);
+        }
+
+        private void toolStripButtonSaveFile_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string fileDataForms = JsonSerialize(TypeOfData.Forms);
+                string fileDataArrows = JsonSerialize(TypeOfData.Arrows);
+                SaveAndLoad.SaveFile(saveFileDialog1.FileName, fileDataForms, fileDataArrows);
+            }
+        }
+
+        private void toolStripButtonOpenFile_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Переустановить виндовс?", "Во халепа", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string[] fileData = SaveAndLoad.OpenFile(openFileDialog1.FileName, TypeOfData.Forms);
+                JsonDeserialize(fileData);
+            }
+        }
+
+        public string JsonSerialize(TypeOfData type)
+        {
+            if (type == TypeOfData.Forms)
+            {
+                string fileDataForms = JsonConvert.SerializeObject(FormsList, Formatting.Indented,
+                    new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All
+                    });
+                return fileDataForms;
+            }
+            else if (type == TypeOfData.Arrows)
+            {
+                string fileDataArrows = JsonConvert.SerializeObject(ArrowsList, Formatting.Indented,
+                    new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All
+                    });
+                return fileDataArrows;
+            }
+            throw new Exception();
+        }
+
+        public void JsonDeserialize(string[] fileData)
+        {
+            if (fileData[0] != String.Empty)
+            {
+                FormsList = JsonConvert.DeserializeObject<List<AbstractForm>>(fileData[0],
+                    new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All
+                    });
+            }
+            else
+            {
+                FormsList = new List<AbstractForm>();
+            }
+
+            if (fileData[1] != null)
+            {
+
+                ArrowsList = JsonConvert.DeserializeObject<List<AbstactArrow>>(fileData[1],
+                    new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All
+                    });
+            }
+            else
+            {
+                ArrowsList = new List<AbstactArrow>();
+            }
         }
 
         private void toolStripButton11_Click(object sender, EventArgs e)

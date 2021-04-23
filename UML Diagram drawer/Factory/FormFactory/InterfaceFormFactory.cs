@@ -9,7 +9,7 @@ namespace UML_Diagram_drawer.Factory
 {
     public class InterfaceFormFactory : IFormsFactory
     {
-        public AbstractForm GetForm()
+        public Form GetForm()
         {
             return new Form(FormType.Interfase, createFields: true, createMethods: true, Default.Text.TitleInterfaceText);
         }

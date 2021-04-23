@@ -35,8 +35,8 @@ namespace UML_Diagram_drawer
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonOpenFile = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonSaveFile = new System.Windows.Forms.ToolStripButton();
             this.printToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.cutToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -64,6 +64,10 @@ namespace UML_Diagram_drawer
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.pictureBoxMain = new System.Windows.Forms.PictureBox();
+            this.button_AddForm = new System.Windows.Forms.Button();
+            this.button_AddArrow = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).BeginInit();
             this.SuspendLayout();
@@ -72,8 +76,8 @@ namespace UML_Diagram_drawer
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripButton,
-            this.openToolStripButton,
-            this.saveToolStripButton,
+            this.toolStripButtonOpenFile,
+            this.toolStripButtonSaveFile,
             this.printToolStripButton,
             this.toolStripSeparator,
             this.cutToolStripButton,
@@ -115,23 +119,25 @@ namespace UML_Diagram_drawer
             this.newToolStripButton.Size = new System.Drawing.Size(23, 44);
             this.newToolStripButton.Text = "&New";
             // 
-            // openToolStripButton
+            // toolStripButtonOpenFile
             // 
-            this.openToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.openToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripButton.Image")));
-            this.openToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.openToolStripButton.Name = "openToolStripButton";
-            this.openToolStripButton.Size = new System.Drawing.Size(23, 44);
-            this.openToolStripButton.Text = "&Open";
+            this.toolStripButtonOpenFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonOpenFile.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonOpenFile.Image")));
+            this.toolStripButtonOpenFile.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonOpenFile.Name = "toolStripButtonOpenFile";
+            this.toolStripButtonOpenFile.Size = new System.Drawing.Size(23, 44);
+            this.toolStripButtonOpenFile.Text = "&Open";
+            this.toolStripButtonOpenFile.Click += new System.EventHandler(this.toolStripButtonOpenFile_Click);
             // 
-            // saveToolStripButton
+            // toolStripButtonSaveFile
             // 
-            this.saveToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.saveToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripButton.Image")));
-            this.saveToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.saveToolStripButton.Name = "saveToolStripButton";
-            this.saveToolStripButton.Size = new System.Drawing.Size(23, 44);
-            this.saveToolStripButton.Text = "&Save";
+            this.toolStripButtonSaveFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSaveFile.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSaveFile.Image")));
+            this.toolStripButtonSaveFile.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSaveFile.Name = "toolStripButtonSaveFile";
+            this.toolStripButtonSaveFile.Size = new System.Drawing.Size(23, 44);
+            this.toolStripButtonSaveFile.Text = "&Save";
+            this.toolStripButtonSaveFile.Click += new System.EventHandler(this.toolStripButtonSaveFile_Click);
             // 
             // printToolStripButton
             // 
@@ -377,6 +383,32 @@ namespace UML_Diagram_drawer
             this.pictureBoxMain.TabStop = false;
             this.pictureBoxMain.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBoxMain_Paint);
             // 
+            // button_AddForm
+            // 
+            this.button_AddForm.Location = new System.Drawing.Point(0, 211);
+            this.button_AddForm.Name = "button_AddForm";
+            this.button_AddForm.Size = new System.Drawing.Size(75, 23);
+            this.button_AddForm.TabIndex = 1;
+            this.button_AddForm.Text = "Add Form";
+            this.button_AddForm.UseVisualStyleBackColor = true;
+            // 
+            // button_AddArrow
+            // 
+            this.button_AddArrow.Location = new System.Drawing.Point(0, 240);
+            this.button_AddArrow.Name = "button_AddArrow";
+            this.button_AddArrow.Size = new System.Drawing.Size(75, 23);
+            this.button_AddArrow.TabIndex = 2;
+            this.button_AddArrow.Text = "Add Arrow";
+            this.button_AddArrow.UseVisualStyleBackColor = true;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Filter = "UML diagrams|*.umld";
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.Filter = "UML diagrams|*.umld";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -386,7 +418,7 @@ namespace UML_Diagram_drawer
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.pictureBoxMain);
             this.Name = "FormMain";
-            this.Text = "Form1";
+            this.Text = "UML Diagram";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -417,8 +449,8 @@ namespace UML_Diagram_drawer
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton newToolStripButton;
-        private System.Windows.Forms.ToolStripButton openToolStripButton;
-        private System.Windows.Forms.ToolStripButton saveToolStripButton;
+        private System.Windows.Forms.ToolStripButton toolStripButtonOpenFile;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSaveFile;
         private System.Windows.Forms.ToolStripButton printToolStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
         private System.Windows.Forms.ToolStripButton cutToolStripButton;
@@ -428,6 +460,10 @@ namespace UML_Diagram_drawer
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton helpToolStripButton;
         private System.Windows.Forms.PictureBox pictureBoxMain;
+        private System.Windows.Forms.Button button_AddForm;
+        private System.Windows.Forms.Button button_AddArrow;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

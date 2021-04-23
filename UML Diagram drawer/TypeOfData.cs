@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UML_Diagram_drawer.Forms;
 
-namespace UML_Diagram_drawer.Factory
+namespace UML_Diagram_drawer
 {
-    public interface IFormsFactory
+    public enum TypeOfData
     {
-        Form GetForm();
+        Forms,
+        Arrows
     }
 }
