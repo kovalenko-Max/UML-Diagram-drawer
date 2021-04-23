@@ -8,9 +8,10 @@ using UML_Diagram_drawer.Forms;
 
 namespace UML_Diagram_drawer.MouseHandlers
 {
-    class SelectFormMouseHandler : IMouseHandler
+    public class SelectFormMouseHandler : IMouseHandler
     {
         private MainData _mainData = MainData.GetMainData();
+
         public void MouseClick(object sender, MouseEventArgs e)
         {
             foreach (AbstractForm form in _mainData.FormsList)

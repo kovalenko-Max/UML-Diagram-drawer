@@ -13,6 +13,7 @@ namespace UML_Diagram_drawer.MouseHandlers
     {
         private MainData _mainData = MainData.GetMainData();
         private Point previousLocation;
+
         public void MouseClick(object sender, MouseEventArgs e)
         {
         }

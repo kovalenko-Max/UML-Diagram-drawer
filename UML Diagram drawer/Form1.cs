@@ -107,7 +107,7 @@ namespace UML_Diagram_drawer
 
         private void toolStripButtonArrowAggregation_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void toolStripButtonArrowAggregationAndAssociation_Click(object sender, EventArgs e)
@@ -151,7 +151,7 @@ namespace UML_Diagram_drawer
             FormEditor form = new FormEditor(_mainData.CurrentFormUML, pictureBoxMain);
             form.Show();
         }
-        
+
         private void toolStripButtonSaveFile_Click(object sender, EventArgs e)
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
@@ -235,7 +235,6 @@ namespace UML_Diagram_drawer
             pictureBoxMain.Invalidate();
         }
 
-        
         #region PictureBoxEvent
         private void pictureBoxMain_MouseClick(object sender, MouseEventArgs e)
         {
@@ -293,7 +292,12 @@ namespace UML_Diagram_drawer
                 Bitmap bmp = new Bitmap(pictureBoxMain.Width, pictureBoxMain.Height);
                 pictureBoxMain.DrawToBitmap(bmp, new Rectangle(0, 0, pictureBoxMain.Width, pictureBoxMain.Height));
                 bmp.Save(saveFileDialog2.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
-        }
             }
+        }
+
+        private void toolStripButtonSelectForm_Click(object sender, EventArgs e)
+        {
+            _mainData.IMouseHandler = new SelectFormMouseHandler();
+        }
     }
 }

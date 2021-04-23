@@ -301,7 +301,7 @@ namespace UML_Diagram_drawer.Forms
         private void DrawSelectRectangle()
         {
             Rectangle selectRectangle = new Rectangle();
-            selectRectangle.Size = new Size(Size.Width + 20, Size.Height + 20);
+            selectRectangle.Size = new Size(Size.Width + 40, Size.Height + 40);
             selectRectangle.Location = new Point(Location.X - 20, Location.Y - 20);
             MainGraphics.Graphics.DrawRectangle(Default.Draw.PenSelect, selectRectangle);
         }

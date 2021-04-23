@@ -68,6 +68,7 @@ namespace UML_Diagram_drawer
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.saveFileDialog2 = new System.Windows.Forms.SaveFileDialog();
+            this.toolStripButtonSelectForm = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).BeginInit();
             this.SuspendLayout();
@@ -82,6 +83,7 @@ namespace UML_Diagram_drawer
             this.toolStripSeparator,
             this.toolStripButton15,
             this.toolStripButton14,
+            this.toolStripButtonSelectForm,
             this.toolStripButtonEditObject,
             this.toolStripButtonCut,
             this.toolStripButtonCopy,
@@ -407,6 +409,16 @@ namespace UML_Diagram_drawer
             // 
             this.saveFileDialog2.Filter = "JPEG Image|*.jpg";
             // 
+            // toolStripButtonSelectForm
+            // 
+            this.toolStripButtonSelectForm.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSelectForm.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSelectForm.Image")));
+            this.toolStripButtonSelectForm.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSelectForm.Name = "toolStripButtonSelectForm";
+            this.toolStripButtonSelectForm.Size = new System.Drawing.Size(23, 44);
+            this.toolStripButtonSelectForm.Text = "toolStripButton1";
+            this.toolStripButtonSelectForm.Click += new System.EventHandler(this.toolStripButtonSelectForm_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -462,6 +474,7 @@ namespace UML_Diagram_drawer
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.ToolStripButton toolStripButtonEditObject;
         private System.Windows.Forms.SaveFileDialog saveFileDialog2;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSelectForm;
     }
 }
 
