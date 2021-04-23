@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UML_Diagram_drawer.Arrows;
 using UML_Diagram_drawer.Forms;
+using UML_Diagram_drawer.Handlers;
 
 namespace UML_Diagram_drawer
 {
@@ -15,9 +17,12 @@ namespace UML_Diagram_drawer
     {
         private PictureBox _canvas;
         private AbstractForm _form;
+        private AbstactArrow _arrow;
+        private IEditHandler _handler;
 
         public FormEditor()
         {
+            _handler = new FormEditorHandler(_form,_canvas,colorCoiseDialog,fontDialog1);
             InitializeComponent();
         }
 
@@ -26,6 +31,21 @@ namespace UML_Diagram_drawer
             if (form != null && pb != null)
             {
                 _form = form;
+                _canvas = pb;
+                InitializeComponent();
+                _handler = new FormEditorHandler(_form, _canvas, colorCoiseDialog, fontDialog1);
+            }
+            else
+            {
+                throw new ArgumentNullException("Values is null");
+            }
+        }
+
+        public FormEditor(AbstactArrow arrow, PictureBox pb)
+        {
+            if (arrow != null && pb != null)
+            {
+                _arrow = arrow;
                 _canvas = pb;
                 InitializeComponent();
             }
@@ -44,110 +64,42 @@ namespace UML_Diagram_drawer
 
         private void buttonColorChoice_Click(object sender, EventArgs e)
         {
-            if (_form != null)
-            {
-                colorCoiseDialog.ShowDialog();
-                _form.SetColor(colorCoiseDialog.Color);
-                _canvas.Invalidate();
-            }
-            else
-            {
-                throw new ArgumentNullException("Object is null");
-            }
+            _handler.SetColor_Click();
         }
 
         private void trackBarSizeForm_Scroll(object sender, EventArgs e)
         {
-            if (_form != null)
-            {
-                _form.Resize(trackBarSizeForm.Value);
-                _canvas.Invalidate();
-            }
-            else
-            {
-                throw new ArgumentNullException("Object is null");
-            }
+            _handler.SetSize_Scroll(trackBarSizeForm);
         }
 
         private void buttonSelectFont_Click(object sender, EventArgs e)
         {
-            if (_form != null)
-            {
-                fontDialog1.ShowDialog();
-                _form.SetFont(fontDialog1.Font);
-                _canvas.Invalidate();
-            }
-            else
-            {
-                throw new ArgumentNullException("Object is null");
-            }
+            _handler.SetFont_Click();
         }
 
         private void buttonAddField_Click(object sender, EventArgs e)
         {
-            if (_form != null)
-            {
-                _form.AddTextField(Forms.Modules.ModuleType.Field);
-                _canvas.Invalidate();
-            }
-            else
-            {
-                throw new ArgumentNullException("Object is null");
-            }
+            _handler.AddField_Click();
         }
 
         private void buttonAddMethod_Click(object sender, EventArgs e)
         {
-            if (_form != null)
-            {
-                _form.AddTextField(Forms.Modules.ModuleType.Method);
-                _canvas.Invalidate();
-            }
-            else
-            {
-                throw new ArgumentNullException("Object is null");
-            }
+            _handler.AddMethod_Click();
         }
 
         private void buttonColorTextChoice_Click(object sender, EventArgs e)
         {
-            if (_form != null)
-            {
-                colorCoiseDialog.ShowDialog();
-                _form.SetColorText(colorCoiseDialog.Color);
-                _canvas.Invalidate();
-            }
-            else
-            {
-                throw new ArgumentNullException("Object is null");
-            }
+            _handler.SetColorText_Click();
         }
 
         private void trackBarLineThickness_Scroll(object sender, EventArgs e)
         {
-            if (_form != null)
-            {
-                _form.SetWidthLine( trackBarLineThickness.Value);
-                _canvas.Invalidate();
-            }
-            else
-            {
-                throw new ArgumentNullException("Object is null");
-            }
+            _handler.SetWidthLine(trackBarLineThickness);
         }
 
         private void buttonSetBackColor_Click(object sender, EventArgs e)
         {
-            if (_form != null)
-            {
-                colorCoiseDialog.ShowDialog();
-                _form.Color = colorCoiseDialog.Color;
-                _canvas.Invalidate();
-            }
-            else
-            {
-                throw new ArgumentNullException("Object is null");
-            }
+            _handler.SetBackColor_Click();
         }
     }
 }

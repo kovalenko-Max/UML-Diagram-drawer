@@ -93,6 +93,9 @@
     <Compile Include="Arrows\ArrowAssociation.cs" />
     <Compile Include="Arrows\ArrowsLineDrawingLogic.cs" />
     <Compile Include="Arrows\ArrowType.cs" />
+    <Compile Include="Handlers\ArrowEditorHandler.cs" />
+    <Compile Include="Handlers\FormEditorHandler.cs" />
+    <Compile Include="Handlers\IEditHandler.cs" />
     <Compile Include="TypeOfData.cs" />
     <Compile Include="SaveAndLoad.cs" />
     <Compile Include="Default.cs" />
