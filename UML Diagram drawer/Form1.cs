@@ -13,21 +13,13 @@ namespace UML_Diagram_drawer
 {
     public partial class FormMain : Form
     {
-        private ContactPoint _currntCountactPoint;
-        //private AbstactArrow _arrow;
+        //private ContactPoint _currntCountactPoint;
+
         private IFormsFactory _formFactory;
         //
-        //private IMouseHandler _iMouseHandler;
         private MainData _mainData;
         //
         private AbstractForm _buffer;
-
-
-        //public List<AbstractForm> FormsList;
-        //public AbstractForm CurrentForm;
-
-        //public List<AbstactArrow> ArrowsList;
-        //public AbstactArrow CurrentArrow;
 
         public Pen pen = new Pen(Brushes.Black, 3);
 
@@ -64,7 +56,9 @@ namespace UML_Diagram_drawer
 
         private void toolStripButtonArrowSuccession_Click(object sender, EventArgs e)
         {
-
+            _mainData.CurrentArrow = new ArrowSuccession(pen);
+            _mainData.ArrowsList.Add(_mainData.CurrentArrow);
+            _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
         private void toolStripButtonArrowRealization_Click(object sender, EventArgs e)
