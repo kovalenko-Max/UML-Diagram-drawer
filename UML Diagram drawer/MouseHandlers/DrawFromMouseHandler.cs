@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UML_Diagram_drawer.Forms;
+using UML_Diagram_drawer.MouseHandlers;
 
 namespace UML_Diagram_drawer.MouseHandlers
 {
@@ -15,7 +16,8 @@ namespace UML_Diagram_drawer.MouseHandlers
         {
             _mainData.CurrentFormUML.Location = e.Location;
             _mainData.PictureBoxMain.Invalidate();
-            _mainData.IMouseHandler = null;
+            _mainData.CurrentFormUML = null;
+            _mainData.IMouseHandler = new MoveMouseHandler();
         }
 
         public void MouseDown(object sender, MouseEventArgs e)
@@ -28,6 +30,7 @@ namespace UML_Diagram_drawer.MouseHandlers
 
         public void MouseUp(object sender, MouseEventArgs e)
         {
+           
         }
     }
 }

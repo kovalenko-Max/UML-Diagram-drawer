@@ -106,12 +106,14 @@ namespace UML_Diagram_drawer
 
         private void toolStripButtonArrowAggregation_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void toolStripButtonArrowAggregationAndAssociation_Click(object sender, EventArgs e)
         {
-
+            _mainData.CurrentArrow = new ArrowAggregation(pen);
+            _mainData.ArrowsList.Add(_mainData.CurrentArrow);
+            _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
         private void toolStripButtonArrowComposition_Click(object sender, EventArgs e)
