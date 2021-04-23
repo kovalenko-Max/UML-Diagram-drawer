@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UML_Diagram_drawer.Forms;
+using UML_Diagram_drawer.MouseHandlers;
 
 namespace UML_Diagram_drawer.MouseHandlers
 {
@@ -69,7 +70,7 @@ namespace UML_Diagram_drawer.MouseHandlers
                 {
                     _mainData.CurrentArrow.EndPoint = currentContactPoint;
                     currentContactPoint = null;
-                    _mainData.IMouseHandler = null;
+                    _mainData.IMouseHandler = new MoveMouseHandler();
                 }
                 else
                 {

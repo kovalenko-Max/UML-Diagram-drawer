@@ -117,8 +117,7 @@ namespace UML_Diagram_drawer.Forms
 
         public void Move(int deltaX, int deltaY)
         {
-            //Location = new Point(Location.X + deltaX, Location.Y + deltaY);
-            Location = new Point(deltaX, deltaY);
+            Location = new Point(Location.X + deltaX, Location.Y + deltaY);
         }
 
         public void RemoveSelect()

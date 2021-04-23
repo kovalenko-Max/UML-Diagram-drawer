@@ -13,12 +13,8 @@ namespace UML_Diagram_drawer
 {
     public partial class FormMain : Form
     {
-        //private ContactPoint _currntCountactPoint;
-
         private IFormsFactory _formFactory;
-        //
         private MainData _mainData;
-        //
         private AbstractForm _buffer;
 
         public Pen pen = new Pen(Brushes.Black, 3);
@@ -35,6 +31,7 @@ namespace UML_Diagram_drawer
             _mainData.PictureBoxMain = pictureBoxMain;
             _mainData.FormsList = new List<AbstractForm>();
             _mainData.ArrowsList = new List<AbstactArrow>();
+            _mainData.IMouseHandler = new MoveMouseHandler();
         }
 
         #region Tool Strip
@@ -54,6 +51,13 @@ namespace UML_Diagram_drawer
             toolStripButton12.BackColor = colorDialog1.Color;
         }
 
+        private void toolStripButtonArrowAssociation_Click(object sender, EventArgs e)
+        {
+            _mainData.CurrentArrow = new ArrowAssociation(pen);
+            _mainData.ArrowsList.Add(_mainData.CurrentArrow);
+            _mainData.IMouseHandler = new DrawArrowMouseHandler();
+        }
+
         private void toolStripButtonArrowSuccession_Click(object sender, EventArgs e)
         {
             _mainData.CurrentArrow = new ArrowSuccession(pen);
@@ -70,12 +74,14 @@ namespace UML_Diagram_drawer
 
         private void toolStripButtonArrowAggregation_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void toolStripButtonArrowAggregationAndAssociation_Click(object sender, EventArgs e)
         {
-
+            _mainData.CurrentArrow = new ArrowAggregation(pen);
+            _mainData.ArrowsList.Add(_mainData.CurrentArrow);
+            _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
         private void toolStripButtonArrowComposition_Click(object sender, EventArgs e)
@@ -85,18 +91,11 @@ namespace UML_Diagram_drawer
 
         private void toolStripButtonArrowCompositionAndAssociation_Click(object sender, EventArgs e)
         {
-
-        }
-
-        //Arrows!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        private void toolStripButtonArrowAssociation_Click(object sender, EventArgs e)
-        {
-            _mainData.CurrentArrow = new ArrowAssociation(pen);
+            _mainData.CurrentArrow = new ArrowComposition(pen);
             _mainData.ArrowsList.Add(_mainData.CurrentArrow);
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
-        //done
         private void toolStripButtonCreateClassForm_Click(object sender, EventArgs e)
         {
             _formFactory = new ClassFormFactory();
@@ -247,7 +246,6 @@ namespace UML_Diagram_drawer
         {
             return new ArrowSuccession(pen);
         }
-
 
         private void copyToStackButton_Click(object sender, EventArgs e)
         {
