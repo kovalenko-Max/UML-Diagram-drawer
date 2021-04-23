@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-//using System.Text.Json;
 using Newtonsoft.Json;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using UML_Diagram_drawer.Forms;
 using UML_Diagram_drawer.Arrows;
@@ -17,13 +10,12 @@ using UML_Diagram_drawer.Factory;
 
 namespace UML_Diagram_drawer
 {
-    public partial class FormMain : System.Windows.Forms.Form
+    public partial class FormMain : Form
     {
         private ContactPoint _currntCountactPoint;
         private AbstactArrow _arrow;
         private AbstractForm _formUML;
         private IFormsFactory _formFactory;
-        public List<AbstractForm> FormsList;
 
         private AbstractForm _buffer;
 
@@ -33,11 +25,8 @@ namespace UML_Diagram_drawer
 
         public List<AbstactArrow> ArrowsList;
         public AbstactArrow CurrentArrow;
-        
-        public Pen pen = new Pen(Brushes.Black, 3);
 
-        private AbstactArrow _arrow;
-        private AbstractForm _formUML;
+        public Pen pen = new Pen(Brushes.Black, 3);
 
         public FormMain()
         {
@@ -47,7 +36,6 @@ namespace UML_Diagram_drawer
         private void FormMain_Load(object sender, EventArgs e)
         {
             ArrowsList = new List<AbstactArrow>();
-            pictureBoxMain.MouseDown += MouseDown_FormMoving;
             FormsList = new List<AbstractForm>();
             _formFactory = Default.Factory.Form;
         }
@@ -121,7 +109,6 @@ namespace UML_Diagram_drawer
             pictureBoxMain.MouseClick -= MouseClick_DrawFormUML;
             pictureBoxMain.MouseClick += MouseClick_SelectObject;
             pictureBoxMain.Invalidate();
-            pictureBoxMain.MouseDown += MouseDown_FormMoving;
         }
 
         private void MouseClick_SelectObject(object sender, MouseEventArgs e)
@@ -181,7 +168,6 @@ namespace UML_Diagram_drawer
                 _arrow.EndPoint.Location = e.Location;
 
             }
-
             pictureBoxMain.Invalidate();
         }
 
@@ -208,7 +194,6 @@ namespace UML_Diagram_drawer
                     pictureBoxMain.MouseDown -= MouseDown_DrawArrow;
                     pictureBoxMain.MouseMove -= MouseMove_DrawArrow;
                     pictureBoxMain.MouseUp -= MouseUp_DrawArrow;
-                    pictureBoxMain.MouseDown += MouseDown_FormMoving;
                 }
                 else
                 {
@@ -217,68 +202,58 @@ namespace UML_Diagram_drawer
                     ArrowsList.Add(_arrow);
                     pictureBoxMain.MouseMove -= MouseMove_DrawArrow;
                     pictureBoxMain.MouseUp -= MouseUp_DrawArrow;
-                    pictureBoxMain.MouseDown += MouseDown_FormMoving;
                 }
-
                 pictureBoxMain.Invalidate();
             }
         }
 
-        private void MouseClick_SelectObject(object sender, MouseEventArgs e)
-        {
-            //foreach (AbstactArrow arrow in ArrowsList)
-            //{
-            //    if (arrow.Select(e.Location))
-            //    {
-            //        _arrow = arrow;
-            //        ArrowsList.Add(_arrow);
-            //        ArrowsList.Remove(_arrow);
-            //        return;
-            //    }
-            //}
+        //private void MouseClick_SelectObject(object sender, MouseEventArgs e)
+        //{
+        //    //foreach (AbstactArrow arrow in ArrowsList)
+        //    //{
+        //    //    if (arrow.Select(e.Location))
+        //    //    {
+        //    //        _arrow = arrow;
+        //    //        ArrowsList.Add(_arrow);
+        //    //        ArrowsList.Remove(_arrow);
+        //    //        return;
+        //    //    }
+        //    //}
 
-            foreach (AbstractForm form in FormsList)
-            {
-                if (form.Contains(e.Location))
-                {
-                    _formUML = form;
-                    _formUML.Select(e.Location);
-                    FormsList.Add(_formUML);
-                    FormsList.Remove(_formUML);
-                    return;
-                }
-            }
-            pictureBoxMain.Invalidate();
-        }
+        //    foreach (AbstractForm form in FormsList)
+        //    {
+        //        if (form.Contains(e.Location))
+        //        {
+        //            _formUML = form;
+        //            _formUML.Select(e.Location);
+        //            FormsList.Add(_formUML);
+        //            FormsList.Remove(_formUML);
+        //            return;
+        //        }
+        //    }
+        //    pictureBoxMain.Invalidate();
+        //}
 
         private void PictureBoxMain_Paint(object sender, PaintEventArgs e)
         {
-            if (FormsList.Count > 0)
+            MainGraphics.Graphics = e.Graphics;
+
+            foreach (var arrow in ArrowsList)
             {
-                foreach (var form in FormsList)
-                {
-                    if (form.Select(e.Location))
-                    {
-                        _formUML = form;
-                        pictureBoxMain.MouseMove += MouseMove_FormMoving;
-                        pictureBoxMain.MouseUp += MouseUp_FormMoving;
-                    }
-                }
+                arrow.Draw();
             }
-        }
 
             foreach (AbstractForm form in FormsList)
             {
-                _formUML.Move(e.X, e.Y);
-                pictureBoxMain.Invalidate();
+                form.Draw();
             }
         }
         private AbstactArrow CreateArrow()
         {
             return new ArrowSuccession(pen);
         }
-         
-        
+
+
         private void copyToStackButton_Click(object sender, EventArgs e)
         {
             _buffer = null;
@@ -333,6 +308,7 @@ namespace UML_Diagram_drawer
         {
             pictureBoxMain.MouseDown += EditObject_MouseDown;
         }
+
         private void EditObject_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -421,7 +397,7 @@ namespace UML_Diagram_drawer
 
         private void toolStripButton11_Click(object sender, EventArgs e)
         {
-            FormEditor form = new FormEditor(_formUML,pictureBoxMain);
+            FormEditor form = new FormEditor(_formUML, pictureBoxMain);
             form.Show();
         }
 

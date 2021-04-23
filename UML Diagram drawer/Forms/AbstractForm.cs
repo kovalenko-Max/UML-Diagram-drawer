@@ -73,22 +73,22 @@ namespace UML_Diagram_drawer.Forms
             TitleText = titleText;
             _pen = Default.Draw.Pen;
             Brush = Default.Draw.FillBrush;
-            Modules = new List<AbstactModule>();
+            _modules = new List<AbstactModule>();
             _rectangle = new Rectangle(Location, Default.Size.FormSize);
             SetContactPoint();
             CreateModules(createFields, createMethods);
         }
 
         public AbstractForm(AbstractForm form)
-        {
-            Type = form.Type;
-            TitleText = form.TitleText;
-            Pen = form.Pen;
-            Brush = form.Brush;
-            SIze = form.SIze;
-            Location = form.Location;
-            ContactPoints = form.ContactPoints;
-            Modules = form.Modules;
+        {
+            Type = form.Type;
+            TitleText = form.TitleText;
+            _pen = new Pen(form.Color,form.WidthLine);
+            Brush = form.Brush;
+            Size = form.Size;
+            Location = form.Location;
+            ContactPoints = form.ContactPoints;
+            _modules = form._modules;
         }
 
         public ContactPoint ConnectArrow(Point point)
@@ -142,17 +142,15 @@ namespace UML_Diagram_drawer.Forms
             {
                 _pen = Default.Draw.PenSelect;
 
-                foreach (AbstactModule module in Modules)
+                foreach (AbstactModule module in _modules)
                 {
                     module.Color = Color;
                     module.WidthLine = WidthLine;
                 }
 
-            //    IsSelected = true;
-            //}
-            //return IsSelected;
-
-            return _rectangle.Contains(point);
+                IsSelected = true;
+            }
+            return IsSelected;
         }
 
         public bool Contains(Point point)
@@ -175,11 +173,12 @@ namespace UML_Diagram_drawer.Forms
                 module.SetFont(font);
             }
         }
+
         public void AddTextField(string text, ModuleType type)
         {
             if (text != null)
             {
-                foreach (AbstactModule module in Modules)
+                foreach (AbstactModule module in _modules)
                 {
                     if (module.Type == type)
                     {
@@ -192,6 +191,7 @@ namespace UML_Diagram_drawer.Forms
                 throw new ArgumentException("Text is null");
             }
         }
+
         public void AddTextField(ModuleType type)
         {
             foreach (AbstactModule module in _modules)
@@ -216,7 +216,7 @@ namespace UML_Diagram_drawer.Forms
 
         public void RemoveTextField(Point point)
         {
-            foreach (AbstactModule module in Modules)
+            foreach (AbstactModule module in _modules)
             {
                 module.RemoveTextField(point);
             }
@@ -255,7 +255,7 @@ namespace UML_Diagram_drawer.Forms
             if (Contains(point))
             {
                 TextField result = null;
-                foreach (AbstactModule module in Modules)
+                foreach (AbstactModule module in _modules)
                 {
                     if (module.Contains(point))
                     {
@@ -287,7 +287,7 @@ namespace UML_Diagram_drawer.Forms
         protected void DrawModules()
         {
             int currentLocationY = 0;
-            foreach (AbstactModule module in Modules)
+            foreach (AbstactModule module in _modules)
             {
                 module.Location = new Point(this.Location.X, this.Location.Y + currentLocationY);
                 module.Size = new Size(Size.Width, module.GetDesiredSize().Height);
