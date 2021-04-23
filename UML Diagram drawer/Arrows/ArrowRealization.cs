@@ -1,57 +1,82 @@
-﻿//using System;
-//using System.Drawing;
+﻿using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 
-//namespace UML_Diagram_drawer.Arrows
-//{
-//    class ArrowRealization : AbstactArrow
-//    {
-//        public ArrowRealization(Pen pen, Graphics graphics) : base(pen, graphics)
-//        {
-//        }
+namespace UML_Diagram_drawer.Arrows
+{
+    class ArrowRealization : AbstactArrow
+    {
+        public ArrowRealization()
+        {
 
-//        public ArrowRealization(Pen pen, Graphics graphics, Point startPoint, Point endPoint) : base(pen, graphics, startPoint, endPoint)
-//        {
-//        }
+        }
+        public ArrowRealization(Pen pen) : base(pen)
+        {
+            
+        }
 
-//        public override void Draw()
-//        {
-//            if (!StartPoint.Location.IsEmpty && !EndPoint.Location.IsEmpty)
-//            {
-//                DrawStraightBrokenLine(wipeFromEndArrow: _sizeArrowhead);
-//                DrawArrowhead();
-//            }
-//        }
+        public ArrowRealization(Pen pen, Point startPoint, Point endPoint) : base(pen, startPoint, endPoint)
+        {
+        }
 
-//        private void DrawArrowhead()
-//        {
-//            Point[] points;
+        public override void Draw()
+        {
+            if (!StartPoint.Location.IsEmpty && !EndPoint.Location.IsEmpty)
+            {
+                DashStyle currentDashStyle = Pen.DashStyle;
+                Pen.DashStyle = DashStyle.Dash;
+                DrawStraightBrokenLine();
+                Pen.DashStyle = currentDashStyle;
+                DrawArrowhead();
+            }
+        }
 
-//            if (!StartPoint.Location.IsEmpty && !EndPoint.Location.IsEmpty)
-//            {
-//                if (IsHorizontal)
-//                {
-//                    int coefX = StartPoint.Location.X < EndPoint.Location.X ? EndPoint.Location.X - _sizeArrowhead : EndPoint.Location.X + _sizeArrowhead;
-//                    points = new Point[]
-//                    {
-//                        new Point(coefX, EndPoint.Location.Y+_sizeArrowhead/2),
-//                        new Point(coefX, EndPoint.Location.Y-_sizeArrowhead/2),
-//                        new Point(EndPoint.Location.X, EndPoint.Location.Y)
-//                    };
-//                }
-//                else
-//                {
-//                    int coefY = StartPoint.Location.Y < EndPoint.Location.Y ? EndPoint.Location.Y - _sizeArrowhead : EndPoint.Location.Y + _sizeArrowhead;
-//                    points = new Point[]
-//                    {
-//                        new Point(EndPoint.Location.X+_sizeArrowhead/2, coefY),
-//                        new Point(EndPoint.Location.X-_sizeArrowhead/2, coefY),
-//                        new Point(EndPoint.Location.X, EndPoint.Location.Y)
-//                    };
-//                }
+        private void DrawArrowhead()
+        {
+            Point[] arrowHeadPoints = new Point[3];
 
-//                Pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
-//                Graphics.DrawPolygon(Pen, points);
-//            }
-//        }
-//    }
-//}
+            if (!StartPoint.Location.IsEmpty && !EndPoint.Location.IsEmpty)
+            {
+                Point eraseEndPoint;
+                if (Points[Points.Length - 2].Y == EndPoint.Location.Y)
+                {
+                    if (Points[Points.Length - 2].X < EndPoint.Location.X)
+                    {
+                        eraseEndPoint = new Point(EndPoint.Location.X - _sizeArrowhead, EndPoint.Location.Y);
+                        arrowHeadPoints[0] = EndPoint.Location;
+                        arrowHeadPoints[1] = new Point(EndPoint.Location.X - _sizeArrowhead, EndPoint.Location.Y + _sizeArrowhead);
+                        arrowHeadPoints[2] = new Point(EndPoint.Location.X - _sizeArrowhead, EndPoint.Location.Y - _sizeArrowhead);
+                    }
+                    else
+                    {
+                        eraseEndPoint = new Point(EndPoint.Location.X + _sizeArrowhead, EndPoint.Location.Y);
+                        arrowHeadPoints[0] = EndPoint.Location;
+                        arrowHeadPoints[1] = new Point(EndPoint.Location.X + _sizeArrowhead, EndPoint.Location.Y + _sizeArrowhead);
+                        arrowHeadPoints[2] = new Point(EndPoint.Location.X + _sizeArrowhead, EndPoint.Location.Y - _sizeArrowhead);
+                    }
+                }
+                else
+                {
+                    if (Points[Points.Length - 2].Y < EndPoint.Location.Y)
+                    {
+                        eraseEndPoint = new Point(EndPoint.Location.X, EndPoint.Location.Y - _sizeArrowhead);
+                        arrowHeadPoints[0] = EndPoint.Location;
+                        arrowHeadPoints[1] = new Point(EndPoint.Location.X + _sizeArrowhead, EndPoint.Location.Y - _sizeArrowhead);
+                        arrowHeadPoints[2] = new Point(EndPoint.Location.X - _sizeArrowhead, EndPoint.Location.Y - _sizeArrowhead);
+                    }
+                    else
+                    {
+                        eraseEndPoint = new Point(EndPoint.Location.X, EndPoint.Location.Y + _sizeArrowhead);
+                        arrowHeadPoints[0] = EndPoint.Location;
+                        arrowHeadPoints[1] = new Point(EndPoint.Location.X + _sizeArrowhead, EndPoint.Location.Y + _sizeArrowhead);
+                        arrowHeadPoints[2] = new Point(EndPoint.Location.X - _sizeArrowhead, EndPoint.Location.Y + _sizeArrowhead);
+                    }
+                }
+
+                Pen erasePen = new Pen(MainData.GetMainData().PictureBoxMain.BackColor, _sizeArrowhead);
+                MainGraphics.Graphics.DrawLine(erasePen, EndPoint.Location, eraseEndPoint);
+                MainGraphics.Graphics.DrawPolygon(Pen, arrowHeadPoints);
+            }
+        }
+    }
+}

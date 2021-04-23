@@ -63,7 +63,9 @@ namespace UML_Diagram_drawer
 
         private void toolStripButtonArrowRealization_Click(object sender, EventArgs e)
         {
-
+            _mainData.CurrentArrow = new ArrowRealization(pen);
+            _mainData.ArrowsList.Add(_mainData.CurrentArrow);
+            _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
         private void toolStripButtonArrowAggregation_Click(object sender, EventArgs e)
