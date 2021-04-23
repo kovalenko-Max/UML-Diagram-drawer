@@ -111,7 +111,7 @@ namespace UML_Diagram_drawer
 
         private void toolStripButtonArrowAggregationAndAssociation_Click(object sender, EventArgs e)
         {
-            _mainData.CurrentArrow = new ArrowAggregation(pen);
+            _mainData.CurrentArrow = new ArrowAggregation();
             _mainData.ArrowsList.Add(_mainData.CurrentArrow);
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
@@ -313,7 +313,6 @@ namespace UML_Diagram_drawer
         //    }
         //    pictureBoxMain.Invalidate();
         //}
-
 
         private void copyToStackButton_Click(object sender, EventArgs e)
         {
