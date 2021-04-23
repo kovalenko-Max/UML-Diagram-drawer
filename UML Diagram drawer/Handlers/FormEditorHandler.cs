@@ -17,12 +17,19 @@ namespace UML_Diagram_drawer.Handlers
         public ColorDialog ColorDialog { get; set; }
         public FontDialog FontDialog { get; set; }
 
-        public FormEditorHandler(AbstractForm form, PictureBox pb, ColorDialog colorDialog, FontDialog fontDialog)
+        private MainData _mainData = MainData.GetMainData();
+
+        public FormEditorHandler()
         {
-            if (form != null && pb != null && colorDialog != null&& fontDialog!=null)
+
+        }
+
+        public FormEditorHandler(ColorDialog colorDialog, FontDialog fontDialog)
+        {
+            if (_mainData.SelectForm != null && _mainData.PictureBoxMain != null && colorDialog != null&& fontDialog!=null)
             {
-                Form = form;
-                Canvas = pb;
+                Form = _mainData.SelectForm;
+                Canvas = _mainData.PictureBoxMain;
                 ColorDialog = colorDialog;
                 FontDialog = fontDialog;
             }
@@ -34,10 +41,10 @@ namespace UML_Diagram_drawer.Handlers
 
         public void SetColor_Click()
         {
-            if (Form != null)
+            if (_mainData.SelectForm != null)
             {
                 ColorDialog.ShowDialog();
-                Form.SetColor(ColorDialog.Color);
+                _mainData.SelectForm.SetColor(ColorDialog.Color);
                 Canvas.Invalidate();
             }
             else
@@ -48,9 +55,9 @@ namespace UML_Diagram_drawer.Handlers
 
         public void SetSize_Scroll(TrackBar trackBar)
         {
-            if (Form != null)
+            if (_mainData.SelectForm != null)
             {
-                Form.Resize(trackBar.Value);
+                _mainData.SelectForm.Resize(trackBar.Value);
                 Canvas.Invalidate();
             }
             else
@@ -61,10 +68,10 @@ namespace UML_Diagram_drawer.Handlers
 
         public void SetFont_Click()
         {
-            if (Form != null)
+            if (_mainData.SelectForm != null)
             {
                 FontDialog.ShowDialog();
-                Form.SetFont(FontDialog.Font);
+                _mainData.SelectForm.SetFont(FontDialog.Font);
                 Canvas.Invalidate();
             }
             else
@@ -75,9 +82,9 @@ namespace UML_Diagram_drawer.Handlers
 
         public void AddField_Click()
         {
-            if (Form != null)
+            if (_mainData.SelectForm != null)
             {
-                Form.AddTextField(Forms.Modules.ModuleType.Field);
+                _mainData.SelectForm.AddTextField(Forms.Modules.ModuleType.Field);
                 Canvas.Invalidate();
             }
             else
@@ -88,9 +95,9 @@ namespace UML_Diagram_drawer.Handlers
 
         public void AddMethod_Click()
         {
-            if (Form != null)
+            if (_mainData.SelectForm != null)
             {
-                Form.AddTextField(Forms.Modules.ModuleType.Method);
+                _mainData.SelectForm.AddTextField(Forms.Modules.ModuleType.Method);
                 Canvas.Invalidate();
             }
             else
@@ -101,10 +108,10 @@ namespace UML_Diagram_drawer.Handlers
 
         public void SetColorText_Click()
         {
-            if (Form != null)
+            if (_mainData.SelectForm != null)
             {
                 ColorDialog.ShowDialog();
-                Form.SetColorText(ColorDialog.Color);
+                _mainData.SelectForm.SetColorText(ColorDialog.Color);
                 Canvas.Invalidate();
             }
             else
@@ -115,9 +122,9 @@ namespace UML_Diagram_drawer.Handlers
 
         public void SetWidthLine(TrackBar trackBar)
         {
-            if (Form != null)
+            if (_mainData.SelectForm != null)
             {
-                Form.SetWidthLine(trackBar.Value);
+                _mainData.SelectForm.SetWidthLine(trackBar.Value);
                 Canvas.Invalidate();
             }
             else
@@ -128,10 +135,10 @@ namespace UML_Diagram_drawer.Handlers
 
         public void SetBackColor_Click()
         {
-            if (Form != null)
+            if (_mainData.SelectForm != null)
             {
                 ColorDialog.ShowDialog();
-                Form.Color = ColorDialog.Color;
+                _mainData.SelectForm.Color = ColorDialog.Color;
                 Canvas.Invalidate();
             }
             else

@@ -13,29 +13,7 @@ namespace UML_Diagram_drawer.Forms
         private Rectangle _rectangle;
         public Font Font { get; set; }
         public StringFormat StringFormat { get; set; }
-        public Color Color
-        {
-            get
-            {
-                if (_brush != null)
-                {
-                    return _brush.Color;
-                }
-
-                throw new ArgumentNullException("Brush is null");
-            }
-            set
-            {
-                if (_brush != null)
-                {
-                    _brush.Color = value;
-                }
-                else
-                {
-                    throw new ArgumentNullException("Brush is null");
-                }
-            }
-        }
+        public Color Color { get; set; }
         public string Text { get; set; }
         public Point Location
         {
@@ -64,6 +42,7 @@ namespace UML_Diagram_drawer.Forms
         {
             Font = Default.Text.Font;
             _brush = Default.Text.Brush;
+            Color = _brush.Color;
             Text = Default.Text.SomeText;
             _rectangle = new Rectangle(Location, Default.Size.TextFieldSize);
         }
@@ -72,12 +51,14 @@ namespace UML_Diagram_drawer.Forms
         {
             Font = Default.Text.Font;
             _brush = Default.Text.Brush;
+            Color = _brush.Color;
             Text = text;
             _rectangle = new Rectangle(Location, Default.Size.TextFieldSize);
         }
 
         public void Draw()
         {
+            _brush.Color = Color;
             _rectangle.Size = new Size(_rectangle.Width, GetDesiredSize().Height);
             MainGraphics.Graphics.DrawString(Text, Font, _brush, (RectangleF)_rectangle, StringFormat);
         }

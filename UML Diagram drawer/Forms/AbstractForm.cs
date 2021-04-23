@@ -39,29 +39,9 @@ namespace UML_Diagram_drawer.Forms
             }
         }
         public ContactPoint[] ContactPoints { get; set; }
-        public Color Color
-        {
-            get
-            {
-                if (Brush != null)
-                {
-                    return Brush.Color;
-                }
-
-                throw new ArgumentNullException("Brush is null");
-            }
-            set
-            {
-                if (Brush != null)
-                {
-                    Brush.Color = value;
-                }
-                else
-                {
-                    throw new ArgumentNullException("Brush is null");
-                }
-            }
-        }
+        public Color Color { get; set; }
+          
+        
         public SolidBrush Brush { get; set; }
         public Font Font { get; set; }
         public FormType Type { get; set; }
@@ -97,6 +77,7 @@ namespace UML_Diagram_drawer.Forms
             Type = type;
             TitleText = titleText;
             _pen = Default.Draw.Pen;
+            Color = _pen.Color;
             Brush = Default.Draw.FillBrush;
             Font = Default.Text.Font;
             _modules = new List<AbstactModule>();

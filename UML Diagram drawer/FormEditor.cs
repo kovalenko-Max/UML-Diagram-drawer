@@ -19,25 +19,23 @@ namespace UML_Diagram_drawer
         private AbstractForm _form;
         private AbstactArrow _arrow;
         private IEditHandler _handler;
+        private MainData mData = MainData.GetMainData();
+
+        //public FormEditor()
+        //{
+        //    _handler = new FormEditorHandler(_form,_canvas,colorCoiseDialog,fontDialog1);
+        //    InitializeComponent();
+        //}
 
         public FormEditor()
         {
-            _handler = new FormEditorHandler(_form,_canvas,colorCoiseDialog,fontDialog1);
-            InitializeComponent();
-        }
-
-        public FormEditor(AbstractForm form, PictureBox pb)
-        {
-            if (form != null && pb != null)
+            
+            if (mData.SelectForm != null && mData.PictureBoxMain != null)
             {
-                _form = form;
-                _canvas = pb;
+                _form = mData.SelectForm;
+                _canvas = mData.PictureBoxMain;
                 InitializeComponent();
-                _handler = new FormEditorHandler(_form, _canvas, colorCoiseDialog, fontDialog1);
-            }
-            else
-            {
-                throw new ArgumentNullException("Values is null");
+                _handler = new FormEditorHandler(colorCoiseDialog, fontDialog1);
             }
         }
 
