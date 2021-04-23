@@ -299,5 +299,17 @@ namespace UML_Diagram_drawer
         {
             _mainData.IMouseHandler = new SelectFormMouseHandler();
         }
+        private void flowLayoutPanel1_Scroll(object sender, ScrollEventArgs e)
+        {
+            const int step = 50;
+            if (e.ScrollOrientation == ScrollOrientation.VerticalScroll)
+            {
+                pictureBoxMain.Height += e.NewValue - e.OldValue + step;
+            }
+            else
+            {
+                pictureBoxMain.Width += e.NewValue - e.OldValue + step;
+            }
+        }
     }
 }
