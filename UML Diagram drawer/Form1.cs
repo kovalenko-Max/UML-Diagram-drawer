@@ -321,12 +321,16 @@ namespace UML_Diagram_drawer
 
         private void panel1_Scroll(object sender, ScrollEventArgs e)
         {
-            if (e.OldValue < e.NewValue)
-            {
-                pictureBoxMain.Height += 1000;
-                pictureBoxMain.Invalidate();
 
-            }
+        }
+
+        private void flowLayoutPanel1_Scroll(object sender, ScrollEventArgs e)
+        {
+           
+            if (e.ScrollOrientation == ScrollOrientation.VerticalScroll)
+                pictureBoxMain.Height += e.NewValue - e.OldValue;
+            else 
+                pictureBoxMain.Width += e.NewValue - e.OldValue;
         }
     }
 }

@@ -64,13 +64,10 @@ namespace UML_Diagram_drawer
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.pictureBoxMain = new System.Windows.Forms.PictureBox();
-            this.button_AddForm = new System.Windows.Forms.Button();
-            this.button_AddArrow = new System.Windows.Forms.Button();
-            this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -379,7 +376,7 @@ namespace UML_Diagram_drawer
             this.pictureBoxMain.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pictureBoxMain.BackColor = System.Drawing.Color.White;
             this.pictureBoxMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxMain.Location = new System.Drawing.Point(-31, -16);
+            this.pictureBoxMain.Location = new System.Drawing.Point(2, 2);
             this.pictureBoxMain.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxMain.Name = "pictureBoxMain";
             this.pictureBoxMain.Size = new System.Drawing.Size(1400, 671);
@@ -391,44 +388,16 @@ namespace UML_Diagram_drawer
             this.pictureBoxMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxMain_MouseClick);
             this.pictureBoxMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBoxMain_MouseMove);
             // 
-            // button_AddForm
+            // flowLayoutPanel1
             // 
-            this.button_AddForm.Location = new System.Drawing.Point(27, 161);
-            this.button_AddForm.Name = "button_AddForm";
-            this.button_AddForm.Size = new System.Drawing.Size(75, 23);
-            this.button_AddForm.TabIndex = 1;
-            this.button_AddForm.Text = "Add Form";
-            this.button_AddForm.UseVisualStyleBackColor = true;
-            // 
-            // button_AddArrow
-            // 
-            this.button_AddArrow.Location = new System.Drawing.Point(27, 190);
-            this.button_AddArrow.Name = "button_AddArrow";
-            this.button_AddArrow.Size = new System.Drawing.Size(75, 23);
-            this.button_AddArrow.TabIndex = 2;
-            this.button_AddArrow.Text = "Add Arrow";
-            this.button_AddArrow.UseVisualStyleBackColor = true;
-            // 
-            // hScrollBar1
-            // 
-            this.hScrollBar1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.hScrollBar1.Location = new System.Drawing.Point(-128, 412);
-            this.hScrollBar1.Name = "hScrollBar1";
-            this.hScrollBar1.Size = new System.Drawing.Size(1383, 10);
-            this.hScrollBar1.TabIndex = 4;
-            // 
-            // panel1
-            // 
-            this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.pictureBoxMain);
-            this.panel1.Controls.Add(this.button_AddArrow);
-            this.panel1.Controls.Add(this.button_AddForm);
-            this.panel1.Location = new System.Drawing.Point(489, 148);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(469, 98);
-            this.panel1.TabIndex = 5;
-            this.panel1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.panel1_Scroll);
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Controls.Add(this.pictureBoxMain);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 47);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1145, 382);
+            this.flowLayoutPanel1.TabIndex = 5;
+            this.flowLayoutPanel1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.flowLayoutPanel1_Scroll);
             // 
             // FormMain
             // 
@@ -436,8 +405,7 @@ namespace UML_Diagram_drawer
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1145, 429);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.hScrollBar1);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "FormMain";
             this.Text = "Form1";
@@ -445,8 +413,8 @@ namespace UML_Diagram_drawer
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -484,10 +452,7 @@ namespace UML_Diagram_drawer
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton helpToolStripButton;
         private System.Windows.Forms.PictureBox pictureBoxMain;
-        private System.Windows.Forms.Button button_AddForm;
-        private System.Windows.Forms.Button button_AddArrow;
-        private System.Windows.Forms.HScrollBar hScrollBar1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
 
