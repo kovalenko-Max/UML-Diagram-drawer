@@ -244,7 +244,8 @@ namespace UML_Diagram_drawer.Arrows
 
         public bool Select(Point point)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return false;
         }
 
         public void RemoveSelect()

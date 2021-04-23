@@ -113,6 +113,7 @@
     <Compile Include="Forms\Modules\ModuleType.cs" />
     <Compile Include="Forms\Modules\TitleModule.cs" />
     <Compile Include="Forms\TextField.cs" />
+    <Compile Include="ICopied.cS" />
     <Compile Include="MainGraphics.cs" />
     <Compile Include="TypeOfLineDirection.cs" />
     <Compile Include="ISelectable.cs" />
