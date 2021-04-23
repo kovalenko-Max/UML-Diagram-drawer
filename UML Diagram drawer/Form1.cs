@@ -148,7 +148,7 @@ namespace UML_Diagram_drawer
 
         private void toolStripButtonEditObject_Click(object sender, EventArgs e)
         {
-            FormEditor form = new FormEditor(_mainData.CurrentFormUML, pictureBoxMain);
+            FormEditor form = new FormEditor(_mainData.SelectForm, pictureBoxMain);
             form.Show();
         }
 

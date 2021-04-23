@@ -177,22 +177,22 @@ namespace UML_Diagram_drawer
             // 
             // toolStripButtonSelectForm
             // 
-            this.toolStripButtonSelectForm.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButtonSelectForm.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSelectForm.Image")));
             this.toolStripButtonSelectForm.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSelectForm.Name = "toolStripButtonSelectForm";
-            this.toolStripButtonSelectForm.Size = new System.Drawing.Size(23, 44);
-            this.toolStripButtonSelectForm.Text = "toolStripButton1";
+            this.toolStripButtonSelectForm.Size = new System.Drawing.Size(64, 44);
+            this.toolStripButtonSelectForm.Text = "Select Obj";
+            this.toolStripButtonSelectForm.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButtonSelectForm.Click += new System.EventHandler(this.toolStripButtonSelectForm_Click);
             // 
             // toolStripButtonEditObject
             // 
-            this.toolStripButtonEditObject.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButtonEditObject.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonEditObject.Image")));
             this.toolStripButtonEditObject.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonEditObject.Name = "toolStripButtonEditObject";
-            this.toolStripButtonEditObject.Size = new System.Drawing.Size(23, 44);
+            this.toolStripButtonEditObject.Size = new System.Drawing.Size(31, 44);
             this.toolStripButtonEditObject.Text = "Edit";
+            this.toolStripButtonEditObject.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButtonEditObject.Click += new System.EventHandler(this.toolStripButtonEditObject_Click);
             // 
             // toolStripButtonCut
