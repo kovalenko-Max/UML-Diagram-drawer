@@ -9,6 +9,12 @@ namespace UML_Diagram_drawer.Forms
 {
     public class Form : AbstractForm
     {
+        public Form()
+        {
+            _pen = Default.Draw.Pen;
+            Brush = Default.Draw.FillBrush;
+        }
+
         public Form(FormType type, bool createFields, bool createMethods, string titleText) : base(type, createFields, createMethods, titleText) { }
 
         public Form(AbstractForm form):base(form)
