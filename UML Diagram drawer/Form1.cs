@@ -406,6 +406,14 @@ namespace UML_Diagram_drawer
 
         #endregion
 
-        
+        private void toolStripButtonSaveImageFile_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog2.ShowDialog() == DialogResult.OK)
+            {
+                pictureBoxMain.DrawToBitmap(bmp, new Rectangle(0, 0, pictureBoxMain.Width, pictureBoxMain.Height));
+                Bitmap bmp = new Bitmap(pictureBoxMain.Width, pictureBoxMain.Height);
+                bmp.Save(saveFileDialog2.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+        }
+            }
     }
 }
