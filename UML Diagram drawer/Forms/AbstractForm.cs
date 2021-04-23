@@ -117,7 +117,8 @@ namespace UML_Diagram_drawer.Forms
 
         public void Move(int deltaX, int deltaY)
         {
-            Location = new Point(Location.X + deltaX, Location.Y + deltaY);
+            //Location = new Point(Location.X + deltaX, Location.Y + deltaY);
+            Location = new Point(deltaX, deltaY);
         }
 
         public void RemoveSelect()
@@ -147,10 +148,11 @@ namespace UML_Diagram_drawer.Forms
                     module.WidthLine = WidthLine;
                 }
 
-                IsSelected = true;
-            }
+            //    IsSelected = true;
+            //}
+            //return IsSelected;
 
-            return IsSelected;
+            return _rectangle.Contains(point);
         }
 
         public bool Contains(Point point)

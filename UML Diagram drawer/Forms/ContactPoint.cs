@@ -49,8 +49,8 @@ namespace UML_Diagram_drawer.Forms
             {
                 secondPoint = new Point(Location.X + 20, Location.Y);
             }
+
             MainGraphics.Graphics.DrawLine(new Pen(Color.Red, 10), Location, secondPoint);
-           // _rectangle = new Rectangle(new Point(Location.X, Location.Y - 5), new Size(secondPoint.X - Location.X, secondPoint.Y - Location.Y));
         }
 
         public bool Contains(Point point)

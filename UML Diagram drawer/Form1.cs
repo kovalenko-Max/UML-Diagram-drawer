@@ -17,12 +17,13 @@ using UML_Diagram_drawer.Factory;
 
 namespace UML_Diagram_drawer
 {
-    public partial class FormMain : Form
+    public partial class FormMain : System.Windows.Forms.Form
     {
         private ContactPoint _currntCountactPoint;
         private AbstactArrow _arrow;
         private AbstractForm _formUML;
         private IFormsFactory _formFactory;
+        public List<AbstractForm> FormsList;
 
         private AbstractForm _buffer;
 
@@ -35,6 +36,9 @@ namespace UML_Diagram_drawer
         
         public Pen pen = new Pen(Brushes.Black, 3);
 
+        private AbstactArrow _arrow;
+        private AbstractForm _formUML;
+
         public FormMain()
         {
             InitializeComponent();
@@ -43,6 +47,7 @@ namespace UML_Diagram_drawer
         private void FormMain_Load(object sender, EventArgs e)
         {
             ArrowsList = new List<AbstactArrow>();
+            pictureBoxMain.MouseDown += MouseDown_FormMoving;
             FormsList = new List<AbstractForm>();
             _formFactory = Default.Factory.Form;
         }
@@ -116,6 +121,7 @@ namespace UML_Diagram_drawer
             pictureBoxMain.MouseClick -= MouseClick_DrawFormUML;
             pictureBoxMain.MouseClick += MouseClick_SelectObject;
             pictureBoxMain.Invalidate();
+            pictureBoxMain.MouseDown += MouseDown_FormMoving;
         }
 
         private void MouseClick_SelectObject(object sender, MouseEventArgs e)
@@ -147,7 +153,6 @@ namespace UML_Diagram_drawer
 
         private void MouseDown_DrawArrow(object sender, MouseEventArgs e)
         {
-
             foreach (var form in FormsList)
             {
                 foreach (var contactPoint in form.ContactPoints)
@@ -176,6 +181,7 @@ namespace UML_Diagram_drawer
                 _arrow.EndPoint.Location = e.Location;
 
             }
+
             pictureBoxMain.Invalidate();
         }
 
@@ -202,6 +208,7 @@ namespace UML_Diagram_drawer
                     pictureBoxMain.MouseDown -= MouseDown_DrawArrow;
                     pictureBoxMain.MouseMove -= MouseMove_DrawArrow;
                     pictureBoxMain.MouseUp -= MouseUp_DrawArrow;
+                    pictureBoxMain.MouseDown += MouseDown_FormMoving;
                 }
                 else
                 {
@@ -210,7 +217,9 @@ namespace UML_Diagram_drawer
                     ArrowsList.Add(_arrow);
                     pictureBoxMain.MouseMove -= MouseMove_DrawArrow;
                     pictureBoxMain.MouseUp -= MouseUp_DrawArrow;
+                    pictureBoxMain.MouseDown += MouseDown_FormMoving;
                 }
+
                 pictureBoxMain.Invalidate();
             }
         }
@@ -244,16 +253,24 @@ namespace UML_Diagram_drawer
 
         private void PictureBoxMain_Paint(object sender, PaintEventArgs e)
         {
-            MainGraphics.Graphics = e.Graphics;
-
-            foreach (var arrow in ArrowsList)
+            if (FormsList.Count > 0)
             {
-                arrow.Draw();
+                foreach (var form in FormsList)
+                {
+                    if (form.Select(e.Location))
+                    {
+                        _formUML = form;
+                        pictureBoxMain.MouseMove += MouseMove_FormMoving;
+                        pictureBoxMain.MouseUp += MouseUp_FormMoving;
+                    }
+                }
             }
+        }
 
             foreach (AbstractForm form in FormsList)
             {
-                form.Draw();
+                _formUML.Move(e.X, e.Y);
+                pictureBoxMain.Invalidate();
             }
         }
         private AbstactArrow CreateArrow()

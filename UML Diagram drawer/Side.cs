@@ -3,6 +3,7 @@
     
     public enum Side
     {
+        None,
         Right,
         Bottom,
         Left,
