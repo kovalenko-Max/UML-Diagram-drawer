@@ -9,10 +9,33 @@ namespace UML_Diagram_drawer.Forms
 {
     public class TextField
     {
+        private SolidBrush _brush;
         private Rectangle _rectangle;
         public Font Font { get; set; }
         public StringFormat StringFormat { get; set; }
-        public SolidBrush Brush { get; set; }
+        public Color Color
+        {
+            get
+            {
+                if (_brush != null)
+                {
+                    return _brush.Color;
+                }
+
+                throw new ArgumentNullException("Brush is null");
+            }
+            set
+            {
+                if (_brush != null)
+                {
+                    _brush.Color = value;
+                }
+                else
+                {
+                    throw new ArgumentNullException("Brush is null");
+                }
+            }
+        }
         public string Text { get; set; }
         public Point Location
         {
@@ -40,7 +63,7 @@ namespace UML_Diagram_drawer.Forms
         public TextField()
         {
             Font = Default.Text.Font;
-            Brush = Default.Text.Brush;
+            _brush = Default.Text.Brush;
             Text = Default.Text.SomeText;
             _rectangle = new Rectangle(Location, Default.Size.TextFieldSize);
         }
@@ -48,7 +71,7 @@ namespace UML_Diagram_drawer.Forms
         public TextField(string text)
         {
             Font = Default.Text.Font;
-            Brush = Default.Text.Brush;
+            _brush = Default.Text.Brush;
             Text = text;
             _rectangle = new Rectangle(Location, Default.Size.TextFieldSize);
         }
@@ -56,7 +79,7 @@ namespace UML_Diagram_drawer.Forms
         public void Draw()
         {
             _rectangle.Size = new Size(_rectangle.Width, GetDesiredSize().Height);
-            MainGraphics.Graphics.DrawString(Text, Font, Brush, (RectangleF)_rectangle, StringFormat);
+            MainGraphics.Graphics.DrawString(Text, Font, _brush, (RectangleF)_rectangle, StringFormat);
         }
 
         public bool Contains(Point point)
@@ -98,11 +121,11 @@ namespace UML_Diagram_drawer.Forms
             }
             else if (newSize.ToSize().Width > Default.Size.TextFieldSize.Width)
             {
-                result.Width= newSize.ToSize().Width+10;
+                result.Width = newSize.ToSize().Width + 10;
             }
             else if (newSize.ToSize().Height > Default.Size.TextFieldSize.Height)
             {
-                result.Height = newSize.ToSize().Height+40;
+                result.Height = newSize.ToSize().Height + 40;
             }
 
             return result;

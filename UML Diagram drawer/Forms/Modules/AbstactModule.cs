@@ -175,6 +175,14 @@ namespace UML_Diagram_drawer.Forms
             }
         }
 
+        public void SetColorText(Color color)
+        {
+            foreach (TextField text in TextFields)
+            {
+                text.Color = color;
+            }
+        }
+
         public void Resize(int value)
         {
             foreach (var item in TextFields)
@@ -182,6 +190,7 @@ namespace UML_Diagram_drawer.Forms
                 item.Font = new Font(item.Font.FontFamily, value);
             }
         }
+
         public TextField SelectTextField(Point point)
         {
             if (Contains(point))
@@ -207,7 +216,7 @@ namespace UML_Diagram_drawer.Forms
         public override string ToString()
         {
             StringBuilder result = new StringBuilder();
-            result.Append(this.GetType() + " " + Location);
+            result.Append(this.Type + " " + Location);
 
             return result.ToString();
         }

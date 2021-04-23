@@ -19,11 +19,23 @@ namespace UML_Diagram_drawer.Forms
         {
             get
             {
-                return _pen.Width;
+                if (_pen != null)
+                {
+                    return _pen.Width;
+                }
+
+                throw new ArgumentNullException("Pen is null");
             }
             set
             {
-                _pen.Width = value;
+                if (_pen != null)
+                {
+                    _pen.Width = value;
+                }
+                else
+                {
+                    throw new ArgumentNullException("Pen is null");
+                }
             }
         }
         public ContactPoint[] ContactPoints { get; set; }
@@ -31,14 +43,27 @@ namespace UML_Diagram_drawer.Forms
         {
             get
             {
-                return _pen.Color;
+                if (Brush != null)
+                {
+                    return Brush.Color;
+                }
+
+                throw new ArgumentNullException("Brush is null");
             }
             set
             {
-                _pen.Color = value;
+                if (Brush != null)
+                {
+                    Brush.Color = value;
+                }
+                else
+                {
+                    throw new ArgumentNullException("Brush is null");
+                }
             }
         }
         public SolidBrush Brush { get; set; }
+        public Font Font { get; set; }
         public FormType Type { get; set; }
         public Size Size
         {
@@ -73,6 +98,7 @@ namespace UML_Diagram_drawer.Forms
             TitleText = titleText;
             _pen = Default.Draw.Pen;
             Brush = Default.Draw.FillBrush;
+            Font = Default.Text.Font;
             _modules = new List<AbstactModule>();
             _rectangle = new Rectangle(Location, Default.Size.FormSize);
             SetContactPoint();
@@ -83,7 +109,8 @@ namespace UML_Diagram_drawer.Forms
         {
             Type = form.Type;
             TitleText = form.TitleText;
-            _pen = new Pen(form.Color,form.WidthLine);
+            _pen = new Pen(form.Color, form.WidthLine);
+            Font = form.Font;
             Brush = form.Brush;
             Size = form.Size;
             Location = form.Location;
@@ -168,9 +195,41 @@ namespace UML_Diagram_drawer.Forms
 
         public void SetFont(Font font)
         {
+            if (font != null)
+            {
+                Font = font;
+                foreach (AbstactModule module in _modules)
+                {
+                    module.SetFont(font);
+                }
+            }
+            else
+            {
+                throw new ArgumentNullException("Font is null");
+            }
+        }
+
+        public void SetWidthLine(int value)
+        {
             foreach (AbstactModule module in _modules)
             {
-                module.SetFont(font);
+                module.WidthLine = value;
+            }
+        }
+
+        public void SetColor(Color color)
+        {
+            foreach (AbstactModule module in _modules)
+            {
+                module.Color = color;
+            }
+        }
+
+        public void SetColorText(Color color)
+        {
+            foreach (AbstactModule module in _modules)
+            {
+                module.SetColorText(color);
             }
         }
 
@@ -202,6 +261,7 @@ namespace UML_Diagram_drawer.Forms
                 }
             }
         }
+
         public void ChangeTextField(Point point, string text)
         {
             if (text != null)
