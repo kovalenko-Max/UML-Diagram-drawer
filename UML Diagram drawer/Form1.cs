@@ -297,5 +297,36 @@ namespace UML_Diagram_drawer
             }
             pictureBoxMain.Invalidate();
         }
+
+        private void pictureBoxMain_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBoxMain_MouseMove(object sender, MouseEventArgs e)
+        {
+           // pictureBoxMain.MouseMove += pictureBoxMain_MouseMove;
+            
+        }
+
+        private void pictureBoxMain_MouseClick(object sender, MouseEventArgs e)
+        {
+            //pictureBoxMain.Size += new System.Drawing.Size(140, 140);
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel1_Scroll(object sender, ScrollEventArgs e)
+        {
+            if (e.OldValue < e.NewValue)
+            {
+                pictureBoxMain.Height += 1000;
+                pictureBoxMain.Invalidate();
+
+            }
+        }
     }
 }

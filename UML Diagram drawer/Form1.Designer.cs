@@ -66,8 +66,11 @@ namespace UML_Diagram_drawer
             this.pictureBoxMain = new System.Windows.Forms.PictureBox();
             this.button_AddForm = new System.Windows.Forms.Button();
             this.button_AddArrow = new System.Windows.Forms.Button();
+            this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -104,7 +107,7 @@ namespace UML_Diagram_drawer
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(1400, 47);
+            this.toolStrip1.Size = new System.Drawing.Size(1145, 47);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.toolStrip1_MouseDown);
@@ -373,18 +376,24 @@ namespace UML_Diagram_drawer
             // 
             // pictureBoxMain
             // 
+            this.pictureBoxMain.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pictureBoxMain.BackColor = System.Drawing.Color.White;
-            this.pictureBoxMain.Location = new System.Drawing.Point(0, 2);
+            this.pictureBoxMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxMain.Location = new System.Drawing.Point(-31, -16);
             this.pictureBoxMain.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxMain.Name = "pictureBoxMain";
             this.pictureBoxMain.Size = new System.Drawing.Size(1400, 671);
+            this.pictureBoxMain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxMain.TabIndex = 0;
             this.pictureBoxMain.TabStop = false;
+            this.pictureBoxMain.Click += new System.EventHandler(this.pictureBoxMain_Click);
             this.pictureBoxMain.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBoxMain_Paint);
+            this.pictureBoxMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxMain_MouseClick);
+            this.pictureBoxMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBoxMain_MouseMove);
             // 
             // button_AddForm
             // 
-            this.button_AddForm.Location = new System.Drawing.Point(0, 211);
+            this.button_AddForm.Location = new System.Drawing.Point(27, 161);
             this.button_AddForm.Name = "button_AddForm";
             this.button_AddForm.Size = new System.Drawing.Size(75, 23);
             this.button_AddForm.TabIndex = 1;
@@ -393,29 +402,51 @@ namespace UML_Diagram_drawer
             // 
             // button_AddArrow
             // 
-            this.button_AddArrow.Location = new System.Drawing.Point(0, 240);
+            this.button_AddArrow.Location = new System.Drawing.Point(27, 190);
             this.button_AddArrow.Name = "button_AddArrow";
             this.button_AddArrow.Size = new System.Drawing.Size(75, 23);
             this.button_AddArrow.TabIndex = 2;
             this.button_AddArrow.Text = "Add Arrow";
             this.button_AddArrow.UseVisualStyleBackColor = true;
             // 
+            // hScrollBar1
+            // 
+            this.hScrollBar1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.hScrollBar1.Location = new System.Drawing.Point(-128, 412);
+            this.hScrollBar1.Name = "hScrollBar1";
+            this.hScrollBar1.Size = new System.Drawing.Size(1383, 10);
+            this.hScrollBar1.TabIndex = 4;
+            // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.pictureBoxMain);
+            this.panel1.Controls.Add(this.button_AddArrow);
+            this.panel1.Controls.Add(this.button_AddForm);
+            this.panel1.Location = new System.Drawing.Point(489, 148);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(469, 98);
+            this.panel1.TabIndex = 5;
+            this.panel1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.panel1_Scroll);
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1400, 673);
+            this.ClientSize = new System.Drawing.Size(1145, 429);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.hScrollBar1);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.button_AddArrow);
-            this.Controls.Add(this.button_AddForm);
-            this.Controls.Add(this.pictureBoxMain);
             this.Name = "FormMain";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -455,6 +486,8 @@ namespace UML_Diagram_drawer
         private System.Windows.Forms.PictureBox pictureBoxMain;
         private System.Windows.Forms.Button button_AddForm;
         private System.Windows.Forms.Button button_AddArrow;
+        private System.Windows.Forms.HScrollBar hScrollBar1;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
