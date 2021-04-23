@@ -6,36 +6,67 @@ namespace UML_Diagram_drawer.Arrows
 {
     public abstract class AbstactArrow : ISelectable
     {
-        const int indentFromBorder = 50;
+        protected const int indentFromBorder = 50;
+        protected Rectangle[] _rectangles;
+        protected Point[] _points;
         protected int _sizeArrowhead;
+        protected bool _isHorizontal;
+        protected Pen _pen;
 
-        public bool IsHorizontal { get; set; }
+        public Color Color
+        {
+            get
+            {
+                if (_pen != null)
+                {
+                    return _pen.Color;
+                }
 
-        protected Pen Pen { get; set; }
+                throw new ArgumentNullException("Pen is null");
+            }
+            set
+            {
+                if (_pen != null)
+                {
+                    _pen.Color = value;
+                }
+                else
+                {
+                    throw new ArgumentNullException("Pen is null");
+                }
+            }
+        }
+        public float WidthLine
+        {
+            get
+            {
+                if (_pen != null)
+                {
+                    return _pen.Width;
+                }
+
+                throw new ArgumentNullException("Pen is null");
+            }
+            set
+            {
+                if (_pen != null)
+                {
+                    _pen.Width = value;
+                }
+                else
+                {
+                    throw new ArgumentNullException("Pen is null");
+                }
+            }
+        }
         public ContactPoint StartPoint { get; set; }
         public ContactPoint EndPoint { get; set; }
         public bool IsSelected { get; set; }
-        public bool IsMove { get; set; }
-        public Point StartMovePoint { get; set; }
-        public Rectangle[] Rectangles { get; set; }
-        public Point[] Points { get; set; }
 
         public AbstactArrow()
         {
-
-        }
-        public AbstactArrow(Pen pen, Point startPoint, Point endPoint)
-        {
-            Pen = pen;
-            _sizeArrowhead = (int)Pen.Width * 3;
-
-            StartPoint = new ContactPoint(startPoint);
-            EndPoint = new ContactPoint(endPoint);
-        }
-        public AbstactArrow(Pen pen)
-        {
-            Pen = pen;
-            _sizeArrowhead = (int)Pen.Width * 3;
+            _pen = Default.Draw.Pen;
+            _sizeArrowhead = (int)_pen.Width * 3;
 
             StartPoint = new ContactPoint(Point.Empty);
             EndPoint = new ContactPoint(Point.Empty);
@@ -43,31 +74,82 @@ namespace UML_Diagram_drawer.Arrows
 
         public abstract void Draw();
 
-        public void DrawStraightBrokenLine()
+        protected void DrawStraightBrokenLine()
         {
-            Points = ArrowsLineDrawingLogic.GetPoints(StartPoint, EndPoint);
-            MainGraphics.Graphics.DrawLines(Pen, Points);
-        }
-
-        public void CreateSelectionBorders()
-        {
-            throw new NotImplementedException();
+            _points = ArrowsLineDrawingLogic.GetPoints(StartPoint, EndPoint);
+            CreateSelectionBorders();
+            MainGraphics.Graphics.DrawLines(_pen, _points);
         }
 
         public void Move(int deltaX, int deltaY)
         {
-            throw new NotImplementedException();
         }
 
         public bool Select(Point point)
         {
-            //throw new NotImplementedException();
-            return false;
+            bool result = false;
+            foreach (Rectangle rectangle in _rectangles)
+            {
+                if (rectangle.Contains(point))
+                {
+                    result = true;
+                    IsSelected = true;
+                }
+            }
+
+            return result;
+        }
+
+        public void Select()
+        {
+            if (IsSelected)
+            {
+                _pen = Default.Draw.PenSelect;
+            }
         }
 
         public void RemoveSelect()
         {
-            throw new NotImplementedException();
+            if (IsSelected)
+            {
+                IsSelected = false;
+                _pen = Default.Draw.Pen;
+            }
+        }
+
+        private void CreateSelectionBorders()
+        {
+            if (_points.Length > 0)
+            {
+                _rectangles = new Rectangle[_points.Length - 1];
+                for (int i = 0; i < _rectangles.Length; i++)
+                {
+                    if (_points[i].X < _points[i + 1].X)
+                    {
+                        int width = _points[i + 1].X - _points[i].X;
+                        int height = _sizeArrowhead;
+                        _rectangles[i] = new Rectangle(_points[i].X, _points[i].Y - _sizeArrowhead / 2, width, height);
+                    }
+                    else if (_points[i].X > _points[i + 1].X)
+                    {
+                        int width = (_points[i + 1].X - _points[i].X) * (-1);
+                        int height = _sizeArrowhead;
+                        _rectangles[i] = new Rectangle(_points[i + 1].X, _points[i].Y - _sizeArrowhead / 2, width, height);
+                    }
+                    else if (_points[i].Y < _points[i + 1].Y)
+                    {
+                        int width = _sizeArrowhead;
+                        int height = (_points[i + 1].Y - _points[i].Y);
+                        _rectangles[i] = new Rectangle(_points[i].X - _sizeArrowhead / 2, _points[i].Y, width, height);
+                    }
+                    else if (_points[i].Y > _points[i + 1].Y)
+                    {
+                        int width = _sizeArrowhead;
+                        int height = (_points[i + 1].Y - _points[i].Y) * (-1);
+                        _rectangles[i] = new Rectangle(_points[i].X - _sizeArrowhead / 2, _points[i + 1].Y, width, height);
+                    }
+                }
+            }
         }
     }
 }

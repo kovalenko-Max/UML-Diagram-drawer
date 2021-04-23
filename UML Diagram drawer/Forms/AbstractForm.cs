@@ -140,12 +140,15 @@ namespace UML_Diagram_drawer.Forms
             MainGraphics.Graphics.FillRectangle(Brush, _rectangle);
             DrawModules();
             SetContactPoint();
+            if (IsSelected)
+            {
+                DrawSelectRectangle();
+            }
         }
 
         public void Move(int deltaX, int deltaY)
         {
-            //Location = new Point(Location.X + deltaX, Location.Y + deltaY);
-            Location = new Point(deltaX, deltaY);
+            Location = new Point(Location.X + deltaX, Location.Y + deltaY);
         }
 
         public void RemoveSelect()
@@ -153,13 +156,6 @@ namespace UML_Diagram_drawer.Forms
             if (!IsSelected)
             {
                 IsSelected = false;
-                _pen = Default.Draw.Pen;
-
-                foreach (AbstactModule module in _modules)
-                {
-                    module.Color = Color;
-                    module.WidthLine = WidthLine;
-                }
             }
         }
 
@@ -167,14 +163,6 @@ namespace UML_Diagram_drawer.Forms
         {
             if (!IsSelected && _rectangle.Contains(point))
             {
-                _pen = Default.Draw.PenSelect;
-
-                foreach (AbstactModule module in _modules)
-                {
-                    module.Color = Color;
-                    module.WidthLine = WidthLine;
-                }
-
                 IsSelected = true;
             }
             return IsSelected;
@@ -308,6 +296,14 @@ namespace UML_Diagram_drawer.Forms
             {
                 module.SetWidth(maxWidth);
             }
+        }
+
+        private void DrawSelectRectangle()
+        {
+            Rectangle selectRectangle = new Rectangle();
+            selectRectangle.Size = new Size(Size.Width + 20, Size.Height + 20);
+            selectRectangle.Location = new Point(Location.X - 20, Location.Y - 20);
+            MainGraphics.Graphics.DrawRectangle(Default.Draw.PenSelect, selectRectangle);
         }
 
         protected TextField SelectTextField(Point point)

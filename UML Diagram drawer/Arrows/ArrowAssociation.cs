@@ -5,16 +5,6 @@ namespace UML_Diagram_drawer.Arrows
 {
     class ArrowAssociation : AbstactArrow
     {
-        public ArrowAssociation() : base()
-        {
-        }
-        public ArrowAssociation(Pen pen) : base(pen)
-        {
-        }
-        public ArrowAssociation(Pen pen, Point startPoint, Point endPoint) : base(pen, startPoint, endPoint)
-        {
-        }
-
         public override void Draw()
         {
             if (!StartPoint.Location.IsEmpty && !EndPoint.Location.IsEmpty)
@@ -30,9 +20,9 @@ namespace UML_Diagram_drawer.Arrows
 
             if (!StartPoint.Location.IsEmpty && !EndPoint.Location.IsEmpty)
             {
-                if (Points[Points.Length - 2].Y == EndPoint.Location.Y)
+                if (_points[_points.Length - 2].Y == EndPoint.Location.Y)
                 {
-                    if (Points[Points.Length - 2].X < EndPoint.Location.X)
+                    if (_points[_points.Length - 2].X < EndPoint.Location.X)
                     {
                         arrowHeadPoints[0] = new Point(EndPoint.Location.X - _sizeArrowhead, EndPoint.Location.Y + _sizeArrowhead);
                         arrowHeadPoints[1] = EndPoint.Location;
@@ -47,7 +37,7 @@ namespace UML_Diagram_drawer.Arrows
                 }
                 else
                 {
-                    if (Points[Points.Length - 2].Y < EndPoint.Location.Y)
+                    if (_points[_points.Length - 2].Y < EndPoint.Location.Y)
                     {
                         arrowHeadPoints[0] = new Point(EndPoint.Location.X + _sizeArrowhead, EndPoint.Location.Y - _sizeArrowhead);
                         arrowHeadPoints[1] = EndPoint.Location;
@@ -63,7 +53,7 @@ namespace UML_Diagram_drawer.Arrows
             }
             
 
-            MainGraphics.Graphics.DrawLines(Pen, arrowHeadPoints);
+            MainGraphics.Graphics.DrawLines(_pen, arrowHeadPoints);
         }
     }
 }

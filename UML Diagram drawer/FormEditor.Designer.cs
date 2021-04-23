@@ -65,7 +65,7 @@ namespace UML_Diagram_drawer
             this.trackBarLineThickness.Minimum = 1;
             this.trackBarLineThickness.MinimumSize = new System.Drawing.Size(100, 50);
             this.trackBarLineThickness.Name = "trackBarLineThickness";
-            this.trackBarLineThickness.Size = new System.Drawing.Size(235, 50);
+            this.trackBarLineThickness.Size = new System.Drawing.Size(235, 45);
             this.trackBarLineThickness.TabIndex = 1;
             this.trackBarLineThickness.Value = 1;
             this.trackBarLineThickness.Scroll += new System.EventHandler(this.trackBarLineThickness_Scroll);

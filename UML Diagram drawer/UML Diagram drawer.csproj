@@ -92,8 +92,9 @@
     <Compile Include="Arrows\ArrowAggregation.cs" />
     <Compile Include="Arrows\ArrowAssociation.cs" />
     <Compile Include="Arrows\ArrowsLineDrawingLogic.cs" />
-    <Compile Include="Arrows\ArrowType.cs" />
+    <Compile Include="IClonable.cs" />
     <Compile Include="MainData.cs" />
+    <Compile Include="MouseHandlers\SelectFormMouseHandler.cs" />
     <Compile Include="MouseHandlers\DrawFromMouseHandler.cs" />
     <Compile Include="MouseHandlers\DrawArrowMouseHandler.cs" />
     <Compile Include="MouseHandlers\IMouseHandler.cs" />
@@ -121,7 +122,6 @@
     <Compile Include="Forms\Modules\ModuleType.cs" />
     <Compile Include="Forms\Modules\TitleModule.cs" />
     <Compile Include="Forms\TextField.cs" />
-    <Compile Include="ICopied.cS" />
     <Compile Include="MainGraphics.cs" />
     <Compile Include="TypeOfLineDirection.cs" />
     <Compile Include="ISelectable.cs" />

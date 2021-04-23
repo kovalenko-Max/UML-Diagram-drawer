@@ -13,13 +13,8 @@ namespace UML_Diagram_drawer
 {
     public partial class FormMain : Form
     {
-        //private ContactPoint _currntCountactPoint;
-
         private IFormsFactory _formFactory;
-        //
         private MainData _mainData;
-        //
-        private AbstractForm _buffer;
 
         public Pen pen = new Pen(Brushes.Black, 3);
 
@@ -27,6 +22,61 @@ namespace UML_Diagram_drawer
         {
             InitializeComponent();
         }
+
+        #region Json
+        public string JsonSerialize(TypeOfData type)
+        {
+            if (type == TypeOfData.Forms)
+            {
+                string fileDataForms = JsonConvert.SerializeObject(_mainData.FormsList, Formatting.Indented,
+                    new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All
+                    });
+                return fileDataForms;
+            }
+            else if (type == TypeOfData.Arrows)
+            {
+                string fileDataArrows = JsonConvert.SerializeObject(_mainData.ArrowsList, Formatting.Indented,
+                    new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All
+                    });
+                return fileDataArrows;
+            }
+            throw new Exception();
+        }
+
+        public void JsonDeserialize(string[] fileData)
+        {
+            if (fileData[0] != String.Empty)
+            {
+                _mainData.FormsList = JsonConvert.DeserializeObject<List<AbstractForm>>(fileData[0],
+                    new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All
+                    });
+            }
+            else
+            {
+                _mainData.FormsList = new List<AbstractForm>();
+            }
+
+            if (fileData[1] != null)
+            {
+
+                _mainData.ArrowsList = JsonConvert.DeserializeObject<List<AbstactArrow>>(fileData[1],
+                    new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All
+                    });
+            }
+            else
+            {
+                _mainData.ArrowsList = new List<AbstactArrow>();
+            }
+        }
+        #endregion
 
         private void FormMain_Load(object sender, EventArgs e)
         {
@@ -38,32 +88,18 @@ namespace UML_Diagram_drawer
         }
 
         #region Tool Strip
-        private void toolStripButton12_Click(object sender, EventArgs e)
-        {
-            colorDialog1.ShowDialog();
 
-            if (colorDialog1.Color == Color.Black)
-            {
-                toolStripButton12.ForeColor = Color.White;
-            }
-            else
-            {
-                toolStripButton12.ForeColor = Color.Black;
-            }
-
-            toolStripButton12.BackColor = colorDialog1.Color;
-        }
-
+        #region CreateArrows
         private void toolStripButtonArrowSuccession_Click(object sender, EventArgs e)
         {
-            _mainData.CurrentArrow = new ArrowSuccession(pen);
+            _mainData.CurrentArrow = new ArrowSuccession();
             _mainData.ArrowsList.Add(_mainData.CurrentArrow);
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
         private void toolStripButtonArrowRealization_Click(object sender, EventArgs e)
         {
-            _mainData.CurrentArrow = new ArrowRealization(pen);
+            _mainData.CurrentArrow = new ArrowRealization();
             _mainData.ArrowsList.Add(_mainData.CurrentArrow);
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
@@ -88,15 +124,15 @@ namespace UML_Diagram_drawer
 
         }
 
-        //Arrows!!!!!!!!!!!!!!!!!!!!!!!!!!!
         private void toolStripButtonArrowAssociation_Click(object sender, EventArgs e)
         {
-            _mainData.CurrentArrow = new ArrowAssociation(pen);
+            _mainData.CurrentArrow = new ArrowAssociation();
             _mainData.ArrowsList.Add(_mainData.CurrentArrow);
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
+        #endregion
 
-        //done
+        #region CreateForm
         private void toolStripButtonCreateClassForm_Click(object sender, EventArgs e)
         {
             _formFactory = new ClassFormFactory();
@@ -104,6 +140,53 @@ namespace UML_Diagram_drawer
             _mainData.FormsList.Add(_mainData.CurrentFormUML);
             _mainData.IMouseHandler = new DrawFromMouseHandler();
         }
+        #endregion
+
+
+        private void toolStripButtonEditObject_Click(object sender, EventArgs e)
+        {
+            FormEditor form = new FormEditor(_mainData.CurrentFormUML, pictureBoxMain);
+            form.Show();
+        }
+        
+        private void toolStripButtonSaveFile_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string fileDataForms = JsonSerialize(TypeOfData.Forms);
+                string fileDataArrows = JsonSerialize(TypeOfData.Arrows);
+                SaveAndLoad.SaveFile(saveFileDialog1.FileName, fileDataForms, fileDataArrows);
+            }
+        }
+
+        private void toolStripButtonOpenFile_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Переустановить виндовс?", "Во халепа", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string[] fileData = SaveAndLoad.OpenFile(openFileDialog1.FileName, TypeOfData.Forms);
+                JsonDeserialize(fileData);
+            }
+        }
+
+        #region CopyPaste
+        private void toolStripButtonCopy_Click(object sender, EventArgs e)
+        {
+            copyToStackButton_Click(sender, e);
+        }
+
+        private void toolStripButtonPaste_Click(object sender, EventArgs e)
+        {
+            pictureBoxMain.MouseDown += PasteObject_MouseDown;
+        }
+
+        private void toolStripButtonCut_Click(object sender, EventArgs e)
+        {
+            pictureBoxMain.MouseDown += EditObject_MouseDown;
+        }
+
+        #endregion
+
         #endregion
 
         //private void MouseClick_SelectObject(object sender, MouseEventArgs e)
@@ -229,79 +312,33 @@ namespace UML_Diagram_drawer
         //    pictureBoxMain.Invalidate();
         //}
 
-        private void PictureBoxMain_Paint(object sender, PaintEventArgs e)
-        {
-            MainGraphics.Graphics = e.Graphics;
-
-            foreach (var arrow in _mainData.ArrowsList)
-            {
-                arrow.Draw();
-            }
-
-            foreach (AbstractForm form in _mainData.FormsList)
-            {
-                form.Draw();
-            }
-        }
-        private AbstactArrow CreateArrow()
-        {
-            return new ArrowSuccession(pen);
-        }
-
 
         private void copyToStackButton_Click(object sender, EventArgs e)
         {
-            _buffer = null;
-            //foreach (var arrow in ArrowsList)
-            //{
-            //    if (arrow.IsSelected)
-            //    {
-            //        _buffer.Add(arrow);
-            //    }
-            //}
+            _mainData.FormInBuffer = null;
 
             foreach (AbstractForm form in _mainData.FormsList)
             {
                 if (form.IsSelected)
                 {
-                    _buffer = new UML_Diagram_drawer.Forms.Form(form);
+                    _mainData.FormInBuffer = new UML_Diagram_drawer.Forms.Form(form);
                 }
             }
-        }
-
-        private void copyToolStripButton_Click(object sender, EventArgs e)
-        {
-            copyToStackButton_Click(sender, e);
-        }
-
-        private void pasteToolStripButton_Click(object sender, EventArgs e)
-        {
-            pictureBoxMain.MouseDown += PasteObject_MouseDown;
         }
 
         private void PasteObject_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                if (_buffer != null)
+                if (_mainData.FormInBuffer != null)
                 {
-                    _buffer.Location = e.Location;
-                    _mainData.FormsList.Add(_buffer);
-                    _buffer = null;
+                    _mainData.FormInBuffer.Location = e.Location;
+                    _mainData.FormsList.Add(_mainData.FormInBuffer);
+                    _mainData.FormInBuffer = null;
                 }
             }
             pictureBoxMain.MouseDown -= PasteObject_MouseDown;
             pictureBoxMain.Invalidate();
-        }
-
-        private void toolStrip1_MouseDown(object sender, MouseEventArgs e)
-        {
-
-        }
-
-        private void cutToolStripButton_Click(object sender, EventArgs e)
-        {
-            pictureBoxMain.MouseDown += EditObject_MouseDown;
         }
 
         private void EditObject_MouseDown(object sender, MouseEventArgs e)
@@ -310,97 +347,15 @@ namespace UML_Diagram_drawer
             {
                 if (_mainData.CurrentFormUML != null)
                 {
-                    _buffer = new UML_Diagram_drawer.Forms.Form(_mainData.CurrentFormUML);
+                    _mainData.FormInBuffer = new UML_Diagram_drawer.Forms.Form(_mainData.CurrentFormUML);
                     _mainData.FormsList.Remove(_mainData.CurrentFormUML);
                 }
             }
             pictureBoxMain.Invalidate();
         }
 
-        private void toolStripButtonSaveFile_Click(object sender, EventArgs e)
-        {
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                string fileDataForms = JsonSerialize(TypeOfData.Forms);
-                string fileDataArrows = JsonSerialize(TypeOfData.Arrows);
-                SaveAndLoad.SaveFile(saveFileDialog1.FileName, fileDataForms, fileDataArrows);
-            }
-        }
-
-        private void toolStripButtonOpenFile_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Переустановить виндовс?", "Во халепа", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                string[] fileData = SaveAndLoad.OpenFile(openFileDialog1.FileName, TypeOfData.Forms);
-                JsonDeserialize(fileData);
-            }
-        }
-
-        public string JsonSerialize(TypeOfData type)
-        {
-            if (type == TypeOfData.Forms)
-            {
-                string fileDataForms = JsonConvert.SerializeObject(_mainData.FormsList, Formatting.Indented,
-                    new JsonSerializerSettings
-                    {
-                        TypeNameHandling = TypeNameHandling.All
-                    });
-                return fileDataForms;
-            }
-            else if (type == TypeOfData.Arrows)
-            {
-                string fileDataArrows = JsonConvert.SerializeObject(_mainData.ArrowsList, Formatting.Indented,
-                    new JsonSerializerSettings
-                    {
-                        TypeNameHandling = TypeNameHandling.All
-                    });
-                return fileDataArrows;
-            }
-            throw new Exception();
-        }
-
-        public void JsonDeserialize(string[] fileData)
-        {
-            if (fileData[0] != String.Empty)
-            {
-                _mainData.FormsList = JsonConvert.DeserializeObject<List<AbstractForm>>(fileData[0],
-                    new JsonSerializerSettings
-                    {
-                        TypeNameHandling = TypeNameHandling.All
-                    });
-            }
-            else
-            {
-                _mainData.FormsList = new List<AbstractForm>();
-            }
-
-            if (fileData[1] != null)
-            {
-
-                _mainData.ArrowsList = JsonConvert.DeserializeObject<List<AbstactArrow>>(fileData[1],
-                    new JsonSerializerSettings
-                    {
-                        TypeNameHandling = TypeNameHandling.All
-                    });
-            }
-            else
-            {
-                _mainData.ArrowsList = new List<AbstactArrow>();
-            }
-        }
-
-        private void toolStripButton11_Click(object sender, EventArgs e)
-        {
-            FormEditor form = new FormEditor(_mainData.CurrentFormUML, pictureBoxMain);
-            form.Show();
-        }
-
-        private void toolStripButton10_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
+        #region PictureBoxEvent
         private void pictureBoxMain_MouseClick(object sender, MouseEventArgs e)
         {
             if (_mainData.IMouseHandler != null)
@@ -432,5 +387,24 @@ namespace UML_Diagram_drawer
                 _mainData.IMouseHandler.MouseMove(sender, e);
             }
         }
+
+        private void PictureBoxMain_Paint(object sender, PaintEventArgs e)
+        {
+            MainGraphics.Graphics = e.Graphics;
+
+            foreach (var arrow in _mainData.ArrowsList)
+            {
+                arrow.Draw();
+            }
+
+            foreach (AbstractForm form in _mainData.FormsList)
+            {
+                form.Draw();
+            }
+        }
+
+        #endregion
+
+        
     }
 }

@@ -61,9 +61,6 @@ namespace UML_Diagram_drawer.Arrows
                     }
                 }
             }
-
-            //////_____________________________________________________________________
-
             else if (StartPoint.Side == Side.Left)
             {
                 if (EndPoint.Location.X <= StartPoint.Location.X - indentFromBorder)
@@ -105,12 +102,10 @@ namespace UML_Diagram_drawer.Arrows
                     }
                 }
             }
-
-            //////__________________________________________________________________________
             else if (StartPoint.Side == Side.Bottom)
             {
                 if (EndPoint.Location.Y <= StartPoint.Location.Y + indentFromBorder)
-                {//Upper
+                {
                     if (EndPoint.Side == Side.Right)
                     {
                         typeOfLineDirection = TypeOfLineDirection.FivePointsFromButtonToRight;
@@ -146,11 +141,6 @@ namespace UML_Diagram_drawer.Arrows
             }
             else if (StartPoint.Side == Side.Up)
             {
-                //if (EndPoint.Location == Point.Empty)
-                //{
-                //    EndPoint.Side = Side.Bottom;
-                //}
-
                 if (EndPoint.Location.Y >= StartPoint.Location.Y - indentFromBorder)
                 {
                     typeOfLineDirection = TypeOfLineDirection.FivePointsFromUpToFlankLine;
@@ -400,8 +390,6 @@ namespace UML_Diagram_drawer.Arrows
                     Points[2] = new Point(x, EndPoint.Location.Y);
                     Points[3] = EndPoint.Location;
                     break;
-
-
 
                 case TypeOfLineDirection.FourPointsFromRightToRightWithArounding:
                     Points = new Point[4];

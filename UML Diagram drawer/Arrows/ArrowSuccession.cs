@@ -5,18 +5,6 @@ namespace UML_Diagram_drawer.Arrows
 {
     class ArrowSuccession : AbstactArrow
     {
-        public ArrowSuccession()
-        {
-
-        }
-        public ArrowSuccession(Pen pen) : base(pen)
-        {
-        }
-
-        public ArrowSuccession(Pen pen, Point startPoint, Point endPoint) : base(pen, startPoint, endPoint)
-        {
-        }
-
         public override void Draw()
         {
             if (!StartPoint.Location.IsEmpty && !EndPoint.Location.IsEmpty)
@@ -33,9 +21,9 @@ namespace UML_Diagram_drawer.Arrows
             if (!StartPoint.Location.IsEmpty && !EndPoint.Location.IsEmpty)
             {
                 Point eraseEndPoint;
-                if (Points[Points.Length - 2].Y == EndPoint.Location.Y)
+                if (_points[_points.Length - 2].Y == EndPoint.Location.Y)
                 {
-                    if (Points[Points.Length - 2].X < EndPoint.Location.X)
+                    if (_points[_points.Length - 2].X < EndPoint.Location.X)
                     {
                         eraseEndPoint = new Point(EndPoint.Location.X - _sizeArrowhead, EndPoint.Location.Y);
                         arrowHeadPoints[0] = EndPoint.Location;
@@ -52,7 +40,7 @@ namespace UML_Diagram_drawer.Arrows
                 }
                 else
                 {
-                    if (Points[Points.Length - 2].Y < EndPoint.Location.Y)
+                    if (_points[_points.Length - 2].Y < EndPoint.Location.Y)
                     {
                         eraseEndPoint = new Point(EndPoint.Location.X, EndPoint.Location.Y - _sizeArrowhead);
                         arrowHeadPoints[0] = EndPoint.Location;
@@ -70,7 +58,7 @@ namespace UML_Diagram_drawer.Arrows
 
                 Pen erasePen = new Pen(MainData.GetMainData().PictureBoxMain.BackColor, _sizeArrowhead);
                 MainGraphics.Graphics.DrawLine(erasePen, EndPoint.Location, eraseEndPoint);
-                MainGraphics.Graphics.DrawPolygon(Pen, arrowHeadPoints);
+                MainGraphics.Graphics.DrawPolygon(_pen, arrowHeadPoints);
             }
         }
     }
