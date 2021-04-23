@@ -15,6 +15,7 @@ namespace UML_Diagram_drawer
     public static class SaveAndLoad
     {
         private static string _splitter = "123ImSplitter!PleaseDontTouchMe!321";
+
         public static void SaveFile(string path, string fileDataFroms, string fileDataArrows)
         {            
             using (StreamWriter saveSW = new StreamWriter(path, false))
@@ -23,7 +24,7 @@ namespace UML_Diagram_drawer
             }
         }
 
-        public static string[] OpenFile(string path, TypeOfData type)
+        public static string[] OpenFile(string path)
         {
             string[] fileData = new string[] { String.Empty };
             using (StreamReader openSR = new StreamReader(path))

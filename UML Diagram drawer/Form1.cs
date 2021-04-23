@@ -337,7 +337,7 @@ namespace UML_Diagram_drawer
             MessageBox.Show("Переустановить виндовс?", "Во халепа", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                string[] fileData = SaveAndLoad.OpenFile(openFileDialog1.FileName, TypeOfData.Forms);
+                string[] fileData = SaveAndLoad.OpenFile(openFileDialog1.FileName);
                 JsonDeserialize(fileData);
             }
         }
@@ -404,6 +404,16 @@ namespace UML_Diagram_drawer
         private void toolStripButton10_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripButtonSaveImageFile_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog2.ShowDialog() == DialogResult.OK)
+            {
+                Bitmap bmp = new Bitmap(pictureBoxMain.Width, pictureBoxMain.Height);
+                pictureBoxMain.DrawToBitmap(bmp, new Rectangle(0, 0, pictureBoxMain.Width, pictureBoxMain.Height));
+                bmp.Save(saveFileDialog2.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+            }
         }
     }
 }
