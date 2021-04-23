@@ -7,24 +7,27 @@ using UML_Diagram_drawer.Forms;
 using UML_Diagram_drawer.Arrows;
 using Form = System.Windows.Forms.Form;
 using UML_Diagram_drawer.Factory;
+using UML_Diagram_drawer.MouseHandlers;
 
 namespace UML_Diagram_drawer
 {
     public partial class FormMain : Form
     {
         private ContactPoint _currntCountactPoint;
-        private AbstactArrow _arrow;
-        private AbstractForm _formUML;
+        //private AbstactArrow _arrow;
         private IFormsFactory _formFactory;
-
+        //
+        //private IMouseHandler _iMouseHandler;
+        private MainData _mainData;
+        //
         private AbstractForm _buffer;
 
 
-        public List<AbstractForm> FormsList;
-        public AbstractForm CurrentForm;
+        //public List<AbstractForm> FormsList;
+        //public AbstractForm CurrentForm;
 
-        public List<AbstactArrow> ArrowsList;
-        public AbstactArrow CurrentArrow;
+        //public List<AbstactArrow> ArrowsList;
+        //public AbstactArrow CurrentArrow;
 
         public Pen pen = new Pen(Brushes.Black, 3);
 
@@ -35,9 +38,11 @@ namespace UML_Diagram_drawer
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            ArrowsList = new List<AbstactArrow>();
-            FormsList = new List<AbstractForm>();
             _formFactory = Default.Factory.Form;
+            _mainData = MainData.GetMainData();
+            _mainData.PictureBoxMain = pictureBoxMain;
+            _mainData.FormsList = new List<AbstractForm>();
+            _mainData.ArrowsList = new List<AbstactArrow>();
         }
 
         #region Tool Strip
@@ -87,125 +92,119 @@ namespace UML_Diagram_drawer
 
         }
 
+        //Arrows!!!!!!!!!!!!!!!!!!!!!!!!!!!
         private void toolStripButtonArrowAssociation_Click(object sender, EventArgs e)
         {
-            pictureBoxMain.MouseDown += MouseDown_DrawArrow;
-            _arrow = CreateArrow();
-            ArrowsList.Add(_arrow);
+            _mainData.CurrentArrow = new ArrowAssociation(pen);
+            _mainData.ArrowsList.Add(_mainData.CurrentArrow);
+            _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
+        //done
         private void toolStripButtonCreateClassForm_Click(object sender, EventArgs e)
         {
             _formFactory = new ClassFormFactory();
-            _formUML = _formFactory.GetForm();
-            FormsList.Add(_formUML);
-            pictureBoxMain.MouseClick += MouseClick_DrawFormUML;
+            _mainData.CurrentFormUML = _formFactory.GetForm();
+            _mainData.FormsList.Add(_mainData.CurrentFormUML);
+            _mainData.IMouseHandler = new DrawFromMouseHandler();
         }
         #endregion
 
-        private void MouseClick_DrawFormUML(object sender, MouseEventArgs e)
-        {
-            _formUML.Location = e.Location;
-            pictureBoxMain.MouseClick -= MouseClick_DrawFormUML;
-            pictureBoxMain.MouseClick += MouseClick_SelectObject;
-            pictureBoxMain.Invalidate();
-        }
+        //private void MouseClick_SelectObject(object sender, MouseEventArgs e)
+        //{
+        //    foreach (AbstactArrow arrow in ArrowsList)
+        //    {
+        //        if (arrow.Select(e.Location))
+        //        {
+        //            _arrow = arrow;
+        //            ArrowsList.Add(_arrow);
+        //            ArrowsList.Remove(_arrow);
+        //            return;
+        //        }
+        //    }
 
-        private void MouseClick_SelectObject(object sender, MouseEventArgs e)
-        {
-            foreach (AbstactArrow arrow in ArrowsList)
-            {
-                if (arrow.Select(e.Location))
-                {
-                    _arrow = arrow;
-                    ArrowsList.Add(_arrow);
-                    ArrowsList.Remove(_arrow);
-                    return;
-                }
-            }
+        //    foreach (AbstractForm form in _mainData.FormsList)
+        //    {
+        //        if (form.Contains(e.Location))
+        //        {
+        //            _mainData.CurrentFormUML = form;
+        //            _mainData.CurrentFormUML.Select(e.Location);
+        //            _mainData.FormsList.Add(_mainData.CurrentFormUML);
+        //            _mainData.FormsList.Remove(_mainData.CurrentFormUML);
+        //            return;
+        //        }
+        //    }
+        //    pictureBoxMain.Invalidate();
+        //}
 
-            foreach (AbstractForm form in FormsList)
-            {
-                if (form.Contains(e.Location))
-                {
-                    _formUML = form;
-                    _formUML.Select(e.Location);
-                    FormsList.Add(_formUML);
-                    FormsList.Remove(_formUML);
-                    return;
-                }
-            }
-            pictureBoxMain.Invalidate();
-        }
+        //private void MouseDown_DrawArrow(object sender, MouseEventArgs e)
+        //{
+        //    foreach (var form in _mainData.FormsList)
+        //    {
+        //        foreach (var contactPoint in form.ContactPoints)
+        //        {
+        //            if (contactPoint.Contains(e.Location))
+        //            {
+        //                _currntCountactPoint = form.ConnectArrow(e.Location);
+        //            }
+        //        }
+        //    }
 
-        private void MouseDown_DrawArrow(object sender, MouseEventArgs e)
-        {
-            foreach (var form in FormsList)
-            {
-                foreach (var contactPoint in form.ContactPoints)
-                {
-                    if (contactPoint.Contains(e.Location))
-                    {
-                        _currntCountactPoint = form.ConnectArrow(e.Location);
-                    }
-                }
-            }
+        //    if (!(_currntCountactPoint is null))
+        //    {
+        //        _arrow.StartPoint = _currntCountactPoint;
+        //        _currntCountactPoint = null;
+        //        pictureBoxMain.MouseMove += MouseMove_DrawArrow;
+        //        pictureBoxMain.MouseUp += MouseUp_DrawArrow;
+        //        pictureBoxMain.Invalidate();
+        //    }
+        //}
 
-            if (!(_currntCountactPoint is null))
-            {
-                _arrow.StartPoint = _currntCountactPoint;
-                _currntCountactPoint = null;
-                pictureBoxMain.MouseMove += MouseMove_DrawArrow;
-                pictureBoxMain.MouseUp += MouseUp_DrawArrow;
-                pictureBoxMain.Invalidate();
-            }
-        }
+        //private void MouseMove_DrawArrow(object sender, MouseEventArgs e)
+        //{
+        //    if (!(_arrow is null))
+        //    {
+        //        _arrow.EndPoint.Location = e.Location;
 
-        private void MouseMove_DrawArrow(object sender, MouseEventArgs e)
-        {
-            if (!(_arrow is null))
-            {
-                _arrow.EndPoint.Location = e.Location;
+        //    }
+        //    pictureBoxMain.Invalidate();
+        //}
 
-            }
-            pictureBoxMain.Invalidate();
-        }
+        //private void MouseUp_DrawArrow(object sender, MouseEventArgs e)
+        //{
+        //    foreach (var form in _mainData.FormsList)
+        //    {
+        //        foreach (var contactPoint in form.ContactPoints)
+        //        {
+        //            if (contactPoint.Contains(e.Location))
+        //            {
+        //                _currntCountactPoint = form.ConnectArrow(e.Location);
+        //            }
+        //        }
+        //    }
 
-        private void MouseUp_DrawArrow(object sender, MouseEventArgs e)
-        {
-            foreach (var form in FormsList)
-            {
-                foreach (var contactPoint in form.ContactPoints)
-                {
-                    if (contactPoint.Contains(e.Location))
-                    {
-                        _currntCountactPoint = form.ConnectArrow(e.Location);
-                    }
-                }
-            }
+        //    if (!(_arrow is null))
+        //    {
+        //        if (!(_currntCountactPoint is null))
+        //        {
+        //            _arrow.EndPoint = _currntCountactPoint;
+        //            _currntCountactPoint = null;
 
-            if (!(_arrow is null))
-            {
-                if (!(_currntCountactPoint is null))
-                {
-                    _arrow.EndPoint = _currntCountactPoint;
-                    _currntCountactPoint = null;
-
-                    pictureBoxMain.MouseDown -= MouseDown_DrawArrow;
-                    pictureBoxMain.MouseMove -= MouseMove_DrawArrow;
-                    pictureBoxMain.MouseUp -= MouseUp_DrawArrow;
-                }
-                else
-                {
-                    ArrowsList.Remove(_arrow);
-                    _arrow = CreateArrow();
-                    ArrowsList.Add(_arrow);
-                    pictureBoxMain.MouseMove -= MouseMove_DrawArrow;
-                    pictureBoxMain.MouseUp -= MouseUp_DrawArrow;
-                }
-                pictureBoxMain.Invalidate();
-            }
-        }
+        //            pictureBoxMain.MouseDown -= MouseDown_DrawArrow;
+        //            pictureBoxMain.MouseMove -= MouseMove_DrawArrow;
+        //            pictureBoxMain.MouseUp -= MouseUp_DrawArrow;
+        //        }
+        //        else
+        //        {
+        //            ArrowsList.Remove(_arrow);
+        //            _arrow = CreateArrow();
+        //            ArrowsList.Add(_arrow);
+        //            pictureBoxMain.MouseMove -= MouseMove_DrawArrow;
+        //            pictureBoxMain.MouseUp -= MouseUp_DrawArrow;
+        //        }
+        //        pictureBoxMain.Invalidate();
+        //    }
+        //}
 
         //private void MouseClick_SelectObject(object sender, MouseEventArgs e)
         //{
@@ -238,12 +237,12 @@ namespace UML_Diagram_drawer
         {
             MainGraphics.Graphics = e.Graphics;
 
-            foreach (var arrow in ArrowsList)
+            foreach (var arrow in _mainData.ArrowsList)
             {
                 arrow.Draw();
             }
 
-            foreach (AbstractForm form in FormsList)
+            foreach (AbstractForm form in _mainData.FormsList)
             {
                 form.Draw();
             }
@@ -265,7 +264,7 @@ namespace UML_Diagram_drawer
             //    }
             //}
 
-            foreach (AbstractForm form in FormsList)
+            foreach (AbstractForm form in _mainData.FormsList)
             {
                 if (form.IsSelected)
                 {
@@ -291,7 +290,7 @@ namespace UML_Diagram_drawer
                 if (_buffer != null)
                 {
                     _buffer.Location = e.Location;
-                    FormsList.Add(_buffer);
+                    _mainData.FormsList.Add(_buffer);
                     _buffer = null;
                 }
             }
@@ -313,10 +312,10 @@ namespace UML_Diagram_drawer
         {
             if (e.Button == MouseButtons.Left)
             {
-                if (_formUML != null)
+                if (_mainData.CurrentFormUML != null)
                 {
-                    _buffer = new UML_Diagram_drawer.Forms.Form(_formUML);
-                    FormsList.Remove(_formUML);
+                    _buffer = new UML_Diagram_drawer.Forms.Form(_mainData.CurrentFormUML);
+                    _mainData.FormsList.Remove(_mainData.CurrentFormUML);
                 }
             }
             pictureBoxMain.Invalidate();
@@ -346,7 +345,7 @@ namespace UML_Diagram_drawer
         {
             if (type == TypeOfData.Forms)
             {
-                string fileDataForms = JsonConvert.SerializeObject(FormsList, Formatting.Indented,
+                string fileDataForms = JsonConvert.SerializeObject(_mainData.FormsList, Formatting.Indented,
                     new JsonSerializerSettings
                     {
                         TypeNameHandling = TypeNameHandling.All
@@ -355,7 +354,7 @@ namespace UML_Diagram_drawer
             }
             else if (type == TypeOfData.Arrows)
             {
-                string fileDataArrows = JsonConvert.SerializeObject(ArrowsList, Formatting.Indented,
+                string fileDataArrows = JsonConvert.SerializeObject(_mainData.ArrowsList, Formatting.Indented,
                     new JsonSerializerSettings
                     {
                         TypeNameHandling = TypeNameHandling.All
@@ -369,7 +368,7 @@ namespace UML_Diagram_drawer
         {
             if (fileData[0] != String.Empty)
             {
-                FormsList = JsonConvert.DeserializeObject<List<AbstractForm>>(fileData[0],
+                _mainData.FormsList = JsonConvert.DeserializeObject<List<AbstractForm>>(fileData[0],
                     new JsonSerializerSettings
                     {
                         TypeNameHandling = TypeNameHandling.All
@@ -377,13 +376,13 @@ namespace UML_Diagram_drawer
             }
             else
             {
-                FormsList = new List<AbstractForm>();
+                _mainData.FormsList = new List<AbstractForm>();
             }
 
             if (fileData[1] != null)
             {
 
-                ArrowsList = JsonConvert.DeserializeObject<List<AbstactArrow>>(fileData[1],
+                _mainData.ArrowsList = JsonConvert.DeserializeObject<List<AbstactArrow>>(fileData[1],
                     new JsonSerializerSettings
                     {
                         TypeNameHandling = TypeNameHandling.All
@@ -391,19 +390,51 @@ namespace UML_Diagram_drawer
             }
             else
             {
-                ArrowsList = new List<AbstactArrow>();
+                _mainData.ArrowsList = new List<AbstactArrow>();
             }
         }
 
         private void toolStripButton11_Click(object sender, EventArgs e)
         {
-            FormEditor form = new FormEditor(_formUML, pictureBoxMain);
+            FormEditor form = new FormEditor(_mainData.CurrentFormUML, pictureBoxMain);
             form.Show();
         }
 
         private void toolStripButton10_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void pictureBoxMain_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (_mainData.IMouseHandler != null)
+            {
+                _mainData.IMouseHandler.MouseClick(sender, e);
+            }
+        }
+
+        private void pictureBoxMain_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (_mainData.IMouseHandler != null)
+            {
+                _mainData.IMouseHandler.MouseDown(sender, e);
+            }
+        }
+
+        private void pictureBoxMain_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (_mainData.IMouseHandler != null)
+            {
+                _mainData.IMouseHandler.MouseUp(sender, e);
+            }
+        }
+
+        private void pictureBoxMain_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (_mainData.IMouseHandler != null)
+            {
+                _mainData.IMouseHandler.MouseMove(sender, e);
+            }
         }
     }
 }

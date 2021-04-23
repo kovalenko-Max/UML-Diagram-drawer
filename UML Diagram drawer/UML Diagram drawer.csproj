@@ -93,6 +93,10 @@
     <Compile Include="Arrows\ArrowAssociation.cs" />
     <Compile Include="Arrows\ArrowsLineDrawingLogic.cs" />
     <Compile Include="Arrows\ArrowType.cs" />
+    <Compile Include="MainData.cs" />
+    <Compile Include="MouseHandlers\DrawFromMouseHandler.cs" />
+    <Compile Include="MouseHandlers\DrawArrowMouseHandler.cs" />
+    <Compile Include="MouseHandlers\IMouseHandler.cs" />
     <Compile Include="TypeOfData.cs" />
     <Compile Include="SaveAndLoad.cs" />
     <Compile Include="Default.cs" />
