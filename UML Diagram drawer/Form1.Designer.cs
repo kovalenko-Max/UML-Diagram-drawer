@@ -37,7 +37,6 @@ namespace UML_Diagram_drawer
             this.toolStripButtonNewFile = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonOpenFile = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSaveFile = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonPrint = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSaveImageFile = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton15 = new System.Windows.Forms.ToolStripButton();
@@ -79,7 +78,6 @@ namespace UML_Diagram_drawer
             this.toolStripButtonNewFile,
             this.toolStripButtonOpenFile,
             this.toolStripButtonSaveFile,
-            this.toolStripButtonPrint,
             this.toolStripButtonSaveImageFile,
             this.toolStripSeparator,
             this.toolStripButton15,
@@ -140,15 +138,8 @@ namespace UML_Diagram_drawer
             this.toolStripButtonSaveFile.Text = "&Save";
             this.toolStripButtonSaveFile.Click += new System.EventHandler(this.toolStripButtonSaveFile_Click);
             // 
-            // toolStripButtonPrint
             // toolStripButtonSaveImageFile
             // 
-            this.toolStripButtonPrint.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonPrint.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonPrint.Image")));
-            this.toolStripButtonPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonPrint.Name = "toolStripButtonPrint";
-            this.toolStripButtonPrint.Size = new System.Drawing.Size(23, 44);
-            this.toolStripButtonPrint.Text = "&Print";
             this.toolStripButtonSaveImageFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButtonSaveImageFile.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSaveImageFile.Image")));
             this.toolStripButtonSaveImageFile.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -456,7 +447,6 @@ namespace UML_Diagram_drawer
         private System.Windows.Forms.ToolStripButton toolStripButtonNewFile;
         private System.Windows.Forms.ToolStripButton toolStripButtonOpenFile;
         private System.Windows.Forms.ToolStripButton toolStripButtonSaveFile;
-        private System.Windows.Forms.ToolStripButton toolStripButtonPrint;
         private System.Windows.Forms.ToolStripButton toolStripButtonSaveImageFile;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
         private System.Windows.Forms.ToolStripButton toolStripButtonCut;

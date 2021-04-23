@@ -76,6 +76,7 @@ namespace UML_Diagram_drawer
                 _mainData.ArrowsList = new List<AbstactArrow>();
             }
         }
+
         #endregion
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -166,8 +167,9 @@ namespace UML_Diagram_drawer
             MessageBox.Show("Переустановить виндовс?", "Во халепа", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                string[] fileData = SaveAndLoad.OpenFile(openFileDialog1.FileName, TypeOfData.Forms);
+                string[] fileData = SaveAndLoad.OpenFile(openFileDialog1.FileName);
                 JsonDeserialize(fileData);
+                _mainData.PictureBoxMain.Invalidate();
             }
         }
 
@@ -190,129 +192,6 @@ namespace UML_Diagram_drawer
         #endregion
 
         #endregion
-
-        //private void MouseClick_SelectObject(object sender, MouseEventArgs e)
-        //{
-        //    foreach (AbstactArrow arrow in ArrowsList)
-        //    {
-        //        if (arrow.Select(e.Location))
-        //        {
-        //            _arrow = arrow;
-        //            ArrowsList.Add(_arrow);
-        //            ArrowsList.Remove(_arrow);
-        //            return;
-        //        }
-        //    }
-
-        //    foreach (AbstractForm form in _mainData.FormsList)
-        //    {
-        //        if (form.Contains(e.Location))
-        //        {
-        //            _mainData.CurrentFormUML = form;
-        //            _mainData.CurrentFormUML.Select(e.Location);
-        //            _mainData.FormsList.Add(_mainData.CurrentFormUML);
-        //            _mainData.FormsList.Remove(_mainData.CurrentFormUML);
-        //            return;
-        //        }
-        //    }
-        //    pictureBoxMain.Invalidate();
-        //}
-
-        //private void MouseDown_DrawArrow(object sender, MouseEventArgs e)
-        //{
-        //    foreach (var form in _mainData.FormsList)
-        //    {
-        //        foreach (var contactPoint in form.ContactPoints)
-        //        {
-        //            if (contactPoint.Contains(e.Location))
-        //            {
-        //                _currntCountactPoint = form.ConnectArrow(e.Location);
-        //            }
-        //        }
-        //    }
-
-        //    if (!(_currntCountactPoint is null))
-        //    {
-        //        _arrow.StartPoint = _currntCountactPoint;
-        //        _currntCountactPoint = null;
-        //        pictureBoxMain.MouseMove += MouseMove_DrawArrow;
-        //        pictureBoxMain.MouseUp += MouseUp_DrawArrow;
-        //        pictureBoxMain.Invalidate();
-        //    }
-        //}
-
-        //private void MouseMove_DrawArrow(object sender, MouseEventArgs e)
-        //{
-        //    if (!(_arrow is null))
-        //    {
-        //        _arrow.EndPoint.Location = e.Location;
-
-        //    }
-        //    pictureBoxMain.Invalidate();
-        //}
-
-        //private void MouseUp_DrawArrow(object sender, MouseEventArgs e)
-        //{
-        //    foreach (var form in _mainData.FormsList)
-        //    {
-        //        foreach (var contactPoint in form.ContactPoints)
-        //        {
-        //            if (contactPoint.Contains(e.Location))
-        //            {
-        //                _currntCountactPoint = form.ConnectArrow(e.Location);
-        //            }
-        //        }
-        //    }
-
-        //    if (!(_arrow is null))
-        //    {
-        //        if (!(_currntCountactPoint is null))
-        //        {
-        //            _arrow.EndPoint = _currntCountactPoint;
-        //            _currntCountactPoint = null;
-
-        //            pictureBoxMain.MouseDown -= MouseDown_DrawArrow;
-        //            pictureBoxMain.MouseMove -= MouseMove_DrawArrow;
-        //            pictureBoxMain.MouseUp -= MouseUp_DrawArrow;
-        //        }
-        //        else
-        //        {
-        //            ArrowsList.Remove(_arrow);
-        //            _arrow = CreateArrow();
-        //            ArrowsList.Add(_arrow);
-        //            pictureBoxMain.MouseMove -= MouseMove_DrawArrow;
-        //            pictureBoxMain.MouseUp -= MouseUp_DrawArrow;
-        //        }
-        //        pictureBoxMain.Invalidate();
-        //    }
-        //}
-
-        //private void MouseClick_SelectObject(object sender, MouseEventArgs e)
-        //{
-        //    //foreach (AbstactArrow arrow in ArrowsList)
-        //    //{
-        //    //    if (arrow.Select(e.Location))
-        //    //    {
-        //    //        _arrow = arrow;
-        //    //        ArrowsList.Add(_arrow);
-        //    //        ArrowsList.Remove(_arrow);
-        //    //        return;
-        //    //    }
-        //    //}
-
-        //    foreach (AbstractForm form in FormsList)
-        //    {
-        //        if (form.Contains(e.Location))
-        //        {
-        //            _formUML = form;
-        //            _formUML.Select(e.Location);
-        //            FormsList.Add(_formUML);
-        //            FormsList.Remove(_formUML);
-        //            return;
-        //        }
-        //    }
-        //    pictureBoxMain.Invalidate();
-        //}
 
         private void copyToStackButton_Click(object sender, EventArgs e)
         {
@@ -352,6 +231,7 @@ namespace UML_Diagram_drawer
                     _mainData.FormsList.Remove(_mainData.CurrentFormUML);
                 }
             }
+
             pictureBoxMain.Invalidate();
         }
 
@@ -410,8 +290,8 @@ namespace UML_Diagram_drawer
         {
             if (saveFileDialog2.ShowDialog() == DialogResult.OK)
             {
-                pictureBoxMain.DrawToBitmap(bmp, new Rectangle(0, 0, pictureBoxMain.Width, pictureBoxMain.Height));
                 Bitmap bmp = new Bitmap(pictureBoxMain.Width, pictureBoxMain.Height);
+                pictureBoxMain.DrawToBitmap(bmp, new Rectangle(0, 0, pictureBoxMain.Width, pictureBoxMain.Height));
                 bmp.Save(saveFileDialog2.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
         }
             }
