@@ -153,7 +153,7 @@ namespace UML_Diagram_drawer.Forms
 
         public void RemoveSelect()
         {
-            if (!IsSelected)
+            if (IsSelected)
             {
                 IsSelected = false;
             }

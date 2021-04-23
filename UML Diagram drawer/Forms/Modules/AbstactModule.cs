@@ -121,6 +121,7 @@ namespace UML_Diagram_drawer.Forms
 
                 TextField tempTextField = new TextField(text)
                 {
+                    Font = Font,
                     StringFormat = StringFormat,
                     Location = new Point(Location.X, Location.Y + addedY)
                 };
@@ -169,6 +170,7 @@ namespace UML_Diagram_drawer.Forms
 
         public void SetFont(Font font)
         {
+            Font = font;
             foreach (TextField text in TextFields)
             {
                 text.Font = font;

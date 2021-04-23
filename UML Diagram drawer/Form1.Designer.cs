@@ -41,6 +41,7 @@ namespace UML_Diagram_drawer
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton15 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton14 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonSelectForm = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonEditObject = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonCut = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonCopy = new System.Windows.Forms.ToolStripButton();
@@ -68,7 +69,6 @@ namespace UML_Diagram_drawer
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.saveFileDialog2 = new System.Windows.Forms.SaveFileDialog();
-            this.toolStripButtonSelectForm = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).BeginInit();
             this.SuspendLayout();
@@ -173,14 +173,24 @@ namespace UML_Diagram_drawer
             this.toolStripButton14.Text = "Undo";
             this.toolStripButton14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
+            // toolStripButtonSelectForm
+            // 
+            this.toolStripButtonSelectForm.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSelectForm.Image")));
+            this.toolStripButtonSelectForm.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSelectForm.Name = "toolStripButtonSelectForm";
+            this.toolStripButtonSelectForm.Size = new System.Drawing.Size(64, 44);
+            this.toolStripButtonSelectForm.Text = "Select Obj";
+            this.toolStripButtonSelectForm.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButtonSelectForm.Click += new System.EventHandler(this.toolStripButtonSelectForm_Click);
+            // 
             // toolStripButtonEditObject
             // 
-            this.toolStripButtonEditObject.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButtonEditObject.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonEditObject.Image")));
             this.toolStripButtonEditObject.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonEditObject.Name = "toolStripButtonEditObject";
-            this.toolStripButtonEditObject.Size = new System.Drawing.Size(23, 44);
+            this.toolStripButtonEditObject.Size = new System.Drawing.Size(31, 44);
             this.toolStripButtonEditObject.Text = "Edit";
+            this.toolStripButtonEditObject.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButtonEditObject.Click += new System.EventHandler(this.toolStripButtonEditObject_Click);
             // 
             // toolStripButtonCut
@@ -408,16 +418,6 @@ namespace UML_Diagram_drawer
             // saveFileDialog2
             // 
             this.saveFileDialog2.Filter = "JPEG Image|*.jpg";
-            // 
-            // toolStripButtonSelectForm
-            // 
-            this.toolStripButtonSelectForm.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonSelectForm.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSelectForm.Image")));
-            this.toolStripButtonSelectForm.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonSelectForm.Name = "toolStripButtonSelectForm";
-            this.toolStripButtonSelectForm.Size = new System.Drawing.Size(23, 44);
-            this.toolStripButtonSelectForm.Text = "toolStripButton1";
-            this.toolStripButtonSelectForm.Click += new System.EventHandler(this.toolStripButtonSelectForm_Click);
             // 
             // FormMain
             // 
