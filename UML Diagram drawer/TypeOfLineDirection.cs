@@ -12,15 +12,22 @@ namespace UML_Diagram_drawer
         FourPointsZikzakUpDownLine,
         ThreePointsRectangeleLeftRightLine,
         ThreePointsRectangelUpDownLine,
-
         FivePointsFromeButomToFlankLine,
         FivePointsFromUpToFlankLine,
-        FivePointsFromRightToBottomOrUpLine,
+        FivePointsFromRightToUpOfBottomLine,
+        FivePointsFromRightToUpOfBottomLineWithArounding,
+        FivePointsFromLeftToUpOfBottomLineWithArounding,
+        FivePointsFromButtonToLeft,
+        FivePointsFromButtonToRight,
+        SixPointsFromBottomToUpRightSide,
+        SixPointsFromRightToLeftOfRightLineWithArounding,
+        SixPointsFromLeftToRightOfLeftLineWithArounding,
         FivePointsFromLeftToBottomOrUpLine,
-
         FourPointsFromUpToUp,
         FourPointsFromBottomToBottom,
         FourPointsFromLeftToLeft,
-        FourPointsFromRightToRight
+        FourPointsFromLeftToLeftWithArounding,
+        FourPointsFromRightToRight,
+        FourPointsFromRightToRightWithArounding
     }
 }

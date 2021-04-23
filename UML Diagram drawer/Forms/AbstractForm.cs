@@ -10,7 +10,7 @@ namespace UML_Diagram_drawer.Forms
 {
     public abstract class AbstractForm : ISelectable
     {
-        protected List<AbstactModule> _modules;
+        public List<AbstactModule> _modules;
         protected Rectangle _rectangle;
         protected Pen _pen;
         public string TitleText { get; set; }
@@ -63,6 +63,10 @@ namespace UML_Diagram_drawer.Forms
             }
         }
 
+        public AbstractForm()
+        {
+
+        }
         public AbstractForm(FormType type, bool createFields, bool createMethods, string titleText)
         {
             Type = type;
@@ -73,6 +77,18 @@ namespace UML_Diagram_drawer.Forms
             _rectangle = new Rectangle(Location, Default.Size.FormSize);
             SetContactPoint();
             CreateModules(createFields, createMethods);
+        }
+
+        public AbstractForm(AbstractForm form)
+        {
+            Type = form.Type;
+            TitleText = form.TitleText;
+            _pen = new Pen(form.Color,form.WidthLine);
+            Brush = form.Brush;
+            Size = form.Size;
+            Location = form.Location;
+            ContactPoints = form.ContactPoints;
+            _modules = form._modules;
         }
 
         public ContactPoint ConnectArrow(Point point)
@@ -101,7 +117,8 @@ namespace UML_Diagram_drawer.Forms
 
         public void Move(int deltaX, int deltaY)
         {
-            Location = new Point(Location.X + deltaX, Location.Y + deltaY);
+            //Location = new Point(Location.X + deltaX, Location.Y + deltaY);
+            Location = new Point(deltaX, deltaY);
         }
 
         public void RemoveSelect()
@@ -133,7 +150,6 @@ namespace UML_Diagram_drawer.Forms
 
                 IsSelected = true;
             }
-
             return IsSelected;
         }
 
@@ -157,6 +173,7 @@ namespace UML_Diagram_drawer.Forms
                 module.SetFont(font);
             }
         }
+
         public void AddTextField(string text, ModuleType type)
         {
             if (text != null)
@@ -174,6 +191,7 @@ namespace UML_Diagram_drawer.Forms
                 throw new ArgumentException("Text is null");
             }
         }
+
         public void AddTextField(ModuleType type)
         {
             foreach (AbstactModule module in _modules)

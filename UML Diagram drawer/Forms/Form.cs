@@ -11,6 +11,11 @@ namespace UML_Diagram_drawer.Forms
     {
         public Form(FormType type, bool createFields, bool createMethods, string titleText) : base(type, createFields, createMethods, titleText) { }
 
+        public Form(AbstractForm form):base(form)
+        {
+
+        }
+
         public override bool Equals(object obj)
         {
             bool result = false;
@@ -25,5 +30,6 @@ namespace UML_Diagram_drawer.Forms
 
             return result;
         }
+
     }
 }

@@ -5,11 +5,15 @@ namespace UML_Diagram_drawer.Arrows
 {
     class ArrowSuccession : AbstactArrow
     {
-        public ArrowSuccession(Pen pen, Graphics graphics) : base(pen, graphics)
+        public ArrowSuccession()
+        {
+
+        }
+        public ArrowSuccession(Pen pen) : base(pen)
         {
         }
 
-        public ArrowSuccession(Pen pen, Graphics graphics, Point startPoint, Point endPoint) : base(pen, graphics, startPoint, endPoint)
+        public ArrowSuccession(Pen pen, Point startPoint, Point endPoint) : base(pen, startPoint, endPoint)
         {
         }
 
