@@ -36,7 +36,7 @@ namespace UML_Diagram_drawer.Arrows.ArrowNocks
                 {
                     if (nextPoint.Y < startPoint.Y)
                     {
-                        int y = startPoint.Y - _sizeArrowNock*2;
+                        int y = startPoint.Y - _sizeArrowNock * 2;
                         arrowNockPoints[0] = startPoint;
                         arrowNockPoints[1] = new Point(startPoint.X - _sizeArrowNock, y);
                         arrowNockPoints[2] = new Point(startPoint.X, startPoint.Y - RhombusLeng);
@@ -60,4 +60,3 @@ namespace UML_Diagram_drawer.Arrows.ArrowNocks
         }
     }
 }
-

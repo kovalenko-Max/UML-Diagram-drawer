@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 
-
 namespace UML_Diagram_drawer.Arrows.ArrowNocks
 {
     class FilledRhombus : IArrowNock

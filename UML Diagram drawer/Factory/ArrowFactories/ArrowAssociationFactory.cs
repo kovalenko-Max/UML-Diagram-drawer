@@ -2,8 +2,6 @@
 using UML_Diagram_drawer.Arrows.ArrowHeads;
 using UML_Diagram_drawer.Arrows.ArrowLines;
 
-
-
 namespace UML_Diagram_drawer.Factory.ArrowFactories
 {
     public class ArrowAssociationFactory : IArrowsFactory
