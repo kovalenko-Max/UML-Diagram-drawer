@@ -136,5 +136,10 @@ namespace UML_Diagram_drawer.Handlers
                 throw new ArgumentNullException("Object is null");
             }
         }
+
+        public void SetArrowType()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
