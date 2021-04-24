@@ -11,9 +11,9 @@ namespace UML_Diagram_drawer.Arrows
         private Rectangle[] _colliders;
         private Point[] _ArrowLinePoints;
 
-        private IArrowHead _arrowHead;
-        private IArrowLine _arrowLine;
-        private IArrowNock _arrowNock;
+        public IArrowHead ArrowHead;
+        public IArrowLine ArrowLine;
+        public IArrowNock ArrowNock;
 
         private int _sizeArrowhead;
         private Pen _pen;
@@ -79,9 +79,9 @@ namespace UML_Diagram_drawer.Arrows
                 _pen = pen;
             }
             _sizeArrowhead = (int)_pen.Width * 3;
-            _arrowHead = arrowHead;
-            _arrowLine = arrowLine;
-            _arrowNock = arrowNock;
+            ArrowHead = arrowHead;
+            ArrowLine = arrowLine;
+            ArrowNock = arrowNock;
             StartPoint = new ContactPoint(Point.Empty);
             EndPoint = new ContactPoint(Point.Empty);
         }
@@ -98,18 +98,18 @@ namespace UML_Diagram_drawer.Arrows
         public void Draw()
         {
             _ArrowLinePoints = ArrowsLineDrawingLogic.GetPoints(StartPoint, EndPoint);
-            if (_arrowNock != null)
+            if (ArrowNock != null)
             {
-                _arrowNock.Draw(_pen, StartPoint.Location, _ArrowLinePoints[1]);
+                ArrowNock.Draw(_pen, StartPoint.Location, _ArrowLinePoints[1]);
             }
-            if(_arrowLine != null)
+            if(ArrowLine != null)
             {
-                _arrowLine.Draw(_pen, _ArrowLinePoints);
+                ArrowLine.Draw(_pen, _ArrowLinePoints);
                 CreateSelectionBorders();
             }
-            if (_arrowHead != null)
+            if (ArrowHead != null)
             {
-                _arrowHead.Draw(_pen, EndPoint.Location, _ArrowLinePoints[_ArrowLinePoints.Length - 2]);
+                ArrowHead.Draw(_pen, EndPoint.Location, _ArrowLinePoints[_ArrowLinePoints.Length - 2]);
             }
         }
 
