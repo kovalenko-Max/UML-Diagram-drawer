@@ -11,8 +11,9 @@ namespace UML_Diagram_drawer.Handlers
 {
     public interface IEditHandler
     {
-         ColorDialog ColorDialog { get; set; }
-         FontDialog FontDialog { get; set; }
+        ColorDialog ColorDialog { get; set; }
+        FontDialog FontDialog { get; set; }
+
         void SetColor_Click();
         void SetSize_Scroll(TrackBar trackBar);
         void SetFont_Click();
@@ -21,6 +22,6 @@ namespace UML_Diagram_drawer.Handlers
         void SetColorText_Click();
         void SetWidthLine(TrackBar trackBar);
         void SetBackColor_Click();
-
+        void SetArrowType();
     }
 }

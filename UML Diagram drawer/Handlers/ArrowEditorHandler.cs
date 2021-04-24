@@ -69,5 +69,10 @@ namespace UML_Diagram_drawer.Handlers
         {
 
         }
+
+        public void SetArrowType()
+        {
+            
+        }
     }
 }

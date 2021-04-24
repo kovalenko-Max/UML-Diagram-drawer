@@ -24,13 +24,20 @@ namespace UML_Diagram_drawer
             if (_mainData.SelectForm != null && _mainData.PictureBoxMain != null)
             {
                 InitializeComponent();
-                panelEditForm.Visible = true;
+                comboBoxSetTypeArrow.Visible = false;
                 _handler = new FormEditorHandler(colorCoiseDialog, fontDialog1);
             }
             else if (_mainData.SelectArrow != null && _mainData.PictureBoxMain != null)
             {
                 InitializeComponent();
-                panelEditForm.Visible = false;
+                comboBoxSetTypeArrow.Visible = true;
+                buttonSetColor.Visible = false;
+                buttonSetColorText.Visible = false;
+                buttonSetBackColor.Visible = false;
+                buttonAddField.Visible = false;
+                buttonAddMethod.Visible = false;
+                buttonSelectFont.Visible = false;
+                trackBarSizeForm.Visible = false;
                 _handler = new ArrowEditorHandler(colorCoiseDialog, fontDialog1);
             }
         }
@@ -41,6 +48,10 @@ namespace UML_Diagram_drawer
             {
                 trackBarLineThickness.Value = (int)_mainData.SelectForm.WidthLine;
                 trackBarSizeForm.Value = (int)_mainData.SelectForm.Font.Size;
+            }
+            else if(_mainData.SelectArrow != null)
+            {
+                trackBarLineThickness.Value = (int)_mainData.SelectArrow.WidthLine;
             }
         }
 
@@ -82,6 +93,11 @@ namespace UML_Diagram_drawer
         private void buttonSetBackColor_Click(object sender, EventArgs e)
         {
             _handler.SetBackColor_Click();
+        }
+
+        private void comboBoxSetTypeArrow_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
