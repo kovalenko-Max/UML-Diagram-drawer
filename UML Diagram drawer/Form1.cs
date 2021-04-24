@@ -83,7 +83,7 @@ namespace UML_Diagram_drawer
         #endregion
         private void RebindingArrows()
         {
-            foreach (AbstactArrow arrow in _mainData.ArrowsList)
+            foreach (Arrow arrow in _mainData.ArrowsList)
             {
                 foreach (AbstractForm form in _mainData.FormsList)
                 {

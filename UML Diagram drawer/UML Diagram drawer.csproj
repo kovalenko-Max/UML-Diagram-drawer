@@ -89,7 +89,7 @@
     <Compile Include="Arrows\ArrowHeads\ThreePointArrowHead.cs" />
     <Compile Include="Arrows\ArrowHeads\TriangleArrowHead.cs" />
     <Compile Include="Arrows\ArrowNocks\EmptyRhombusNock.cs" />
-    <Compile Include="Arrows\ArrowNocks\FilledRhombusNock.cs" />
+    <Compile Include="Arrows\ArrowNocks\FilledRhombus.cs" />
     <Compile Include="Arrows\ArrowsLineDrawingLogic.cs" />
     <Compile Include="Arrows\ArrowHeads\IArrowHead.cs" />
     <Compile Include="Arrows\ArrowNocks\IArrowNock.cs" />

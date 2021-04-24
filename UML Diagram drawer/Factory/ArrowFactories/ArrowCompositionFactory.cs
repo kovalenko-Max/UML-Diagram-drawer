@@ -9,7 +9,7 @@ namespace UML_Diagram_drawer.Factory.ArrowFactories
     {
         public Arrow GetArrow()
         {
-            return new Arrow(new SolidArrowLine(), arrowHead: new ThreePointArrowHead(), arrowNock: new FilledRhombusNock());
+            return new Arrow(new SolidArrowLine(), arrowHead: new ThreePointArrowHead(), arrowNock: new FilledRhombus());
         }
     }
 }

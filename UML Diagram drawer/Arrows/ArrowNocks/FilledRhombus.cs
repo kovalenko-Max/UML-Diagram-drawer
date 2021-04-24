@@ -1,8 +1,9 @@
 ﻿using System.Drawing;
 
+
 namespace UML_Diagram_drawer.Arrows.ArrowNocks
 {
-    public class EmptyRhombusNock : IArrowNock
+    class FilledRhombus : IArrowNock
     {
         public void Draw(Pen pen, Point startPoint, Point nextPoint)
         {
@@ -36,7 +37,7 @@ namespace UML_Diagram_drawer.Arrows.ArrowNocks
                 {
                     if (nextPoint.Y < startPoint.Y)
                     {
-                        int y = startPoint.Y - _sizeArrowNock*2;
+                        int y = startPoint.Y - _sizeArrowNock * 2;
                         arrowNockPoints[0] = startPoint;
                         arrowNockPoints[1] = new Point(startPoint.X - _sizeArrowNock, y);
                         arrowNockPoints[2] = new Point(startPoint.X, startPoint.Y - RhombusLeng);
@@ -52,12 +53,9 @@ namespace UML_Diagram_drawer.Arrows.ArrowNocks
                     }
                 }
 
-                Point eraseStartPoint = arrowNockPoints[2];
-                Pen erasePen = new Pen(MainData.GetMainData().PictureBoxMain.BackColor, _sizeArrowNock);
-                MainGraphics.Graphics.DrawLine(erasePen, startPoint, eraseStartPoint);
                 MainGraphics.Graphics.DrawPolygon(pen, arrowNockPoints);
+                MainGraphics.Graphics.FillPolygon(new SolidBrush(pen.Color), arrowNockPoints, System.Drawing.Drawing2D.FillMode.Alternate);
             }
         }
     }
 }
-
