@@ -50,9 +50,7 @@ namespace UML_Diagram_drawer
             this.toolStripButtonArrowAssociation = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonArrowSuccession = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonArrowRealization = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonArrowAggregation = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonArrowAggregationAndAssociation = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonArrowComposition = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonArrowCompositionAndAssociation = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonClassForm = new System.Windows.Forms.ToolStripButton();
@@ -94,9 +92,7 @@ namespace UML_Diagram_drawer
             this.toolStripButtonArrowAssociation,
             this.toolStripButtonArrowSuccession,
             this.toolStripButtonArrowRealization,
-            this.toolStripButtonArrowAggregation,
             this.toolStripButtonArrowAggregationAndAssociation,
-            this.toolStripButtonArrowComposition,
             this.toolStripButtonArrowCompositionAndAssociation,
             this.toolStripSeparator1,
             this.toolStripButtonClassForm,
@@ -109,7 +105,7 @@ namespace UML_Diagram_drawer
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(1405, 47);
+            this.toolStrip1.Size = new System.Drawing.Size(1436, 47);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -266,17 +262,6 @@ namespace UML_Diagram_drawer
             this.toolStripButtonArrowRealization.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButtonArrowRealization.Click += new System.EventHandler(this.toolStripButtonArrowRealization_Click);
             // 
-            // toolStripButtonArrowAggregation
-            // 
-            this.toolStripButtonArrowAggregation.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonArrowAggregation.Image")));
-            this.toolStripButtonArrowAggregation.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButtonArrowAggregation.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonArrowAggregation.Name = "toolStripButtonArrowAggregation";
-            this.toolStripButtonArrowAggregation.Size = new System.Drawing.Size(79, 44);
-            this.toolStripButtonArrowAggregation.Text = "Aggregation";
-            this.toolStripButtonArrowAggregation.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.toolStripButtonArrowAggregation.Click += new System.EventHandler(this.toolStripButtonArrowAggregation_Click);
-            // 
             // toolStripButtonArrowAggregationAndAssociation
             // 
             this.toolStripButtonArrowAggregationAndAssociation.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonArrowAggregationAndAssociation.Image")));
@@ -284,21 +269,10 @@ namespace UML_Diagram_drawer
             this.toolStripButtonArrowAggregationAndAssociation.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonArrowAggregationAndAssociation.Name = "toolStripButtonArrowAggregationAndAssociation";
             this.toolStripButtonArrowAggregationAndAssociation.Size = new System.Drawing.Size(79, 44);
-            this.toolStripButtonArrowAggregationAndAssociation.Text = "Aggrg/Assct";
+            this.toolStripButtonArrowAggregationAndAssociation.Text = "Aggregation";
             this.toolStripButtonArrowAggregationAndAssociation.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButtonArrowAggregationAndAssociation.ToolTipText = "Aggrg&Assct";
-            this.toolStripButtonArrowAggregationAndAssociation.Click += new System.EventHandler(this.toolStripButtonArrowAggregationAndAssociation_Click);
-            // 
-            // toolStripButtonArrowComposition
-            // 
-            this.toolStripButtonArrowComposition.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonArrowComposition.Image")));
-            this.toolStripButtonArrowComposition.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButtonArrowComposition.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonArrowComposition.Name = "toolStripButtonArrowComposition";
-            this.toolStripButtonArrowComposition.Size = new System.Drawing.Size(80, 44);
-            this.toolStripButtonArrowComposition.Text = "Composition";
-            this.toolStripButtonArrowComposition.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.toolStripButtonArrowComposition.Click += new System.EventHandler(this.toolStripButtonArrowComposition_Click);
+            this.toolStripButtonArrowAggregationAndAssociation.Click += new System.EventHandler(this.toolStripButtonArrowAggregation_Click);
             // 
             // toolStripButtonArrowCompositionAndAssociation
             // 
@@ -306,10 +280,10 @@ namespace UML_Diagram_drawer
             this.toolStripButtonArrowCompositionAndAssociation.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButtonArrowCompositionAndAssociation.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonArrowCompositionAndAssociation.Name = "toolStripButtonArrowCompositionAndAssociation";
-            this.toolStripButtonArrowCompositionAndAssociation.Size = new System.Drawing.Size(79, 44);
-            this.toolStripButtonArrowCompositionAndAssociation.Text = "Comp/Assct";
+            this.toolStripButtonArrowCompositionAndAssociation.Size = new System.Drawing.Size(80, 44);
+            this.toolStripButtonArrowCompositionAndAssociation.Text = "Composition";
             this.toolStripButtonArrowCompositionAndAssociation.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.toolStripButtonArrowCompositionAndAssociation.Click += new System.EventHandler(this.toolStripButtonArrowCompositionAndAssociation_Click);
+            this.toolStripButtonArrowCompositionAndAssociation.Click += new System.EventHandler(this.toolStripButtonArrowComposition_Click);
             // 
             // toolStripSeparator1
             // 
@@ -401,7 +375,7 @@ namespace UML_Diagram_drawer
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 47);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1405, 531);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1436, 706);
             this.flowLayoutPanel1.TabIndex = 5;
             this.flowLayoutPanel1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.flowLayoutPanel1_Scroll);
             // 
@@ -438,7 +412,7 @@ namespace UML_Diagram_drawer
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1405, 578);
+            this.ClientSize = new System.Drawing.Size(1436, 753);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "FormMain";
@@ -460,9 +434,7 @@ namespace UML_Diagram_drawer
         private System.Windows.Forms.ToolStripButton toolStripButtonArrowSuccession;
         private System.Windows.Forms.ToolStripButton toolStripButtonArrowAssociation;
         private System.Windows.Forms.ToolStripButton toolStripButtonArrowRealization;
-        private System.Windows.Forms.ToolStripButton toolStripButtonArrowAggregation;
         private System.Windows.Forms.ToolStripButton toolStripButtonArrowAggregationAndAssociation;
-        private System.Windows.Forms.ToolStripButton toolStripButtonArrowComposition;
         private System.Windows.Forms.ToolStripButton toolStripButtonArrowCompositionAndAssociation;
         private System.Windows.Forms.ToolStripButton toolStripButtonClassForm;
         private System.Windows.Forms.ToolStripButton toolStripButtonInterfaceForm;

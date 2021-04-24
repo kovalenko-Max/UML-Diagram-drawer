@@ -8,12 +8,15 @@ using UML_Diagram_drawer.Arrows;
 using Form = System.Windows.Forms.Form;
 using UML_Diagram_drawer.Factory;
 using UML_Diagram_drawer.MouseHandlers;
+using UML_Diagram_drawer.Factory.ArrowFactories;
 
 namespace UML_Diagram_drawer
 {
     public partial class FormMain : Form
     {
         private IFormsFactory _formFactory;
+        private IArrowsFactory _arrowsFactory;
+
         private MainData _mainData;
 
         public Pen pen = new Pen(Brushes.Black, 3);
@@ -65,7 +68,7 @@ namespace UML_Diagram_drawer
             if (fileData[1] != null)
             {
 
-                _mainData.ArrowsList = JsonConvert.DeserializeObject<List<AbstactArrow>>(fileData[1],
+                _mainData.ArrowsList = JsonConvert.DeserializeObject<List<Arrow>>(fileData[1],
                     new JsonSerializerSettings
                     {
                         TypeNameHandling = TypeNameHandling.All
@@ -73,7 +76,7 @@ namespace UML_Diagram_drawer
             }
             else
             {
-                _mainData.ArrowsList = new List<AbstactArrow>();
+                _mainData.ArrowsList = new List<Arrow>();
             }
         }
 
@@ -104,54 +107,52 @@ namespace UML_Diagram_drawer
             _mainData = MainData.GetMainData();
             _mainData.PictureBoxMain = pictureBoxMain;
             _mainData.FormsList = new List<AbstractForm>();
-            _mainData.ArrowsList = new List<AbstactArrow>();
+            _mainData.ArrowsList = new List<Arrow>();
         }
 
         #region Tool Strip
 
         #region CreateArrows
+        private void toolStripButtonArrowAssociation_Click(object sender, EventArgs e)
+        {
+            _arrowsFactory = new ArrowAssociationFactory();
+            _mainData.CurrentArrow = _arrowsFactory.GetArrow();
+            _mainData.ArrowsList.Add(_mainData.CurrentArrow);
+            _mainData.IMouseHandler = new DrawArrowMouseHandler();
+        }
         private void toolStripButtonArrowSuccession_Click(object sender, EventArgs e)
         {
-            _mainData.CurrentArrow = new ArrowSuccession();
+            _arrowsFactory = new ArrowSuccessionFactory();
+            _mainData.CurrentArrow = _arrowsFactory.GetArrow();
             _mainData.ArrowsList.Add(_mainData.CurrentArrow);
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
         private void toolStripButtonArrowRealization_Click(object sender, EventArgs e)
         {
-            _mainData.CurrentArrow = new ArrowRealization();
+            _arrowsFactory = new ArrowRealizationFactory();
+            _mainData.CurrentArrow = _arrowsFactory.GetArrow();
             _mainData.ArrowsList.Add(_mainData.CurrentArrow);
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
         private void toolStripButtonArrowAggregation_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void toolStripButtonArrowAggregationAndAssociation_Click(object sender, EventArgs e)
-        {
-            _mainData.CurrentArrow = new ArrowAggregation();
+            _arrowsFactory = new ArrowAggregationFactory();
+            _mainData.CurrentArrow = _arrowsFactory.GetArrow();
             _mainData.ArrowsList.Add(_mainData.CurrentArrow);
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
         private void toolStripButtonArrowComposition_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void toolStripButtonArrowCompositionAndAssociation_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripButtonArrowAssociation_Click(object sender, EventArgs e)
-        {
-            _mainData.CurrentArrow = new ArrowAssociation();
+            _arrowsFactory = new ArrowCompositionFactory();
+            _mainData.CurrentArrow = _arrowsFactory.GetArrow();
             _mainData.ArrowsList.Add(_mainData.CurrentArrow);
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
+
+        
         #endregion
 
         #region CreateForm

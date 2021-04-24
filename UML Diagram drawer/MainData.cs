@@ -16,12 +16,12 @@ namespace UML_Diagram_drawer
 
         public PictureBox PictureBoxMain { get; set; }
         public AbstractForm SelectForm { get; set; }
-        public AbstactArrow SelectArrow { get; set; }
+        public Arrow SelectArrow { get; set; }
         public AbstractForm CurrentFormUML { get; set; }
-        public AbstactArrow CurrentArrow { get; set; }
+        public Arrow CurrentArrow { get; set; }
         public AbstractForm FormInBuffer { get; set; }
         public List<AbstractForm> FormsList { get; set; }
-        public List<AbstactArrow> ArrowsList { get; set; }
+        public List<Arrow> ArrowsList { get; set; }
 
         public IMouseHandler IMouseHandler { get; set; }
         

@@ -34,7 +34,7 @@ namespace UML_Diagram_drawer.MouseHandlers
             }
 
             _mainData.SelectForm = null;
-            foreach (AbstactArrow arrow in _mainData.ArrowsList)
+            foreach (Arrow arrow in _mainData.ArrowsList)
             {
                 arrow.RemoveSelect();
             }
@@ -51,18 +51,18 @@ namespace UML_Diagram_drawer.MouseHandlers
                     RemoveSelect();
                     _mainData.CurrentFormUML = form;
                     _mainData.SelectForm = form;
-                    _mainData.SelectForm.Select(e.Location);
+                    _mainData.SelectForm.IsSelect(e.Location);
                     previousLocation = e.Location;
 
                     _mainData.PictureBoxMain.Invalidate();
                 }
             }
-            foreach (AbstactArrow arrow in _mainData.ArrowsList)
+            foreach (Arrow arrow in _mainData.ArrowsList)
             {
-                if (arrow.Select(e.Location))
+                if (arrow.IsSelect(e.Location))
                 {
                     RemoveSelect();
-                    arrow.Select(e.Location);
+                    arrow.IsSelect(e.Location);
                     _mainData.SelectArrow = arrow;
 
                     _mainData.PictureBoxMain.Invalidate();

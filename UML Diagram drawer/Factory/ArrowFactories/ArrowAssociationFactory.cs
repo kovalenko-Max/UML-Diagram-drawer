@@ -1,0 +1,16 @@
+﻿using UML_Diagram_drawer.Arrows;
+using UML_Diagram_drawer.Arrows.ArrowHeads;
+using UML_Diagram_drawer.Arrows.ArrowLines;
+
+
+
+namespace UML_Diagram_drawer.Factory.ArrowFactories
+{
+    public class ArrowAssociationFactory : IArrowsFactory
+    {
+        public Arrow GetArrow()
+        {
+            return new Arrow(new SolidArrowLine(), arrowHead: new ThreePointArrowHead());
+        }
+    }
+}

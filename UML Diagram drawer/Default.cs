@@ -12,7 +12,7 @@ namespace UML_Diagram_drawer
     {
         public static class Draw
         {
-            private static int _penWidth = 5;
+            private static int _penWidth = 3;
             private static int _penSelectWidth = 3;
             private static Color _color = Color.Black;
             private static Color _colorSelect = Color.Blue;

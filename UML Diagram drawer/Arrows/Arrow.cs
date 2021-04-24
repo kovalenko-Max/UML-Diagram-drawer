@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Drawing;
+using UML_Diagram_drawer.Arrows.ArrowLines;
 using UML_Diagram_drawer.Forms;
 
 namespace UML_Diagram_drawer.Arrows
 {
-    public abstract class AbstactArrow : ISelectable
+    public class Arrow : ISelectable
     {
-        protected const int indentFromBorder = 50;
-        protected Rectangle[] _colliders;
-        protected Point[] _points;
-        protected int _sizeArrowhead;
-        protected bool _isHorizontal;
-        protected Pen _pen;
+        private const int indentFromBorder = 50;
+        private Rectangle[] _colliders;
+        private Point[] _ArrowLinePoints;
+
+        public IArrowHead ArrowHead;
+        public IArrowLine ArrowLine;
+        public IArrowNock ArrowNock;
+
+        private int _sizeArrowhead;
+        private Pen _pen;
 
         public Color Color
         {
@@ -63,7 +68,25 @@ namespace UML_Diagram_drawer.Arrows
         public ContactPoint EndPoint { get; set; }
         public bool IsSelected { get; set; }
 
-        public AbstactArrow()
+        public Arrow(IArrowLine arrowLine, IArrowHead arrowHead = null, IArrowNock arrowNock = null, Pen pen = null)
+        {
+            if (pen is null)
+            {
+                _pen = (Pen)Default.Draw.Pen.Clone();
+            }
+            else
+            {
+                _pen = pen;
+            }
+            _sizeArrowhead = (int)_pen.Width * 3;
+            ArrowHead = arrowHead;
+            ArrowLine = arrowLine;
+            ArrowNock = arrowNock;
+            StartPoint = new ContactPoint(Point.Empty);
+            EndPoint = new ContactPoint(Point.Empty);
+        }
+
+        public Arrow()
         {
             _pen = (Pen)Default.Draw.Pen.Clone();
             _sizeArrowhead = (int)_pen.Width * 3;
@@ -72,20 +95,29 @@ namespace UML_Diagram_drawer.Arrows
             EndPoint = new ContactPoint(Point.Empty);
         }
 
-        public abstract void Draw();
-
-        protected void DrawStraightBrokenLine()
+        public void Draw()
         {
-            _points = ArrowsLineDrawingLogic.GetPoints(StartPoint, EndPoint);
-            CreateSelectionBorders();
-            MainGraphics.Graphics.DrawLines(_pen, _points);
+            _ArrowLinePoints = ArrowsLineDrawingLogic.GetPoints(StartPoint, EndPoint);
+            if (ArrowNock != null)
+            {
+                ArrowNock.Draw(_pen, StartPoint.Location, _ArrowLinePoints[1]);
+            }
+            if(ArrowLine != null)
+            {
+                ArrowLine.Draw(_pen, _ArrowLinePoints);
+                CreateSelectionBorders();
+            }
+            if (ArrowHead != null)
+            {
+                ArrowHead.Draw(_pen, EndPoint.Location, _ArrowLinePoints[_ArrowLinePoints.Length - 2]);
+            }
         }
 
         public void Move(int deltaX, int deltaY)
         {
         }
 
-        public bool Select(Point point)
+        public bool IsSelect(Point point)
         {
             bool result = false;
             foreach (Rectangle rectangle in _colliders)
@@ -120,34 +152,34 @@ namespace UML_Diagram_drawer.Arrows
 
         private void CreateSelectionBorders()
         {
-            if (_points.Length > 0)
+            if (_ArrowLinePoints.Length > 0)
             {
-                _colliders = new Rectangle[_points.Length - 1];
+                _colliders = new Rectangle[_ArrowLinePoints.Length - 1];
                 for (int i = 0; i < _colliders.Length; i++)
                 {
-                    if (_points[i].X < _points[i + 1].X)
+                    if (_ArrowLinePoints[i].X < _ArrowLinePoints[i + 1].X)
                     {
-                        int width = _points[i + 1].X - _points[i].X;
+                        int width = _ArrowLinePoints[i + 1].X - _ArrowLinePoints[i].X;
                         int height = _sizeArrowhead;
-                        _colliders[i] = new Rectangle(_points[i].X, _points[i].Y - _sizeArrowhead / 2, width, height);
+                        _colliders[i] = new Rectangle(_ArrowLinePoints[i].X, _ArrowLinePoints[i].Y - _sizeArrowhead / 2, width, height);
                     }
-                    else if (_points[i].X > _points[i + 1].X)
+                    else if (_ArrowLinePoints[i].X > _ArrowLinePoints[i + 1].X)
                     {
-                        int width = (_points[i + 1].X - _points[i].X) * (-1);
+                        int width = (_ArrowLinePoints[i + 1].X - _ArrowLinePoints[i].X) * (-1);
                         int height = _sizeArrowhead;
-                        _colliders[i] = new Rectangle(_points[i + 1].X, _points[i].Y - _sizeArrowhead / 2, width, height);
+                        _colliders[i] = new Rectangle(_ArrowLinePoints[i + 1].X, _ArrowLinePoints[i].Y - _sizeArrowhead / 2, width, height);
                     }
-                    else if (_points[i].Y < _points[i + 1].Y)
+                    else if (_ArrowLinePoints[i].Y < _ArrowLinePoints[i + 1].Y)
                     {
                         int width = _sizeArrowhead;
-                        int height = (_points[i + 1].Y - _points[i].Y);
-                        _colliders[i] = new Rectangle(_points[i].X - _sizeArrowhead / 2, _points[i].Y, width, height);
+                        int height = (_ArrowLinePoints[i + 1].Y - _ArrowLinePoints[i].Y);
+                        _colliders[i] = new Rectangle(_ArrowLinePoints[i].X - _sizeArrowhead / 2, _ArrowLinePoints[i].Y, width, height);
                     }
-                    else if (_points[i].Y > _points[i + 1].Y)
+                    else if (_ArrowLinePoints[i].Y > _ArrowLinePoints[i + 1].Y)
                     {
                         int width = _sizeArrowhead;
-                        int height = (_points[i + 1].Y - _points[i].Y) * (-1);
-                        _colliders[i] = new Rectangle(_points[i].X - _sizeArrowhead / 2, _points[i + 1].Y, width, height);
+                        int height = (_ArrowLinePoints[i + 1].Y - _ArrowLinePoints[i].Y) * (-1);
+                        _colliders[i] = new Rectangle(_ArrowLinePoints[i].X - _sizeArrowhead / 2, _ArrowLinePoints[i + 1].Y, width, height);
                     }
                 }
             }
