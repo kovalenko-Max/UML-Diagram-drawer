@@ -34,32 +34,43 @@ namespace UML_Diagram_drawer.Arrows
 
         private void DrawArrowheadComposition()
         {
-            Point[] points;
+            Point[] arrowHeadPoints = new Point[3];
 
-            if (_isHorizontal)
+            if (!StartPoint.Location.IsEmpty && !EndPoint.Location.IsEmpty)
             {
-                int coefX = StartPoint.Location.X < EndPoint.Location.X ? EndPoint.Location.X - _sizeArrowhead : EndPoint.Location.X + _sizeArrowhead;
-                points = new Point[]
+                if (_ArrowLinePoints[_ArrowLinePoints.Length - 2].Y == EndPoint.Location.Y)
                 {
-                    new Point(coefX, EndPoint.Location.Y+_sizeArrowhead/2),
-                    new Point(EndPoint.Location.X, EndPoint.Location.Y),
-                    new Point(coefX, EndPoint.Location.Y-_sizeArrowhead/2)
-                };
-
-                MainGraphics.Graphics.DrawLines(_pen, points);
-            }
-            else
-            {
-                int coefY = StartPoint.Location.Y < EndPoint.Location.Y ? EndPoint.Location.Y - _sizeArrowhead : EndPoint.Location.Y + _sizeArrowhead;
-                points = new Point[]
+                    if (_ArrowLinePoints[_ArrowLinePoints.Length - 2].X < EndPoint.Location.X)
+                    {
+                        arrowHeadPoints[0] = new Point(EndPoint.Location.X - _sizeArrowhead, EndPoint.Location.Y + _sizeArrowhead);
+                        arrowHeadPoints[1] = EndPoint.Location;
+                        arrowHeadPoints[2] = new Point(EndPoint.Location.X - _sizeArrowhead, EndPoint.Location.Y - _sizeArrowhead);
+                    }
+                    else
+                    {
+                        arrowHeadPoints[0] = new Point(EndPoint.Location.X + _sizeArrowhead, EndPoint.Location.Y + _sizeArrowhead);
+                        arrowHeadPoints[1] = EndPoint.Location;
+                        arrowHeadPoints[2] = new Point(EndPoint.Location.X + _sizeArrowhead, EndPoint.Location.Y - _sizeArrowhead);
+                    }
+                }
+                else
                 {
-                    new Point(EndPoint.Location.X+_sizeArrowhead/2, coefY),
-                    new Point(EndPoint.Location.X, EndPoint.Location.Y),
-                    new Point(EndPoint.Location.X-_sizeArrowhead/2, coefY)
-                };
-
-                MainGraphics.Graphics.DrawLines(_pen, points);
+                    if (_ArrowLinePoints[_ArrowLinePoints.Length - 2].Y < EndPoint.Location.Y)
+                    {
+                        arrowHeadPoints[0] = new Point(EndPoint.Location.X + _sizeArrowhead, EndPoint.Location.Y - _sizeArrowhead);
+                        arrowHeadPoints[1] = EndPoint.Location;
+                        arrowHeadPoints[2] = new Point(EndPoint.Location.X - _sizeArrowhead, EndPoint.Location.Y - _sizeArrowhead);
+                    }
+                    else
+                    {
+                        arrowHeadPoints[0] = new Point(EndPoint.Location.X + _sizeArrowhead, EndPoint.Location.Y + _sizeArrowhead);
+                        arrowHeadPoints[1] = EndPoint.Location;
+                        arrowHeadPoints[2] = new Point(EndPoint.Location.X - _sizeArrowhead, EndPoint.Location.Y + _sizeArrowhead);
+                    }
+                }
             }
+
+            MainGraphics.Graphics.DrawLines(_pen, arrowHeadPoints);
         }
     }
 }

@@ -124,7 +124,9 @@ namespace UML_Diagram_drawer
 
         private void toolStripButtonArrowCompositionAndAssociation_Click(object sender, EventArgs e)
         {
-
+            _mainData.CurrentArrow = new ArrowComposition();
+            _mainData.ArrowsList.Add(_mainData.CurrentArrow);
+            _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
         private void toolStripButtonArrowAssociation_Click(object sender, EventArgs e)

@@ -25,9 +25,9 @@ namespace UML_Diagram_drawer.Arrows
             if (!StartPoint.Location.IsEmpty && !EndPoint.Location.IsEmpty)
             {
                 Point eraseEndPoint;
-                if (_points[_points.Length - 2].Y == EndPoint.Location.Y)
+                if (_ArrowLinePoints[_ArrowLinePoints.Length - 2].Y == EndPoint.Location.Y)
                 {
-                    if (_points[_points.Length - 2].X < EndPoint.Location.X)
+                    if (_ArrowLinePoints[_ArrowLinePoints.Length - 2].X < EndPoint.Location.X)
                     {
                         eraseEndPoint = new Point(EndPoint.Location.X - _sizeArrowhead, EndPoint.Location.Y);
                         arrowHeadPoints[0] = EndPoint.Location;
@@ -44,7 +44,7 @@ namespace UML_Diagram_drawer.Arrows
                 }
                 else
                 {
-                    if (_points[_points.Length - 2].Y < EndPoint.Location.Y)
+                    if (_ArrowLinePoints[_ArrowLinePoints.Length - 2].Y < EndPoint.Location.Y)
                     {
                         eraseEndPoint = new Point(EndPoint.Location.X, EndPoint.Location.Y - _sizeArrowhead);
                         arrowHeadPoints[0] = EndPoint.Location;

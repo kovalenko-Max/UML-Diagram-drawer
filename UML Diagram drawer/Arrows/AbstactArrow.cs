@@ -8,9 +8,12 @@ namespace UML_Diagram_drawer.Arrows
     {
         protected const int indentFromBorder = 50;
         protected Rectangle[] _colliders;
-        protected Point[] _points;
+        protected Point[] _ArrowLinePoints;
+
+        protected IArrowHead arrowHead;
+        protected IArrowNock arrowNock;
+
         protected int _sizeArrowhead;
-        protected bool _isHorizontal;
         protected Pen _pen;
 
         public Color Color
@@ -76,9 +79,9 @@ namespace UML_Diagram_drawer.Arrows
 
         protected void DrawStraightBrokenLine()
         {
-            _points = ArrowsLineDrawingLogic.GetPoints(StartPoint, EndPoint);
+            _ArrowLinePoints = ArrowsLineDrawingLogic.GetPoints(StartPoint, EndPoint);
             CreateSelectionBorders();
-            MainGraphics.Graphics.DrawLines(_pen, _points);
+            MainGraphics.Graphics.DrawLines(_pen, _ArrowLinePoints);
         }
 
         public void Move(int deltaX, int deltaY)
@@ -120,34 +123,34 @@ namespace UML_Diagram_drawer.Arrows
 
         private void CreateSelectionBorders()
         {
-            if (_points.Length > 0)
+            if (_ArrowLinePoints.Length > 0)
             {
-                _colliders = new Rectangle[_points.Length - 1];
+                _colliders = new Rectangle[_ArrowLinePoints.Length - 1];
                 for (int i = 0; i < _colliders.Length; i++)
                 {
-                    if (_points[i].X < _points[i + 1].X)
+                    if (_ArrowLinePoints[i].X < _ArrowLinePoints[i + 1].X)
                     {
-                        int width = _points[i + 1].X - _points[i].X;
+                        int width = _ArrowLinePoints[i + 1].X - _ArrowLinePoints[i].X;
                         int height = _sizeArrowhead;
-                        _colliders[i] = new Rectangle(_points[i].X, _points[i].Y - _sizeArrowhead / 2, width, height);
+                        _colliders[i] = new Rectangle(_ArrowLinePoints[i].X, _ArrowLinePoints[i].Y - _sizeArrowhead / 2, width, height);
                     }
-                    else if (_points[i].X > _points[i + 1].X)
+                    else if (_ArrowLinePoints[i].X > _ArrowLinePoints[i + 1].X)
                     {
-                        int width = (_points[i + 1].X - _points[i].X) * (-1);
+                        int width = (_ArrowLinePoints[i + 1].X - _ArrowLinePoints[i].X) * (-1);
                         int height = _sizeArrowhead;
-                        _colliders[i] = new Rectangle(_points[i + 1].X, _points[i].Y - _sizeArrowhead / 2, width, height);
+                        _colliders[i] = new Rectangle(_ArrowLinePoints[i + 1].X, _ArrowLinePoints[i].Y - _sizeArrowhead / 2, width, height);
                     }
-                    else if (_points[i].Y < _points[i + 1].Y)
+                    else if (_ArrowLinePoints[i].Y < _ArrowLinePoints[i + 1].Y)
                     {
                         int width = _sizeArrowhead;
-                        int height = (_points[i + 1].Y - _points[i].Y);
-                        _colliders[i] = new Rectangle(_points[i].X - _sizeArrowhead / 2, _points[i].Y, width, height);
+                        int height = (_ArrowLinePoints[i + 1].Y - _ArrowLinePoints[i].Y);
+                        _colliders[i] = new Rectangle(_ArrowLinePoints[i].X - _sizeArrowhead / 2, _ArrowLinePoints[i].Y, width, height);
                     }
-                    else if (_points[i].Y > _points[i + 1].Y)
+                    else if (_ArrowLinePoints[i].Y > _ArrowLinePoints[i + 1].Y)
                     {
                         int width = _sizeArrowhead;
-                        int height = (_points[i + 1].Y - _points[i].Y) * (-1);
-                        _colliders[i] = new Rectangle(_points[i].X - _sizeArrowhead / 2, _points[i + 1].Y, width, height);
+                        int height = (_ArrowLinePoints[i + 1].Y - _ArrowLinePoints[i].Y) * (-1);
+                        _colliders[i] = new Rectangle(_ArrowLinePoints[i].X - _sizeArrowhead / 2, _ArrowLinePoints[i + 1].Y, width, height);
                     }
                 }
             }

@@ -20,9 +20,9 @@ namespace UML_Diagram_drawer.Arrows
 
             if (!StartPoint.Location.IsEmpty && !EndPoint.Location.IsEmpty)
             {
-                if (_points[_points.Length - 2].Y == EndPoint.Location.Y)
+                if (_ArrowLinePoints[_ArrowLinePoints.Length - 2].Y == EndPoint.Location.Y)
                 {
-                    if (_points[_points.Length - 2].X < EndPoint.Location.X)
+                    if (_ArrowLinePoints[_ArrowLinePoints.Length - 2].X < EndPoint.Location.X)
                     {
                         arrowHeadPoints[0] = new Point(EndPoint.Location.X - _sizeArrowhead, EndPoint.Location.Y + _sizeArrowhead);
                         arrowHeadPoints[1] = EndPoint.Location;
@@ -37,7 +37,7 @@ namespace UML_Diagram_drawer.Arrows
                 }
                 else
                 {
-                    if (_points[_points.Length - 2].Y < EndPoint.Location.Y)
+                    if (_ArrowLinePoints[_ArrowLinePoints.Length - 2].Y < EndPoint.Location.Y)
                     {
                         arrowHeadPoints[0] = new Point(EndPoint.Location.X + _sizeArrowhead, EndPoint.Location.Y - _sizeArrowhead);
                         arrowHeadPoints[1] = EndPoint.Location;
@@ -51,7 +51,6 @@ namespace UML_Diagram_drawer.Arrows
                     }
                 }
             }
-            
 
             MainGraphics.Graphics.DrawLines(_pen, arrowHeadPoints);
         }
