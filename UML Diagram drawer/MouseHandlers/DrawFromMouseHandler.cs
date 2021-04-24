@@ -17,7 +17,7 @@ namespace UML_Diagram_drawer.MouseHandlers
             _mainData.CurrentFormUML.Location = e.Location;
             _mainData.PictureBoxMain.Invalidate();
             _mainData.CurrentFormUML = null;
-            _mainData.IMouseHandler = new MoveMouseHandler();
+            _mainData.IMouseHandler = new MoveAndSelectMouseHandler();
         }
 
         public void MouseDown(object sender, MouseEventArgs e)

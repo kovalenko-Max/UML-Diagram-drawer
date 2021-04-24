@@ -11,11 +11,24 @@ namespace UML_Diagram_drawer.Handlers
 {
     class ArrowEditorHandler : IEditHandler
     {
-        public PictureBox Canvas { get ; set ; }
-        public AbstractForm Form { get ; set; }
-        public AbstactArrow Arrow { get ; set ; }
+        private MainData _mainData;
+        
         public ColorDialog ColorDialog { get ; set ; }
         public FontDialog FontDialog { get ; set ; }
+
+        public ArrowEditorHandler(ColorDialog colorDialog, FontDialog fontDialog)
+        {
+            if (colorDialog != null && fontDialog != null)
+            {
+                _mainData = MainData.GetMainData();
+                ColorDialog = colorDialog;
+                FontDialog = fontDialog;
+            }
+            else
+            {
+                throw new ArgumentNullException("Values is null");
+            }
+        }
 
         public void AddField_Click()
         {

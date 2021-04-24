@@ -12,9 +12,6 @@ namespace UML_Diagram_drawer.Handlers
     public class FormEditorHandler : IEditHandler
     {
         private MainData _mainData;
-        public PictureBox Canvas { get; set; }
-        public AbstractForm Form { get; set; }
-        public AbstactArrow Arrow { get; set; }
         public ColorDialog ColorDialog { get; set; }
         public FontDialog FontDialog { get; set; }
 
@@ -23,8 +20,6 @@ namespace UML_Diagram_drawer.Handlers
             if (colorDialog != null&& fontDialog!=null)
             {
                 _mainData = MainData.GetMainData();
-                Form = _mainData.SelectForm ;
-                Canvas = _mainData.PictureBoxMain;
                 ColorDialog = colorDialog;
                 FontDialog = fontDialog;
             }
@@ -40,7 +35,7 @@ namespace UML_Diagram_drawer.Handlers
             {
                 ColorDialog.ShowDialog();
                 _mainData.SelectForm.SetColor(ColorDialog.Color);
-                Canvas.Invalidate();
+                _mainData.PictureBoxMain.Invalidate();
             }
             else
             {
@@ -53,7 +48,7 @@ namespace UML_Diagram_drawer.Handlers
             if (_mainData.SelectForm != null)
             {
                 _mainData.SelectForm.Resize(trackBar.Value);
-                Canvas.Invalidate();
+                _mainData.PictureBoxMain.Invalidate();
             }
             else
             {
@@ -67,7 +62,7 @@ namespace UML_Diagram_drawer.Handlers
             {
                 FontDialog.ShowDialog();
                 _mainData.SelectForm.SetFont(FontDialog.Font);
-                Canvas.Invalidate();
+                _mainData.PictureBoxMain.Invalidate();
             }
             else
             {
@@ -80,7 +75,7 @@ namespace UML_Diagram_drawer.Handlers
             if (_mainData.SelectForm != null)
             {
                 _mainData.SelectForm.AddTextField(Forms.Modules.ModuleType.Field);
-                Canvas.Invalidate();
+                _mainData.PictureBoxMain.Invalidate();
             }
             else
             {
@@ -93,7 +88,7 @@ namespace UML_Diagram_drawer.Handlers
             if (_mainData.SelectForm != null)
             {
                 _mainData.SelectForm.AddTextField(Forms.Modules.ModuleType.Method);
-                Canvas.Invalidate();
+                _mainData.PictureBoxMain.Invalidate();
             }
             else
             {
@@ -107,7 +102,7 @@ namespace UML_Diagram_drawer.Handlers
             {
                 ColorDialog.ShowDialog();
                 _mainData.SelectForm.SetColorText(ColorDialog.Color);
-                Canvas.Invalidate();
+                _mainData.PictureBoxMain.Invalidate();
             }
             else
             {
@@ -120,7 +115,7 @@ namespace UML_Diagram_drawer.Handlers
             if (_mainData.SelectForm != null)
             {
                 _mainData.SelectForm.SetWidthLine(trackBar.Value);
-                Canvas.Invalidate();
+                _mainData.PictureBoxMain.Invalidate();
             }
             else
             {
@@ -134,7 +129,7 @@ namespace UML_Diagram_drawer.Handlers
             {
                 ColorDialog.ShowDialog();
                 _mainData.SelectForm.Color = ColorDialog.Color;
-                Canvas.Invalidate();
+                _mainData.PictureBoxMain.Invalidate();
             }
             else
             {

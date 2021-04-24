@@ -11,9 +11,6 @@ namespace UML_Diagram_drawer.Handlers
 {
     public interface IEditHandler
     {
-         PictureBox Canvas { get; set; }
-         AbstractForm Form { get; set; }
-         AbstactArrow Arrow { get; set; }
          ColorDialog ColorDialog { get; set; }
          FontDialog FontDialog { get; set; }
         void SetColor_Click();

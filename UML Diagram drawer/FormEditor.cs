@@ -15,49 +15,30 @@ namespace UML_Diagram_drawer
 {
     public partial class FormEditor : System.Windows.Forms.Form
     {
-        private PictureBox _canvas;
-        private AbstractForm _form;
-        private AbstactArrow _arrow;
+        private MainData _mainData;
         private IEditHandler _handler;
-        private MainData mData = MainData.GetMainData();
-
-        //public FormEditor()
-        //{
-        //    _handler = new FormEditorHandler(_form,_canvas,colorCoiseDialog,fontDialog1);
-        //    InitializeComponent();
-        //}
 
         public FormEditor()
         {
-            
-            if (mData.SelectForm != null && mData.PictureBoxMain != null)
+            _mainData = MainData.GetMainData();
+            if (_mainData.SelectForm != null && _mainData.PictureBoxMain != null)
             {
-                _form = mData.SelectForm;
-                _canvas = mData.PictureBoxMain;
                 InitializeComponent();
+                panelEditForm.Visible = true;
                 _handler = new FormEditorHandler(colorCoiseDialog, fontDialog1);
             }
-        }
-
-        public FormEditor(AbstactArrow arrow, PictureBox pb)
-        {
-            if (arrow != null && pb != null)
+            else if (_mainData.SelectArrow != null && _mainData.PictureBoxMain != null)
             {
-                _arrow = arrow;
-                _canvas = pb;
                 InitializeComponent();
-            }
-            else
-            {
-                throw new ArgumentNullException("Values is null");
+                panelEditForm.Visible = false;
+                _handler = new ArrowEditorHandler(colorCoiseDialog, fontDialog1);
             }
         }
 
         private void FormEditor_Load(object sender, EventArgs e)
         {
-            trackBarLineThickness.Value = (int)_form.WidthLine;
-            trackBarLineThickness.Value = (int)_form.WidthLine;
-            trackBarSizeForm.Value = (int)_form.Font.Size;
+            trackBarLineThickness.Value = (int)_mainData.SelectForm.WidthLine;
+            trackBarSizeForm.Value = (int)_mainData.SelectForm.Font.Size;
         }
 
         private void buttonColorChoice_Click(object sender, EventArgs e)

@@ -70,7 +70,7 @@ namespace UML_Diagram_drawer.MouseHandlers
                 {
                     _mainData.CurrentArrow.EndPoint = currentContactPoint;
                     currentContactPoint = null;
-                    _mainData.IMouseHandler = new MoveMouseHandler();
+                    _mainData.IMouseHandler = new MoveAndSelectMouseHandler();
                 }
                 else
                 {

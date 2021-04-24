@@ -65,7 +65,7 @@ namespace UML_Diagram_drawer.Arrows
 
         public AbstactArrow()
         {
-            _pen = Default.Draw.Pen;
+            _pen = (Pen)Default.Draw.Pen.Clone();
             _sizeArrowhead = (int)_pen.Width * 3;
 
             StartPoint = new ContactPoint(Point.Empty);
@@ -92,6 +92,7 @@ namespace UML_Diagram_drawer.Arrows
             {
                 if (rectangle.Contains(point))
                 {
+                    _pen = (Pen)Default.Draw.PenSelect.Clone();
                     result = true;
                     IsSelected = true;
                 }
@@ -113,7 +114,7 @@ namespace UML_Diagram_drawer.Arrows
             if (IsSelected)
             {
                 IsSelected = false;
-                _pen = Default.Draw.Pen;
+                _pen = (Pen)Default.Draw.Pen.Clone();
             }
         }
 

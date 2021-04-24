@@ -12,21 +12,55 @@ namespace UML_Diagram_drawer.Forms
     {
         protected Rectangle _rectangle;
         protected Pen _pen;
+        protected Color _colorText;
         public ModuleType Type { get; set; }
         public string DefaultText { get; set; }
         public float WidthLine
         {
             get
             {
-                return _pen.Width;
+                if (_pen != null)
+                { 
+                    return _pen.Width;
+                }
+
+                throw new ArgumentNullException("Pen is null");
             }
             set
             {
-                _pen.Width = value;
+                if (_pen != null)
+                {
+                    _pen.Width = value;
+                }
+                else
+                {
+                    throw new ArgumentNullException("Pen is null");
+                }
             }
         }
-        public Color Color { get; set; }
-     
+        public Color Color
+        {
+            get
+            {
+                if (_pen != null)
+                {
+                    return _pen.Color;
+                }
+
+                throw new ArgumentNullException("Pen is null");
+            }
+            set
+            {
+                if (_pen != null)
+                {
+                    _pen.Color = value;
+                }
+                else
+                {
+                    throw new ArgumentNullException("Pen is null");
+                }
+            }
+        }
         public Font Font { get; set; }
         public List<TextField> TextFields { get; set; }
         public StringFormat StringFormat { get; set; }
@@ -55,9 +89,10 @@ namespace UML_Diagram_drawer.Forms
 
         public AbstactModule()
         {
-            _pen = Default.Draw.Pen;
-            Color = _pen.Color;
-            Font = Default.Text.Font;
+            _pen = (Pen)Default.Draw.Pen.Clone();
+
+            _colorText = _pen.Color;
+            Font = (Font)Default.Text.Font.Clone();
             _rectangle = new Rectangle(Location, Default.Size.ModuleFormSize);
             TextFields = new List<TextField>();
         }
@@ -65,9 +100,9 @@ namespace UML_Diagram_drawer.Forms
         public AbstactModule(ModuleType type, string defaultText, StringFormat stringFormat)
         {
             Type = type;
-            _pen = Default.Draw.Pen;
-            Color = _pen.Color;
-            Font = Default.Text.Font;
+            _pen = (Pen)Default.Draw.Pen.Clone();
+            _colorText = _pen.Color;
+            Font = (Font)Default.Text.Font.Clone(); 
             DefaultText = defaultText;
             _rectangle = new Rectangle(Location, Default.Size.ModuleFormSize);
             StringFormat = stringFormat;
@@ -81,8 +116,6 @@ namespace UML_Diagram_drawer.Forms
 
         public virtual void Draw()
         {
-            //
-            _pen.Color = Color;
             _rectangle.Height = GetDesiredSize().Height;
             MainGraphics.Graphics.DrawRectangle(_pen, _rectangle);
             DrawTextField();
@@ -98,6 +131,7 @@ namespace UML_Diagram_drawer.Forms
 
             TextField tempTextField = new TextField(DefaultText)
             {
+                Color = _colorText,
                 Location = new Point(Location.X, Location.Y + addedY),
                 Font = Font
             };
@@ -117,6 +151,7 @@ namespace UML_Diagram_drawer.Forms
 
                 TextField tempTextField = new TextField(text)
                 {
+                    Color = _colorText,
                     Font = Font,
                     StringFormat = StringFormat,
                     Location = new Point(Location.X, Location.Y + addedY)
@@ -175,6 +210,7 @@ namespace UML_Diagram_drawer.Forms
 
         public void SetColorText(Color color)
         {
+            _colorText = color;
             foreach (TextField text in TextFields)
             {
                 text.Color = color;

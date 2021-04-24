@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UML_Diagram_drawer.Arrows;
 using UML_Diagram_drawer.Forms;
 
 namespace UML_Diagram_drawer.MouseHandlers
 {
-    class MoveMouseHandler : IMouseHandler
+    class MoveAndSelectMouseHandler : IMouseHandler
     {
         private MainData _mainData = MainData.GetMainData();
         private Point previousLocation;
@@ -18,15 +19,27 @@ namespace UML_Diagram_drawer.MouseHandlers
         {
             if (_mainData.SelectForm != null && !_mainData.SelectForm.Contains(e.Location))
             {
-                foreach (AbstractForm form in _mainData.FormsList)
-                {
-                    form.RemoveSelect();
-                }
-                _mainData.SelectForm = null;
+                RemoveSelect();
 
                 _mainData.PictureBoxMain.Invalidate();
             }
-            
+
+        }
+
+        private void RemoveSelect()
+        {
+            foreach (AbstractForm form in _mainData.FormsList)
+            {
+                form.RemoveSelect();
+            }
+
+            _mainData.SelectForm = null;
+            foreach (AbstactArrow arrow in _mainData.ArrowsList)
+            {
+                arrow.RemoveSelect();
+            }
+
+            _mainData.SelectArrow = null;
         }
 
         public void MouseDown(object sender, MouseEventArgs e)
@@ -35,10 +48,21 @@ namespace UML_Diagram_drawer.MouseHandlers
             {
                 if (form.Contains(e.Location))
                 {
+                    RemoveSelect();
                     _mainData.CurrentFormUML = form;
                     _mainData.SelectForm = form;
                     _mainData.SelectForm.Select(e.Location);
                     previousLocation = e.Location;
+
+                    _mainData.PictureBoxMain.Invalidate();
+                }
+            }
+            foreach (AbstactArrow arrow in _mainData.ArrowsList)
+            {
+                if (arrow.Select(e.Location))
+                {
+                    RemoveSelect();
+                    _mainData.SelectArrow = arrow;
 
                     _mainData.PictureBoxMain.Invalidate();
                 }

@@ -11,10 +11,32 @@ namespace UML_Diagram_drawer.Forms
     {
         private SolidBrush _brush;
         private Rectangle _rectangle;
+        public string Text { get; set; }
         public Font Font { get; set; }
         public StringFormat StringFormat { get; set; }
-        public Color Color { get; set; }
-        public string Text { get; set; }
+        public Color Color
+        {
+            get
+            {
+                if (_brush != null)
+                {
+                    return _brush.Color;
+                }
+
+                throw new ArgumentNullException("Brush is null");
+            }
+            set
+            {
+                if (_brush != null)
+                {
+                    _brush.Color = value;
+                }
+                else
+                {
+                    throw new ArgumentNullException("Brush is null");
+                }
+            }
+        }
         public Point Location
         {
             get
@@ -40,8 +62,8 @@ namespace UML_Diagram_drawer.Forms
 
         public TextField()
         {
-            Font = Default.Text.Font;
-            _brush = Default.Text.Brush;
+            Font = (Font)Default.Text.Font.Clone();
+            _brush = (SolidBrush)Default.Text.Brush.Clone();
             Color = _brush.Color;
             Text = Default.Text.SomeText;
             _rectangle = new Rectangle(Location, Default.Size.TextFieldSize);
@@ -49,8 +71,8 @@ namespace UML_Diagram_drawer.Forms
 
         public TextField(string text)
         {
-            Font = Default.Text.Font;
-            _brush = Default.Text.Brush;
+            Font = (Font)Default.Text.Font.Clone();
+            _brush = (SolidBrush)Default.Text.Brush.Clone();
             Color = _brush.Color;
             Text = text;
             _rectangle = new Rectangle(Location, Default.Size.TextFieldSize);

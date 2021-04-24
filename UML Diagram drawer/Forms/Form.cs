@@ -11,8 +11,8 @@ namespace UML_Diagram_drawer.Forms
     {
         public Form()
         {
-            _pen = Default.Draw.Pen;
-            Brush = Default.Draw.FillBrush;
+            _pen = (Pen)Default.Draw.Pen.Clone();
+            _brush = (SolidBrush)Default.Draw.FillBrush.Clone();
         }
 
         public Form(FormType type, bool createFields, bool createMethods, string titleText) : base(type, createFields, createMethods, titleText) { }

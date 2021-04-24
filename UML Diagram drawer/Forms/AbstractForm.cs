@@ -10,9 +10,11 @@ namespace UML_Diagram_drawer.Forms
 {
     public abstract class AbstractForm : ISelectable
     {
-        public List<AbstactModule> _modules;
+        protected SolidBrush _brush;
+        protected List<AbstactModule> _modules;
         protected Rectangle _rectangle;
         protected Pen _pen;
+
         public string TitleText { get; set; }
         public bool IsSelected { get; set; }
         public float WidthLine
@@ -39,10 +41,29 @@ namespace UML_Diagram_drawer.Forms
             }
         }
         public ContactPoint[] ContactPoints { get; set; }
-        public Color Color { get; set; }
-          
-        
-        public SolidBrush Brush { get; set; }
+        public Color Color
+        {
+            get
+            {
+                if (_brush != null)
+                {
+                    return _brush.Color;
+                }
+
+                throw new ArgumentNullException("Brush is null");
+            }
+            set
+            {
+                if (_brush != null)
+                {
+                    _brush.Color = value;
+                }
+                else
+                {
+                    throw new ArgumentNullException("Brush is null");
+                }
+            }
+        }
         public Font Font { get; set; }
         public FormType Type { get; set; }
         public Size Size
@@ -72,14 +93,14 @@ namespace UML_Diagram_drawer.Forms
         {
 
         }
+
         public AbstractForm(FormType type, bool createFields, bool createMethods, string titleText)
         {
             Type = type;
             TitleText = titleText;
-            _pen = Default.Draw.Pen;
-            Color = _pen.Color;
-            Brush = Default.Draw.FillBrush;
-            Font = Default.Text.Font;
+            _pen = (Pen)Default.Draw.Pen.Clone();
+            _brush = (SolidBrush)Default.Draw.FillBrush.Clone();
+            Font = (Font)Default.Text.Font.Clone();
             _modules = new List<AbstactModule>();
             _rectangle = new Rectangle(Location, Default.Size.FormSize);
             SetContactPoint();
@@ -90,13 +111,26 @@ namespace UML_Diagram_drawer.Forms
         {
             Type = form.Type;
             TitleText = form.TitleText;
-            _pen = new Pen(form.Color, form.WidthLine);
+            _pen = (Pen)form._pen.Clone();
             Font = form.Font;
-            Brush = form.Brush;
+            _brush = form._brush;
             Size = form.Size;
             Location = form.Location;
             ContactPoints = form.ContactPoints;
             _modules = form._modules;
+        }
+
+        public void Draw()
+        {
+            ResizeRectangle();
+            SetWidthToModule();
+            MainGraphics.Graphics.FillRectangle(_brush, _rectangle);
+            DrawModules();
+            SetContactPoint();
+            if (IsSelected)
+            {
+                DrawSelectRectangle();
+            }
         }
 
         public ContactPoint ConnectArrow(Point point)
@@ -112,19 +146,6 @@ namespace UML_Diagram_drawer.Forms
             }
 
             return result;
-        }
-
-        public void Draw()
-        {
-            ResizeRectangle();
-            SetWidthToModule();
-            MainGraphics.Graphics.FillRectangle(Brush, _rectangle);
-            DrawModules();
-            SetContactPoint();
-            if (IsSelected)
-            {
-                DrawSelectRectangle();
-            }
         }
 
         public void Move(int deltaX, int deltaY)
@@ -285,7 +306,7 @@ namespace UML_Diagram_drawer.Forms
             Rectangle selectRectangle = new Rectangle();
             selectRectangle.Size = new Size(Size.Width + 40, Size.Height + 40);
             selectRectangle.Location = new Point(Location.X - 20, Location.Y - 20);
-            MainGraphics.Graphics.DrawRectangle(Default.Draw.PenSelect, selectRectangle);
+            MainGraphics.Graphics.DrawRectangle(Default.Draw.PenDash, selectRectangle);
         }
 
         protected TextField SelectTextField(Point point)

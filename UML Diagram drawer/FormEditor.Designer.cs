@@ -32,7 +32,7 @@ namespace UML_Diagram_drawer
             this.colorCoiseDialog = new System.Windows.Forms.ColorDialog();
             this.buttonColorChoice = new System.Windows.Forms.Button();
             this.trackBarLineThickness = new System.Windows.Forms.TrackBar();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.panelEditForm = new System.Windows.Forms.Panel();
             this.trackBarSizeForm = new System.Windows.Forms.TrackBar();
             this.buttonSelectFont = new System.Windows.Forms.Button();
             this.buttonAddMethod = new System.Windows.Forms.Button();
@@ -41,7 +41,7 @@ namespace UML_Diagram_drawer
             this.buttonColorTextChoice = new System.Windows.Forms.Button();
             this.buttonSetBackColor = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarLineThickness)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.panelEditForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSizeForm)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,18 +70,18 @@ namespace UML_Diagram_drawer
             this.trackBarLineThickness.Value = 1;
             this.trackBarLineThickness.Scroll += new System.EventHandler(this.trackBarLineThickness_Scroll);
             // 
-            // panel2
+            // panelEditForm
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.panelEditForm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.trackBarSizeForm);
-            this.panel2.Controls.Add(this.buttonSelectFont);
-            this.panel2.Controls.Add(this.buttonAddMethod);
-            this.panel2.Controls.Add(this.buttonAddField);
-            this.panel2.Location = new System.Drawing.Point(0, 200);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(235, 197);
-            this.panel2.TabIndex = 3;
+            this.panelEditForm.Controls.Add(this.trackBarSizeForm);
+            this.panelEditForm.Controls.Add(this.buttonSelectFont);
+            this.panelEditForm.Controls.Add(this.buttonAddMethod);
+            this.panelEditForm.Controls.Add(this.buttonAddField);
+            this.panelEditForm.Location = new System.Drawing.Point(0, 200);
+            this.panelEditForm.Name = "panelEditForm";
+            this.panelEditForm.Size = new System.Drawing.Size(235, 197);
+            this.panelEditForm.TabIndex = 3;
             // 
             // trackBarSizeForm
             // 
@@ -159,15 +159,15 @@ namespace UML_Diagram_drawer
             this.ClientSize = new System.Drawing.Size(235, 409);
             this.Controls.Add(this.buttonSetBackColor);
             this.Controls.Add(this.buttonColorTextChoice);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panelEditForm);
             this.Controls.Add(this.trackBarLineThickness);
             this.Controls.Add(this.buttonColorChoice);
             this.Name = "FormEditor";
             this.Text = "FormEditor";
             this.Load += new System.EventHandler(this.FormEditor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.trackBarLineThickness)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.panelEditForm.ResumeLayout(false);
+            this.panelEditForm.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSizeForm)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -179,7 +179,7 @@ namespace UML_Diagram_drawer
         private System.Windows.Forms.ColorDialog colorCoiseDialog;
         private System.Windows.Forms.Button buttonColorChoice;
         private System.Windows.Forms.TrackBar trackBarLineThickness;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panelEditForm;
         private System.Windows.Forms.Button buttonAddMethod;
         private System.Windows.Forms.Button buttonAddField;
         private System.Windows.Forms.Button buttonSelectFont;

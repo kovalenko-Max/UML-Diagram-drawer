@@ -13,12 +13,23 @@ namespace UML_Diagram_drawer
         public static class Draw
         {
             private static int _penWidth = 5;
+            private static int _penSelectWidth = 3;
             private static Color _color = Color.Black;
             private static Color _colorSelect = Color.Blue;
-
+            private static Pen _penDash = new Pen(_colorSelect, _penSelectWidth);
             public static SolidBrush FillBrush = new SolidBrush(Color.Gray);
             public static Pen Pen = new Pen(_color, _penWidth);
-            public static Pen PenSelect = new Pen(_colorSelect, _penWidth);
+            public static Pen PenSelect = new Pen(_colorSelect, _penSelectWidth);
+            public static Pen PenDash { get
+                {
+                    _penDash.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                    return _penDash;   
+                }
+                set
+                {
+                    _penDash = value;
+                }
+            }
         }
 
         public static class Text

@@ -95,7 +95,7 @@
     <Compile Include="IClonable.cs" />
     <Compile Include="MainData.cs" />
     <Compile Include="MouseHandlers\SelectFormMouseHandler.cs" />
-    <Compile Include="MouseHandlers\MoveMouseHandler.cs" />
+    <Compile Include="MouseHandlers\MoveAndSelectMouseHandler.cs" />
     <Compile Include="MouseHandlers\DrawFromMouseHandler.cs" />
     <Compile Include="MouseHandlers\DrawArrowMouseHandler.cs" />
     <Compile Include="MouseHandlers\IMouseHandler.cs" />
