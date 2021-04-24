@@ -124,7 +124,6 @@
     <Compile Include="Forms\Modules\TitleModule.cs" />
     <Compile Include="Forms\TextField.cs" />
     <Compile Include="MainGraphics.cs" />
-    <Compile Include="TypeOfLineDirection.cs" />
     <Compile Include="ISelectable.cs" />
     <Compile Include="Side.cs" />
     <Compile Include="Forms\ContactPoint.cs" />

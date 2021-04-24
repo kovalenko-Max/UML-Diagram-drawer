@@ -334,6 +334,7 @@ namespace UML_Diagram_drawer
             this.toolStripButtonInterfaceForm.Size = new System.Drawing.Size(45, 44);
             this.toolStripButtonInterfaceForm.Text = "Form2";
             this.toolStripButtonInterfaceForm.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButtonInterfaceForm.Click += new System.EventHandler(this.toolStripButtonInterfaceForm_Click);
             // 
             // toolStripSeparator2
             // 

@@ -47,9 +47,8 @@ namespace UML_Diagram_drawer
             // 
             // buttonColorChoice
             // 
-            this.buttonColorChoice.Dock = System.Windows.Forms.DockStyle.Top;
             this.buttonColorChoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonColorChoice.Location = new System.Drawing.Point(0, 0);
+            this.buttonColorChoice.Location = new System.Drawing.Point(3, 3);
             this.buttonColorChoice.Name = "buttonColorChoice";
             this.buttonColorChoice.Size = new System.Drawing.Size(235, 40);
             this.buttonColorChoice.TabIndex = 0;
@@ -59,13 +58,13 @@ namespace UML_Diagram_drawer
             // 
             // trackBarLineThickness
             // 
-            this.trackBarLineThickness.Location = new System.Drawing.Point(0, 149);
+            this.trackBarLineThickness.Location = new System.Drawing.Point(3, 141);
             this.trackBarLineThickness.Maximum = 20;
             this.trackBarLineThickness.MaximumSize = new System.Drawing.Size(500, 500);
             this.trackBarLineThickness.Minimum = 1;
             this.trackBarLineThickness.MinimumSize = new System.Drawing.Size(100, 50);
             this.trackBarLineThickness.Name = "trackBarLineThickness";
-            this.trackBarLineThickness.Size = new System.Drawing.Size(235, 45);
+            this.trackBarLineThickness.Size = new System.Drawing.Size(235, 50);
             this.trackBarLineThickness.TabIndex = 1;
             this.trackBarLineThickness.Value = 1;
             this.trackBarLineThickness.Scroll += new System.EventHandler(this.trackBarLineThickness_Scroll);
@@ -74,18 +73,21 @@ namespace UML_Diagram_drawer
             // 
             this.panelEditForm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelEditForm.Controls.Add(this.buttonColorTextChoice);
+            this.panelEditForm.Controls.Add(this.buttonColorChoice);
+            this.panelEditForm.Controls.Add(this.buttonSetBackColor);
             this.panelEditForm.Controls.Add(this.trackBarSizeForm);
             this.panelEditForm.Controls.Add(this.buttonSelectFont);
             this.panelEditForm.Controls.Add(this.buttonAddMethod);
+            this.panelEditForm.Controls.Add(this.trackBarLineThickness);
             this.panelEditForm.Controls.Add(this.buttonAddField);
-            this.panelEditForm.Location = new System.Drawing.Point(0, 200);
+            this.panelEditForm.Location = new System.Drawing.Point(0, 194);
             this.panelEditForm.Name = "panelEditForm";
-            this.panelEditForm.Size = new System.Drawing.Size(235, 197);
+            this.panelEditForm.Size = new System.Drawing.Size(753, 387);
             this.panelEditForm.TabIndex = 3;
             // 
             // trackBarSizeForm
             // 
-            this.trackBarSizeForm.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.trackBarSizeForm.Location = new System.Drawing.Point(0, 147);
             this.trackBarSizeForm.Maximum = 72;
             this.trackBarSizeForm.MaximumSize = new System.Drawing.Size(1000, 750);
@@ -100,7 +102,7 @@ namespace UML_Diagram_drawer
             // buttonSelectFont
             // 
             this.buttonSelectFont.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonSelectFont.Location = new System.Drawing.Point(0, 92);
+            this.buttonSelectFont.Location = new System.Drawing.Point(0, 289);
             this.buttonSelectFont.Name = "buttonSelectFont";
             this.buttonSelectFont.Size = new System.Drawing.Size(235, 40);
             this.buttonSelectFont.TabIndex = 4;
@@ -111,7 +113,7 @@ namespace UML_Diagram_drawer
             // buttonAddMethod
             // 
             this.buttonAddMethod.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAddMethod.Location = new System.Drawing.Point(0, 46);
+            this.buttonAddMethod.Location = new System.Drawing.Point(3, 243);
             this.buttonAddMethod.Name = "buttonAddMethod";
             this.buttonAddMethod.Size = new System.Drawing.Size(235, 40);
             this.buttonAddMethod.TabIndex = 1;
@@ -122,7 +124,7 @@ namespace UML_Diagram_drawer
             // buttonAddField
             // 
             this.buttonAddField.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAddField.Location = new System.Drawing.Point(0, 0);
+            this.buttonAddField.Location = new System.Drawing.Point(3, 197);
             this.buttonAddField.Name = "buttonAddField";
             this.buttonAddField.Size = new System.Drawing.Size(235, 40);
             this.buttonAddField.TabIndex = 0;
@@ -133,7 +135,7 @@ namespace UML_Diagram_drawer
             // buttonColorTextChoice
             // 
             this.buttonColorTextChoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonColorTextChoice.Location = new System.Drawing.Point(0, 46);
+            this.buttonColorTextChoice.Location = new System.Drawing.Point(3, 49);
             this.buttonColorTextChoice.Name = "buttonColorTextChoice";
             this.buttonColorTextChoice.Size = new System.Drawing.Size(235, 40);
             this.buttonColorTextChoice.TabIndex = 4;
@@ -144,7 +146,7 @@ namespace UML_Diagram_drawer
             // buttonSetBackColor
             // 
             this.buttonSetBackColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonSetBackColor.Location = new System.Drawing.Point(0, 92);
+            this.buttonSetBackColor.Location = new System.Drawing.Point(3, 95);
             this.buttonSetBackColor.Name = "buttonSetBackColor";
             this.buttonSetBackColor.Size = new System.Drawing.Size(235, 40);
             this.buttonSetBackColor.TabIndex = 5;
@@ -156,12 +158,8 @@ namespace UML_Diagram_drawer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(235, 409);
-            this.Controls.Add(this.buttonSetBackColor);
-            this.Controls.Add(this.buttonColorTextChoice);
+            this.ClientSize = new System.Drawing.Size(753, 656);
             this.Controls.Add(this.panelEditForm);
-            this.Controls.Add(this.trackBarLineThickness);
-            this.Controls.Add(this.buttonColorChoice);
             this.Name = "FormEditor";
             this.Text = "FormEditor";
             this.Load += new System.EventHandler(this.FormEditor_Load);
@@ -170,7 +168,6 @@ namespace UML_Diagram_drawer
             this.panelEditForm.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSizeForm)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

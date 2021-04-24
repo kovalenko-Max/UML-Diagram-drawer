@@ -311,5 +311,13 @@ namespace UML_Diagram_drawer
                 pictureBoxMain.Width += e.NewValue - e.OldValue + step;
             }
         }
+
+        private void toolStripButtonInterfaceForm_Click(object sender, EventArgs e)
+        {
+            _formFactory = new InterfaceFormFactory();
+            _mainData.CurrentFormUML = _formFactory.GetForm();
+            _mainData.FormsList.Add(_mainData.CurrentFormUML);
+            _mainData.IMouseHandler = new DrawFromMouseHandler();
+        }
     }
 }
