@@ -78,7 +78,26 @@ namespace UML_Diagram_drawer
         }
 
         #endregion
-
+        private void RebindingArrows()
+        {
+            foreach (AbstactArrow arrow in _mainData.ArrowsList)
+            {
+                foreach (AbstractForm form in _mainData.FormsList)
+                {
+                    foreach (ContactPoint point in form.ContactPoints)
+                    {
+                        if (arrow.StartPoint.Equals(point))
+                        {
+                            arrow.StartPoint = point;
+                        }
+                        else if (arrow.EndPoint.Equals(point))
+                        {
+                            arrow.EndPoint = point;
+                        }
+                    }
+                }
+            }
+        }
         private void FormMain_Load(object sender, EventArgs e)
         {
             _formFactory = Default.Factory.Form;
@@ -143,8 +162,16 @@ namespace UML_Diagram_drawer
             _mainData.FormsList.Add(_mainData.CurrentFormUML);
             _mainData.IMouseHandler = new DrawFromMouseHandler();
         }
-        #endregion
 
+        private void toolStripButtonInterfaceForm_Click(object sender, EventArgs e)
+        {
+            _formFactory = new InterfaceFormFactory();
+            _mainData.CurrentFormUML = _formFactory.GetForm();
+            _mainData.FormsList.Add(_mainData.CurrentFormUML);
+            _mainData.IMouseHandler = new DrawFromMouseHandler();
+        }
+
+        #endregion
 
         private void toolStripButtonEditObject_Click(object sender, EventArgs e)
         {
@@ -152,6 +179,12 @@ namespace UML_Diagram_drawer
             formEditor.Show();
         }
 
+        private void toolStripButtonSelectForm_Click(object sender, EventArgs e)
+        {
+            _mainData.IMouseHandler = new SelectFormMouseHandler();
+        }
+
+        #region Save&Load
         private void toolStripButtonSaveFile_Click(object sender, EventArgs e)
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
@@ -169,9 +202,21 @@ namespace UML_Diagram_drawer
             {
                 string[] fileData = SaveAndLoad.OpenFile(openFileDialog1.FileName);
                 JsonDeserialize(fileData);
+                RebindingArrows();
                 _mainData.PictureBoxMain.Invalidate();
             }
         }
+
+        private void toolStripButtonSaveImageFile_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog2.ShowDialog() == DialogResult.OK)
+            {
+                Bitmap bmp = new Bitmap(pictureBoxMain.Width, pictureBoxMain.Height);
+                pictureBoxMain.DrawToBitmap(bmp, new Rectangle(0, 0, pictureBoxMain.Width, pictureBoxMain.Height));
+                bmp.Save(saveFileDialog2.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+            }
+        }
+        #endregion
 
         #region CopyPaste
         private void toolStripButtonCopy_Click(object sender, EventArgs e)
@@ -285,20 +330,6 @@ namespace UML_Diagram_drawer
 
         #endregion
 
-        private void toolStripButtonSaveImageFile_Click(object sender, EventArgs e)
-        {
-            if (saveFileDialog2.ShowDialog() == DialogResult.OK)
-            {
-                Bitmap bmp = new Bitmap(pictureBoxMain.Width, pictureBoxMain.Height);
-                pictureBoxMain.DrawToBitmap(bmp, new Rectangle(0, 0, pictureBoxMain.Width, pictureBoxMain.Height));
-                bmp.Save(saveFileDialog2.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
-            }
-        }
-
-        private void toolStripButtonSelectForm_Click(object sender, EventArgs e)
-        {
-            _mainData.IMouseHandler = new SelectFormMouseHandler();
-        }
         private void flowLayoutPanel1_Scroll(object sender, ScrollEventArgs e)
         {
             const int step = 50;
@@ -310,14 +341,6 @@ namespace UML_Diagram_drawer
             {
                 pictureBoxMain.Width += e.NewValue - e.OldValue + step;
             }
-        }
-
-        private void toolStripButtonInterfaceForm_Click(object sender, EventArgs e)
-        {
-            _formFactory = new InterfaceFormFactory();
-            _mainData.CurrentFormUML = _formFactory.GetForm();
-            _mainData.FormsList.Add(_mainData.CurrentFormUML);
-            _mainData.IMouseHandler = new DrawFromMouseHandler();
         }
     }
 }
