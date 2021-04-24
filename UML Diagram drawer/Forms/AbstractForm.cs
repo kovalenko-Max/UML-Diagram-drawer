@@ -156,6 +156,7 @@ namespace UML_Diagram_drawer.Forms
 
         public void Resize(int value)
         {
+            Font = new Font(Font.FontFamily, value);
             foreach (AbstactModule module in _modules)
             {
                 module.Resize(value);

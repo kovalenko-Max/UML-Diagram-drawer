@@ -16,13 +16,17 @@ namespace UML_Diagram_drawer.MouseHandlers
 
         public void MouseClick(object sender, MouseEventArgs e)
         {
-            if (!_mainData.SelectForm.Contains(e.Location))
+            if (_mainData.SelectForm != null && !_mainData.SelectForm.Contains(e.Location))
             {
-                _mainData.SelectForm.RemoveSelect();
+                foreach (AbstractForm form in _mainData.FormsList)
+                {
+                    form.RemoveSelect();
+                }
                 _mainData.SelectForm = null;
 
                 _mainData.PictureBoxMain.Invalidate();
             }
+            
         }
 
         public void MouseDown(object sender, MouseEventArgs e)
@@ -43,7 +47,7 @@ namespace UML_Diagram_drawer.MouseHandlers
 
         public void MouseMove(object sender, MouseEventArgs e)
         {
-            if(_mainData.CurrentFormUML != null)
+            if (_mainData.CurrentFormUML != null)
             {
                 _mainData.CurrentFormUML.Move(e.Location.X - previousLocation.X, e.Location.Y - previousLocation.Y);
                 previousLocation = e.Location;

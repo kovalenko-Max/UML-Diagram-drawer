@@ -95,6 +95,7 @@ namespace UML_Diagram_drawer.Forms
             {
                 addedY += text.Size.Height;
             }
+
             TextField tempTextField = new TextField(DefaultText)
             {
                 Location = new Point(Location.X, Location.Y + addedY),
@@ -182,6 +183,7 @@ namespace UML_Diagram_drawer.Forms
 
         public void Resize(int value)
         {
+            Font = new Font(Font.FontFamily, value);
             foreach (var item in TextFields)
             {
                 item.Font = new Font(item.Font.FontFamily, value);

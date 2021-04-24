@@ -11,24 +11,19 @@ namespace UML_Diagram_drawer.Handlers
 {
     public class FormEditorHandler : IEditHandler
     {
+        private MainData _mainData;
         public PictureBox Canvas { get; set; }
         public AbstractForm Form { get; set; }
         public AbstactArrow Arrow { get; set; }
         public ColorDialog ColorDialog { get; set; }
         public FontDialog FontDialog { get; set; }
 
-        private MainData _mainData = MainData.GetMainData();
-
-        public FormEditorHandler()
-        {
-
-        }
-
         public FormEditorHandler(ColorDialog colorDialog, FontDialog fontDialog)
         {
-            if (_mainData.SelectForm != null && _mainData.PictureBoxMain != null && colorDialog != null&& fontDialog!=null)
+            if (colorDialog != null&& fontDialog!=null)
             {
-                Form = _mainData.SelectForm;
+                _mainData = MainData.GetMainData();
+                Form = _mainData.SelectForm ;
                 Canvas = _mainData.PictureBoxMain;
                 ColorDialog = colorDialog;
                 FontDialog = fontDialog;
