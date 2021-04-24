@@ -1,7 +1,9 @@
 using NUnit.Framework;
+using System.IO;
 using System.Collections;
 using UML_Diagram_drawer.Forms;
 using System.Drawing;
+using UML_Diagram_drawer.Factory;
 
 namespace TestProject
 {
@@ -24,7 +26,7 @@ namespace TestProject
             public IEnumerator GetEnumerator()
             {
                 yield return new object[]{
-                    new UML_Diagram_drawer.Forms.Form() {Location = new Point(0,0) },
+                    new ClassFormFactory().GetForm(),
                     new Point(50,50),
                     true
                 };
