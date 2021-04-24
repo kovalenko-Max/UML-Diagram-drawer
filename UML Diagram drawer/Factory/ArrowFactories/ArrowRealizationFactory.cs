@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UML_Diagram_drawer.Arrows.ArrowHeads;
+﻿using UML_Diagram_drawer.Arrows.ArrowHeads;
+using UML_Diagram_drawer.Arrows.ArrowLines;
 using UML_Diagram_drawer.Arrows;
-using System.Drawing;
 
 namespace UML_Diagram_drawer.Factory.ArrowFactories
 {
@@ -13,10 +8,7 @@ namespace UML_Diagram_drawer.Factory.ArrowFactories
     {
         public Arrow GetArrow()
         {
-            Pen pen = (Pen)Default.Draw.Pen.Clone();
-            pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-
-            return new Arrow(pen: pen, arrowHead: new TriangleArrowHead());
+            return new Arrow(new DashArrowLine(), arrowHead: new TriangleArrowHead());
         }
     }
 }

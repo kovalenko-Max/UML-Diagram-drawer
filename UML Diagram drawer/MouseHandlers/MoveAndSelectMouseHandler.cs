@@ -34,7 +34,7 @@ namespace UML_Diagram_drawer.MouseHandlers
             }
 
             _mainData.SelectForm = null;
-            foreach (AbstactArrow arrow in _mainData.ArrowsList)
+            foreach (Arrow arrow in _mainData.ArrowsList)
             {
                 arrow.RemoveSelect();
             }
@@ -57,7 +57,7 @@ namespace UML_Diagram_drawer.MouseHandlers
                     _mainData.PictureBoxMain.Invalidate();
                 }
             }
-            foreach (AbstactArrow arrow in _mainData.ArrowsList)
+            foreach (Arrow arrow in _mainData.ArrowsList)
             {
                 if (arrow.IsSelect(e.Location))
                 {

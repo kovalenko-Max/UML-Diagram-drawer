@@ -68,7 +68,7 @@ namespace UML_Diagram_drawer
             if (fileData[1] != null)
             {
 
-                _mainData.ArrowsList = JsonConvert.DeserializeObject<List<AbstactArrow>>(fileData[1],
+                _mainData.ArrowsList = JsonConvert.DeserializeObject<List<Arrow>>(fileData[1],
                     new JsonSerializerSettings
                     {
                         TypeNameHandling = TypeNameHandling.All
@@ -76,7 +76,7 @@ namespace UML_Diagram_drawer
             }
             else
             {
-                _mainData.ArrowsList = new List<AbstactArrow>();
+                _mainData.ArrowsList = new List<Arrow>();
             }
         }
 
@@ -88,7 +88,7 @@ namespace UML_Diagram_drawer
             _mainData = MainData.GetMainData();
             _mainData.PictureBoxMain = pictureBoxMain;
             _mainData.FormsList = new List<AbstractForm>();
-            _mainData.ArrowsList = new List<AbstactArrow>();
+            _mainData.ArrowsList = new List<Arrow>();
         }
 
         #region Tool Strip
