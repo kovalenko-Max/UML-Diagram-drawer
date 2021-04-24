@@ -88,16 +88,19 @@
   <ItemGroup>
     <Compile Include="Arrows\ArrowHeads\ThreePointArrowHead.cs" />
     <Compile Include="Arrows\ArrowHeads\TriangleArrowHead.cs" />
-    <Compile Include="Arrows\ArrowNocks\EmptyRhombus.cs" />
-    <Compile Include="Arrows\ArrowNocks\FilledRhombus.cs" />
-    <Compile Include="Arrows\ArrowSuccession.cs" />
+    <Compile Include="Arrows\ArrowNocks\EmptyRhombusNock.cs" />
+    <Compile Include="Arrows\ArrowNocks\FilledRhombusNock.cs" />
     <Compile Include="Arrows\ArrowComposition.cs" />
-    <Compile Include="Arrows\ArrowRealization.cs" />
-    <Compile Include="Arrows\ArrowAggregation.cs" />
-    <Compile Include="Arrows\ArrowAssociation.cs" />
     <Compile Include="Arrows\ArrowsLineDrawingLogic.cs" />
     <Compile Include="Arrows\ArrowHeads\IArrowHead.cs" />
     <Compile Include="Arrows\ArrowNocks\IArrowNock.cs" />
+    <Compile Include="Arrows\Arrow.cs" />
+    <Compile Include="Factory\ArrowFactories\ArrowSuccessionFactory.cs" />
+    <Compile Include="Factory\ArrowFactories\ArrowAssociationFactory.cs" />
+    <Compile Include="Factory\ArrowFactories\ArrowRealizationFactory.cs" />
+    <Compile Include="Factory\ArrowFactories\ArrowAggregationFactory.cs" />
+    <Compile Include="Factory\ArrowFactories\ArrowCompositionFactory.cs" />
+    <Compile Include="Factory\ArrowFactories\IArrowsFactory.cs" />
     <Compile Include="IClonable.cs" />
     <Compile Include="MainData.cs" />
     <Compile Include="MouseHandlers\SelectFormMouseHandler.cs" />

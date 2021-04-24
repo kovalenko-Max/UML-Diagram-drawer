@@ -8,12 +8,15 @@ using UML_Diagram_drawer.Arrows;
 using Form = System.Windows.Forms.Form;
 using UML_Diagram_drawer.Factory;
 using UML_Diagram_drawer.MouseHandlers;
+using UML_Diagram_drawer.Factory.ArrowFactories;
 
 namespace UML_Diagram_drawer
 {
     public partial class FormMain : Form
     {
         private IFormsFactory _formFactory;
+        private IArrowsFactory _arrowsFactory;
+
         private MainData _mainData;
 
         public Pen pen = new Pen(Brushes.Black, 3);
@@ -91,50 +94,46 @@ namespace UML_Diagram_drawer
         #region Tool Strip
 
         #region CreateArrows
+        private void toolStripButtonArrowAssociation_Click(object sender, EventArgs e)
+        {
+            _arrowsFactory = new ArrowAssociationFactory();
+            _mainData.CurrentArrow = _arrowsFactory.GetArrow();
+            _mainData.ArrowsList.Add(_mainData.CurrentArrow);
+            _mainData.IMouseHandler = new DrawArrowMouseHandler();
+        }
         private void toolStripButtonArrowSuccession_Click(object sender, EventArgs e)
         {
-            _mainData.CurrentArrow = new ArrowSuccession();
+            _arrowsFactory = new ArrowSuccessionFactory();
+            _mainData.CurrentArrow = _arrowsFactory.GetArrow();
             _mainData.ArrowsList.Add(_mainData.CurrentArrow);
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
         private void toolStripButtonArrowRealization_Click(object sender, EventArgs e)
         {
-            _mainData.CurrentArrow = new ArrowRealization();
+            _arrowsFactory = new ArrowRealizationFactory();
+            _mainData.CurrentArrow = _arrowsFactory.GetArrow();
             _mainData.ArrowsList.Add(_mainData.CurrentArrow);
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
         private void toolStripButtonArrowAggregation_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void toolStripButtonArrowAggregationAndAssociation_Click(object sender, EventArgs e)
-        {
-            _mainData.CurrentArrow = new ArrowAggregation();
+            _arrowsFactory = new ArrowAggregationFactory();
+            _mainData.CurrentArrow = _arrowsFactory.GetArrow();
             _mainData.ArrowsList.Add(_mainData.CurrentArrow);
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
         private void toolStripButtonArrowComposition_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void toolStripButtonArrowCompositionAndAssociation_Click(object sender, EventArgs e)
-        {
-            _mainData.CurrentArrow = new ArrowComposition();
+            _arrowsFactory = new ArrowCompositionFactory();
+            _mainData.CurrentArrow = _arrowsFactory.GetArrow();
             _mainData.ArrowsList.Add(_mainData.CurrentArrow);
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
-        private void toolStripButtonArrowAssociation_Click(object sender, EventArgs e)
-        {
-            _mainData.CurrentArrow = new ArrowAssociation();
-            _mainData.ArrowsList.Add(_mainData.CurrentArrow);
-            _mainData.IMouseHandler = new DrawArrowMouseHandler();
-        }
+        
         #endregion
 
         #region CreateForm

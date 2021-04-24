@@ -18,7 +18,7 @@ namespace UML_Diagram_drawer.MouseHandlers
             {
                 if (form.Contains(e.Location))
                 {
-                    form.Select(e.Location);
+                    form.IsSelect(e.Location);
                     _mainData.CurrentFormUML = form;
                 }
             }

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 
 namespace UML_Diagram_drawer.Arrows.ArrowNocks
 {
-    class EmptyRhombus : IArrowNock
+    class FilledRhombusNock : IArrowNock
     {
         public void Draw(Pen pen, Point StartPoint, Point nextPoint)
         {
@@ -24,6 +19,7 @@ namespace UML_Diagram_drawer.Arrows.ArrowNocks
             };
 
             MainGraphics.Graphics.DrawPolygon(pen, points);
+            MainGraphics.Graphics.FillPolygon(new SolidBrush(pen.Color), points, System.Drawing.Drawing2D.FillMode.Alternate);
         }
     }
 }

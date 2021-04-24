@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace UML_Diagram_drawer.Arrows.ArrowHeads
 {
@@ -6,6 +7,8 @@ namespace UML_Diagram_drawer.Arrows.ArrowHeads
     {
         public void Draw(Pen pen, Point endPoint, Point preEndPoint)
         {
+            DashStyle currentDashStyle = pen.DashStyle;
+            pen.DashStyle = DashStyle.Solid;
             Point[] arrowHeadPoints = new Point[3];
 
             if (!preEndPoint.IsEmpty && !endPoint.IsEmpty)
@@ -52,6 +55,7 @@ namespace UML_Diagram_drawer.Arrows.ArrowHeads
                 MainGraphics.Graphics.DrawLine(erasePen, endPoint, eraseEndPoint);
                 MainGraphics.Graphics.DrawPolygon(pen, arrowHeadPoints);
             }
+            pen.DashStyle = currentDashStyle;
         }
     }
 }

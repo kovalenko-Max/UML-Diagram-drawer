@@ -10,8 +10,8 @@ namespace UML_Diagram_drawer.Arrows
         protected Rectangle[] _colliders;
         protected Point[] _ArrowLinePoints;
 
-        protected IArrowHead arrowHead;
-        protected IArrowNock arrowNock;
+        protected IArrowHead ArrowHead { get; set; }
+        protected IArrowNock ArrowNock { get; set; }
 
         protected int _sizeArrowhead;
         protected Pen _pen;
@@ -66,6 +66,23 @@ namespace UML_Diagram_drawer.Arrows
         public ContactPoint EndPoint { get; set; }
         public bool IsSelected { get; set; }
 
+        public AbstactArrow(Pen pen = null, IArrowHead arrowHead = null, IArrowNock arrowNock = null)
+        {
+            if( pen is null)
+            {
+                _pen = (Pen)Default.Draw.Pen.Clone();
+            }
+            else
+            {
+                _pen = pen;
+            }
+            _sizeArrowhead = (int)_pen.Width * 3;
+            ArrowHead = arrowHead;
+            ArrowNock = arrowNock;
+            StartPoint = new ContactPoint(Point.Empty);
+            EndPoint = new ContactPoint(Point.Empty);
+        }
+
         public AbstactArrow()
         {
             _pen = (Pen)Default.Draw.Pen.Clone();
@@ -75,9 +92,20 @@ namespace UML_Diagram_drawer.Arrows
             EndPoint = new ContactPoint(Point.Empty);
         }
 
-        public abstract void Draw();
+        public void Draw()
+        {
+            DrawLine();
+            if (ArrowNock != null)
+            {
+                ArrowNock.Draw(_pen, StartPoint.Location, _ArrowLinePoints[1]);
+            }
+            if (ArrowHead != null)
+            {
+                ArrowHead.Draw(_pen, EndPoint.Location, _ArrowLinePoints[_ArrowLinePoints.Length - 2]);
+            }
+        }
 
-        protected void DrawStraightBrokenLine()
+        protected void DrawLine()
         {
             _ArrowLinePoints = ArrowsLineDrawingLogic.GetPoints(StartPoint, EndPoint);
             CreateSelectionBorders();
@@ -88,7 +116,7 @@ namespace UML_Diagram_drawer.Arrows
         {
         }
 
-        public bool Select(Point point)
+        public bool IsSelect(Point point)
         {
             bool result = false;
             foreach (Rectangle rectangle in _colliders)
