@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UML Diagram drawer", "UML Diagram drawer\UML Diagram drawer.csproj", "{A0C3FD55-D29D-4A8A-A31C-64CCADE1E8DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{47469B47-B14A-4EF3-8BD2-90013863740B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A0C3FD55-D29D-4A8A-A31C-64CCADE1E8DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0C3FD55-D29D-4A8A-A31C-64CCADE1E8DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0C3FD55-D29D-4A8A-A31C-64CCADE1E8DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47469B47-B14A-4EF3-8BD2-90013863740B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47469B47-B14A-4EF3-8BD2-90013863740B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47469B47-B14A-4EF3-8BD2-90013863740B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47469B47-B14A-4EF3-8BD2-90013863740B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

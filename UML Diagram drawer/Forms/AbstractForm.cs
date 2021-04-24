@@ -41,6 +41,11 @@ namespace UML_Diagram_drawer.Forms
                 _rectangle.Location = value;
             }
         }
+        
+        public AbstractForm()
+        {
+
+        }
 
         public AbstractForm(FormType type, bool createFields, bool createMethods, string titleText)
         {
@@ -53,6 +58,8 @@ namespace UML_Diagram_drawer.Forms
             SetContactPoint();
             CreateModules(createFields, createMethods);
         }
+
+
 
         public AbstractForm(AbstractForm form)
         {

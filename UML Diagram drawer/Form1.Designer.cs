@@ -373,9 +373,9 @@ namespace UML_Diagram_drawer
             // 
             // pictureBoxMain
             // 
-            this.pictureBoxMain.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pictureBoxMain.BackColor = System.Drawing.Color.White;
             this.pictureBoxMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxMain.Location = new System.Drawing.Point(2, 2);
             this.pictureBoxMain.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxMain.Name = "pictureBoxMain";
@@ -391,11 +391,13 @@ namespace UML_Diagram_drawer
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.AutoScrollMargin = new System.Drawing.Size(110, 110);
             this.flowLayoutPanel1.Controls.Add(this.pictureBoxMain);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 47);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1145, 382);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1145, 344);
             this.flowLayoutPanel1.TabIndex = 5;
             this.flowLayoutPanel1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.flowLayoutPanel1_Scroll);
             // 
