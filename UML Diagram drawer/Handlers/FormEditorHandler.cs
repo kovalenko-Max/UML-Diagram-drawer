@@ -137,9 +137,9 @@ namespace UML_Diagram_drawer.Handlers
             }
         }
 
-        public void SetArrowType()
+        public void SetArrowType(ComboBox combobox)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

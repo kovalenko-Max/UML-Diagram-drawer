@@ -10,14 +10,13 @@ namespace UML_Diagram_drawer.Arrows
         private const int indentFromBorder = 50;
         private Rectangle[] _colliders;
         private Point[] _ArrowLinePoints;
-
-        public IArrowHead ArrowHead;
-        public IArrowLine ArrowLine;
-        public IArrowNock ArrowNock;
-
         private int _sizeArrowhead;
         private Pen _pen;
+        private Color _lastColor;
 
+        public IArrowHead ArrowHead { get; set; }
+        public IArrowLine ArrowLine { get; set; }
+        public IArrowNock ArrowNock { get; set; }
         public Color Color
         {
             get
@@ -68,6 +67,15 @@ namespace UML_Diagram_drawer.Arrows
         public ContactPoint EndPoint { get; set; }
         public bool IsSelected { get; set; }
 
+        public Arrow()
+        {
+            _pen = (Pen)Default.Draw.Pen.Clone();
+            _sizeArrowhead = (int)_pen.Width * 3;
+
+            StartPoint = new ContactPoint(Point.Empty);
+            EndPoint = new ContactPoint(Point.Empty);
+        }
+
         public Arrow(IArrowLine arrowLine, IArrowHead arrowHead = null, IArrowNock arrowNock = null, Pen pen = null)
         {
             if (pen is null)
@@ -86,13 +94,19 @@ namespace UML_Diagram_drawer.Arrows
             EndPoint = new ContactPoint(Point.Empty);
         }
 
-        public Arrow()
+        public Arrow(Arrow arrow, IArrowLine arrowLine, IArrowHead arrowHead = null, IArrowNock arrowNock = null)
         {
-            _pen = (Pen)Default.Draw.Pen.Clone();
+            _pen = new Pen(arrow.Color, arrow.WidthLine);
+            StartPoint = arrow.StartPoint;
+            EndPoint = arrow.EndPoint;
+            Color = arrow.Color;
+            WidthLine = arrow.WidthLine;
+            IsSelected = arrow.IsSelected;
+            _lastColor = arrow._lastColor;
             _sizeArrowhead = (int)_pen.Width * 3;
-
-            StartPoint = new ContactPoint(Point.Empty);
-            EndPoint = new ContactPoint(Point.Empty);
+            ArrowHead = arrowHead;
+            ArrowLine = arrowLine;
+            ArrowNock = arrowNock;
         }
 
         public void Draw()
@@ -124,7 +138,8 @@ namespace UML_Diagram_drawer.Arrows
             {
                 if (rectangle.Contains(point))
                 {
-                    _pen = (Pen)Default.Draw.PenSelect.Clone();
+                    _lastColor = _pen.Color;
+                    Color = Default.Draw.PenSelect.Color;
                     result = true;
                     IsSelected = true;
                 }
@@ -132,7 +147,11 @@ namespace UML_Diagram_drawer.Arrows
 
             return result;
         }
-
+        public void SetColor(Color color)
+        {
+            _lastColor = color;
+            Color = color;
+        }
         public void Select()
         {
             if (IsSelected)
@@ -146,8 +165,21 @@ namespace UML_Diagram_drawer.Arrows
             if (IsSelected)
             {
                 IsSelected = false;
-                _pen = (Pen)Default.Draw.Pen.Clone();
+                Color = _lastColor;
             }
+        }
+
+        public Arrow Clone()
+        {
+            Arrow arrow = new Arrow(ArrowLine, ArrowHead, ArrowNock, _pen);
+            arrow.StartPoint = StartPoint;
+            arrow.EndPoint = EndPoint;
+            arrow.Color = Color;
+            arrow.WidthLine = WidthLine;
+            arrow.IsSelected = IsSelected;
+            arrow._lastColor = _lastColor;
+
+            return arrow;
         }
 
         private void CreateSelectionBorders()

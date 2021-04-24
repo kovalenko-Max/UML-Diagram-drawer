@@ -10,5 +10,10 @@ namespace UML_Diagram_drawer.Factory.ArrowFactories
         {
             return new Arrow(new DashArrowLine(), arrowHead: new TriangleArrowHead());
         }
+
+        public Arrow GetArrow(Arrow arrow)
+        {
+            return new Arrow(arrow, new DashArrowLine(), arrowHead: new TriangleArrowHead());
+        }
     }
 }

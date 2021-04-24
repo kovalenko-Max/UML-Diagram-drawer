@@ -22,6 +22,6 @@ namespace UML_Diagram_drawer.Handlers
         void SetColorText_Click();
         void SetWidthLine(TrackBar trackBar);
         void SetBackColor_Click();
-        void SetArrowType();
+        void SetArrowType(ComboBox comboBox);
     }
 }

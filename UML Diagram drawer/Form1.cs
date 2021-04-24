@@ -243,7 +243,7 @@ namespace UML_Diagram_drawer
         private void copyToStackButton_Click(object sender, EventArgs e)
         {
             _mainData.FormInBuffer = null;
-
+            
             foreach (AbstractForm form in _mainData.FormsList)
             {
                 if (form.IsSelected)

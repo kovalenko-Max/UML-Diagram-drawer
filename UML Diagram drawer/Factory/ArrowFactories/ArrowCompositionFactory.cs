@@ -11,5 +11,9 @@ namespace UML_Diagram_drawer.Factory.ArrowFactories
         {
             return new Arrow(new SolidArrowLine(), arrowHead: new ThreePointArrowHead(), arrowNock: new FilledRhombus());
         }
+        public Arrow GetArrow(Arrow arrow)
+        {
+            return new Arrow(arrow, new SolidArrowLine(), arrowHead: new ThreePointArrowHead(), arrowNock: new FilledRhombus());
+        }
     }
 }

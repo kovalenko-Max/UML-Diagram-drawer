@@ -5,5 +5,7 @@ namespace UML_Diagram_drawer.Factory.ArrowFactories
     interface IArrowsFactory
     {
         Arrow GetArrow();
+
+        Arrow GetArrow(Arrow arrow);
     }
 }

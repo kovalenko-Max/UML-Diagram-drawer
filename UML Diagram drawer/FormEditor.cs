@@ -30,8 +30,8 @@ namespace UML_Diagram_drawer
             else if (_mainData.SelectArrow != null && _mainData.PictureBoxMain != null)
             {
                 InitializeComponent();
+                
                 comboBoxSetTypeArrow.Visible = true;
-                buttonSetColor.Visible = false;
                 buttonSetColorText.Visible = false;
                 buttonSetBackColor.Visible = false;
                 buttonAddField.Visible = false;
@@ -97,7 +97,7 @@ namespace UML_Diagram_drawer
 
         private void comboBoxSetTypeArrow_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            _handler.SetArrowType(comboBoxSetTypeArrow);
         }
     }
 }
