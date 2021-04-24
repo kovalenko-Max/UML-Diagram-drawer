@@ -36,6 +36,7 @@ namespace UML_Diagram_drawer.Arrows
                 }
             }
         }
+
         public float WidthLine
         {
             get
@@ -59,8 +60,11 @@ namespace UML_Diagram_drawer.Arrows
                 }
             }
         }
+
         public ContactPoint StartPoint { get; set; }
+
         public ContactPoint EndPoint { get; set; }
+        
         public bool IsSelected { get; set; }
 
         public AbstactArrow()

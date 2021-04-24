@@ -16,7 +16,9 @@ namespace UML_Diagram_drawer
         private IFormsFactory _formFactory;
         private MainData _mainData;
 
-        public Pen pen = new Pen(Brushes.Black, 3);
+        private const int defaultPenWidth = 3;
+
+        public Pen pen = new Pen(Brushes.Black, defaultPenWidth);
 
         public FormMain()
         {
@@ -24,7 +26,7 @@ namespace UML_Diagram_drawer
         }
 
         #region Json
-        public string JsonSerialize(TypeOfData type)
+        private string JsonSerialize(TypeOfData type)
         {
             if (type == TypeOfData.Forms)
             {
@@ -47,15 +49,16 @@ namespace UML_Diagram_drawer
             throw new Exception();
         }
 
-        public void JsonDeserialize(string[] fileData)
+        private void JsonDeserialize(string[] fileData)
         {
+            JsonSerializerSettings serializerSettings = new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All
+            };
+
             if (fileData[0] != String.Empty)
             {
-                _mainData.FormsList = JsonConvert.DeserializeObject<List<AbstractForm>>(fileData[0],
-                    new JsonSerializerSettings
-                    {
-                        TypeNameHandling = TypeNameHandling.All
-                    });
+                _mainData.FormsList = JsonConvert.DeserializeObject<List<AbstractForm>>(fileData[0], serializerSettings);
             }
             else
             {
@@ -64,12 +67,7 @@ namespace UML_Diagram_drawer
 
             if (fileData[1] != null)
             {
-
-                _mainData.ArrowsList = JsonConvert.DeserializeObject<List<AbstactArrow>>(fileData[1],
-                    new JsonSerializerSettings
-                    {
-                        TypeNameHandling = TypeNameHandling.All
-                    });
+                _mainData.ArrowsList = JsonConvert.DeserializeObject<List<AbstactArrow>>(fileData[1], serializerSettings);
             }
             else
             {
@@ -181,7 +179,7 @@ namespace UML_Diagram_drawer
 
         private void toolStripButtonPaste_Click(object sender, EventArgs e)
         {
-            pictureBoxMain.MouseDown += PasteObject_MouseDown;
+            pictureBoxMain.MouseDown += pasteObject_MouseDown;
         }
 
         private void toolStripButtonCut_Click(object sender, EventArgs e)
@@ -201,12 +199,12 @@ namespace UML_Diagram_drawer
             {
                 if (form.IsSelected)
                 {
-                    _mainData.FormInBuffer = new UML_Diagram_drawer.Forms.Form(form);
+                    _mainData.FormInBuffer = new Forms.Form(form);
                 }
             }
         }
 
-        private void PasteObject_MouseDown(object sender, MouseEventArgs e)
+        private void pasteObject_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -217,7 +215,7 @@ namespace UML_Diagram_drawer
                     _mainData.FormInBuffer = null;
                 }
             }
-            pictureBoxMain.MouseDown -= PasteObject_MouseDown;
+            pictureBoxMain.MouseDown -= pasteObject_MouseDown;
             pictureBoxMain.Invalidate();
         }
 
@@ -227,7 +225,7 @@ namespace UML_Diagram_drawer
             {
                 if (_mainData.CurrentFormUML != null)
                 {
-                    _mainData.FormInBuffer = new UML_Diagram_drawer.Forms.Form(_mainData.CurrentFormUML);
+                    _mainData.FormInBuffer = new Forms.Form(_mainData.CurrentFormUML);
                     _mainData.FormsList.Remove(_mainData.CurrentFormUML);
                 }
             }
@@ -299,6 +297,7 @@ namespace UML_Diagram_drawer
         {
             _mainData.IMouseHandler = new SelectFormMouseHandler();
         }
+
         private void flowLayoutPanel1_Scroll(object sender, ScrollEventArgs e)
         {
             const int step = 50;
