@@ -98,14 +98,14 @@ namespace UML_Diagram_drawer.Arrows
         public void Draw()
         {
             _ArrowLinePoints = ArrowsLineDrawingLogic.GetPoints(StartPoint, EndPoint);
-            if (ArrowNock != null)
-            {
-                ArrowNock.Draw(_pen, StartPoint.Location, _ArrowLinePoints[1]);
-            }
-            if(ArrowLine != null)
+            if (ArrowLine != null)
             {
                 ArrowLine.Draw(_pen, _ArrowLinePoints);
                 CreateSelectionBorders();
+            }
+            if (ArrowNock != null)
+            {
+                ArrowNock.Draw(_pen, StartPoint.Location, _ArrowLinePoints[1]);
             }
             if (ArrowHead != null)
             {
