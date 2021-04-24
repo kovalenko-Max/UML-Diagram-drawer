@@ -62,6 +62,7 @@ namespace UML_Diagram_drawer.MouseHandlers
                 if (arrow.Select(e.Location))
                 {
                     RemoveSelect();
+                    arrow.Select(e.Location);
                     _mainData.SelectArrow = arrow;
 
                     _mainData.PictureBoxMain.Invalidate();

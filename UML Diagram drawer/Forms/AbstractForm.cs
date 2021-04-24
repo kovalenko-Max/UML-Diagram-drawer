@@ -11,10 +11,10 @@ namespace UML_Diagram_drawer.Forms
     public abstract class AbstractForm : ISelectable
     {
         protected SolidBrush _brush;
-        protected List<AbstactModule> _modules;
         protected Rectangle _rectangle;
         protected Pen _pen;
 
+        public List<AbstactModule> Modules { get; set; }
         public string TitleText { get; set; }
         public bool IsSelected { get; set; }
         public float WidthLine
@@ -101,7 +101,7 @@ namespace UML_Diagram_drawer.Forms
             _pen = (Pen)Default.Draw.Pen.Clone();
             _brush = (SolidBrush)Default.Draw.FillBrush.Clone();
             Font = (Font)Default.Text.Font.Clone();
-            _modules = new List<AbstactModule>();
+            Modules = new List<AbstactModule>();
             _rectangle = new Rectangle(Location, Default.Size.FormSize);
             SetContactPoint();
             CreateModules(createFields, createMethods);
@@ -117,7 +117,7 @@ namespace UML_Diagram_drawer.Forms
             Size = form.Size;
             Location = form.Location;
             ContactPoints = form.ContactPoints;
-            _modules = form._modules;
+            Modules = form.Modules;
         }
 
         public void Draw()
@@ -178,7 +178,7 @@ namespace UML_Diagram_drawer.Forms
         public void Resize(int value)
         {
             Font = new Font(Font.FontFamily, value);
-            foreach (AbstactModule module in _modules)
+            foreach (AbstactModule module in Modules)
             {
                 module.Resize(value);
             }
@@ -189,7 +189,7 @@ namespace UML_Diagram_drawer.Forms
             if (font != null)
             {
                 Font = font;
-                foreach (AbstactModule module in _modules)
+                foreach (AbstactModule module in Modules)
                 {
                     module.SetFont(font);
                 }
@@ -202,7 +202,7 @@ namespace UML_Diagram_drawer.Forms
 
         public void SetWidthLine(int value)
         {
-            foreach (AbstactModule module in _modules)
+            foreach (AbstactModule module in Modules)
             {
                 module.WidthLine = value;
             }
@@ -210,7 +210,7 @@ namespace UML_Diagram_drawer.Forms
 
         public void SetColor(Color color)
         {
-            foreach (AbstactModule module in _modules)
+            foreach (AbstactModule module in Modules)
             {
                 module.Color = color;
             }
@@ -218,7 +218,7 @@ namespace UML_Diagram_drawer.Forms
 
         public void SetColorText(Color color)
         {
-            foreach (AbstactModule module in _modules)
+            foreach (AbstactModule module in Modules)
             {
                 module.SetColorText(color);
             }
@@ -228,7 +228,7 @@ namespace UML_Diagram_drawer.Forms
         {
             if (text != null)
             {
-                foreach (AbstactModule module in _modules)
+                foreach (AbstactModule module in Modules)
                 {
                     if (module.Type == type)
                     {
@@ -244,7 +244,7 @@ namespace UML_Diagram_drawer.Forms
 
         public void AddTextField(ModuleType type)
         {
-            foreach (AbstactModule module in _modules)
+            foreach (AbstactModule module in Modules)
             {
                 if (module.Type == type)
                 {
@@ -267,7 +267,7 @@ namespace UML_Diagram_drawer.Forms
 
         public void RemoveTextField(Point point)
         {
-            foreach (AbstactModule module in _modules)
+            foreach (AbstactModule module in Modules)
             {
                 module.RemoveTextField(point);
             }
@@ -286,7 +286,7 @@ namespace UML_Diagram_drawer.Forms
         private void SetWidthToModule()
         {
             int maxWidth = 0;
-            foreach (AbstactModule module in _modules)
+            foreach (AbstactModule module in Modules)
             {
                 int value = module.GetMaximumWidth();
                 if (maxWidth < value)
@@ -295,7 +295,7 @@ namespace UML_Diagram_drawer.Forms
                 }
             }
 
-            foreach (AbstactModule module in _modules)
+            foreach (AbstactModule module in Modules)
             {
                 module.SetWidth(maxWidth);
             }
@@ -309,12 +309,12 @@ namespace UML_Diagram_drawer.Forms
             MainGraphics.Graphics.DrawRectangle(Default.Draw.PenDash, selectRectangle);
         }
 
-        protected TextField SelectTextField(Point point)
+        private TextField SelectTextField(Point point)
         {
             if (Contains(point))
             {
                 TextField result = null;
-                foreach (AbstactModule module in _modules)
+                foreach (AbstactModule module in Modules)
                 {
                     if (module.Contains(point))
                     {
@@ -328,25 +328,25 @@ namespace UML_Diagram_drawer.Forms
             throw new Exception("Point out of range");
         }
 
-        protected void CreateModules(bool createFields = true, bool createMethods = true)
+        private void CreateModules(bool createFields = true, bool createMethods = true)
         {
-            _modules.Add(new TitleModule(ModuleType.Title, TitleText, Default.Text.TitleStringFormat));
+            Modules.Add(new TitleModule(ModuleType.Title, TitleText, Default.Text.TitleStringFormat));
 
             if (createFields)
             {
-                _modules.Add(new FieldModule(ModuleType.Field, Default.Text.FieldText, Default.Text.FieldStringFormat));
+                Modules.Add(new FieldModule(ModuleType.Field, Default.Text.FieldText, Default.Text.FieldStringFormat));
             }
 
             if (createMethods)
             {
-                _modules.Add(new MethodModule(ModuleType.Method, Default.Text.MethodText, Default.Text.MethodStringFormat));
+                Modules.Add(new MethodModule(ModuleType.Method, Default.Text.MethodText, Default.Text.MethodStringFormat));
             }
         }
 
-        protected void DrawModules()
+        private void DrawModules()
         {
             int currentLocationY = 0;
-            foreach (AbstactModule module in _modules)
+            foreach (AbstactModule module in Modules)
             {
                 module.Location = new Point(this.Location.X, this.Location.Y + currentLocationY);
                 module.Size = new Size(Size.Width, module.GetDesiredSize().Height);
@@ -355,29 +355,29 @@ namespace UML_Diagram_drawer.Forms
             }
         }
 
-        protected Size GetDesiredSize()
+        private Size GetDesiredSize()
         {
             Size desiredSize = Size.Empty;
-            for (int i = 0; i < _modules.Count; i++)
+            for (int i = 0; i < Modules.Count; i++)
             {
-                if (desiredSize.Width < _modules[i].GetDesiredSize().Width)
+                if (desiredSize.Width < Modules[i].GetDesiredSize().Width)
                 {
-                    desiredSize.Width = _modules[i].GetDesiredSize().Width;
+                    desiredSize.Width = Modules[i].GetDesiredSize().Width;
                 }
-                desiredSize.Height += _modules[i].GetDesiredSize().Height;
+                desiredSize.Height += Modules[i].GetDesiredSize().Height;
             }
 
             return desiredSize;
         }
 
-        protected void ResizeRectangle()
+        private void ResizeRectangle()
         {
             int addedWidth = GetDesiredSize().Width == 0 ? Default.Size.ModuleFormSize.Width : 0;
-            int addedHeight = GetDesiredSize().Height == 0 ? Default.Size.ModuleFormSize.Height * _modules.Count : 0;
+            int addedHeight = GetDesiredSize().Height == 0 ? Default.Size.ModuleFormSize.Height * Modules.Count : 0;
             Size = new Size(addedWidth + GetDesiredSize().Width, addedHeight + GetDesiredSize().Height);
         }
 
-        protected void SetContactPoint()
+        private void SetContactPoint()
         {
             if (ContactPoints != null && ContactPoints.Length > 0)
             {

@@ -28,7 +28,7 @@ namespace UML_Diagram_drawer.Forms
             if (obj is Form)
             {
                 Form form = (Form)obj;
-                if (Type == form.Type && Location == form.Location && _modules == form._modules)
+                if (Type == form.Type && Location == form.Location && Modules == form.Modules)
                 {
                     result = true;
                 }

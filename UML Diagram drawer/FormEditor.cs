@@ -37,8 +37,11 @@ namespace UML_Diagram_drawer
 
         private void FormEditor_Load(object sender, EventArgs e)
         {
-            trackBarLineThickness.Value = (int)_mainData.SelectForm.WidthLine;
-            trackBarSizeForm.Value = (int)_mainData.SelectForm.Font.Size;
+            if (_mainData.SelectForm != null)
+            {
+                trackBarLineThickness.Value = (int)_mainData.SelectForm.WidthLine;
+                trackBarSizeForm.Value = (int)_mainData.SelectForm.Font.Size;
+            }
         }
 
         private void buttonColorChoice_Click(object sender, EventArgs e)
