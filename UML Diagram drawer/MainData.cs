@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using UML_Diagram_drawer.Arrows;
 using UML_Diagram_drawer.Factory;
@@ -16,7 +12,8 @@ namespace UML_Diagram_drawer
     {
         const int maxCountChanges = 15;
         private static MainData _mainData;
-        private static List<MainData> _lastChanges;
+        private static List<MainData> _unDoStates;
+        private static List<MainData> _reDoStates;
 
         public PictureBox PictureBoxMain { get; set; }
         public AbstractForm SelectForm { get; set; }
@@ -33,7 +30,8 @@ namespace UML_Diagram_drawer
 
         private MainData()
         {
-            _lastChanges = new List<MainData>();
+            _unDoStates = new List<MainData>();
+            _reDoStates = new List<MainData>();
         }
 
         public static MainData GetMainData()
@@ -50,20 +48,34 @@ namespace UML_Diagram_drawer
 
         public void SaveChanges()
         {
-            _lastChanges.Add((MainData)_mainData.DeepCopy());
-            if (_lastChanges.Count > 0 && _lastChanges.Count > maxCountChanges)
+            _unDoStates.Add((MainData)_mainData.DeepCopy());
+            if(_unDoStates.Count > maxCountChanges)
             {
-                _lastChanges.RemoveAt(0);
+                _unDoStates.RemoveAt(0);
             }
         }
 
-        public static void RollingBackChanges()
+        public static void ReDo()
         {
-            if (_lastChanges.Count > 0)
+            if(_reDoStates.Count > 0)
             {
-                int lastIndex = _lastChanges.Count - 1;
-                MainData previousMainData = _lastChanges[lastIndex];
-                _lastChanges.RemoveAt(lastIndex);
+                int lastIndex = _reDoStates.Count - 1;
+                MainData previousMainData = _reDoStates[lastIndex];
+                _reDoStates.RemoveAt(lastIndex);
+                previousMainData.IMouseHandler = new MoveAndSelectMouseHandler();
+                _mainData = previousMainData;
+                previousMainData.PictureBoxMain.Invalidate();
+            }
+        }
+
+        public static void UnDo()
+        {
+            if (_unDoStates.Count > 0)
+            {
+                int lastIndex = _unDoStates.Count - 1;
+                MainData previousMainData = _unDoStates[lastIndex];
+                _reDoStates.Add(_unDoStates[lastIndex]);
+                _unDoStates.RemoveAt(lastIndex);
                 previousMainData.IMouseHandler = new MoveAndSelectMouseHandler();
                 _mainData = previousMainData;
                 _mainData.PictureBoxMain.Invalidate();

@@ -307,6 +307,7 @@ namespace UML_Diagram_drawer
             this.toolStripButtonRedo.Size = new System.Drawing.Size(55, 44);
             this.toolStripButtonRedo.Text = "Redo";
             this.toolStripButtonRedo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButtonRedo.Click += new System.EventHandler(this.toolStripButtonRedo_Click);
             // 
             // toolStripButtonDelete
             // 
