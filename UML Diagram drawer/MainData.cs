@@ -14,6 +14,7 @@ namespace UML_Diagram_drawer
 {
     public class MainData
     {
+        const int maxCountChanges = 15;
         private static MainData _mainData;
         private static List<MainData> _lastChanges;
 
@@ -49,7 +50,7 @@ namespace UML_Diagram_drawer
         public void SaveChanges()
         {
             _lastChanges.Add((MainData)_mainData.DeepCopy());
-            if(_lastChanges.Count > 15)
+            if(_lastChanges.Count > maxCountChanges)
             {
                 _lastChanges.RemoveAt(0);
             }
