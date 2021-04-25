@@ -106,13 +106,13 @@ namespace TestProject
             }
         }
 
-        [TestCaseSource(typeof(IsRemoveSelect))]
-        public void RemoveSelect_WhenPointNotNulln(Form form, Pen expected)
-        {
-            form.RemoveSelect();
-            Pen actual = form.Pen;
-            Assert.AreEqual(expected, actual);
-        }
+        //[TestCaseSource(typeof(IsRemoveSelect))]
+        //public void RemoveSelect_WhenPointNotNulln(Form form, Pen expected)
+        //{
+        //    form.RemoveSelect();
+        //    Pen actual = form.Pen;
+        //    Assert.AreEqual(expected, actual);
+        //}
 
         public class IsRemoveSelect : IEnumerable
         {

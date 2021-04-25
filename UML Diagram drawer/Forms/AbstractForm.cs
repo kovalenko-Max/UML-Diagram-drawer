@@ -94,10 +94,6 @@ namespace UML_Diagram_drawer.Forms
 
         }
 
-        public AbstractForm()
-        {
-
-        }
 
         public AbstractForm(FormType type, bool createFields, bool createMethods, string titleText)
         {

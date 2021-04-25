@@ -344,34 +344,34 @@ namespace UML_Diagram_drawer
 
         }
 
-        private void pictureBoxMain_MouseMove(object sender, MouseEventArgs e)
-        {
-           // pictureBoxMain.MouseMove += pictureBoxMain_MouseMove;
+        //private void pictureBoxMain_MouseMove(object sender, MouseEventArgs e)
+        //{
+        //   // pictureBoxMain.MouseMove += pictureBoxMain_MouseMove;
             
-        }
+        //}
 
-        private void pictureBoxMain_MouseClick(object sender, MouseEventArgs e)
-        {
-            //pictureBoxMain.Size += new System.Drawing.Size(140, 140);
-        }
+        //private void pictureBoxMain_MouseClick(object sender, MouseEventArgs e)
+        //{
+        //    //pictureBoxMain.Size += new System.Drawing.Size(140, 140);
+        //}
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
+        //private void panel1_Paint(object sender, PaintEventArgs e)
+        //{
 
-        }
+        //}
 
-        private void panel1_Scroll(object sender, ScrollEventArgs e)
-        {
+        //private void panel1_Scroll(object sender, ScrollEventArgs e)
+        //{
 
-        }
+        //}
 
-        private void flowLayoutPanel1_Scroll(object sender, ScrollEventArgs e)
-        {
+        //private void flowLayoutPanel1_Scroll(object sender, ScrollEventArgs e)
+        //{
            
-            if (e.ScrollOrientation == ScrollOrientation.VerticalScroll)
-                pictureBoxMain.Height += e.NewValue - e.OldValue;
-            else 
-                pictureBoxMain.Width += e.NewValue - e.OldValue;
-        }
+        //    if (e.ScrollOrientation == ScrollOrientation.VerticalScroll)
+        //        pictureBoxMain.Height += e.NewValue - e.OldValue;
+        //    else 
+        //        pictureBoxMain.Width += e.NewValue - e.OldValue;
+        //}
     }
 }
