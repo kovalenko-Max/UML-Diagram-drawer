@@ -34,6 +34,7 @@ namespace UML_Diagram_drawer.MouseHandlers
 
             if (currentContactPoint != null)
             {
+                _mainData.ArrowsList.Add(_mainData.CurrentArrow);
                 _mainData.CurrentArrow.StartPoint = currentContactPoint;
                 currentContactPoint = null;
                 _mainData.PictureBoxMain.Invalidate();

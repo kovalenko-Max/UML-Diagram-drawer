@@ -118,14 +118,12 @@ namespace UML_Diagram_drawer
         {
             _arrowsFactory = new ArrowAssociationFactory();
             _mainData.CurrentArrow = _arrowsFactory.GetArrow();
-            _mainData.ArrowsList.Add(_mainData.CurrentArrow);
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
         private void toolStripButtonArrowSuccession_Click(object sender, EventArgs e)
         {
             _arrowsFactory = new ArrowSuccessionFactory();
             _mainData.CurrentArrow = _arrowsFactory.GetArrow();
-            _mainData.ArrowsList.Add(_mainData.CurrentArrow);
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
@@ -133,7 +131,6 @@ namespace UML_Diagram_drawer
         {
             _arrowsFactory = new ArrowRealizationFactory();
             _mainData.CurrentArrow = _arrowsFactory.GetArrow();
-            _mainData.ArrowsList.Add(_mainData.CurrentArrow);
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
@@ -141,7 +138,6 @@ namespace UML_Diagram_drawer
         {
             _arrowsFactory = new ArrowAggregationFactory();
             _mainData.CurrentArrow = _arrowsFactory.GetArrow();
-            _mainData.ArrowsList.Add(_mainData.CurrentArrow);
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
@@ -149,7 +145,6 @@ namespace UML_Diagram_drawer
         {
             _arrowsFactory = new ArrowCompositionFactory();
             _mainData.CurrentArrow = _arrowsFactory.GetArrow();
-            _mainData.ArrowsList.Add(_mainData.CurrentArrow);
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
@@ -161,7 +156,6 @@ namespace UML_Diagram_drawer
         {
             _formFactory = new ClassFormFactory();
             _mainData.CurrentFormUML = _formFactory.GetForm();
-            _mainData.FormsList.Add(_mainData.CurrentFormUML);
             _mainData.IMouseHandler = new DrawFromMouseHandler();
         }
 
@@ -169,7 +163,6 @@ namespace UML_Diagram_drawer
         {
             _formFactory = new InterfaceFormFactory();
             _mainData.CurrentFormUML = _formFactory.GetForm();
-            _mainData.FormsList.Add(_mainData.CurrentFormUML);
             _mainData.IMouseHandler = new DrawFromMouseHandler();
         }
 
