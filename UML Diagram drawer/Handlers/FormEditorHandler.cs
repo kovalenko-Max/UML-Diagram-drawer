@@ -107,7 +107,7 @@ namespace UML_Diagram_drawer.Handlers
             {
                 ColorDialog.ShowDialog();
                 _mainData.SelectForm.SetColorText(ColorDialog.Color);
-                _mainData.SaveChanges();
+                //_mainData.SaveChanges();
                 _mainData.PictureBoxMain.Invalidate();
             }
             else
