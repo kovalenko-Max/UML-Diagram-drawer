@@ -81,10 +81,9 @@ namespace UML_Diagram_drawer.Forms
 
         public void Draw()
         {
-            _brush.Color = Color;
             _rectangle.Size = new Size(_rectangle.Width, GetDesiredSize().Height);
             MainGraphics.Graphics.DrawString(Text, Font, _brush, (RectangleF)_rectangle, StringFormat);
-            if (!_isSelect)
+            if (_isSelect)
             {
                 Rectangle tempRect = new Rectangle(new Point(_rectangle.X+5,_rectangle.Y+5), new Size(_rectangle.Width - 10, _rectangle.Height - 10));
                 MainGraphics.Graphics.DrawRectangle(Default.Draw.PenDashText, tempRect);

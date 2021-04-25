@@ -33,6 +33,7 @@ namespace UML_Diagram_drawer
             this.buttonSetColor = new System.Windows.Forms.Button();
             this.trackBarLineThickness = new System.Windows.Forms.TrackBar();
             this.panelEditForm = new System.Windows.Forms.Panel();
+            this.textBoxSelectTextField = new System.Windows.Forms.TextBox();
             this.comboBoxSetTypeArrow = new System.Windows.Forms.ComboBox();
             this.buttonSetColorText = new System.Windows.Forms.Button();
             this.buttonSetBackColor = new System.Windows.Forms.Button();
@@ -41,7 +42,6 @@ namespace UML_Diagram_drawer
             this.buttonAddMethod = new System.Windows.Forms.Button();
             this.buttonAddField = new System.Windows.Forms.Button();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.textBoxSelectTextField = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarLineThickness)).BeginInit();
             this.panelEditForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSizeForm)).BeginInit();
@@ -87,6 +87,16 @@ namespace UML_Diagram_drawer
             this.panelEditForm.Name = "panelEditForm";
             this.panelEditForm.Size = new System.Drawing.Size(242, 517);
             this.panelEditForm.TabIndex = 3;
+            // 
+            // textBoxSelectTextField
+            // 
+            this.textBoxSelectTextField.Location = new System.Drawing.Point(4, 409);
+            this.textBoxSelectTextField.Multiline = true;
+            this.textBoxSelectTextField.Name = "textBoxSelectTextField";
+            this.textBoxSelectTextField.Size = new System.Drawing.Size(234, 105);
+            this.textBoxSelectTextField.TabIndex = 6;
+            this.textBoxSelectTextField.TextChanged += new System.EventHandler(this.textBoxSelectTextField_TextChanged);
+            this.textBoxSelectTextField.MouseMove += new System.Windows.Forms.MouseEventHandler(this.textBoxSelectTextField_MouseMove);
             // 
             // comboBoxSetTypeArrow
             // 
@@ -173,14 +183,6 @@ namespace UML_Diagram_drawer
             this.buttonAddField.UseVisualStyleBackColor = true;
             this.buttonAddField.Click += new System.EventHandler(this.buttonAddField_Click);
             // 
-            // textBoxSelectTextField
-            // 
-            this.textBoxSelectTextField.Location = new System.Drawing.Point(4, 409);
-            this.textBoxSelectTextField.Multiline = true;
-            this.textBoxSelectTextField.Name = "textBoxSelectTextField";
-            this.textBoxSelectTextField.Size = new System.Drawing.Size(234, 105);
-            this.textBoxSelectTextField.TabIndex = 6;
-            // 
             // FormEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -190,6 +192,7 @@ namespace UML_Diagram_drawer
             this.Name = "FormEditor";
             this.Text = "FormEditor";
             this.TopMost = true;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormEditor_FormClosing);
             this.Load += new System.EventHandler(this.FormEditor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.trackBarLineThickness)).EndInit();
             this.panelEditForm.ResumeLayout(false);

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using UML_Diagram_drawer.Arrows;
 using UML_Diagram_drawer.Forms;
 using UML_Diagram_drawer.Handlers;
+using UML_Diagram_drawer.MouseHandlers;
 
 namespace UML_Diagram_drawer
 {
@@ -98,6 +99,28 @@ namespace UML_Diagram_drawer
         private void comboBoxSetTypeArrow_SelectedIndexChanged(object sender, EventArgs e)
         {
             _handler.SetArrowType(comboBoxSetTypeArrow);
+        }
+
+        private void FormEditor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _mainData.IMouseHandler = new MoveAndSelectMouseHandler();
+        }
+
+        private void textBoxSelectTextField_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (_mainData.SelectTextField != null)
+            {
+                textBoxSelectTextField.Text = _mainData.SelectTextField.Text;
+            }
+        }
+
+        private void textBoxSelectTextField_TextChanged(object sender, EventArgs e)
+        {
+            if (_mainData.SelectTextField != null)
+            {
+                _mainData.SelectTextField.Text = textBoxSelectTextField.Text;
+                _mainData.PictureBoxMain.Invalidate();
+            }
         }
     }
 }

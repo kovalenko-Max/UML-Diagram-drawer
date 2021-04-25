@@ -32,7 +32,9 @@ namespace UML_Diagram_drawer.MouseHandlers
                 if (textField != null)
                 {
                     textField.Select();
+                    _mainData.SelectTextField = textField;
                 }
+
                 _mainData.PictureBoxMain.Invalidate();
             }
         }

@@ -88,12 +88,10 @@ namespace UML_Diagram_drawer.Forms
                 _rectangle.Location = value;
             }
         }
-        
-        public AbstractForm()
-        {
-
-        }
 
+        public AbstractForm()
+        {
+        }
 
         public AbstractForm(FormType type, bool createFields, bool createMethods, string titleText)
         {
@@ -107,8 +105,6 @@ namespace UML_Diagram_drawer.Forms
             SetContactPoint();
             CreateModules(createFields, createMethods);
         }
-
-
 
         public AbstractForm(AbstractForm form)
         {
@@ -280,11 +276,9 @@ namespace UML_Diagram_drawer.Forms
                         result = module.GetTextField(point);
                     }
                 }
-
-                return result;
             }
 
-            throw new ArgumentException("Point out of range");
+            return result;
         }
 
         public void RemoveTextField(Point point)
