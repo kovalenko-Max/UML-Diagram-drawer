@@ -337,5 +337,10 @@ namespace UML_Diagram_drawer
                 pictureBoxMain.Width += e.NewValue - e.OldValue + step;
             }
         }
+
+        private void toolStripButton14_Click(object sender, EventArgs e)
+        {
+            _mainData.rollingBackChanges();
+        }
     }
 }

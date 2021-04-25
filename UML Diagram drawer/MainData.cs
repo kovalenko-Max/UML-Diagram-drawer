@@ -14,6 +14,7 @@ namespace UML_Diagram_drawer
     {
         private static MainData _mainData;
 
+        public Stack<MainData> lastChanges;
         public PictureBox PictureBoxMain { get; set; }
         public AbstractForm SelectForm { get; set; }
         public Arrow SelectArrow { get; set; }
@@ -27,6 +28,7 @@ namespace UML_Diagram_drawer
         
         private MainData()
         {
+            lastChanges = new Stack<MainData>();
         }
 
         public static MainData GetMainData()
@@ -39,6 +41,17 @@ namespace UML_Diagram_drawer
             {
                 return _mainData;
             }
+        }
+
+        public void SaveChanges()
+        {
+            lastChanges.Push((MainData)_mainData.MemberwiseClone());
+        }
+
+        public void rollingBackChanges()
+        {
+            _mainData = lastChanges.Pop();
+            _mainData.PictureBoxMain.Invalidate();
         }
     }
 }
