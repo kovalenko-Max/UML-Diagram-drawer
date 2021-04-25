@@ -66,10 +66,11 @@ namespace UML_Diagram_drawer.Arrows
         public ContactPoint StartPoint { get; set; }
         public ContactPoint EndPoint { get; set; }
         public bool IsSelected { get; set; }
-
+                
         public Arrow()
         {
             _pen = (Pen)Default.Draw.Pen.Clone();
+            _lastColor = _pen.Color;
             _sizeArrowhead = (int)_pen.Width * 3;
 
             StartPoint = new ContactPoint(Point.Empty);

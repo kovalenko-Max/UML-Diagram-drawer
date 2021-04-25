@@ -62,7 +62,7 @@ namespace UML_Diagram_drawer
                 _mainData.FormsList = new List<AbstractForm>();
             }
 
-            if (fileData[1] != null)
+            if (fileData[1] != String.Empty)
             {
 
                 _mainData.ArrowsList = JsonConvert.DeserializeObject<List<Arrow>>(fileData[1],
@@ -320,7 +320,6 @@ namespace UML_Diagram_drawer
 
         private void flowLayoutPanel1_Scroll(object sender, ScrollEventArgs e)
         {
-            //const int step = 50;
             if (e.ScrollOrientation == ScrollOrientation.VerticalScroll)
             {
                 pictureBoxMain.Height += e.NewValue - e.OldValue;
