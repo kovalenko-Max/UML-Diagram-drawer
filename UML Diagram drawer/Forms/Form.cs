@@ -21,6 +21,11 @@ namespace UML_Diagram_drawer.Forms
         {
 
         }
+        
+        public Form()
+        {
+
+        }
 
         public override bool Equals(object obj)
         {
