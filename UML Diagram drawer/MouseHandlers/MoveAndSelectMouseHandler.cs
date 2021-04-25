@@ -26,43 +26,29 @@ namespace UML_Diagram_drawer.MouseHandlers
 
         }
 
-        private void RemoveSelect()
-        {
-            foreach (AbstractForm form in _mainData.FormsList)
-            {
-                form.RemoveSelect();
-            }
-
-            _mainData.SelectForm = null;
-            foreach (Arrow arrow in _mainData.ArrowsList)
-            {
-                arrow.RemoveSelect();
-            }
-
-            _mainData.SelectArrow = null;
-        }
-
         public void MouseDown(object sender, MouseEventArgs e)
         {
+            RemoveSelect();
             foreach (AbstractForm form in _mainData.FormsList)
             {
                 if (form.Contains(e.Location))
                 {
-                    RemoveSelect();
                     _mainData.CurrentFormUML = form;
                     _mainData.SelectForm = form;
-                    _mainData.SelectForm.IsSelect(e.Location);
-                    previousLocation = e.Location;
-
+                    _mainData.SelectForm.Select(e.Location);
+                    _mainData.FormsList.Remove(form);
+                    _mainData.FormsList.Add(form);
                     _mainData.PictureBoxMain.Invalidate();
+                    previousLocation = e.Location;
+                    break;
                 }
             }
+
             foreach (Arrow arrow in _mainData.ArrowsList)
             {
-                if (arrow.IsSelect(e.Location))
+                if (arrow.Contains(e.Location))
                 {
-                    RemoveSelect();
-                    arrow.IsSelect(e.Location);
+                    arrow.Select(e.Location);
                     _mainData.SelectArrow = arrow;
 
                     _mainData.PictureBoxMain.Invalidate();
@@ -86,6 +72,21 @@ namespace UML_Diagram_drawer.MouseHandlers
             {
                 _mainData.CurrentFormUML = null;
             }
+        }
+
+        private void RemoveSelect()
+        {
+            foreach (AbstractForm form in _mainData.FormsList)
+            {
+                form.RemoveSelect();
+            }
+
+            _mainData.SelectForm = null;
+            foreach (Arrow arrow in _mainData.ArrowsList)
+            {
+                arrow.RemoveSelect();
+            }
+            _mainData.SelectArrow = null;
         }
     }
 }

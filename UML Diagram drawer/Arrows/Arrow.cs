@@ -80,7 +80,8 @@ namespace UML_Diagram_drawer.Arrows
         {
             if (pen is null)
             {
-                _pen = (Pen)Default.Draw.Pen.Clone();
+                //_pen = (Pen)Default.Draw.Pen.Clone();
+                _pen = new Pen(Default.Draw.Pen.Color, Default.Draw.Pen.Width);
             }
             else
             {
@@ -131,7 +132,7 @@ namespace UML_Diagram_drawer.Arrows
         {
         }
 
-        public bool IsSelect(Point point)
+        public bool Select(Point point)
         {
             bool result = false;
             foreach (Rectangle rectangle in _colliders)
@@ -152,12 +153,19 @@ namespace UML_Diagram_drawer.Arrows
             _lastColor = color;
             Color = color;
         }
-        public void Select()
+        public bool Contains(Point point)
         {
-            if (IsSelected)
+            bool result = false;
+            foreach (Rectangle rectangle in _colliders)
             {
-                _pen = Default.Draw.PenSelect;
+                if (rectangle.Contains(point))
+                {
+                    result = true;
+                    break;
+                }
             }
+
+            return result;
         }
 
         public void RemoveSelect()

@@ -33,6 +33,7 @@ namespace UML_Diagram_drawer
             this.buttonSetColor = new System.Windows.Forms.Button();
             this.trackBarLineThickness = new System.Windows.Forms.TrackBar();
             this.panelEditForm = new System.Windows.Forms.Panel();
+            this.comboBoxSetTypeArrow = new System.Windows.Forms.ComboBox();
             this.buttonSetColorText = new System.Windows.Forms.Button();
             this.buttonSetBackColor = new System.Windows.Forms.Button();
             this.trackBarSizeForm = new System.Windows.Forms.TrackBar();
@@ -40,7 +41,6 @@ namespace UML_Diagram_drawer
             this.buttonAddMethod = new System.Windows.Forms.Button();
             this.buttonAddField = new System.Windows.Forms.Button();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.comboBoxSetTypeArrow = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarLineThickness)).BeginInit();
             this.panelEditForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSizeForm)).BeginInit();
@@ -86,6 +86,23 @@ namespace UML_Diagram_drawer
             this.panelEditForm.Size = new System.Drawing.Size(242, 406);
             this.panelEditForm.TabIndex = 3;
             // 
+            // comboBoxSetTypeArrow
+            // 
+            this.comboBoxSetTypeArrow.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxSetTypeArrow.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBoxSetTypeArrow.FormattingEnabled = true;
+            this.comboBoxSetTypeArrow.Items.AddRange(new object[] {
+            "Assotiation",
+            "Succession",
+            "Realization",
+            "Aggregation",
+            "Composition"});
+            this.comboBoxSetTypeArrow.Location = new System.Drawing.Point(3, 181);
+            this.comboBoxSetTypeArrow.Name = "comboBoxSetTypeArrow";
+            this.comboBoxSetTypeArrow.Size = new System.Drawing.Size(235, 32);
+            this.comboBoxSetTypeArrow.TabIndex = 2;
+            this.comboBoxSetTypeArrow.SelectedIndexChanged += new System.EventHandler(this.comboBoxSetTypeArrow_SelectedIndexChanged);
+            // 
             // buttonSetColorText
             // 
             this.buttonSetColorText.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -116,7 +133,7 @@ namespace UML_Diagram_drawer
             this.trackBarSizeForm.Minimum = 14;
             this.trackBarSizeForm.MinimumSize = new System.Drawing.Size(75, 50);
             this.trackBarSizeForm.Name = "trackBarSizeForm";
-            this.trackBarSizeForm.Size = new System.Drawing.Size(235, 50);
+            this.trackBarSizeForm.Size = new System.Drawing.Size(235, 45);
             this.trackBarSizeForm.TabIndex = 5;
             this.trackBarSizeForm.Value = 14;
             this.trackBarSizeForm.Scroll += new System.EventHandler(this.trackBarSizeForm_Scroll);
@@ -154,23 +171,6 @@ namespace UML_Diagram_drawer
             this.buttonAddField.UseVisualStyleBackColor = true;
             this.buttonAddField.Click += new System.EventHandler(this.buttonAddField_Click);
             // 
-            // comboBoxSetTypeArrow
-            // 
-            this.comboBoxSetTypeArrow.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxSetTypeArrow.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBoxSetTypeArrow.FormattingEnabled = true;
-            this.comboBoxSetTypeArrow.Items.AddRange(new object[] {
-            "Assotiation",
-            "Succession",
-            "Realization",
-            "Aggregation",
-            "Composition"});
-            this.comboBoxSetTypeArrow.Location = new System.Drawing.Point(3, 181);
-            this.comboBoxSetTypeArrow.Name = "comboBoxSetTypeArrow";
-            this.comboBoxSetTypeArrow.Size = new System.Drawing.Size(235, 32);
-            this.comboBoxSetTypeArrow.TabIndex = 2;
-            this.comboBoxSetTypeArrow.SelectedIndexChanged += new System.EventHandler(this.comboBoxSetTypeArrow_SelectedIndexChanged);
-            // 
             // FormEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -179,6 +179,7 @@ namespace UML_Diagram_drawer
             this.Controls.Add(this.panelEditForm);
             this.Name = "FormEditor";
             this.Text = "FormEditor";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.FormEditor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.trackBarLineThickness)).EndInit();
             this.panelEditForm.ResumeLayout(false);

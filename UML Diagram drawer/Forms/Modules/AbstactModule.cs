@@ -236,6 +236,7 @@ namespace UML_Diagram_drawer.Forms
                 {
                     if (text.Contains(point))
                     {
+                        text.Select();
                         result = text;
                     }
                 }

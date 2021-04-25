@@ -9,6 +9,7 @@ namespace UML_Diagram_drawer.Forms
 {
     public class TextField
     {
+        private bool _isSelect;
         private SolidBrush _brush;
         private Rectangle _rectangle;
         public string Text { get; set; }
@@ -83,11 +84,25 @@ namespace UML_Diagram_drawer.Forms
             _brush.Color = Color;
             _rectangle.Size = new Size(_rectangle.Width, GetDesiredSize().Height);
             MainGraphics.Graphics.DrawString(Text, Font, _brush, (RectangleF)_rectangle, StringFormat);
+            if (_isSelect)
+            {
+                MainGraphics.Graphics.DrawRectangle(new Pen(Color,5), _rectangle);
+            }
         }
 
         public bool Contains(Point point)
         {
             return _rectangle.Contains(point);
+        }
+
+        public void Select()
+        {
+            _isSelect = true;
+        }
+
+        public void RemoveSelect()
+        {
+            _isSelect = false;
         }
 
         public override bool Equals(object obj)

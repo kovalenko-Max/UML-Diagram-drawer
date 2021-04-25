@@ -15,7 +15,7 @@ namespace UML_Diagram_drawer
 
         void Draw();
 
-        bool IsSelect(Point point);
+        bool Select(Point point);
 
         void RemoveSelect();
     }

@@ -161,7 +161,7 @@ namespace UML_Diagram_drawer.Forms
             }
         }
 
-        public bool IsSelect(Point point)
+        public bool Select(Point point)
         {
             if (!IsSelected && _rectangle.Contains(point))
             {
