@@ -58,6 +58,7 @@ namespace UML_Diagram_drawer.MouseHandlers
 
         public void MouseMove(object sender, MouseEventArgs e)
         {
+            _mainData = MainData.GetMainData();
             if (_mainData.CurrentFormUML != null)
             {
                 _mainData.CurrentFormUML.Move(e.Location.X - previousLocation.X, e.Location.Y - previousLocation.Y);
@@ -68,9 +69,11 @@ namespace UML_Diagram_drawer.MouseHandlers
 
         public void MouseUp(object sender, MouseEventArgs e)
         {
+
             if (_mainData.CurrentFormUML != null)
             {
                 _mainData.CurrentFormUML = null;
+                _mainData.SaveChanges();
             }
         }
 

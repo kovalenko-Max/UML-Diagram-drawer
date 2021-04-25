@@ -8,7 +8,7 @@ using UML_Diagram_drawer.Forms.Modules;
 
 namespace UML_Diagram_drawer.Forms
 {
-    public abstract class AbstractForm : ISelectable
+    public abstract class AbstractForm : ISelectable, ICloneable
     {
         protected SolidBrush _brush;
         protected Rectangle _rectangle;
@@ -398,6 +398,28 @@ namespace UML_Diagram_drawer.Forms
                 location = new Point(Location.X + _rectangle.Width / 2, Location.Y + _rectangle.Height);
                 ContactPoints[3] = new ContactPoint(location, Side.Bottom);
             }
+        }
+
+        public object Clone()
+        {
+            AbstractForm cloneForm = (AbstractForm)this.MemberwiseClone();
+
+            cloneForm.Modules = CloneModulesList(Modules);
+            cloneForm.Location = this.Location;
+            cloneForm.Color = this.Color;
+            return cloneForm;
+        }
+
+        private static List<AbstactModule> CloneModulesList(List<AbstactModule> listForClone)
+        {
+            List<AbstactModule> newList = new List<AbstactModule>(listForClone.Count);
+
+            listForClone.ForEach((item) =>
+            {
+                newList.Add((AbstactModule)item.Clone());
+            });
+
+            return newList;
         }
     }
 }

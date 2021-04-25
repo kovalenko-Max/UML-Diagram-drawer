@@ -14,9 +14,6 @@ namespace UML_Diagram_drawer
 {
     public partial class FormMain : Form
     {
-        private IFormsFactory _formFactory;
-        private IArrowsFactory _arrowsFactory;
-
         private MainData _mainData;
 
         public Pen pen = new Pen(Brushes.Black, 3);
@@ -104,11 +101,13 @@ namespace UML_Diagram_drawer
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            _formFactory = Default.Factory.Form;
             _mainData = MainData.GetMainData();
             _mainData.PictureBoxMain = pictureBoxMain;
             _mainData.FormsList = new List<AbstractForm>();
             _mainData.ArrowsList = new List<Arrow>();
+            _mainData._formFactory = Default.Factory.Form;
+            _mainData.IMouseHandler = new MoveAndSelectMouseHandler();
+            _mainData.SaveChanges();
         }
 
         #region Tool Strip
@@ -116,53 +115,45 @@ namespace UML_Diagram_drawer
         #region CreateArrows
         private void toolStripButtonArrowAssociation_Click(object sender, EventArgs e)
         {
-            _arrowsFactory = new ArrowAssociationFactory();
-            _mainData.CurrentArrow = _arrowsFactory.GetArrow();
+            _mainData._arrowsFactory = new ArrowAssociationFactory();
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
         private void toolStripButtonArrowSuccession_Click(object sender, EventArgs e)
         {
-            _arrowsFactory = new ArrowSuccessionFactory();
-            _mainData.CurrentArrow = _arrowsFactory.GetArrow();
+            _mainData._arrowsFactory = new ArrowSuccessionFactory();
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
         private void toolStripButtonArrowRealization_Click(object sender, EventArgs e)
         {
-            _arrowsFactory = new ArrowRealizationFactory();
-            _mainData.CurrentArrow = _arrowsFactory.GetArrow();
+            _mainData._arrowsFactory = new ArrowRealizationFactory();
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
         private void toolStripButtonArrowAggregation_Click(object sender, EventArgs e)
         {
-            _arrowsFactory = new ArrowAggregationFactory();
-            _mainData.CurrentArrow = _arrowsFactory.GetArrow();
+            _mainData._arrowsFactory = new ArrowAggregationFactory();
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
         private void toolStripButtonArrowComposition_Click(object sender, EventArgs e)
         {
-            _arrowsFactory = new ArrowCompositionFactory();
-            _mainData.CurrentArrow = _arrowsFactory.GetArrow();
+            _mainData._arrowsFactory = new ArrowCompositionFactory();
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
-
         
         #endregion
 
         #region CreateForm
         private void toolStripButtonCreateClassForm_Click(object sender, EventArgs e)
         {
-            _formFactory = new ClassFormFactory();
-            _mainData.CurrentFormUML = _formFactory.GetForm();
+            _mainData._formFactory = new ClassFormFactory();
             _mainData.IMouseHandler = new DrawFromMouseHandler();
         }
 
         private void toolStripButtonInterfaceForm_Click(object sender, EventArgs e)
         {
-            _formFactory = new InterfaceFormFactory();
-            _mainData.CurrentFormUML = _formFactory.GetForm();
+            _mainData._formFactory = new InterfaceFormFactory();
             _mainData.IMouseHandler = new DrawFromMouseHandler();
         }
 
@@ -257,6 +248,7 @@ namespace UML_Diagram_drawer
                     _mainData.FormInBuffer = null;
                 }
             }
+
             pictureBoxMain.MouseDown -= PasteObject_MouseDown;
             pictureBoxMain.Invalidate();
         }
@@ -340,7 +332,8 @@ namespace UML_Diagram_drawer
 
         private void toolStripButton14_Click(object sender, EventArgs e)
         {
-            _mainData.rollingBackChanges();
+            MainData.rollingBackChanges();
+            _mainData = MainData.GetMainData();
         }
     }
 }

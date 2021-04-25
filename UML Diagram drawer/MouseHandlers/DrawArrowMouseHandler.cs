@@ -34,6 +34,7 @@ namespace UML_Diagram_drawer.MouseHandlers
 
             if (currentContactPoint != null)
             {
+                _mainData.CurrentArrow = _mainData._arrowsFactory.GetArrow();
                 _mainData.ArrowsList.Add(_mainData.CurrentArrow);
                 _mainData.CurrentArrow.StartPoint = currentContactPoint;
                 currentContactPoint = null;
@@ -72,6 +73,7 @@ namespace UML_Diagram_drawer.MouseHandlers
                     _mainData.CurrentArrow.EndPoint = currentContactPoint;
                     currentContactPoint = null;
                     _mainData.IMouseHandler = new MoveAndSelectMouseHandler();
+                    _mainData.SaveChanges();
                 }
                 else
                 {
