@@ -5,6 +5,8 @@ using System.Drawing;
 using UML_Diagram_drawer.Factory;
 using UML_Diagram_drawer;
 using UML_Diagram_drawer.Forms.Modules;
+using UML_Diagram_drawer.Arrows;
+using UML_Diagram_drawer.Factory.ArrowFactories;
 
 namespace TestProject
 {
@@ -77,7 +79,7 @@ namespace TestProject
         public void Move_WhenPointNotNull_ShouldLocation(Form form, int deltaX, int deltaY, Point expected)
         {
             form.Move(deltaX, deltaY);
-            Point actual =  form.Location;
+            Point actual = form.Location;
             Assert.AreEqual(expected, actual);
         }
 
@@ -162,36 +164,6 @@ namespace TestProject
             }
         }
 
-        //[TestCaseSource(typeof(IsAddTextField))]
-        //public void AddTextField_WhenStringTextTypeType(Form form, string text, ModuleType type, TextField expected)
-        //{
-        //    form.AddTextField(text, type);
-        //    TextField acual = Text.FieldText;
-        //    Assert.AreEqual(expected, actual);
-        //}
-
-        //public class IsAddTextField : IEnumerable
-        //{
-        //    public IEnumerator GetEnumerator()
-        //    {
-        //        yield return new object[]{
-        //            new ClassFormFactory().GetForm(),
-        //            new Point(50,50),
-        //            true
-        //        };
-        //        yield return new object[]{
-        //            new ClassFormFactory().GetForm(),
-        //            new Point(100,50),
-        //            true
-        //        };
-        //        yield return new object[]{
-        //            new ClassFormFactory().GetForm(),
-        //            new Point(200,99),
-        //            false
-        //        };
-        //    }
-        //}
-
         [TestCaseSource(typeof(IsToString))]
         public void IsItToString(Form form, string expected)
         {
@@ -241,6 +213,33 @@ namespace TestProject
                     "{X=0,Y=0}"
                 };
                 }
+            }
+
+            [TestCaseSource(typeof(IsToSetColor))]
+            public void IsItSetColor(Arrow arrow, Color color, Color expected)
+            {
+                arrow.SetColor(color);
+                Color actual = arrow.Color;
+                Assert.AreEqual(expected, actual);
+            }
+
+            public class IsToSetColor : IEnumerable
+            {
+                public IEnumerator GetEnumerator()
+                {
+                    yield return new object[]{
+                    new ArrowAggregationFactory().GetArrow(),
+                    new Color(Color.White);
+                    new Color(Color.White);
+                    };
+
+                    yield return new object[]{
+                    new ArrowAggregationFactory().GetArrow(),
+                    new Color(Color.White);
+                    new Color(Color.White);
+                    };
+                }
+
             }
         }
 

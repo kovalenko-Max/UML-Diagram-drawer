@@ -90,8 +90,10 @@ namespace UML_Diagram_drawer.Forms
         }
         
         public AbstractForm()
-        {
-
+        {
+
+
+
         }
 
 
