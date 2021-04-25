@@ -308,7 +308,8 @@ namespace UML_Diagram_drawer.Forms
         public object Clone()
         {
             AbstactModule newModule = (AbstactModule)this.MemberwiseClone();
-            newModule.Color = Color;
+            newModule._pen = (Pen)_pen.Clone();
+            newModule._colorText = _colorText;
             newModule.Font = Font;
             newModule.Size = Size;
             newModule.StringFormat = StringFormat;

@@ -81,7 +81,6 @@ namespace UML_Diagram_drawer.Forms
 
         public void Draw()
         {
-            _brush.Color = Color;
             _rectangle.Size = new Size(_rectangle.Width, GetDesiredSize().Height);
             MainGraphics.Graphics.DrawString(Text, Font, _brush, (RectangleF)_rectangle, StringFormat);
             if (_isSelect)
@@ -152,6 +151,7 @@ namespace UML_Diagram_drawer.Forms
         public object Clone()
         {
             TextField newModule = (TextField)this.MemberwiseClone();
+            newModule._brush = (SolidBrush)_brush.Clone();
             newModule.Color = Color;
             newModule.Font = Font;
             newModule.Size = Size;

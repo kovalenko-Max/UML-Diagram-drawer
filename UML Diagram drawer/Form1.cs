@@ -303,15 +303,15 @@ namespace UML_Diagram_drawer
         private void PictureBoxMain_Paint(object sender, PaintEventArgs e)
         {
             MainGraphics.Graphics = e.Graphics;
+            
+            foreach (AbstractForm form in _mainData.FormsList)
+            {
+                form.Draw();
+            }
 
             foreach (var arrow in _mainData.ArrowsList)
             {
                 arrow.Draw();
-            }
-
-            foreach (AbstractForm form in _mainData.FormsList)
-            {
-                form.Draw();
             }
         }
 
