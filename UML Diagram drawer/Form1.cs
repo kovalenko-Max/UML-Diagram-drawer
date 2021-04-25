@@ -332,7 +332,13 @@ namespace UML_Diagram_drawer
 
         private void toolStripButtonUndo_Click(object sender, EventArgs e)
         {
-            MainData.rollingBackChanges();
+            MainData.UnDo();
+            _mainData = MainData.GetMainData();
+        }
+
+        private void toolStripButtonRedo_Click(object sender, EventArgs e)
+        {
+            MainData.ReDo();
             _mainData = MainData.GetMainData();
         }
     }
