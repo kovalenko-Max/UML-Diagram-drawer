@@ -330,7 +330,7 @@ namespace UML_Diagram_drawer
             }
         }
 
-        private void toolStripButton14_Click(object sender, EventArgs e)
+        private void toolStripButtonUndo_Click(object sender, EventArgs e)
         {
             MainData.rollingBackChanges();
             _mainData = MainData.GetMainData();
