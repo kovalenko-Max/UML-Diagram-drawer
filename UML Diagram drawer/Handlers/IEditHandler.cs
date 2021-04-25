@@ -23,5 +23,8 @@ namespace UML_Diagram_drawer.Handlers
         void SetWidthLine(TrackBar trackBar);
         void SetBackColor_Click();
         void SetArrowType(ComboBox comboBox);
+        void DeleteTextField();
+        void TextBoxInvalidate(TextBox textBox);
+        void TextBoxTextChanged(TextBox textBox);
     }
 }

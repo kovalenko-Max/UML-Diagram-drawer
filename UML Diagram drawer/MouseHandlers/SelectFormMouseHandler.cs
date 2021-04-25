@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using UML_Diagram_drawer.Forms;
 
 namespace UML_Diagram_drawer.MouseHandlers
@@ -22,6 +17,8 @@ namespace UML_Diagram_drawer.MouseHandlers
                     _mainData.CurrentFormUML = form;
                 }
             }
+
+            _mainData.PictureBoxMain.Invalidate();
         }
 
         public void MouseDown(object sender, MouseEventArgs e)
@@ -29,6 +26,7 @@ namespace UML_Diagram_drawer.MouseHandlers
             if (_mainData.SelectForm != null)
             {
                 _mainData.SelectForm.RemoveSelectTextFields();
+                _mainData.SelectTextField = null;
             }
 
             if(_mainData.SelectForm != null)

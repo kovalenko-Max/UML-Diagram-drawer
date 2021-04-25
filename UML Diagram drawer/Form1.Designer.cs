@@ -336,7 +336,6 @@ namespace UML_Diagram_drawer
             this.pictureBoxMain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxMain.TabIndex = 0;
             this.pictureBoxMain.TabStop = false;
-            this.pictureBoxMain.Click += new System.EventHandler(this.pictureBoxMain_Click);
             this.pictureBoxMain.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBoxMain_Paint);
             this.pictureBoxMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxMain_MouseClick);
             this.pictureBoxMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBoxMain_MouseDown);

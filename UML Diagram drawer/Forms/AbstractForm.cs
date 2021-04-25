@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using UML_Diagram_drawer.Forms.Modules;
 
 namespace UML_Diagram_drawer.Forms
@@ -289,11 +287,11 @@ namespace UML_Diagram_drawer.Forms
             return result;
         }
 
-        public void RemoveTextField(Point point)
+        public void RemoveTextField(TextField text)
         {
             foreach (AbstactModule module in Modules)
             {
-                module.RemoveTextField(point);
+                module.RemoveConcreteTextField(text);
             }
         }
 
@@ -430,7 +428,7 @@ namespace UML_Diagram_drawer.Forms
 
             cloneForm.Modules = CloneModulesList(Modules);
             cloneForm.Location = this.Location;
-            cloneForm.Color = this.Color;
+            cloneForm.BackGroundColor = this.BackGroundColor;
             return cloneForm;
         }
 

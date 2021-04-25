@@ -1,14 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using UML_Diagram_drawer.Arrows;
-using UML_Diagram_drawer.Forms;
 using UML_Diagram_drawer.Handlers;
 using UML_Diagram_drawer.MouseHandlers;
 
@@ -39,6 +30,7 @@ namespace UML_Diagram_drawer
                 buttonAddMethod.Visible = false;
                 buttonSelectFont.Visible = false;
                 trackBarSizeForm.Visible = false;
+                textBoxSelectTextField.Visible = false;
                 _handler = new ArrowEditorHandler(colorCoiseDialog, fontDialog1);
             }
         }
@@ -101,26 +93,23 @@ namespace UML_Diagram_drawer
             _handler.SetArrowType(comboBoxSetTypeArrow);
         }
 
-        private void FormEditor_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            _mainData.IMouseHandler = new MoveAndSelectMouseHandler();
-        }
-
         private void textBoxSelectTextField_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_mainData.SelectTextField != null)
-            {
-                textBoxSelectTextField.Text = _mainData.SelectTextField.Text;
-            }
+            _handler.TextBoxInvalidate(textBoxSelectTextField);
         }
 
         private void textBoxSelectTextField_TextChanged(object sender, EventArgs e)
         {
-            if (_mainData.SelectTextField != null)
-            {
-                _mainData.SelectTextField.Text = textBoxSelectTextField.Text;
-                _mainData.PictureBoxMain.Invalidate();
-            }
+            _handler.TextBoxTextChanged(textBoxSelectTextField);
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            _handler.DeleteTextField();
+        }
+        private void FormEditor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _mainData.IMouseHandler = new MoveAndSelectMouseHandler();
         }
     }
 }

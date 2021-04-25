@@ -42,6 +42,7 @@ namespace UML_Diagram_drawer
             this.buttonAddMethod = new System.Windows.Forms.Button();
             this.buttonAddField = new System.Windows.Forms.Button();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
+            this.buttonDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarLineThickness)).BeginInit();
             this.panelEditForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSizeForm)).BeginInit();
@@ -73,6 +74,7 @@ namespace UML_Diagram_drawer
             // 
             // panelEditForm
             // 
+            this.panelEditForm.Controls.Add(this.buttonDelete);
             this.panelEditForm.Controls.Add(this.textBoxSelectTextField);
             this.panelEditForm.Controls.Add(this.comboBoxSetTypeArrow);
             this.panelEditForm.Controls.Add(this.buttonSetColorText);
@@ -94,7 +96,7 @@ namespace UML_Diagram_drawer
             this.textBoxSelectTextField.Location = new System.Drawing.Point(4, 409);
             this.textBoxSelectTextField.Multiline = true;
             this.textBoxSelectTextField.Name = "textBoxSelectTextField";
-            this.textBoxSelectTextField.Size = new System.Drawing.Size(234, 105);
+            this.textBoxSelectTextField.Size = new System.Drawing.Size(234, 47);
             this.textBoxSelectTextField.TabIndex = 6;
             this.textBoxSelectTextField.TextChanged += new System.EventHandler(this.textBoxSelectTextField_TextChanged);
             this.textBoxSelectTextField.MouseMove += new System.Windows.Forms.MouseEventHandler(this.textBoxSelectTextField_MouseMove);
@@ -184,6 +186,17 @@ namespace UML_Diagram_drawer
             this.buttonAddField.UseVisualStyleBackColor = true;
             this.buttonAddField.Click += new System.EventHandler(this.buttonAddField_Click);
             // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonDelete.Location = new System.Drawing.Point(3, 462);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(235, 40);
+            this.buttonDelete.TabIndex = 7;
+            this.buttonDelete.Text = "Delete";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            // 
             // FormEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -218,5 +231,6 @@ namespace UML_Diagram_drawer
         private System.Windows.Forms.ComboBox comboBoxSetTypeArrow;
         private System.Windows.Forms.Button buttonSetColor;
         private System.Windows.Forms.TextBox textBoxSelectTextField;
+        private System.Windows.Forms.Button buttonDelete;
     }
 }

@@ -105,5 +105,17 @@ namespace UML_Diagram_drawer.Handlers
 
             _mainData.PictureBoxMain.Invalidate();
         }
+
+        public void DeleteTextField()
+        {
+        }
+
+        public void TextBoxInvalidate(TextBox textBox)
+        {
+        }
+
+        public void TextBoxTextChanged(TextBox textBox)
+        {
+        }
     }
 }

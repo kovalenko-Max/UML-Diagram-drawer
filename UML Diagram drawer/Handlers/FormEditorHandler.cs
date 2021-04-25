@@ -135,7 +135,7 @@ namespace UML_Diagram_drawer.Handlers
             if (_mainData.SelectForm != null)
             {
                 ColorDialog.ShowDialog();
-                _mainData.SelectForm.Color = ColorDialog.Color;
+                _mainData.SelectForm.BackGroundColor = ColorDialog.Color;
                 _mainData.SaveChanges();
                 _mainData.PictureBoxMain.Invalidate();
             }
@@ -147,7 +147,40 @@ namespace UML_Diagram_drawer.Handlers
 
         public void SetArrowType(ComboBox combobox)
         {
-            
+        }
+
+        public void DeleteTextField()
+        {
+            if (_mainData.SelectForm != null && _mainData.SelectTextField != null)
+            {
+                _mainData.SelectForm.RemoveTextField(_mainData.SelectTextField);
+                _mainData.PictureBoxMain.Invalidate();
+            }
+        }
+
+        public void TextBoxInvalidate(TextBox textBox)
+        {
+            if (_mainData.SelectTextField != null)
+            {
+                textBox.Text = _mainData.SelectTextField.Text;
+            }
+            else
+            {
+                textBox.Text = String.Empty;
+            }
+        }
+
+        public void TextBoxTextChanged(TextBox textBox)
+        {
+            if (_mainData.SelectTextField != null)
+            {
+                _mainData.SelectTextField.Text = textBox.Text;
+                _mainData.PictureBoxMain.Invalidate();
+            }
+            else
+            {
+                textBox.Text = String.Empty;
+            }
         }
     }
 }
