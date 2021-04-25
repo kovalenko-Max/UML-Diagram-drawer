@@ -320,14 +320,14 @@ namespace UML_Diagram_drawer
 
         private void flowLayoutPanel1_Scroll(object sender, ScrollEventArgs e)
         {
-            const int step = 50;
+            //const int step = 50;
             if (e.ScrollOrientation == ScrollOrientation.VerticalScroll)
             {
-                pictureBoxMain.Height += e.NewValue - e.OldValue + step;
+                pictureBoxMain.Height += e.NewValue - e.OldValue;
             }
             else
             {
-                pictureBoxMain.Width += e.NewValue - e.OldValue + step;
+                pictureBoxMain.Width += e.NewValue - e.OldValue;
             }
         }
 
@@ -335,6 +335,18 @@ namespace UML_Diagram_drawer
         {
             MainData.RollingBackChanges();
             _mainData = MainData.GetMainData();
+        }
+
+        private void pictureBoxHamburger_MouseEnter(object sender, EventArgs e)
+        {
+            pictureBoxHamburger.Visible = false;
+            toolStrip1.Visible = true;
+        }
+
+        private void toolStrip1_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBoxHamburger.Visible = true;
+            toolStrip1.Visible = false;
         }
     }
 }

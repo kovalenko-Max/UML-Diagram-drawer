@@ -65,9 +65,11 @@ namespace UML_Diagram_drawer
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.saveFileDialog2 = new System.Windows.Forms.SaveFileDialog();
+            this.pictureBoxHamburger = new System.Windows.Forms.PictureBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHamburger)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -102,6 +104,8 @@ namespace UML_Diagram_drawer
             this.toolStrip1.Size = new System.Drawing.Size(1264, 47);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip1.Visible = false;
+            this.toolStrip1.MouseLeave += new System.EventHandler(this.toolStrip1_MouseLeave);
             // 
             // toolStripButtonNewFile
             // 
@@ -331,8 +335,9 @@ namespace UML_Diagram_drawer
             this.pictureBoxMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxMain.Location = new System.Drawing.Point(2, 2);
             this.pictureBoxMain.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBoxMain.MinimumSize = new System.Drawing.Size(2000, 1200);
             this.pictureBoxMain.Name = "pictureBoxMain";
-            this.pictureBoxMain.Size = new System.Drawing.Size(3000, 3000);
+            this.pictureBoxMain.Size = new System.Drawing.Size(2000, 1200);
             this.pictureBoxMain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxMain.TabIndex = 0;
             this.pictureBoxMain.TabStop = false;
@@ -347,9 +352,9 @@ namespace UML_Diagram_drawer
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.Controls.Add(this.pictureBoxMain);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 47);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 25);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1264, 634);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1264, 656);
             this.flowLayoutPanel1.TabIndex = 5;
             this.flowLayoutPanel1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.flowLayoutPanel1_Scroll);
             // 
@@ -381,13 +386,29 @@ namespace UML_Diagram_drawer
             // 
             this.saveFileDialog2.Filter = "JPEG Image|*.jpg";
             // 
+            // pictureBoxHamburger
+            // 
+            this.pictureBoxHamburger.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxHamburger.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBoxHamburger.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pictureBoxHamburger.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxHamburger.Image")));
+            this.pictureBoxHamburger.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxHamburger.Name = "pictureBoxHamburger";
+            this.pictureBoxHamburger.Size = new System.Drawing.Size(1264, 25);
+            this.pictureBoxHamburger.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxHamburger.TabIndex = 6;
+            this.pictureBoxHamburger.TabStop = false;
+            this.pictureBoxHamburger.MouseEnter += new System.EventHandler(this.pictureBoxHamburger_MouseEnter);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.pictureBoxHamburger);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
@@ -398,6 +419,7 @@ namespace UML_Diagram_drawer
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHamburger)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -436,6 +458,7 @@ namespace UML_Diagram_drawer
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.ToolStripButton toolStripButtonEditObject;
         private System.Windows.Forms.SaveFileDialog saveFileDialog2;
+        private System.Windows.Forms.PictureBox pictureBoxHamburger;
     }
 }
 
