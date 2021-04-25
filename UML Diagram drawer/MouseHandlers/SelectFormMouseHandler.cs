@@ -26,6 +26,11 @@ namespace UML_Diagram_drawer.MouseHandlers
 
         public void MouseDown(object sender, MouseEventArgs e)
         {
+            if (_mainData.SelectForm != null)
+            {
+                _mainData.SelectForm.RemoveSelectTextFields();
+            }
+
             if(_mainData.SelectForm != null)
             {
                var textField =  _mainData.SelectForm.GetTextField(e.Location);

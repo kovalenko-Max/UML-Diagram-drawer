@@ -247,6 +247,14 @@ namespace UML_Diagram_drawer.Forms
             throw new ArgumentException("Point out of range");
         }
 
+        public void RemoveSelectTextFields()
+        {
+            foreach (TextField text  in TextFields)
+            {
+                text.RemoveSelect();
+            }
+        }
+
         public abstract override bool Equals(object obj);
 
         public override string ToString()

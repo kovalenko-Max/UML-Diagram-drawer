@@ -90,6 +90,7 @@ namespace UML_Diagram_drawer
             // 
             // textBoxSelectTextField
             // 
+            this.textBoxSelectTextField.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxSelectTextField.Location = new System.Drawing.Point(4, 409);
             this.textBoxSelectTextField.Multiline = true;
             this.textBoxSelectTextField.Name = "textBoxSelectTextField";

@@ -264,6 +264,14 @@ namespace UML_Diagram_drawer.Forms
         //    }
         //}
 
+        public void RemoveSelectTextFields()
+        {
+            foreach (AbstactModule module in Modules)
+            {
+                module.RemoveSelectTextFields();
+            }
+        }
+
         public TextField GetTextField(Point point)
         {
             TextField result = null;
