@@ -85,6 +85,44 @@ namespace UML_Diagram_drawer
 
         #endregion
 
+        private void RemoveArrowСonnections()
+        {
+            foreach (Arrow arrow in _mainData.ArrowsList)
+            {
+                foreach (AbstractForm form in _mainData.FormsList)
+                {
+                    foreach (ContactPoint point in form.ContactPoints)
+                    {
+                        if (arrow.StartPoint.Equals(point))
+                        {
+                            arrow.StartPoint = point;
+                        }
+                        else
+                        {
+                            arrow.StartPoint.Location = Point.Empty;
+                        }
+                        if (arrow.EndPoint.Equals(point))
+                        {
+                            arrow.EndPoint = point;
+                        }
+                        else
+                        {
+                            arrow.EndPoint.Location = Point.Empty;
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < _mainData.ArrowsList.Count; i++)
+            {
+                if (_mainData.ArrowsList[i].StartPoint.Location == Point.Empty || _mainData.ArrowsList[i].EndPoint.Location == Point.Empty)
+                {
+                    _mainData.ArrowsList.Remove(_mainData.ArrowsList[i]);
+                    --i;
+                }
+            }
+        }
+
         private void RebindingArrows()
         {
             foreach (Arrow arrow in _mainData.ArrowsList)
@@ -378,7 +416,7 @@ namespace UML_Diagram_drawer
             {
                 _mainData.FormsList.Remove(_mainData.SelectForm);
                 _mainData.SelectForm = null;
-                RebindingArrows();
+                RemoveArrowСonnections();
             }
 
             _mainData.PictureBoxMain.Invalidate();
