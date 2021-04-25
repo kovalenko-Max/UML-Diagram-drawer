@@ -33,6 +33,7 @@ namespace UML_Diagram_drawer
                     {
                         TypeNameHandling = TypeNameHandling.All
                     });
+
                 return fileDataForms;
             }
             else if (type == TypeOfData.Arrows)
@@ -42,6 +43,7 @@ namespace UML_Diagram_drawer
                     {
                         TypeNameHandling = TypeNameHandling.All
                     });
+
                 return fileDataArrows;
             }
             throw new Exception();
@@ -70,6 +72,10 @@ namespace UML_Diagram_drawer
                     {
                         TypeNameHandling = TypeNameHandling.All
                     });
+                foreach (var item in _mainData.ArrowsList)
+                {
+                    item.Color = Color.Black;
+                }
             }
             else
             {
@@ -78,6 +84,45 @@ namespace UML_Diagram_drawer
         }
 
         #endregion
+
+        private void RemoveArrowСonnections()
+        {
+            foreach (Arrow arrow in _mainData.ArrowsList)
+            {
+                foreach (AbstractForm form in _mainData.FormsList)
+                {
+                    foreach (ContactPoint point in form.ContactPoints)
+                    {
+                        if (arrow.StartPoint.Equals(point))
+                        {
+                            arrow.StartPoint = point;
+                        }
+                        else
+                        {
+                            arrow.StartPoint.Location = Point.Empty;
+                        }
+                        if (arrow.EndPoint.Equals(point))
+                        {
+                            arrow.EndPoint = point;
+                        }
+                        else
+                        {
+                            arrow.EndPoint.Location = Point.Empty;
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < _mainData.ArrowsList.Count; i++)
+            {
+                if (_mainData.ArrowsList[i].StartPoint.Location == Point.Empty || _mainData.ArrowsList[i].EndPoint.Location == Point.Empty)
+                {
+                    _mainData.ArrowsList.Remove(_mainData.ArrowsList[i]);
+                    --i;
+                }
+            }
+        }
+
         private void RebindingArrows()
         {
             foreach (Arrow arrow in _mainData.ArrowsList)
@@ -90,13 +135,30 @@ namespace UML_Diagram_drawer
                         {
                             arrow.StartPoint = point;
                         }
+                        //else
+                        //{
+                        //    arrow.StartPoint.Location = Point.Empty;
+                        //}
                         else if (arrow.EndPoint.Equals(point))
                         {
                             arrow.EndPoint = point;
                         }
+                        //else
+                        //{
+                        //    arrow.EndPoint.Location = Point.Empty;
+                        //}
                     }
                 }
             }
+
+            //for (int i = 0; i < _mainData.ArrowsList.Count; i++)
+            //{
+            //    if (_mainData.ArrowsList[i].StartPoint.Location == Point.Empty|| _mainData.ArrowsList[i].EndPoint.Location == Point.Empty)
+            //    {
+            //        _mainData.ArrowsList.Remove(_mainData.ArrowsList[i]);
+            //        --i;
+            //    }
+            //}
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -332,8 +394,31 @@ namespace UML_Diagram_drawer
 
         private void toolStripButtonUndo_Click(object sender, EventArgs e)
         {
-            MainData.RollingBackChanges();
+            MainData.UnDo();
             _mainData = MainData.GetMainData();
+        }
+
+        private void toolStripButtonRedo_Click(object sender, EventArgs e)
+        {
+            MainData.ReDo();
+            _mainData = MainData.GetMainData();
+        }
+
+        private void toolStripButtonDelete_Click(object sender, EventArgs e)
+        {
+            if (_mainData.SelectArrow != null)
+            {
+                _mainData.ArrowsList.Remove(_mainData.SelectArrow);
+                _mainData.SelectArrow = null;
+            }
+            else if(_mainData.SelectForm != null)
+            {
+                _mainData.FormsList.Remove(_mainData.SelectForm);
+                _mainData.SelectForm = null;
+                RemoveArrowСonnections();
+            }
+
+            _mainData.PictureBoxMain.Invalidate();
         }
 
         private void pictureBoxHamburger_MouseEnter(object sender, EventArgs e)
