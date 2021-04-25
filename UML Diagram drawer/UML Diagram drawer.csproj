@@ -96,7 +96,6 @@
     <Compile Include="Arrows\ArrowLines\DashArrowLine.cs" />
     <Compile Include="Arrows\ArrowLines\SolidArrowLine.cs" />
     <Compile Include="Arrows\ArrowLines\IArrowLine.cs" />
-    <Compile Include="LastChangesList.cs" />
     <Compile Include="Factory\ArrowFactories\ArrowSuccessionFactory.cs" />
     <Compile Include="Factory\ArrowFactories\ArrowAssociationFactory.cs" />
     <Compile Include="Factory\ArrowFactories\ArrowRealizationFactory.cs" />
