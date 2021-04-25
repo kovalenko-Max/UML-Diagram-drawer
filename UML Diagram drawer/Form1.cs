@@ -141,7 +141,7 @@ namespace UML_Diagram_drawer
             _mainData._arrowsFactory = new ArrowCompositionFactory();
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
-        
+
         #endregion
 
         #region CreateForm
@@ -228,7 +228,7 @@ namespace UML_Diagram_drawer
         private void copyToStackButton_Click(object sender, EventArgs e)
         {
             _mainData.FormInBuffer = null;
-            
+
             foreach (AbstractForm form in _mainData.FormsList)
             {
                 if (form.IsSelected)
@@ -305,14 +305,14 @@ namespace UML_Diagram_drawer
         {
             MainGraphics.Graphics = e.Graphics;
 
-            foreach (var arrow in _mainData.ArrowsList)
-            {
-                arrow.Draw();
-            }
-
             foreach (AbstractForm form in _mainData.FormsList)
             {
                 form.Draw();
+            }
+
+            foreach (var arrow in _mainData.ArrowsList)
+            {
+                arrow.Draw();
             }
         }
 

@@ -427,8 +427,11 @@ namespace UML_Diagram_drawer.Forms
             AbstractForm cloneForm = (AbstractForm)this.MemberwiseClone();
 
             cloneForm.Modules = CloneModulesList(Modules);
+            cloneForm._brush = (SolidBrush)_brush.Clone();
+            cloneForm.Font = (Font)Font.Clone();
+            cloneForm._rectangle = _rectangle;
             cloneForm.Location = this.Location;
-            cloneForm.BackGroundColor = this.BackGroundColor;
+            cloneForm._pen = (Pen)_pen.Clone();
             return cloneForm;
         }
 

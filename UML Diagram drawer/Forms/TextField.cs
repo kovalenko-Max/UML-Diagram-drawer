@@ -152,6 +152,7 @@ namespace UML_Diagram_drawer.Forms
         public object Clone()
         {
             TextField newModule = (TextField)this.MemberwiseClone();
+            newModule._brush = (SolidBrush)_brush.Clone();
             newModule.Color = Color;
             newModule.Font = Font;
             newModule.Size = Size;

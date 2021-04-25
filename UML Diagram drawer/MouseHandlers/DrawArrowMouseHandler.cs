@@ -71,7 +71,8 @@ namespace UML_Diagram_drawer.MouseHandlers
                 if (currentContactPoint != null)
                 {
                     _mainData.CurrentArrow.EndPoint = currentContactPoint;
-                    currentContactPoint = null;
+                     currentContactPoint = null;
+                    _mainData.CurrentArrow = null;
                     _mainData.IMouseHandler = new MoveAndSelectMouseHandler();
                     _mainData.SaveChanges();
                 }

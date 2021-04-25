@@ -20,10 +20,8 @@ namespace UML_Diagram_drawer.MouseHandlers
             if (_mainData.SelectForm != null && !_mainData.SelectForm.Contains(e.Location))
             {
                 RemoveSelect();
-
                 _mainData.PictureBoxMain.Invalidate();
             }
-
         }
 
         public void MouseDown(object sender, MouseEventArgs e)
@@ -50,7 +48,6 @@ namespace UML_Diagram_drawer.MouseHandlers
                 {
                     arrow.Select(e.Location);
                     _mainData.SelectArrow = arrow;
-
                     _mainData.PictureBoxMain.Invalidate();
                 }
             }
@@ -69,7 +66,6 @@ namespace UML_Diagram_drawer.MouseHandlers
 
         public void MouseUp(object sender, MouseEventArgs e)
         {
-
             if (_mainData.CurrentFormUML != null)
             {
                 _mainData.CurrentFormUML = null;

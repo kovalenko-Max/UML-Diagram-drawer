@@ -80,8 +80,7 @@ namespace UML_Diagram_drawer.Arrows
         {
             if (pen is null)
             {
-                //_pen = (Pen)Default.Draw.Pen.Clone();
-                _pen = new Pen(Default.Draw.Pen.Color, Default.Draw.Pen.Width);
+                _pen = (Pen)Default.Draw.Pen.Clone();
             }
             else
             {
