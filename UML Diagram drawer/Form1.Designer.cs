@@ -170,6 +170,7 @@ namespace UML_Diagram_drawer
             this.toolStripButton14.Size = new System.Drawing.Size(40, 44);
             this.toolStripButton14.Text = "Undo";
             this.toolStripButton14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton14.Click += new System.EventHandler(this.toolStripButton14_Click);
             // 
             // toolStripButtonSelectForm
             // 
