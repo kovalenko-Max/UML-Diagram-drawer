@@ -26,7 +26,15 @@ namespace UML_Diagram_drawer.MouseHandlers
 
         public void MouseDown(object sender, MouseEventArgs e)
         {
-
+            if(_mainData.SelectForm != null)
+            {
+               var textField =  _mainData.SelectForm.GetTextField(e.Location);
+                if (textField != null)
+                {
+                    textField.Select();
+                }
+                _mainData.PictureBoxMain.Invalidate();
+            }
         }
 
         public void MouseMove(object sender, MouseEventArgs e)

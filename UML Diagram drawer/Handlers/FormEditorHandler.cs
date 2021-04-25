@@ -128,7 +128,7 @@ namespace UML_Diagram_drawer.Handlers
             if (_mainData.SelectForm != null)
             {
                 ColorDialog.ShowDialog();
-                _mainData.SelectForm.Color = ColorDialog.Color;
+                _mainData.SelectForm.BackGroundColor = ColorDialog.Color;
                 _mainData.PictureBoxMain.Invalidate();
             }
             else

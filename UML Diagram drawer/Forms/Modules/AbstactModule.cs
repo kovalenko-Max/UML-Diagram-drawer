@@ -131,6 +131,7 @@ namespace UML_Diagram_drawer.Forms
 
             TextField tempTextField = new TextField(DefaultText)
             {
+                StringFormat = StringFormat,
                 Color = _colorText,
                 Location = new Point(Location.X, Location.Y + addedY),
                 Font = Font
@@ -226,7 +227,7 @@ namespace UML_Diagram_drawer.Forms
             }
         }
 
-        public TextField SelectTextField(Point point)
+        public TextField GetTextField(Point point)
         {
             if (Contains(point))
             {
@@ -236,7 +237,6 @@ namespace UML_Diagram_drawer.Forms
                 {
                     if (text.Contains(point))
                     {
-                        text.Select();
                         result = text;
                     }
                 }

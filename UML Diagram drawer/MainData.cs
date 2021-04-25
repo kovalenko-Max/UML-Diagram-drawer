@@ -16,6 +16,7 @@ namespace UML_Diagram_drawer
 
         public PictureBox PictureBoxMain { get; set; }
         public AbstractForm SelectForm { get; set; }
+        public TextField SelectTextField { get; set; }
         public Arrow SelectArrow { get; set; }
         public AbstractForm CurrentFormUML { get; set; }
         public Arrow CurrentArrow { get; set; }

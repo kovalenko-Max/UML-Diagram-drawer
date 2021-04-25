@@ -172,6 +172,7 @@ namespace UML_Diagram_drawer
         {
             FormEditor formEditor = new FormEditor();
             formEditor.Show();
+            _mainData.IMouseHandler = new SelectFormMouseHandler();
         }
 
         private void toolStripButtonSelectForm_Click(object sender, EventArgs e)

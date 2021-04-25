@@ -17,6 +17,7 @@ namespace UML_Diagram_drawer
             private static Color _color = Color.Black;
             private static Color _colorSelect = Color.Blue;
             private static Pen _penDash = new Pen(_colorSelect, _penSelectWidth);
+            private static Pen _penDashText = new Pen(_colorSelect, _penSelectWidth);
             public static SolidBrush FillBrush = new SolidBrush(Color.Gray);
             public static Pen Pen = new Pen(_color, _penWidth);
             public static Pen PenSelect = new Pen(_colorSelect, _penSelectWidth);
@@ -28,6 +29,18 @@ namespace UML_Diagram_drawer
                 set
                 {
                     _penDash = value;
+                }
+            }
+            public static Pen PenDashText
+            {
+                get
+                {
+                    _penDashText.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                    return _penDashText;
+                }
+                set
+                {
+                    _penDashText = value;
                 }
             }
         }

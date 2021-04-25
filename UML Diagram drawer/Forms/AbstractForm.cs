@@ -41,7 +41,7 @@ namespace UML_Diagram_drawer.Forms
             }
         }
         public ContactPoint[] ContactPoints { get; set; }
-        public Color Color
+        public Color BackGroundColor
         {
             get
             {
@@ -253,16 +253,35 @@ namespace UML_Diagram_drawer.Forms
             }
         }
 
-        public void ChangeTextField(Point point, string text)
+        //public void ChangeTextField(Point point, string text)
+        //{
+        //    if (text != null)
+        //    {
+        //        SelectTextField(point).Text = text;
+        //    }
+        //    else
+        //    {
+        //        throw new ArgumentException("Text is null");
+        //    }
+        //}
+
+        public TextField GetTextField(Point point)
         {
-            if (text != null)
+            TextField result = null;
+            if (Contains(point))
             {
-                SelectTextField(point).Text = text;
+                foreach (AbstactModule module in Modules)
+                {
+                    if (module.Contains(point))
+                    {
+                        result = module.GetTextField(point);
+                    }
+                }
+
+                return result;
             }
-            else
-            {
-                throw new ArgumentException("Text is null");
-            }
+
+            throw new ArgumentException("Point out of range");
         }
 
         public void RemoveTextField(Point point)
@@ -309,24 +328,24 @@ namespace UML_Diagram_drawer.Forms
             MainGraphics.Graphics.DrawRectangle(Default.Draw.PenDash, selectRectangle);
         }
 
-        private TextField SelectTextField(Point point)
-        {
-            if (Contains(point))
-            {
-                TextField result = null;
-                foreach (AbstactModule module in Modules)
-                {
-                    if (module.Contains(point))
-                    {
-                        result = module.SelectTextField(point);
-                    }
-                }
+        //private TextField SelectTextField(Point point)
+        //{
+        //    if (Contains(point))
+        //    {
+        //        TextField result = null;
+        //        foreach (AbstactModule module in Modules)
+        //        {
+        //            if (module.Contains(point))
+        //            {
+        //                result = module.GetTextField(point);
+        //            }
+        //        }
 
-                return result;
-            }
+        //        return result;
+        //    }
 
-            throw new Exception("Point out of range");
-        }
+        //    throw new Exception("Point out of range");
+        //}
 
         private void CreateModules(bool createFields = true, bool createMethods = true)
         {
