@@ -87,6 +87,7 @@ namespace UML_Diagram_drawer.MouseHandlers
                 arrow.RemoveSelect();
             }
             _mainData.SelectArrow = null;
+            _mainData.PictureBoxMain.Invalidate();
         }
     }
 }

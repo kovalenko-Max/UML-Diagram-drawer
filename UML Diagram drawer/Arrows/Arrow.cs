@@ -87,6 +87,7 @@ namespace UML_Diagram_drawer.Arrows
             {
                 _pen = pen;
             }
+            _lastColor = _pen.Color;
             _sizeArrowhead = (int)_pen.Width * 3;
             ArrowHead = arrowHead;
             ArrowLine = arrowLine;
@@ -113,6 +114,15 @@ namespace UML_Diagram_drawer.Arrows
         public void Draw()
         {
             _ArrowLinePoints = ArrowsLineDrawingLogic.GetPoints(StartPoint, EndPoint);
+            if (IsSelected)
+            {
+                _pen.Color = Default.Draw.PenSelect.Color;
+            }
+            else if (!IsSelected)
+            {
+                _pen.Color = _lastColor;
+            }
+
             if (ArrowLine != null)
             {
                 ArrowLine.Draw(_pen, _ArrowLinePoints);
@@ -143,6 +153,7 @@ namespace UML_Diagram_drawer.Arrows
                     Color = Default.Draw.PenSelect.Color;
                     result = true;
                     IsSelected = true;
+                    break;
                 }
             }
 
@@ -170,11 +181,7 @@ namespace UML_Diagram_drawer.Arrows
 
         public void RemoveSelect()
         {
-            if (IsSelected)
-            {
-                IsSelected = false;
-                Color = _lastColor;
-            }
+            IsSelected = false;
         }
 
         public Arrow Clone()
