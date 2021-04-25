@@ -8,7 +8,7 @@ using UML_Diagram_drawer.Forms.Modules;
 
 namespace UML_Diagram_drawer.Forms
 {
-    public abstract class AbstactModule
+    public abstract class AbstactModule : ICloneable
     {
         protected Rectangle _rectangle;
         protected Pen _pen;
@@ -20,7 +20,7 @@ namespace UML_Diagram_drawer.Forms
             get
             {
                 if (_pen != null)
-                { 
+                {
                     return _pen.Width;
                 }
 
@@ -102,7 +102,7 @@ namespace UML_Diagram_drawer.Forms
             Type = type;
             _pen = (Pen)Default.Draw.Pen.Clone();
             _colorText = _pen.Color;
-            Font = (Font)Default.Text.Font.Clone(); 
+            Font = (Font)Default.Text.Font.Clone();
             DefaultText = defaultText;
             _rectangle = new Rectangle(Location, Default.Size.ModuleFormSize);
             StringFormat = stringFormat;
@@ -311,6 +311,33 @@ namespace UML_Diagram_drawer.Forms
                 currentLocationY += TextFields[i].Size.Height;
                 TextFields[i].Draw();
             }
+        }
+
+        public object Clone()
+        {
+            AbstactModule newModule = (AbstactModule)this.MemberwiseClone();
+            newModule.Color = Color;
+            newModule.Font = Font;
+            newModule.Size = Size;
+            newModule.StringFormat = StringFormat;
+
+            newModule.DefaultText = DefaultText;
+            newModule.Location = Location;
+            newModule.WidthLine = WidthLine;
+            newModule.Type = Type;
+            
+            return newModule;
+        }
+        private static List<AbstactModule> CloneModulesList(List<AbstactModule> listForClone)
+        {
+            List<AbstactModule> newList = new List<AbstactModule>(listForClone.Count);
+
+            listForClone.ForEach((item) =>
+            {
+                newList.Add((AbstactModule)item.Clone());
+            });
+
+            return newList;
         }
     }
 }

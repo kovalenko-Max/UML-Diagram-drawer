@@ -35,6 +35,7 @@ namespace UML_Diagram_drawer.Handlers
             {
                 ColorDialog.ShowDialog();
                 _mainData.SelectForm.SetColor(ColorDialog.Color);
+                _mainData.SaveChanges();
                 _mainData.PictureBoxMain.Invalidate();
             }
             else
@@ -48,6 +49,7 @@ namespace UML_Diagram_drawer.Handlers
             if (_mainData.SelectForm != null)
             {
                 _mainData.SelectForm.Resize(trackBar.Value);
+                _mainData.SaveChanges();
                 _mainData.PictureBoxMain.Invalidate();
             }
             else
@@ -62,6 +64,7 @@ namespace UML_Diagram_drawer.Handlers
             {
                 FontDialog.ShowDialog();
                 _mainData.SelectForm.SetFont(FontDialog.Font);
+                _mainData.SaveChanges();
                 _mainData.PictureBoxMain.Invalidate();
             }
             else
@@ -75,6 +78,7 @@ namespace UML_Diagram_drawer.Handlers
             if (_mainData.SelectForm != null)
             {
                 _mainData.SelectForm.AddTextField(Forms.Modules.ModuleType.Field);
+                _mainData.SaveChanges();
                 _mainData.PictureBoxMain.Invalidate();
             }
             else
@@ -88,6 +92,7 @@ namespace UML_Diagram_drawer.Handlers
             if (_mainData.SelectForm != null)
             {
                 _mainData.SelectForm.AddTextField(Forms.Modules.ModuleType.Method);
+                _mainData.SaveChanges();
                 _mainData.PictureBoxMain.Invalidate();
             }
             else
@@ -102,6 +107,7 @@ namespace UML_Diagram_drawer.Handlers
             {
                 ColorDialog.ShowDialog();
                 _mainData.SelectForm.SetColorText(ColorDialog.Color);
+                _mainData.SaveChanges();
                 _mainData.PictureBoxMain.Invalidate();
             }
             else
@@ -115,6 +121,7 @@ namespace UML_Diagram_drawer.Handlers
             if (_mainData.SelectForm != null)
             {
                 _mainData.SelectForm.SetWidthLine(trackBar.Value);
+                _mainData.SaveChanges();
                 _mainData.PictureBoxMain.Invalidate();
             }
             else
@@ -128,7 +135,8 @@ namespace UML_Diagram_drawer.Handlers
             if (_mainData.SelectForm != null)
             {
                 ColorDialog.ShowDialog();
-                _mainData.SelectForm.BackGroundColor = ColorDialog.Color;
+                _mainData.SelectForm.Color = ColorDialog.Color;
+                _mainData.SaveChanges();
                 _mainData.PictureBoxMain.Invalidate();
             }
             else

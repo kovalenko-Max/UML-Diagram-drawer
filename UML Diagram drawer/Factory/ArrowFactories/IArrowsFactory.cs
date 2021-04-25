@@ -2,7 +2,7 @@
 
 namespace UML_Diagram_drawer.Factory.ArrowFactories
 {
-    interface IArrowsFactory
+    public interface IArrowsFactory
     {
         Arrow GetArrow();
 

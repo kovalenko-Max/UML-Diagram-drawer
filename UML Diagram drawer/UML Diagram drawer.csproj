@@ -102,7 +102,6 @@
     <Compile Include="Factory\ArrowFactories\ArrowAggregationFactory.cs" />
     <Compile Include="Factory\ArrowFactories\ArrowCompositionFactory.cs" />
     <Compile Include="Factory\ArrowFactories\IArrowsFactory.cs" />
-    <Compile Include="IClonable.cs" />
     <Compile Include="MainData.cs" />
     <Compile Include="MouseHandlers\SelectFormMouseHandler.cs" />
     <Compile Include="MouseHandlers\MoveAndSelectMouseHandler.cs" />

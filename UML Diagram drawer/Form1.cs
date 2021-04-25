@@ -14,9 +14,6 @@ namespace UML_Diagram_drawer
 {
     public partial class FormMain : Form
     {
-        private IFormsFactory _formFactory;
-        private IArrowsFactory _arrowsFactory;
-
         private MainData _mainData;
 
         public Pen pen = new Pen(Brushes.Black, 3);
@@ -104,11 +101,13 @@ namespace UML_Diagram_drawer
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            _formFactory = Default.Factory.Form;
             _mainData = MainData.GetMainData();
             _mainData.PictureBoxMain = pictureBoxMain;
             _mainData.FormsList = new List<AbstractForm>();
             _mainData.ArrowsList = new List<Arrow>();
+            _mainData._formFactory = Default.Factory.Form;
+            _mainData.IMouseHandler = new MoveAndSelectMouseHandler();
+            _mainData.SaveChanges();
         }
 
         #region Tool Strip
@@ -116,53 +115,45 @@ namespace UML_Diagram_drawer
         #region CreateArrows
         private void toolStripButtonArrowAssociation_Click(object sender, EventArgs e)
         {
-            _arrowsFactory = new ArrowAssociationFactory();
-            _mainData.CurrentArrow = _arrowsFactory.GetArrow();
+            _mainData._arrowsFactory = new ArrowAssociationFactory();
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
         private void toolStripButtonArrowSuccession_Click(object sender, EventArgs e)
         {
-            _arrowsFactory = new ArrowSuccessionFactory();
-            _mainData.CurrentArrow = _arrowsFactory.GetArrow();
+            _mainData._arrowsFactory = new ArrowSuccessionFactory();
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
         private void toolStripButtonArrowRealization_Click(object sender, EventArgs e)
         {
-            _arrowsFactory = new ArrowRealizationFactory();
-            _mainData.CurrentArrow = _arrowsFactory.GetArrow();
+            _mainData._arrowsFactory = new ArrowRealizationFactory();
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
         private void toolStripButtonArrowAggregation_Click(object sender, EventArgs e)
         {
-            _arrowsFactory = new ArrowAggregationFactory();
-            _mainData.CurrentArrow = _arrowsFactory.GetArrow();
+            _mainData._arrowsFactory = new ArrowAggregationFactory();
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
 
         private void toolStripButtonArrowComposition_Click(object sender, EventArgs e)
         {
-            _arrowsFactory = new ArrowCompositionFactory();
-            _mainData.CurrentArrow = _arrowsFactory.GetArrow();
+            _mainData._arrowsFactory = new ArrowCompositionFactory();
             _mainData.IMouseHandler = new DrawArrowMouseHandler();
         }
-
         
         #endregion
 
         #region CreateForm
         private void toolStripButtonCreateClassForm_Click(object sender, EventArgs e)
         {
-            _formFactory = new ClassFormFactory();
-            _mainData.CurrentFormUML = _formFactory.GetForm();
+            _mainData._formFactory = new ClassFormFactory();
             _mainData.IMouseHandler = new DrawFromMouseHandler();
         }
 
         private void toolStripButtonInterfaceForm_Click(object sender, EventArgs e)
         {
-            _formFactory = new InterfaceFormFactory();
-            _mainData.CurrentFormUML = _formFactory.GetForm();
+            _mainData._formFactory = new InterfaceFormFactory();
             _mainData.IMouseHandler = new DrawFromMouseHandler();
         }
 
@@ -258,6 +249,7 @@ namespace UML_Diagram_drawer
                     _mainData.FormInBuffer = null;
                 }
             }
+
             pictureBoxMain.MouseDown -= PasteObject_MouseDown;
             pictureBoxMain.Invalidate();
         }
@@ -339,39 +331,10 @@ namespace UML_Diagram_drawer
             }
         }
 
-        private void pictureBoxMain_Click(object sender, EventArgs e)
+        private void toolStripButtonUndo_Click(object sender, EventArgs e)
         {
-
+            MainData.rollingBackChanges();
+            _mainData = MainData.GetMainData();
         }
-
-        //private void pictureBoxMain_MouseMove(object sender, MouseEventArgs e)
-        //{
-        //   // pictureBoxMain.MouseMove += pictureBoxMain_MouseMove;
-            
-        //}
-
-        //private void pictureBoxMain_MouseClick(object sender, MouseEventArgs e)
-        //{
-        //    //pictureBoxMain.Size += new System.Drawing.Size(140, 140);
-        //}
-
-        //private void panel1_Paint(object sender, PaintEventArgs e)
-        //{
-
-        //}
-
-        //private void panel1_Scroll(object sender, ScrollEventArgs e)
-        //{
-
-        //}
-
-        //private void flowLayoutPanel1_Scroll(object sender, ScrollEventArgs e)
-        //{
-           
-        //    if (e.ScrollOrientation == ScrollOrientation.VerticalScroll)
-        //        pictureBoxMain.Height += e.NewValue - e.OldValue;
-        //    else 
-        //        pictureBoxMain.Width += e.NewValue - e.OldValue;
-        //}
     }
 }

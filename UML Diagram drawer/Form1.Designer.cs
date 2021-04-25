@@ -39,10 +39,6 @@ namespace UML_Diagram_drawer
             this.toolStripButtonSaveFile = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSaveImageFile = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton15 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton14 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonSelectForm = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonEditObject = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonCut = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonCopy = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonPaste = new System.Windows.Forms.ToolStripButton();
@@ -56,10 +52,11 @@ namespace UML_Diagram_drawer
             this.toolStripButtonClassForm = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonInterfaceForm = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSetColor = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton13 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonEditObject = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonUndo = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonRedo = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.pictureBoxMain = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -81,10 +78,6 @@ namespace UML_Diagram_drawer
             this.toolStripButtonSaveFile,
             this.toolStripButtonSaveImageFile,
             this.toolStripSeparator,
-            this.toolStripButton15,
-            this.toolStripButton14,
-            this.toolStripButtonSelectForm,
-            this.toolStripButtonEditObject,
             this.toolStripButtonCut,
             this.toolStripButtonCopy,
             this.toolStripButtonPaste,
@@ -98,14 +91,15 @@ namespace UML_Diagram_drawer
             this.toolStripButtonClassForm,
             this.toolStripButtonInterfaceForm,
             this.toolStripSeparator2,
-            this.toolStripSetColor,
-            this.toolStripButton13,
-            this.toolStripSeparator4,
-            this.helpToolStripButton});
+            this.toolStripButtonEditObject,
+            this.toolStripButtonUndo,
+            this.toolStripButtonRedo,
+            this.toolStripButtonDelete,
+            this.toolStripSeparator4});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(1436, 47);
+            this.toolStrip1.Size = new System.Drawing.Size(1264, 47);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -152,44 +146,6 @@ namespace UML_Diagram_drawer
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
             this.toolStripSeparator.Size = new System.Drawing.Size(6, 47);
-            // 
-            // toolStripButton15
-            // 
-            this.toolStripButton15.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton15.Image")));
-            this.toolStripButton15.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton15.Name = "toolStripButton15";
-            this.toolStripButton15.Size = new System.Drawing.Size(38, 44);
-            this.toolStripButton15.Text = "Redo";
-            this.toolStripButton15.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // toolStripButton14
-            // 
-            this.toolStripButton14.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton14.Image")));
-            this.toolStripButton14.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton14.Name = "toolStripButton14";
-            this.toolStripButton14.Size = new System.Drawing.Size(40, 44);
-            this.toolStripButton14.Text = "Undo";
-            this.toolStripButton14.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // toolStripButtonSelectForm
-            // 
-            this.toolStripButtonSelectForm.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSelectForm.Image")));
-            this.toolStripButtonSelectForm.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonSelectForm.Name = "toolStripButtonSelectForm";
-            this.toolStripButtonSelectForm.Size = new System.Drawing.Size(64, 44);
-            this.toolStripButtonSelectForm.Text = "Select Obj";
-            this.toolStripButtonSelectForm.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.toolStripButtonSelectForm.Click += new System.EventHandler(this.toolStripButtonSelectForm_Click);
-            // 
-            // toolStripButtonEditObject
-            // 
-            this.toolStripButtonEditObject.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonEditObject.Image")));
-            this.toolStripButtonEditObject.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonEditObject.Name = "toolStripButtonEditObject";
-            this.toolStripButtonEditObject.Size = new System.Drawing.Size(31, 44);
-            this.toolStripButtonEditObject.Text = "Edit";
-            this.toolStripButtonEditObject.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.toolStripButtonEditObject.Click += new System.EventHandler(this.toolStripButtonEditObject_Click);
             // 
             // toolStripButtonCut
             // 
@@ -293,20 +249,22 @@ namespace UML_Diagram_drawer
             // toolStripButtonClassForm
             // 
             this.toolStripButtonClassForm.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonClassForm.Image")));
+            this.toolStripButtonClassForm.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButtonClassForm.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonClassForm.Name = "toolStripButtonClassForm";
-            this.toolStripButtonClassForm.Size = new System.Drawing.Size(45, 44);
-            this.toolStripButtonClassForm.Text = "Form1";
+            this.toolStripButtonClassForm.Size = new System.Drawing.Size(100, 44);
+            this.toolStripButtonClassForm.Text = "Class Form";
             this.toolStripButtonClassForm.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButtonClassForm.Click += new System.EventHandler(this.toolStripButtonCreateClassForm_Click);
             // 
             // toolStripButtonInterfaceForm
             // 
             this.toolStripButtonInterfaceForm.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonInterfaceForm.Image")));
+            this.toolStripButtonInterfaceForm.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButtonInterfaceForm.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonInterfaceForm.Name = "toolStripButtonInterfaceForm";
-            this.toolStripButtonInterfaceForm.Size = new System.Drawing.Size(45, 44);
-            this.toolStripButtonInterfaceForm.Text = "Form2";
+            this.toolStripButtonInterfaceForm.Size = new System.Drawing.Size(98, 44);
+            this.toolStripButtonInterfaceForm.Text = "Interface Form";
             this.toolStripButtonInterfaceForm.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButtonInterfaceForm.Click += new System.EventHandler(this.toolStripButtonInterfaceForm_Click);
             // 
@@ -315,40 +273,56 @@ namespace UML_Diagram_drawer
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 47);
             // 
-            // toolStripSetColor
+            // toolStripButtonEditObject
             // 
-            this.toolStripSetColor.BackColor = System.Drawing.Color.Black;
-            this.toolStripSetColor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripSetColor.ForeColor = System.Drawing.Color.White;
-            this.toolStripSetColor.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSetColor.Image")));
-            this.toolStripSetColor.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSetColor.Name = "toolStripSetColor";
-            this.toolStripSetColor.Size = new System.Drawing.Size(40, 44);
-            this.toolStripSetColor.Text = "Color";
-            this.toolStripSetColor.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButtonEditObject.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonEditObject.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonEditObject.Image")));
+            this.toolStripButtonEditObject.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonEditObject.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonEditObject.Name = "toolStripButtonEditObject";
+            this.toolStripButtonEditObject.Size = new System.Drawing.Size(40, 44);
+            this.toolStripButtonEditObject.Text = "Edit";
+            this.toolStripButtonEditObject.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButtonEditObject.Click += new System.EventHandler(this.toolStripButtonEditObject_Click);
             // 
-            // toolStripButton13
+            // toolStripButtonUndo
             // 
-            this.toolStripButton13.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton13.Image")));
-            this.toolStripButton13.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton13.Name = "toolStripButton13";
-            this.toolStripButton13.Size = new System.Drawing.Size(57, 44);
-            this.toolStripButton13.Text = "Trashcan";
-            this.toolStripButton13.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButtonUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonUndo.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonUndo.Image")));
+            this.toolStripButtonUndo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonUndo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonUndo.Name = "toolStripButtonUndo";
+            this.toolStripButtonUndo.Size = new System.Drawing.Size(55, 44);
+            this.toolStripButtonUndo.Text = "Undo";
+            this.toolStripButtonUndo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButtonUndo.Click += new System.EventHandler(this.toolStripButtonUndo_Click);
+            // 
+            // toolStripButtonRedo
+            // 
+            this.toolStripButtonRedo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonRedo.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRedo.Image")));
+            this.toolStripButtonRedo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonRedo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonRedo.Name = "toolStripButtonRedo";
+            this.toolStripButtonRedo.Size = new System.Drawing.Size(55, 44);
+            this.toolStripButtonRedo.Text = "Redo";
+            this.toolStripButtonRedo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // toolStripButtonDelete
+            // 
+            this.toolStripButtonDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonDelete.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonDelete.Image")));
+            this.toolStripButtonDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonDelete.Name = "toolStripButtonDelete";
+            this.toolStripButtonDelete.Size = new System.Drawing.Size(44, 44);
+            this.toolStripButtonDelete.Text = "Trashcan";
+            this.toolStripButtonDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 47);
-            // 
-            // helpToolStripButton
-            // 
-            this.helpToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.helpToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("helpToolStripButton.Image")));
-            this.helpToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.helpToolStripButton.Name = "helpToolStripButton";
-            this.helpToolStripButton.Size = new System.Drawing.Size(23, 44);
-            this.helpToolStripButton.Text = "He&lp";
             // 
             // pictureBoxMain
             // 
@@ -376,7 +350,7 @@ namespace UML_Diagram_drawer
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 47);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1436, 706);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1264, 634);
             this.flowLayoutPanel1.TabIndex = 5;
             this.flowLayoutPanel1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.flowLayoutPanel1_Scroll);
             // 
@@ -413,11 +387,12 @@ namespace UML_Diagram_drawer
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1436, 753);
+            this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
-            this.Text = "Form1";
+            this.Text = "UML Diagram Tool";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -439,10 +414,9 @@ namespace UML_Diagram_drawer
         private System.Windows.Forms.ToolStripButton toolStripButtonArrowCompositionAndAssociation;
         private System.Windows.Forms.ToolStripButton toolStripButtonClassForm;
         private System.Windows.Forms.ToolStripButton toolStripButtonInterfaceForm;
-        private System.Windows.Forms.ToolStripButton toolStripSetColor;
-        private System.Windows.Forms.ToolStripButton toolStripButton13;
-        private System.Windows.Forms.ToolStripButton toolStripButton14;
-        private System.Windows.Forms.ToolStripButton toolStripButton15;
+        private System.Windows.Forms.ToolStripButton toolStripButtonDelete;
+        private System.Windows.Forms.ToolStripButton toolStripButtonUndo;
+        private System.Windows.Forms.ToolStripButton toolStripButtonRedo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton toolStripButtonNewFile;
@@ -455,7 +429,6 @@ namespace UML_Diagram_drawer
         private System.Windows.Forms.ToolStripButton toolStripButtonPaste;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripButton helpToolStripButton;
         private System.Windows.Forms.PictureBox pictureBoxMain;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button button_AddForm;
@@ -464,7 +437,6 @@ namespace UML_Diagram_drawer
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.ToolStripButton toolStripButtonEditObject;
         private System.Windows.Forms.SaveFileDialog saveFileDialog2;
-        private System.Windows.Forms.ToolStripButton toolStripButtonSelectForm;
     }
 }
 

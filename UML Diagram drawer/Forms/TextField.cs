@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UML_Diagram_drawer.Forms
 {
-    public class TextField
+    public class TextField : ICloneable
     {
         private bool _isSelect;
         private SolidBrush _brush;
@@ -147,6 +147,20 @@ namespace UML_Diagram_drawer.Forms
             }
 
             return result;
+        }
+
+        public object Clone()
+        {
+            TextField newModule = (TextField)this.MemberwiseClone();
+            newModule.Color = Color;
+            newModule.Font = Font;
+            newModule.Size = Size;
+            newModule.StringFormat = StringFormat;
+            newModule.Location = Location;
+            newModule.StringFormat = StringFormat;
+            newModule.Text = Text;
+
+            return newModule;
         }
     }
 }
