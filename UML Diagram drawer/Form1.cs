@@ -90,11 +90,28 @@ namespace UML_Diagram_drawer
                         {
                             arrow.StartPoint = point;
                         }
-                        else if (arrow.EndPoint.Equals(point))
+                        else
+                        {
+                            arrow.StartPoint.Location = Point.Empty;
+                        }
+                        if (arrow.EndPoint.Equals(point))
                         {
                             arrow.EndPoint = point;
                         }
+                        else
+                        {
+                            arrow.EndPoint.Location = Point.Empty;
+                        }
                     }
+                }
+            }
+
+            for (int i = 0; i < _mainData.ArrowsList.Count; i++)
+            {
+                if (_mainData.ArrowsList[i].StartPoint.Location == Point.Empty|| _mainData.ArrowsList[i].EndPoint.Location == Point.Empty)
+                {
+                    _mainData.ArrowsList.Remove(_mainData.ArrowsList[i]);
+                    --i;
                 }
             }
         }
@@ -335,6 +352,23 @@ namespace UML_Diagram_drawer
         {
             MainData.RollingBackChanges();
             _mainData = MainData.GetMainData();
+        }
+
+        private void toolStripButtonDelete_Click(object sender, EventArgs e)
+        {
+            if (_mainData.SelectArrow != null)
+            {
+                _mainData.ArrowsList.Remove(_mainData.SelectArrow);
+                _mainData.SelectArrow = null;
+            }
+            else if(_mainData.SelectForm != null)
+            {
+                _mainData.FormsList.Remove(_mainData.SelectForm);
+                _mainData.SelectForm = null;
+                RebindingArrows();
+            }
+
+            _mainData.PictureBoxMain.Invalidate();
         }
     }
 }

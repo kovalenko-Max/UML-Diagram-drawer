@@ -318,6 +318,7 @@ namespace UML_Diagram_drawer
             this.toolStripButtonDelete.Size = new System.Drawing.Size(44, 44);
             this.toolStripButtonDelete.Text = "Trashcan";
             this.toolStripButtonDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButtonDelete.Click += new System.EventHandler(this.toolStripButtonDelete_Click);
             // 
             // toolStripSeparator4
             // 
