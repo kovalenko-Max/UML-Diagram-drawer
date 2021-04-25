@@ -15,7 +15,7 @@ namespace UML_Diagram_drawer
     public class MainData
     {
         private static MainData _mainData;
-        public static Stack<MainData> lastChanges;
+        private static Stack<MainData> lastChanges;
 
         public PictureBox PictureBoxMain { get; set; }
         public AbstractForm SelectForm { get; set; }
