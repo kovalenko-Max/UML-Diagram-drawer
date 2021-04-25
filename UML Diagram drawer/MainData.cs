@@ -15,7 +15,7 @@ namespace UML_Diagram_drawer
     public class MainData
     {
         private static MainData _mainData;
-        public static List<MainData> lastChanges;
+        private static List<MainData> _lastChanges;
 
         public PictureBox PictureBoxMain { get; set; }
         public AbstractForm SelectForm { get; set; }
@@ -31,7 +31,7 @@ namespace UML_Diagram_drawer
 
         private MainData()
         {
-            lastChanges = new List<MainData>();
+            _lastChanges = new List<MainData>();
         }
 
         public static MainData GetMainData()
@@ -48,20 +48,20 @@ namespace UML_Diagram_drawer
 
         public void SaveChanges()
         {
-            lastChanges.Add((MainData)_mainData.DeepCopy());
-            if(lastChanges.Count > 15)
+            _lastChanges.Add((MainData)_mainData.DeepCopy());
+            if(_lastChanges.Count > 15)
             {
-                lastChanges.RemoveAt(0);
+                _lastChanges.RemoveAt(0);
             }
         }
 
         public static void rollingBackChanges()
         {
-            if (lastChanges.Count > 0)
+            if (_lastChanges.Count > 0)
             {
-                int lastIndex = lastChanges.Count - 1;
-                MainData previousMainData = lastChanges[lastIndex];
-                lastChanges.RemoveAt(lastIndex);
+                int lastIndex = _lastChanges.Count - 1;
+                MainData previousMainData = _lastChanges[lastIndex];
+                _lastChanges.RemoveAt(lastIndex);
                 previousMainData.IMouseHandler = new MoveAndSelectMouseHandler();
                 previousMainData.PictureBoxMain.Invalidate();
                 _mainData = previousMainData;
