@@ -51,13 +51,13 @@ namespace UML_Diagram_drawer
         public void SaveChanges()
         {
             _lastChanges.Add((MainData)_mainData.DeepCopy());
-            if(_lastChanges.Count > maxCountChanges)
+            if (_lastChanges.Count > 0 && _lastChanges.Count > maxCountChanges)
             {
                 _lastChanges.RemoveAt(0);
             }
         }
 
-        public static void rollingBackChanges()
+        public static void RollingBackChanges()
         {
             if (_lastChanges.Count > 0)
             {
@@ -65,22 +65,21 @@ namespace UML_Diagram_drawer
                 MainData previousMainData = _lastChanges[lastIndex];
                 _lastChanges.RemoveAt(lastIndex);
                 previousMainData.IMouseHandler = new MoveAndSelectMouseHandler();
-                previousMainData.PictureBoxMain.Invalidate();
                 _mainData = previousMainData;
+                _mainData.PictureBoxMain.Invalidate();
             }
         }
 
         private MainData DeepCopy()
         {
             MainData mainDataClone = (MainData)this.MemberwiseClone();
-            //reference
+
             mainDataClone.PictureBoxMain = this.PictureBoxMain;
             mainDataClone.CurrentArrow = this.CurrentArrow;
             mainDataClone.CurrentFormUML = this.CurrentFormUML;
             mainDataClone.SelectArrow = this.SelectArrow;
             mainDataClone.SelectForm = this.SelectForm;
 
-            //clone
             mainDataClone.FormsList = MainData.CloneFormsList(FormsList);
             mainDataClone.ArrowsList = MainData.CloneArrowList(ArrowsList);
 
