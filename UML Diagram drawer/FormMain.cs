@@ -261,17 +261,17 @@ namespace UML_Diagram_drawer
         #region CopyPaste
         private void toolStripButtonCopy_Click(object sender, EventArgs e)
         {
-            copyToStackButton_Click(sender, e);
+            _mainData.IMouseHandler = new CopyFormMouseHandler();
         }
 
         private void toolStripButtonPaste_Click(object sender, EventArgs e)
         {
-            pictureBoxMain.MouseDown += PasteObject_MouseDown;
+            _mainData.IMouseHandler = new PasteFormMouseHandler();
         }
 
         private void toolStripButtonCut_Click(object sender, EventArgs e)
         {
-            pictureBoxMain.MouseDown += EditObject_MouseDown;
+            _mainData.IMouseHandler = new CutFormMouseHandler();
         }
 
         #endregion

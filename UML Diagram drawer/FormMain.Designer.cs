@@ -177,7 +177,6 @@ namespace UML_Diagram_drawer
             this.toolStripButtonPaste.Size = new System.Drawing.Size(23, 44);
             this.toolStripButtonPaste.Text = "&Paste";
             this.toolStripButtonPaste.Click += new System.EventHandler(this.toolStripButtonPaste_Click);
-            this.toolStripButtonPaste.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PasteObject_MouseDown);
             // 
             // toolStripSeparator3
             // 

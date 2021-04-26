@@ -103,7 +103,8 @@
     <Compile Include="Factory\ArrowFactories\ArrowCompositionFactory.cs" />
     <Compile Include="Factory\ArrowFactories\IArrowsFactory.cs" />
     <Compile Include="MainData.cs" />
-    <Compile Include="MouseHandlers\SelectFormMouseHandler.cs" />
+    <Compile Include="MouseHandlers\CopyFormMouseHandler.cs" />
+    <Compile Include="MouseHandlers\CutFormMouseHandler.cs" />
     <Compile Include="MouseHandlers\MoveAndSelectMouseHandler.cs" />
     <Compile Include="MouseHandlers\DrawFromMouseHandler.cs" />
     <Compile Include="MouseHandlers\DrawArrowMouseHandler.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Handlers\ArrowEditorHandler.cs" />
     <Compile Include="Handlers\FormEditorHandler.cs" />
     <Compile Include="Handlers\IEditHandler.cs" />
+    <Compile Include="MouseHandlers\PasteFormMouseHandler.cs" />
     <Compile Include="TypeOfData.cs" />
     <Compile Include="SaveAndLoad.cs" />
     <Compile Include="Default.cs" />
@@ -136,17 +138,17 @@
     <Compile Include="ISelectable.cs" />
     <Compile Include="Side.cs" />
     <Compile Include="Forms\ContactPoint.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Arrows\Arrow.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEditor.resx">
       <DependentUpon>FormEditor.cs</DependentUpon>
