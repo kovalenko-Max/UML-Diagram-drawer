@@ -233,6 +233,26 @@ namespace UML_Diagram_drawer
             _mainData.IMouseHandler = new SelectFormMouseHandler();
         }
 
+        private void toolStripButtonNewFile_Click(object sender, EventArgs e)
+        {
+            if (_mainData.FormsList.Count != 0)
+            {
+                const string infoText = "Создание нового файла удалит несохраненные изменения. Сохранить изменения?";
+                const string warningText = "Внимание!";
+                DialogResult dialogResult = MessageBox.Show(infoText, warningText, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    toolStripButtonSaveFile_Click(sender, e);
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    _mainData.FormsList = new List<AbstractForm>();
+                    _mainData.ArrowsList = new List<Arrow>();
+                    _mainData.PictureBoxMain.Invalidate();
+                }
+            }
+        }
+
         #region Save&Load
         private void toolStripButtonSaveFile_Click(object sender, EventArgs e)
         {
@@ -284,6 +304,35 @@ namespace UML_Diagram_drawer
         }
 
         #endregion
+
+        private void toolStripButtonUndo_Click(object sender, EventArgs e)
+        {
+            MainData.UnDo();
+            _mainData = MainData.GetMainData();
+        }
+
+        private void toolStripButtonRedo_Click(object sender, EventArgs e)
+        {
+            MainData.ReDo();
+            _mainData = MainData.GetMainData();
+        }
+
+        private void toolStripButtonDelete_Click(object sender, EventArgs e)
+        {
+            if (_mainData.SelectArrow != null)
+            {
+                _mainData.ArrowsList.Remove(_mainData.SelectArrow);
+                _mainData.SelectArrow = null;
+            }
+            else if (_mainData.SelectForm != null)
+            {
+                _mainData.FormsList.Remove(_mainData.SelectForm);
+                _mainData.SelectForm = null;
+                RemoveArrowСonnections();
+            }
+
+            _mainData.PictureBoxMain.Invalidate();
+        }
 
         #endregion
 
@@ -390,35 +439,6 @@ namespace UML_Diagram_drawer
             {
                 pictureBoxMain.Width += e.NewValue - e.OldValue;
             }
-        }
-
-        private void toolStripButtonUndo_Click(object sender, EventArgs e)
-        {
-            MainData.UnDo();
-            _mainData = MainData.GetMainData();
-        }
-
-        private void toolStripButtonRedo_Click(object sender, EventArgs e)
-        {
-            MainData.ReDo();
-            _mainData = MainData.GetMainData();
-        }
-
-        private void toolStripButtonDelete_Click(object sender, EventArgs e)
-        {
-            if (_mainData.SelectArrow != null)
-            {
-                _mainData.ArrowsList.Remove(_mainData.SelectArrow);
-                _mainData.SelectArrow = null;
-            }
-            else if(_mainData.SelectForm != null)
-            {
-                _mainData.FormsList.Remove(_mainData.SelectForm);
-                _mainData.SelectForm = null;
-                RemoveArrowСonnections();
-            }
-
-            _mainData.PictureBoxMain.Invalidate();
         }
 
         private void pictureBoxHamburger_MouseEnter(object sender, EventArgs e)

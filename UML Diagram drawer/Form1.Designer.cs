@@ -114,7 +114,8 @@ namespace UML_Diagram_drawer
             this.toolStripButtonNewFile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonNewFile.Name = "toolStripButtonNewFile";
             this.toolStripButtonNewFile.Size = new System.Drawing.Size(23, 44);
-            this.toolStripButtonNewFile.Text = "&New";
+            this.toolStripButtonNewFile.Text = "New file";
+            this.toolStripButtonNewFile.Click += new System.EventHandler(this.toolStripButtonNewFile_Click);
             // 
             // toolStripButtonOpenFile
             // 
@@ -123,7 +124,7 @@ namespace UML_Diagram_drawer
             this.toolStripButtonOpenFile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonOpenFile.Name = "toolStripButtonOpenFile";
             this.toolStripButtonOpenFile.Size = new System.Drawing.Size(23, 44);
-            this.toolStripButtonOpenFile.Text = "&Open";
+            this.toolStripButtonOpenFile.Text = "Open file";
             this.toolStripButtonOpenFile.Click += new System.EventHandler(this.toolStripButtonOpenFile_Click);
             // 
             // toolStripButtonSaveFile
@@ -133,7 +134,8 @@ namespace UML_Diagram_drawer
             this.toolStripButtonSaveFile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSaveFile.Name = "toolStripButtonSaveFile";
             this.toolStripButtonSaveFile.Size = new System.Drawing.Size(23, 44);
-            this.toolStripButtonSaveFile.Text = "&Save";
+            this.toolStripButtonSaveFile.Text = "Save as...";
+            this.toolStripButtonSaveFile.ToolTipText = "Save as...";
             this.toolStripButtonSaveFile.Click += new System.EventHandler(this.toolStripButtonSaveFile_Click);
             // 
             // toolStripButtonSaveImageFile
@@ -143,7 +145,7 @@ namespace UML_Diagram_drawer
             this.toolStripButtonSaveImageFile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSaveImageFile.Name = "toolStripButtonSaveImageFile";
             this.toolStripButtonSaveImageFile.Size = new System.Drawing.Size(23, 44);
-            this.toolStripButtonSaveImageFile.Text = "&Print";
+            this.toolStripButtonSaveImageFile.Text = "Save in JPEG";
             this.toolStripButtonSaveImageFile.Click += new System.EventHandler(this.toolStripButtonSaveImageFile_Click);
             // 
             // toolStripSeparator
@@ -158,7 +160,8 @@ namespace UML_Diagram_drawer
             this.toolStripButtonCut.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonCut.Name = "toolStripButtonCut";
             this.toolStripButtonCut.Size = new System.Drawing.Size(23, 44);
-            this.toolStripButtonCut.Text = "C&ut";
+            this.toolStripButtonCut.Text = "Cut object";
+            this.toolStripButtonCut.ToolTipText = "Cut object";
             this.toolStripButtonCut.Click += new System.EventHandler(this.toolStripButtonCut_Click);
             // 
             // toolStripButtonCopy
@@ -168,8 +171,9 @@ namespace UML_Diagram_drawer
             this.toolStripButtonCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonCopy.Name = "toolStripButtonCopy";
             this.toolStripButtonCopy.Size = new System.Drawing.Size(23, 44);
-            this.toolStripButtonCopy.Text = "&Copy";
+            this.toolStripButtonCopy.Text = "Copy object";
             this.toolStripButtonCopy.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.toolStripButtonCopy.ToolTipText = "Copy object";
             this.toolStripButtonCopy.Click += new System.EventHandler(this.toolStripButtonCopy_Click);
             // 
             // toolStripButtonPaste
@@ -179,7 +183,8 @@ namespace UML_Diagram_drawer
             this.toolStripButtonPaste.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonPaste.Name = "toolStripButtonPaste";
             this.toolStripButtonPaste.Size = new System.Drawing.Size(23, 44);
-            this.toolStripButtonPaste.Text = "&Paste";
+            this.toolStripButtonPaste.Text = "Paste object";
+            this.toolStripButtonPaste.ToolTipText = "Paste object";
             this.toolStripButtonPaste.Click += new System.EventHandler(this.toolStripButtonPaste_Click);
             this.toolStripButtonPaste.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PasteObject_MouseDown);
             // 
@@ -197,6 +202,7 @@ namespace UML_Diagram_drawer
             this.toolStripButtonArrowAssociation.Size = new System.Drawing.Size(79, 44);
             this.toolStripButtonArrowAssociation.Text = "Association";
             this.toolStripButtonArrowAssociation.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButtonArrowAssociation.ToolTipText = "Association arrow";
             this.toolStripButtonArrowAssociation.Click += new System.EventHandler(this.toolStripButtonArrowAssociation_Click);
             // 
             // toolStripButtonArrowSuccession
@@ -209,6 +215,7 @@ namespace UML_Diagram_drawer
             this.toolStripButtonArrowSuccession.Size = new System.Drawing.Size(79, 44);
             this.toolStripButtonArrowSuccession.Text = "Succession";
             this.toolStripButtonArrowSuccession.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButtonArrowSuccession.ToolTipText = "Succession arrow";
             this.toolStripButtonArrowSuccession.Click += new System.EventHandler(this.toolStripButtonArrowSuccession_Click);
             // 
             // toolStripButtonArrowRealization
@@ -220,6 +227,7 @@ namespace UML_Diagram_drawer
             this.toolStripButtonArrowRealization.Size = new System.Drawing.Size(79, 44);
             this.toolStripButtonArrowRealization.Text = "Realization";
             this.toolStripButtonArrowRealization.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButtonArrowRealization.ToolTipText = "Realization arrow";
             this.toolStripButtonArrowRealization.Click += new System.EventHandler(this.toolStripButtonArrowRealization_Click);
             // 
             // toolStripButtonArrowAggregationAndAssociation
@@ -231,7 +239,7 @@ namespace UML_Diagram_drawer
             this.toolStripButtonArrowAggregationAndAssociation.Size = new System.Drawing.Size(79, 44);
             this.toolStripButtonArrowAggregationAndAssociation.Text = "Aggregation";
             this.toolStripButtonArrowAggregationAndAssociation.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.toolStripButtonArrowAggregationAndAssociation.ToolTipText = "Aggrg&Assct";
+            this.toolStripButtonArrowAggregationAndAssociation.ToolTipText = "Aggregation arrow";
             this.toolStripButtonArrowAggregationAndAssociation.Click += new System.EventHandler(this.toolStripButtonArrowAggregation_Click);
             // 
             // toolStripButtonArrowCompositionAndAssociation
@@ -243,6 +251,7 @@ namespace UML_Diagram_drawer
             this.toolStripButtonArrowCompositionAndAssociation.Size = new System.Drawing.Size(80, 44);
             this.toolStripButtonArrowCompositionAndAssociation.Text = "Composition";
             this.toolStripButtonArrowCompositionAndAssociation.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButtonArrowCompositionAndAssociation.ToolTipText = "Composition arrow";
             this.toolStripButtonArrowCompositionAndAssociation.Click += new System.EventHandler(this.toolStripButtonArrowComposition_Click);
             // 
             // toolStripSeparator1
@@ -257,7 +266,7 @@ namespace UML_Diagram_drawer
             this.toolStripButtonClassForm.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonClassForm.Name = "toolStripButtonClassForm";
             this.toolStripButtonClassForm.Size = new System.Drawing.Size(100, 44);
-            this.toolStripButtonClassForm.Text = "Class Form";
+            this.toolStripButtonClassForm.Text = "Class form";
             this.toolStripButtonClassForm.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButtonClassForm.Click += new System.EventHandler(this.toolStripButtonCreateClassForm_Click);
             // 
@@ -268,7 +277,7 @@ namespace UML_Diagram_drawer
             this.toolStripButtonInterfaceForm.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonInterfaceForm.Name = "toolStripButtonInterfaceForm";
             this.toolStripButtonInterfaceForm.Size = new System.Drawing.Size(98, 44);
-            this.toolStripButtonInterfaceForm.Text = "Interface Form";
+            this.toolStripButtonInterfaceForm.Text = "Interface form";
             this.toolStripButtonInterfaceForm.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButtonInterfaceForm.Click += new System.EventHandler(this.toolStripButtonInterfaceForm_Click);
             // 
@@ -285,7 +294,7 @@ namespace UML_Diagram_drawer
             this.toolStripButtonEditObject.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonEditObject.Name = "toolStripButtonEditObject";
             this.toolStripButtonEditObject.Size = new System.Drawing.Size(40, 44);
-            this.toolStripButtonEditObject.Text = "Edit";
+            this.toolStripButtonEditObject.Text = "Edit form or arrow";
             this.toolStripButtonEditObject.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButtonEditObject.Click += new System.EventHandler(this.toolStripButtonEditObject_Click);
             // 
@@ -321,7 +330,7 @@ namespace UML_Diagram_drawer
             this.toolStripButtonDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonDelete.Name = "toolStripButtonDelete";
             this.toolStripButtonDelete.Size = new System.Drawing.Size(44, 44);
-            this.toolStripButtonDelete.Text = "Trashcan";
+            this.toolStripButtonDelete.Text = "Delete object";
             this.toolStripButtonDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButtonDelete.Click += new System.EventHandler(this.toolStripButtonDelete_Click);
             // 
