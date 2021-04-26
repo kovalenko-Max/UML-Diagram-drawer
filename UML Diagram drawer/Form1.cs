@@ -285,6 +285,35 @@ namespace UML_Diagram_drawer
 
         #endregion
 
+        private void toolStripButtonUndo_Click(object sender, EventArgs e)
+        {
+            MainData.UnDo();
+            _mainData = MainData.GetMainData();
+        }
+
+        private void toolStripButtonRedo_Click(object sender, EventArgs e)
+        {
+            MainData.ReDo();
+            _mainData = MainData.GetMainData();
+        }
+
+        private void toolStripButtonDelete_Click(object sender, EventArgs e)
+        {
+            if (_mainData.SelectArrow != null)
+            {
+                _mainData.ArrowsList.Remove(_mainData.SelectArrow);
+                _mainData.SelectArrow = null;
+            }
+            else if (_mainData.SelectForm != null)
+            {
+                _mainData.FormsList.Remove(_mainData.SelectForm);
+                _mainData.SelectForm = null;
+                RemoveArrowСonnections();
+            }
+
+            _mainData.PictureBoxMain.Invalidate();
+        }
+
         #endregion
 
         private void copyToStackButton_Click(object sender, EventArgs e)
@@ -393,33 +422,6 @@ namespace UML_Diagram_drawer
             }
         }
 
-        private void toolStripButtonUndo_Click(object sender, EventArgs e)
-        {
-            MainData.UnDo();
-            _mainData = MainData.GetMainData();
-        }
-
-        private void toolStripButtonRedo_Click(object sender, EventArgs e)
-        {
-            MainData.ReDo();
-            _mainData = MainData.GetMainData();
-        }
-
-        private void toolStripButtonDelete_Click(object sender, EventArgs e)
-        {
-            if (_mainData.SelectArrow != null)
-            {
-                _mainData.ArrowsList.Remove(_mainData.SelectArrow);
-                _mainData.SelectArrow = null;
-            }
-            else if(_mainData.SelectForm != null)
-            {
-                _mainData.FormsList.Remove(_mainData.SelectForm);
-                _mainData.SelectForm = null;
-                RemoveArrowСonnections();
-            }
-
-            _mainData.PictureBoxMain.Invalidate();
-        }
+        
     }
 }
