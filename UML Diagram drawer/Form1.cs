@@ -24,7 +24,7 @@ namespace UML_Diagram_drawer
         }
 
         #region Json
-        public string JsonSerialize(TypeOfData type)
+        private string JsonSerialize(TypeOfData type)
         {
             if (type == TypeOfData.Forms)
             {
@@ -49,7 +49,7 @@ namespace UML_Diagram_drawer
             throw new Exception();
         }
 
-        public void JsonDeserialize(string[] fileData)
+        private void JsonDeserialize(string[] fileData)
         {
             if (fileData[0] != String.Empty)
             {

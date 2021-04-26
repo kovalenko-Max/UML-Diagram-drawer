@@ -16,11 +16,11 @@ namespace UML_Diagram_drawer
     {
         private static string _splitter = "123ImSplitter!PleaseDontTouchMe!321";
 
-        public static void SaveFile(string path, string fileDataFroms, string fileDataArrows)
+        public static void SaveFile(string path, string fileDataForms, string fileDataArrows)
         {            
             using (StreamWriter saveSW = new StreamWriter(path, false))
             {
-                saveSW.WriteLine($"{fileDataFroms}{Environment.NewLine}{_splitter}{Environment.NewLine}{fileDataArrows}");
+                saveSW.WriteLine($"{fileDataForms}{Environment.NewLine}{_splitter}{Environment.NewLine}{fileDataArrows}");
             }
         }
 
