@@ -89,6 +89,8 @@ namespace UML_Diagram_drawer
         {
             foreach (Arrow arrow in _mainData.ArrowsList)
             {
+                bool resulta = false;
+                bool resultB = false;
                 foreach (AbstractForm form in _mainData.FormsList)
                 {
                     foreach (ContactPoint point in form.ContactPoints)
@@ -96,20 +98,25 @@ namespace UML_Diagram_drawer
                         if (arrow.StartPoint.Equals(point))
                         {
                             arrow.StartPoint = point;
+                            resulta = true;
                         }
-                        else
-                        {
-                            arrow.StartPoint.Location = Point.Empty;
-                        }
+
                         if (arrow.EndPoint.Equals(point))
                         {
                             arrow.EndPoint = point;
-                        }
-                        else
-                        {
-                            arrow.EndPoint.Location = Point.Empty;
+                            resultB = true;
                         }
                     }
+
+                }
+                if (!resulta)
+                {
+                    arrow.StartPoint.Location = Point.Empty;
+                }
+
+                if (!resultB)
+                {
+                    arrow.EndPoint.Location = Point.Empty;
                 }
             }
 
@@ -135,30 +142,14 @@ namespace UML_Diagram_drawer
                         {
                             arrow.StartPoint = point;
                         }
-                        //else
-                        //{
-                        //    arrow.StartPoint.Location = Point.Empty;
-                        //}
+
                         else if (arrow.EndPoint.Equals(point))
                         {
                             arrow.EndPoint = point;
                         }
-                        //else
-                        //{
-                        //    arrow.EndPoint.Location = Point.Empty;
-                        //}
                     }
                 }
             }
-
-            //for (int i = 0; i < _mainData.ArrowsList.Count; i++)
-            //{
-            //    if (_mainData.ArrowsList[i].StartPoint.Location == Point.Empty|| _mainData.ArrowsList[i].EndPoint.Location == Point.Empty)
-            //    {
-            //        _mainData.ArrowsList.Remove(_mainData.ArrowsList[i]);
-            //        --i;
-            //    }
-            //}
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -225,12 +216,12 @@ namespace UML_Diagram_drawer
         {
             FormEditor formEditor = new FormEditor();
             formEditor.Show();
-            _mainData.IMouseHandler = new SelectFormMouseHandler();
+            _mainData.IMouseHandler = new CopyFormMouseHandler();
         }
 
         private void toolStripButtonSelectForm_Click(object sender, EventArgs e)
         {
-            _mainData.IMouseHandler = new SelectFormMouseHandler();
+            _mainData.IMouseHandler = new CopyFormMouseHandler();
         }
 
         #region Save&Load
@@ -396,14 +387,14 @@ namespace UML_Diagram_drawer
         {
             MainGraphics.Graphics = e.Graphics;
 
-            foreach (AbstractForm form in _mainData.FormsList)
-            {
-                form.Draw();
-            }
-
             foreach (var arrow in _mainData.ArrowsList)
             {
                 arrow.Draw();
+            }
+
+            foreach (AbstractForm form in _mainData.FormsList)
+            {
+                form.Draw();
             }
         }
 
@@ -422,6 +413,6 @@ namespace UML_Diagram_drawer
             }
         }
 
-        
+
     }
 }

@@ -3,7 +3,7 @@ using UML_Diagram_drawer.Forms;
 
 namespace UML_Diagram_drawer.MouseHandlers
 {
-    public class SelectFormMouseHandler : IMouseHandler
+    public class CopyFormMouseHandler : IMouseHandler
     {
         private MainData _mainData = MainData.GetMainData();
 
