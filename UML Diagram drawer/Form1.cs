@@ -177,8 +177,9 @@ namespace UML_Diagram_drawer
         #region CreateArrows
         private void toolStripButtonArrowAssociation_Click(object sender, EventArgs e)
         {
+            statusStripStatusLabel.Text = "Click to start point and drag mouse to end point, to crate arrow association";
             _mainData._arrowsFactory = new ArrowAssociationFactory();
-            _mainData.IMouseHandler = new DrawArrowMouseHandler();
+            _mainData.IMouseHandler = new DrawArrowMouseHandler();             
         }
         private void toolStripButtonArrowSuccession_Click(object sender, EventArgs e)
         {
@@ -402,6 +403,7 @@ namespace UML_Diagram_drawer
             {
                 _mainData.IMouseHandler.MouseUp(sender, e);
             }
+            statusStripStatusLabel.Text = "Ready";
         }
 
         private void pictureBoxMain_MouseMove(object sender, MouseEventArgs e)
@@ -441,16 +443,18 @@ namespace UML_Diagram_drawer
             }
         }
 
-        private void pictureBoxHamburger_MouseEnter(object sender, EventArgs e)
+        private void pictureBoxHamburger_Click(object sender, EventArgs e)
         {
-            pictureBoxHamburger.Visible = false;
-            toolStrip1.Visible = true;
-        }
-
-        private void toolStrip1_MouseLeave(object sender, EventArgs e)
-        {
-            pictureBoxHamburger.Visible = true;
-            toolStrip1.Visible = false;
+            if(toolStrip1.Visible==false)
+            {
+                toolStrip1.Visible = true;
+                menuStrip1.Visible = true;
+            }
+            else if(toolStrip1.Visible==true)
+            {
+                toolStrip1.Visible = false;
+                menuStrip1.Visible = false;
+            }
         }
     }
 }
