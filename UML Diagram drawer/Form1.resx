@@ -406,7 +406,7 @@
   <data name="toolStripButtonEditObject.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACQAAAAoCAYAAACWwljjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAO5SURBVFhH7ZdJSJtBFMc1WvclRI27Ji4tuCuNXioSgwdT
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAO6SURBVFhH7ZdJSJtBFMc1WvclRI27Ji4tuCuNXioSgwdT
         3HFDrGKMC0ixUbGK4KELUgWxtYp4EEQEPSgtVNFLrdSDUNBu2kNbse2pe6tIW5Cv/5eMS7D6RRMDhfxg
         eMz7EueXmfnejFZEU1PTeW9v78fW1tabdnZ2X5KSku709va6aB+am9HR0RhHR8eN8PDw6YqKiouZmZlq
         SH1Ef2FwcFDEPmY+MBvjISEh86yrpaurKzAoKOh1YGDgcl9fn5ilzYNQKHyTn59/lXV3aW5uzkDgILVk
@@ -417,12 +417,12 @@
         gjrlw9ImQaVSVR4QIoqLi28icNhL9JYdgM3Ukkgketfd3S1haaM5VIjIycm5hbBdW1tbqMvoQ+uOwvnE
         w8PjramkjhQisHw3EDi1Wl2qy+gzMzPjHBkZ+cjV1fV9Z2enlKVPDK8QUVNT04TAVVdXX9Jl9DGllEFC
         RFlZWQPCkVIRERFzJGXM8hksRECmEYHDq3moVHx8/EPsqbX+/v4TSR1LiMBeOnKmULvOImwnJiZO6zLH
-        g1cItcgP1dqddbUcJoUzyM3Ly2seR853tM8onCHskcHwCuHsWszKyqKapAe+qJVCrKY+k1m0sbFZQe2S
-        opKvIaehZ8eBVwgH52pycvJt1tVjZ6aUSmVzcHDwrI+Pz1ONRuNJz1DD+sVi8SpuBNbUNxSDhFJSUnpY
-        9wCNjY1qBI6aQqHQ9PT02FMe96gLOCSp0suobyj4kcYJEdhLStyJJrFvvuEKsYWaNJKbm5tH1xdchamw
-        GgwJYdmNE9oBb5goOzu7GGfclIODwwZSHJ13/7o1HIZJhfZTVVXliZehNC0t7Qpd8Fial1MTOikWIT4s
-        QnxYhPiwCPFhEeLDIsTH/ykkl8vNJlRXV6c6UggXreexsbFTuJKm1tfXZ5xmw384ivT09Lu4wq6z4Q8S
-        Fxc3grCF9hPtxyk3GmMrLCzswV9GQxT2rIoXUwAAAABJRU5ErkJggg==
+        g1cItcgP1dqddbUcJoUzyM3Ly2seR853HAGfUThD2COD4RXC2bWYlZVFNUkPfFErhVhNfSazaGNjs4La
+        JUUlX0NOQ8+OA68QDs7V5OTk26yrx85MKZXK5uDg4FkfH5+nGo3Gk56hhvWLxeJV3AisqW8oBgmlpKT0
+        sO4BGhsb1QgcNYVCoenp6bGnPO5RF3BIUqWXUd9Q8CONEyKwl5S4E01i73zDFWILNWkkNzc3j64vuApT
+        YTUYEsKyGye0A94wUXZ2djHOuCkHB4cNpDg67/51azgMkwrtp6qqyhMvQ2laWtoVuuCxNC+nJnRSLEJ8
+        WIT4sAjxYRHiwyLEh0WIj/9TSC6Xm02orq5OdaQQLlrPY2Njp3AlTa2vr884zYb/cBTp6el3cYVdZ8Mf
+        JC4ubgRhC+0n2o9TbjTGVlhY2IO/HnEU85hGCHsAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="toolStripButtonUndo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -537,6 +537,9 @@
   </metadata>
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>771, 17</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>25</value>
   </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

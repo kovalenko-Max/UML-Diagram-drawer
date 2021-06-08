@@ -456,5 +456,280 @@ namespace UML_Diagram_drawer
                 menuStrip1.Visible = false;
             }
         }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void createNewFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_mainData.FormsList.Count != 0)
+            {
+                const string infoText = "Создание нового файла удалит несохраненные изменения. Сохранить изменения?";
+                const string warningText = "Внимание!";
+                DialogResult dialogResult = MessageBox.Show(infoText, warningText, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    toolStripButtonSaveFile_Click(sender, e);
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    _mainData.FormsList = new List<AbstractForm>();
+                    _mainData.ArrowsList = new List<Arrow>();
+                    _mainData.PictureBoxMain.Invalidate();
+                }
+            }
+        }
+
+        private void saveFileInToJPEGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog2.ShowDialog() == DialogResult.OK)
+            {
+                Bitmap bmp = new Bitmap(pictureBoxMain.Width, pictureBoxMain.Height);
+                pictureBoxMain.DrawToBitmap(bmp, new Rectangle(0, 0, pictureBoxMain.Width, pictureBoxMain.Height));
+                bmp.Save(saveFileDialog2.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+            }
+        }
+
+        private void cutObjectsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pictureBoxMain.MouseDown += EditObject_MouseDown;
+        }
+
+        private void interfaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _mainData._formFactory = new InterfaceFormFactory();
+            _mainData.IMouseHandler = new DrawFromMouseHandler();
+        }
+
+        private void classToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _mainData._formFactory = new ClassFormFactory();
+            _mainData.IMouseHandler = new DrawFromMouseHandler();
+        }
+
+        private void compositionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _mainData._arrowsFactory = new ArrowCompositionFactory();
+            _mainData.IMouseHandler = new DrawArrowMouseHandler();
+        }
+
+        private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Переустановить виндовс?", "Во халепа", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string[] fileData = SaveAndLoad.OpenFile(openFileDialog1.FileName);
+                JsonDeserialize(fileData);
+                RebindingArrows();
+                _mainData.PictureBoxMain.Invalidate();
+            }
+        }
+
+        private void FormMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                if (saveFileDialog2.ShowDialog() == DialogResult.OK)
+                {
+                    Bitmap bmp = new Bitmap(pictureBoxMain.Width, pictureBoxMain.Height);
+                    pictureBoxMain.DrawToBitmap(bmp, new Rectangle(0, 0, pictureBoxMain.Width, pictureBoxMain.Height));
+                    bmp.Save(saveFileDialog2.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                }
+            }
+            if (e.Control && e.KeyCode == Keys.O)
+            {
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    string fileDataForms = JsonSerialize(TypeOfData.Forms);
+                    string fileDataArrows = JsonSerialize(TypeOfData.Arrows);
+                    SaveAndLoad.SaveFile(saveFileDialog1.FileName, fileDataForms, fileDataArrows);
+                }
+            }
+            if (e.Control && e.KeyCode == Keys.J)
+            {
+                if (saveFileDialog2.ShowDialog() == DialogResult.OK)
+                {
+                    Bitmap bmp = new Bitmap(pictureBoxMain.Width, pictureBoxMain.Height);
+                    pictureBoxMain.DrawToBitmap(bmp, new Rectangle(0, 0, pictureBoxMain.Width, pictureBoxMain.Height));
+                    bmp.Save(saveFileDialog2.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                }
+            }
+            if (e.Control && e.KeyCode == Keys.E)
+            {
+
+                
+            }
+            if (e.Control && e.KeyCode == Keys.C)
+            {
+                copyToStackButton_Click(sender, e);
+            }
+            if (e.Control && e.KeyCode == Keys.P)
+            {
+                pictureBoxMain.MouseDown += PasteObject_MouseDown;
+            }
+            if (e.Control && e.KeyCode == Keys.D)
+            {
+                if (_mainData.SelectArrow != null)
+                {
+                    _mainData.ArrowsList.Remove(_mainData.SelectArrow);
+                    _mainData.SelectArrow = null;
+                }
+                else if (_mainData.SelectForm != null)
+                {
+                    _mainData.FormsList.Remove(_mainData.SelectForm);
+                    _mainData.SelectForm = null;
+                    RemoveArrowСonnections();
+                }
+
+                _mainData.PictureBoxMain.Invalidate();
+            }
+            
+            if (e.Control && e.KeyCode == Keys.L)
+            {
+                _mainData._formFactory = new ClassFormFactory();
+                _mainData.IMouseHandler = new DrawFromMouseHandler();
+            }
+            if (e.Control && e.KeyCode == Keys.I)
+            {
+                _mainData._formFactory = new InterfaceFormFactory();
+                _mainData.IMouseHandler = new DrawFromMouseHandler();
+            }
+            if (e.Control && e.KeyCode == Keys.N)
+            {
+                if (_mainData.FormsList.Count != 0)
+                {
+                    const string infoText = "Создание нового файла удалит несохраненные изменения. Сохранить изменения?";
+                    const string warningText = "Внимание!";
+                    DialogResult dialogResult = MessageBox.Show(infoText, warningText, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        toolStripButtonSaveFile_Click(sender, e);
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        _mainData.FormsList = new List<AbstractForm>();
+                        _mainData.ArrowsList = new List<Arrow>();
+                        _mainData.PictureBoxMain.Invalidate();
+                    }
+                }
+            }
+            if (e.Control && e.KeyCode == Keys.A)
+            {
+                statusStripStatusLabel.Text = "Click to start point and drag mouse to end point, to crate arrow association";
+                _mainData._arrowsFactory = new ArrowAssociationFactory();
+                _mainData.IMouseHandler = new DrawArrowMouseHandler();
+            }
+            if (e.Control && e.KeyCode == Keys.M)
+            {
+                _mainData._arrowsFactory = new ArrowCompositionFactory();
+                _mainData.IMouseHandler = new DrawArrowMouseHandler();
+            }
+            if (e.Control && e.KeyCode == Keys.R)
+            {
+                _mainData._arrowsFactory = new ArrowRealizationFactory();
+                _mainData.IMouseHandler = new DrawArrowMouseHandler();
+            }
+            
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                _mainData._arrowsFactory = new ArrowSuccessionFactory();
+                _mainData.IMouseHandler = new DrawArrowMouseHandler();
+            }
+            if (e.Control && e.KeyCode == Keys.X)
+            {
+                this.Close();
+            }
+
+
+
+        }
+
+        private void saveFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string fileDataForms = JsonSerialize(TypeOfData.Forms);
+                string fileDataArrows = JsonSerialize(TypeOfData.Arrows);
+                SaveAndLoad.SaveFile(saveFileDialog1.FileName, fileDataForms, fileDataArrows);
+            }
+        }
+
+        private void closeProgramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void copyObjectsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            copyToStackButton_Click(sender, e);
+        }
+
+        private void pasteObjectsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pictureBoxMain.MouseDown += PasteObject_MouseDown;
+        }
+
+        private void editObjectsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormEditor formEditor = new FormEditor();
+            formEditor.Show();
+            _mainData.IMouseHandler = new SelectFormMouseHandler();
+        }
+
+        private void aggregationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _mainData._arrowsFactory = new ArrowAggregationFactory();
+            _mainData.IMouseHandler = new DrawArrowMouseHandler();
+        }
+
+        private void realizationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _mainData._arrowsFactory = new ArrowRealizationFactory();
+            _mainData.IMouseHandler = new DrawArrowMouseHandler();
+        }
+
+        private void successionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _mainData._arrowsFactory = new ArrowSuccessionFactory();
+            _mainData.IMouseHandler = new DrawArrowMouseHandler();
+        }
+
+        private void shotkeyListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Shot key in UML bilder\n" +
+                "Ctrl+C - Copy object\n" +
+                "Ctrl+P - Paste object\n" +
+                "Ctrl+O - Open UML-diagram\n" +
+                "Ctrl+S - Save UML-diagram\n" +
+                "Ctrl+J - Save UML-diagram in JPEG\n" +
+                "Ctrl+N - Create new UML-diagram\n" +
+                "Ctrl+X - Close UML-diagram\n" +
+                "Ctrl+l - Add class\n" +
+                "Ctrl+A - Add aggregation arrow\n" +
+                "Ctrl+I - Add interfase arrow\n" +
+                "Ctrl+M - Add composition arrow\n" +
+                "Ctrl+R - Add Realization arrow\n" +
+                "Ctrl+S - Add succession arrow\n"
+                );
+
+        }
+
+        private void propertiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("How to create UML-diagram?\n" +
+                "If you want create UML-diagram, you should set up on the desk all classes and interfases\n" +
+                "and create dependances for all classes and interfases\n" +
+                "How to save UML-diagram?\n" +
+                "If you want create UML-diagram, you should mouse down on button Save to Jpeg or Save to\n" +
+                "or Keydown short key Ctrl+S OR Ctrl+J\n");
+
+        }
     }
 }

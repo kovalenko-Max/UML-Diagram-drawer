@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="UML_Diagram_drawer.FormEditor">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACEQCCCRACQQAGAAYAeBCAECAAAAAAAAAAAIyYAAAAA=</HashCode>
+      <FileName>FormEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UML_Diagram_drawer.FormMain">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BYQCAC1oACAAABAACkCAQAICj4IgAAgAAgogGhaAhIE=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UML_Diagram_drawer.Handlers.ArrowEditorHandler" BaseTypeListCollapsed="true">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IQAQAAAAAAEAAAAABEAABKACAAAAAUAAAAAAABAgAAg=</HashCode>
+      <FileName>Handlers\ArrowEditorHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="UML_Diagram_drawer.Handlers.FormEditorHandler" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IQAQAAAAAAEAAAAABEAABKACAAAAAUAAAAAAABAgAAg=</HashCode>
+      <FileName>Handlers\FormEditorHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="UML_Diagram_drawer.Handlers.IEditHandler">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IQAAAAAAAAEAAAAABEAABKACAAAAAUAAAAAAABAgAAg=</HashCode>
+      <FileName>Handlers\IEditHandler.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

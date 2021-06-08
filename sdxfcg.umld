@@ -1,0 +1,968 @@
+{
+  "$type": "System.Collections.Generic.List`1[[UML_Diagram_drawer.Forms.AbstractForm, UML Diagram drawer]], mscorlib",
+  "$values": [
+    {
+      "$type": "UML_Diagram_drawer.Forms.Form, UML Diagram drawer",
+      "Modules": {
+        "$type": "System.Collections.Generic.List`1[[UML_Diagram_drawer.Forms.AbstactModule, UML Diagram drawer]], mscorlib",
+        "$values": [
+          {
+            "$type": "UML_Diagram_drawer.Forms.Modules.TitleModule, UML Diagram drawer",
+            "Type": 0,
+            "DefaultText": "Class Name",
+            "WidthLine": 3.0,
+            "Color": "0, 0, 0",
+            "Font": "Arial, 14pt",
+            "TextFields": {
+              "$type": "System.Collections.Generic.List`1[[UML_Diagram_drawer.Forms.TextField, UML Diagram drawer]], mscorlib",
+              "$values": [
+                {
+                  "$type": "UML_Diagram_drawer.Forms.TextField, UML Diagram drawer",
+                  "Text": "Class Name",
+                  "Font": "Arial, 14pt",
+                  "StringFormat": {
+                    "$type": "System.Drawing.StringFormat, System.Drawing",
+                    "FormatFlags": 0,
+                    "Alignment": 1,
+                    "LineAlignment": 1,
+                    "HotkeyPrefix": 0,
+                    "Trimming": 1,
+                    "DigitSubstitutionMethod": 0,
+                    "DigitSubstitutionLanguage": 0
+                  },
+                  "Color": "0, 0, 0",
+                  "Location": "317, 1933",
+                  "Size": "200, 50"
+                }
+              ]
+            },
+            "StringFormat": {
+              "$type": "System.Drawing.StringFormat, System.Drawing",
+              "FormatFlags": 0,
+              "Alignment": 1,
+              "LineAlignment": 1,
+              "HotkeyPrefix": 0,
+              "Trimming": 1,
+              "DigitSubstitutionMethod": 0,
+              "DigitSubstitutionLanguage": 0
+            },
+            "Size": "200, 50",
+            "Location": "317, 1933"
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.Modules.FieldModule, UML Diagram drawer",
+            "Type": 1,
+            "DefaultText": " + field : type",
+            "WidthLine": 3.0,
+            "Color": "0, 0, 0",
+            "Font": "Arial, 14pt",
+            "TextFields": {
+              "$type": "System.Collections.Generic.List`1[[UML_Diagram_drawer.Forms.TextField, UML Diagram drawer]], mscorlib",
+              "$values": [
+                {
+                  "$type": "UML_Diagram_drawer.Forms.TextField, UML Diagram drawer",
+                  "Text": " + field : type",
+                  "Font": "Arial, 14pt",
+                  "StringFormat": {
+                    "$type": "System.Drawing.StringFormat, System.Drawing",
+                    "FormatFlags": 0,
+                    "Alignment": 0,
+                    "LineAlignment": 1,
+                    "HotkeyPrefix": 0,
+                    "Trimming": 1,
+                    "DigitSubstitutionMethod": 0,
+                    "DigitSubstitutionLanguage": 0
+                  },
+                  "Color": "0, 0, 0",
+                  "Location": "317, 1983",
+                  "Size": "200, 50"
+                }
+              ]
+            },
+            "StringFormat": {
+              "$type": "System.Drawing.StringFormat, System.Drawing",
+              "FormatFlags": 0,
+              "Alignment": 0,
+              "LineAlignment": 1,
+              "HotkeyPrefix": 0,
+              "Trimming": 1,
+              "DigitSubstitutionMethod": 0,
+              "DigitSubstitutionLanguage": 0
+            },
+            "Size": "200, 50",
+            "Location": "317, 1983"
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.Modules.MethodModule, UML Diagram drawer",
+            "Type": 2,
+            "DefaultText": " + method()",
+            "WidthLine": 3.0,
+            "Color": "0, 0, 0",
+            "Font": "Arial, 14pt",
+            "TextFields": {
+              "$type": "System.Collections.Generic.List`1[[UML_Diagram_drawer.Forms.TextField, UML Diagram drawer]], mscorlib",
+              "$values": [
+                {
+                  "$type": "UML_Diagram_drawer.Forms.TextField, UML Diagram drawer",
+                  "Text": " + method()",
+                  "Font": "Arial, 14pt",
+                  "StringFormat": {
+                    "$type": "System.Drawing.StringFormat, System.Drawing",
+                    "FormatFlags": 0,
+                    "Alignment": 0,
+                    "LineAlignment": 1,
+                    "HotkeyPrefix": 0,
+                    "Trimming": 1,
+                    "DigitSubstitutionMethod": 0,
+                    "DigitSubstitutionLanguage": 0
+                  },
+                  "Color": "0, 0, 0",
+                  "Location": "317, 2033",
+                  "Size": "200, 50"
+                }
+              ]
+            },
+            "StringFormat": {
+              "$type": "System.Drawing.StringFormat, System.Drawing",
+              "FormatFlags": 0,
+              "Alignment": 0,
+              "LineAlignment": 1,
+              "HotkeyPrefix": 0,
+              "Trimming": 1,
+              "DigitSubstitutionMethod": 0,
+              "DigitSubstitutionLanguage": 0
+            },
+            "Size": "200, 50",
+            "Location": "317, 2033"
+          }
+        ]
+      },
+      "TitleText": "Class Name",
+      "IsSelected": false,
+      "WidthLine": 3.0,
+      "ContactPoints": {
+        "$type": "UML_Diagram_drawer.Forms.ContactPoint[], UML Diagram drawer",
+        "$values": [
+          {
+            "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+            "Location": "417, 1933",
+            "Side": 4
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+            "Location": "517, 2008",
+            "Side": 1
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+            "Location": "317, 2008",
+            "Side": 3
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+            "Location": "417, 2083",
+            "Side": 2
+          }
+        ]
+      },
+      "BackGroundColor": "128, 128, 128",
+      "Font": "Arial, 14pt",
+      "Type": 0,
+      "Size": "200, 150",
+      "Location": "317, 1933"
+    },
+    {
+      "$type": "UML_Diagram_drawer.Forms.Form, UML Diagram drawer",
+      "Modules": {
+        "$type": "System.Collections.Generic.List`1[[UML_Diagram_drawer.Forms.AbstactModule, UML Diagram drawer]], mscorlib",
+        "$values": [
+          {
+            "$type": "UML_Diagram_drawer.Forms.Modules.TitleModule, UML Diagram drawer",
+            "Type": 0,
+            "DefaultText": "Class Name",
+            "WidthLine": 3.0,
+            "Color": "0, 0, 0",
+            "Font": "Arial, 14pt",
+            "TextFields": {
+              "$type": "System.Collections.Generic.List`1[[UML_Diagram_drawer.Forms.TextField, UML Diagram drawer]], mscorlib",
+              "$values": [
+                {
+                  "$type": "UML_Diagram_drawer.Forms.TextField, UML Diagram drawer",
+                  "Text": "Class Name",
+                  "Font": "Arial, 14pt",
+                  "StringFormat": {
+                    "$type": "System.Drawing.StringFormat, System.Drawing",
+                    "FormatFlags": 0,
+                    "Alignment": 1,
+                    "LineAlignment": 1,
+                    "HotkeyPrefix": 0,
+                    "Trimming": 1,
+                    "DigitSubstitutionMethod": 0,
+                    "DigitSubstitutionLanguage": 0
+                  },
+                  "Color": "0, 0, 0",
+                  "Location": "553, 2132",
+                  "Size": "200, 50"
+                }
+              ]
+            },
+            "StringFormat": {
+              "$type": "System.Drawing.StringFormat, System.Drawing",
+              "FormatFlags": 0,
+              "Alignment": 1,
+              "LineAlignment": 1,
+              "HotkeyPrefix": 0,
+              "Trimming": 1,
+              "DigitSubstitutionMethod": 0,
+              "DigitSubstitutionLanguage": 0
+            },
+            "Size": "200, 50",
+            "Location": "553, 2132"
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.Modules.FieldModule, UML Diagram drawer",
+            "Type": 1,
+            "DefaultText": " + field : type",
+            "WidthLine": 3.0,
+            "Color": "0, 0, 0",
+            "Font": "Arial, 14pt",
+            "TextFields": {
+              "$type": "System.Collections.Generic.List`1[[UML_Diagram_drawer.Forms.TextField, UML Diagram drawer]], mscorlib",
+              "$values": [
+                {
+                  "$type": "UML_Diagram_drawer.Forms.TextField, UML Diagram drawer",
+                  "Text": " + field : type",
+                  "Font": "Arial, 14pt",
+                  "StringFormat": {
+                    "$type": "System.Drawing.StringFormat, System.Drawing",
+                    "FormatFlags": 0,
+                    "Alignment": 0,
+                    "LineAlignment": 1,
+                    "HotkeyPrefix": 0,
+                    "Trimming": 1,
+                    "DigitSubstitutionMethod": 0,
+                    "DigitSubstitutionLanguage": 0
+                  },
+                  "Color": "0, 0, 0",
+                  "Location": "553, 2182",
+                  "Size": "200, 50"
+                }
+              ]
+            },
+            "StringFormat": {
+              "$type": "System.Drawing.StringFormat, System.Drawing",
+              "FormatFlags": 0,
+              "Alignment": 0,
+              "LineAlignment": 1,
+              "HotkeyPrefix": 0,
+              "Trimming": 1,
+              "DigitSubstitutionMethod": 0,
+              "DigitSubstitutionLanguage": 0
+            },
+            "Size": "200, 50",
+            "Location": "553, 2182"
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.Modules.MethodModule, UML Diagram drawer",
+            "Type": 2,
+            "DefaultText": " + method()",
+            "WidthLine": 3.0,
+            "Color": "0, 0, 0",
+            "Font": "Arial, 14pt",
+            "TextFields": {
+              "$type": "System.Collections.Generic.List`1[[UML_Diagram_drawer.Forms.TextField, UML Diagram drawer]], mscorlib",
+              "$values": [
+                {
+                  "$type": "UML_Diagram_drawer.Forms.TextField, UML Diagram drawer",
+                  "Text": " + method()",
+                  "Font": "Arial, 14pt",
+                  "StringFormat": {
+                    "$type": "System.Drawing.StringFormat, System.Drawing",
+                    "FormatFlags": 0,
+                    "Alignment": 0,
+                    "LineAlignment": 1,
+                    "HotkeyPrefix": 0,
+                    "Trimming": 1,
+                    "DigitSubstitutionMethod": 0,
+                    "DigitSubstitutionLanguage": 0
+                  },
+                  "Color": "0, 0, 0",
+                  "Location": "553, 2232",
+                  "Size": "200, 50"
+                }
+              ]
+            },
+            "StringFormat": {
+              "$type": "System.Drawing.StringFormat, System.Drawing",
+              "FormatFlags": 0,
+              "Alignment": 0,
+              "LineAlignment": 1,
+              "HotkeyPrefix": 0,
+              "Trimming": 1,
+              "DigitSubstitutionMethod": 0,
+              "DigitSubstitutionLanguage": 0
+            },
+            "Size": "200, 50",
+            "Location": "553, 2232"
+          }
+        ]
+      },
+      "TitleText": "Class Name",
+      "IsSelected": false,
+      "WidthLine": 3.0,
+      "ContactPoints": {
+        "$type": "UML_Diagram_drawer.Forms.ContactPoint[], UML Diagram drawer",
+        "$values": [
+          {
+            "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+            "Location": "653, 2132",
+            "Side": 4
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+            "Location": "753, 2207",
+            "Side": 1
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+            "Location": "553, 2207",
+            "Side": 3
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+            "Location": "653, 2282",
+            "Side": 2
+          }
+        ]
+      },
+      "BackGroundColor": "128, 128, 128",
+      "Font": "Arial, 14pt",
+      "Type": 0,
+      "Size": "200, 150",
+      "Location": "553, 2132"
+    },
+    {
+      "$type": "UML_Diagram_drawer.Forms.Form, UML Diagram drawer",
+      "Modules": {
+        "$type": "System.Collections.Generic.List`1[[UML_Diagram_drawer.Forms.AbstactModule, UML Diagram drawer]], mscorlib",
+        "$values": [
+          {
+            "$type": "UML_Diagram_drawer.Forms.Modules.TitleModule, UML Diagram drawer",
+            "Type": 0,
+            "DefaultText": "Class Name",
+            "WidthLine": 4.0,
+            "Color": "Lime",
+            "Font": "Microsoft YaHei UI, 30pt",
+            "TextFields": {
+              "$type": "System.Collections.Generic.List`1[[UML_Diagram_drawer.Forms.TextField, UML Diagram drawer]], mscorlib",
+              "$values": [
+                {
+                  "$type": "UML_Diagram_drawer.Forms.TextField, UML Diagram drawer",
+                  "Text": "Class Name",
+                  "Font": "Microsoft YaHei UI, 30pt",
+                  "StringFormat": {
+                    "$type": "System.Drawing.StringFormat, System.Drawing",
+                    "FormatFlags": 0,
+                    "Alignment": 1,
+                    "LineAlignment": 1,
+                    "HotkeyPrefix": 0,
+                    "Trimming": 1,
+                    "DigitSubstitutionMethod": 0,
+                    "DigitSubstitutionLanguage": 0
+                  },
+                  "Color": "White",
+                  "Location": "4138, 3984",
+                  "Size": "285, 65"
+                }
+              ]
+            },
+            "StringFormat": {
+              "$type": "System.Drawing.StringFormat, System.Drawing",
+              "FormatFlags": 0,
+              "Alignment": 1,
+              "LineAlignment": 1,
+              "HotkeyPrefix": 0,
+              "Trimming": 1,
+              "DigitSubstitutionMethod": 0,
+              "DigitSubstitutionLanguage": 0
+            },
+            "Size": "285, 65",
+            "Location": "4138, 3984"
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.Modules.FieldModule, UML Diagram drawer",
+            "Type": 1,
+            "DefaultText": " + field : type",
+            "WidthLine": 4.0,
+            "Color": "Lime",
+            "Font": "Microsoft YaHei UI, 30pt",
+            "TextFields": {
+              "$type": "System.Collections.Generic.List`1[[UML_Diagram_drawer.Forms.TextField, UML Diagram drawer]], mscorlib",
+              "$values": [
+                {
+                  "$type": "UML_Diagram_drawer.Forms.TextField, UML Diagram drawer",
+                  "Text": " + field : type",
+                  "Font": "Microsoft YaHei UI, 30pt",
+                  "StringFormat": {
+                    "$type": "System.Drawing.StringFormat, System.Drawing",
+                    "FormatFlags": 0,
+                    "Alignment": 0,
+                    "LineAlignment": 1,
+                    "HotkeyPrefix": 0,
+                    "Trimming": 1,
+                    "DigitSubstitutionMethod": 0,
+                    "DigitSubstitutionLanguage": 0
+                  },
+                  "Color": "White",
+                  "Location": "4138, 4049",
+                  "Size": "285, 65"
+                },
+                {
+                  "$type": "UML_Diagram_drawer.Forms.TextField, UML Diagram drawer",
+                  "Text": " + field : type",
+                  "Font": "Microsoft YaHei UI, 30pt",
+                  "StringFormat": {
+                    "$type": "System.Drawing.StringFormat, System.Drawing",
+                    "FormatFlags": 0,
+                    "Alignment": 0,
+                    "LineAlignment": 1,
+                    "HotkeyPrefix": 0,
+                    "Trimming": 1,
+                    "DigitSubstitutionMethod": 0,
+                    "DigitSubstitutionLanguage": 0
+                  },
+                  "Color": "White",
+                  "Location": "4138, 4114",
+                  "Size": "285, 65"
+                }
+              ]
+            },
+            "StringFormat": {
+              "$type": "System.Drawing.StringFormat, System.Drawing",
+              "FormatFlags": 0,
+              "Alignment": 0,
+              "LineAlignment": 1,
+              "HotkeyPrefix": 0,
+              "Trimming": 1,
+              "DigitSubstitutionMethod": 0,
+              "DigitSubstitutionLanguage": 0
+            },
+            "Size": "285, 130",
+            "Location": "4138, 4049"
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.Modules.MethodModule, UML Diagram drawer",
+            "Type": 2,
+            "DefaultText": " + method()",
+            "WidthLine": 4.0,
+            "Color": "Lime",
+            "Font": "Microsoft YaHei UI, 30pt",
+            "TextFields": {
+              "$type": "System.Collections.Generic.List`1[[UML_Diagram_drawer.Forms.TextField, UML Diagram drawer]], mscorlib",
+              "$values": [
+                {
+                  "$type": "UML_Diagram_drawer.Forms.TextField, UML Diagram drawer",
+                  "Text": " + f gggjj()",
+                  "Font": "Microsoft YaHei UI, 30pt",
+                  "StringFormat": {
+                    "$type": "System.Drawing.StringFormat, System.Drawing",
+                    "FormatFlags": 0,
+                    "Alignment": 0,
+                    "LineAlignment": 1,
+                    "HotkeyPrefix": 0,
+                    "Trimming": 1,
+                    "DigitSubstitutionMethod": 0,
+                    "DigitSubstitutionLanguage": 0
+                  },
+                  "Color": "White",
+                  "Location": "4138, 4179",
+                  "Size": "285, 65"
+                },
+                {
+                  "$type": "UML_Diagram_drawer.Forms.TextField, UML Diagram drawer",
+                  "Text": " + method()",
+                  "Font": "Microsoft YaHei UI, 30pt",
+                  "StringFormat": {
+                    "$type": "System.Drawing.StringFormat, System.Drawing",
+                    "FormatFlags": 0,
+                    "Alignment": 0,
+                    "LineAlignment": 1,
+                    "HotkeyPrefix": 0,
+                    "Trimming": 1,
+                    "DigitSubstitutionMethod": 0,
+                    "DigitSubstitutionLanguage": 0
+                  },
+                  "Color": "White",
+                  "Location": "4138, 4244",
+                  "Size": "285, 65"
+                }
+              ]
+            },
+            "StringFormat": {
+              "$type": "System.Drawing.StringFormat, System.Drawing",
+              "FormatFlags": 0,
+              "Alignment": 0,
+              "LineAlignment": 1,
+              "HotkeyPrefix": 0,
+              "Trimming": 1,
+              "DigitSubstitutionMethod": 0,
+              "DigitSubstitutionLanguage": 0
+            },
+            "Size": "285, 130",
+            "Location": "4138, 4179"
+          }
+        ]
+      },
+      "TitleText": "Class Name",
+      "IsSelected": false,
+      "WidthLine": 3.0,
+      "ContactPoints": {
+        "$type": "UML_Diagram_drawer.Forms.ContactPoint[], UML Diagram drawer",
+        "$values": [
+          {
+            "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+            "Location": "4280, 3984",
+            "Side": 4
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+            "Location": "4423, 4146",
+            "Side": 1
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+            "Location": "4138, 4146",
+            "Side": 3
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+            "Location": "4280, 4309",
+            "Side": 2
+          }
+        ]
+      },
+      "BackGroundColor": "Maroon",
+      "Font": "Microsoft YaHei UI, 30pt",
+      "Type": 0,
+      "Size": "285, 325",
+      "Location": "4138, 3984"
+    },
+    {
+      "$type": "UML_Diagram_drawer.Forms.Form, UML Diagram drawer",
+      "Modules": {
+        "$type": "System.Collections.Generic.List`1[[UML_Diagram_drawer.Forms.AbstactModule, UML Diagram drawer]], mscorlib",
+        "$values": [
+          {
+            "$type": "UML_Diagram_drawer.Forms.Modules.TitleModule, UML Diagram drawer",
+            "Type": 0,
+            "DefaultText": "<interfase>\nInterfase name",
+            "WidthLine": 3.0,
+            "Color": "0, 0, 0",
+            "Font": "Arial, 14pt",
+            "TextFields": {
+              "$type": "System.Collections.Generic.List`1[[UML_Diagram_drawer.Forms.TextField, UML Diagram drawer]], mscorlib",
+              "$values": [
+                {
+                  "$type": "UML_Diagram_drawer.Forms.TextField, UML Diagram drawer",
+                  "Text": "<interfase>\nInterfase name",
+                  "Font": "Arial, 14pt",
+                  "StringFormat": {
+                    "$type": "System.Drawing.StringFormat, System.Drawing",
+                    "FormatFlags": 0,
+                    "Alignment": 1,
+                    "LineAlignment": 1,
+                    "HotkeyPrefix": 0,
+                    "Trimming": 1,
+                    "DigitSubstitutionMethod": 0,
+                    "DigitSubstitutionLanguage": 0
+                  },
+                  "Color": "0, 0, 0",
+                  "Location": "724, 1927",
+                  "Size": "200, 50"
+                }
+              ]
+            },
+            "StringFormat": {
+              "$type": "System.Drawing.StringFormat, System.Drawing",
+              "FormatFlags": 0,
+              "Alignment": 1,
+              "LineAlignment": 1,
+              "HotkeyPrefix": 0,
+              "Trimming": 1,
+              "DigitSubstitutionMethod": 0,
+              "DigitSubstitutionLanguage": 0
+            },
+            "Size": "200, 50",
+            "Location": "724, 1927"
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.Modules.FieldModule, UML Diagram drawer",
+            "Type": 1,
+            "DefaultText": " + field : type",
+            "WidthLine": 3.0,
+            "Color": "0, 0, 0",
+            "Font": "Arial, 14pt",
+            "TextFields": {
+              "$type": "System.Collections.Generic.List`1[[UML_Diagram_drawer.Forms.TextField, UML Diagram drawer]], mscorlib",
+              "$values": [
+                {
+                  "$type": "UML_Diagram_drawer.Forms.TextField, UML Diagram drawer",
+                  "Text": " + field : type",
+                  "Font": "Arial, 14pt",
+                  "StringFormat": {
+                    "$type": "System.Drawing.StringFormat, System.Drawing",
+                    "FormatFlags": 0,
+                    "Alignment": 0,
+                    "LineAlignment": 1,
+                    "HotkeyPrefix": 0,
+                    "Trimming": 1,
+                    "DigitSubstitutionMethod": 0,
+                    "DigitSubstitutionLanguage": 0
+                  },
+                  "Color": "0, 0, 0",
+                  "Location": "724, 1977",
+                  "Size": "200, 50"
+                }
+              ]
+            },
+            "StringFormat": {
+              "$type": "System.Drawing.StringFormat, System.Drawing",
+              "FormatFlags": 0,
+              "Alignment": 0,
+              "LineAlignment": 1,
+              "HotkeyPrefix": 0,
+              "Trimming": 1,
+              "DigitSubstitutionMethod": 0,
+              "DigitSubstitutionLanguage": 0
+            },
+            "Size": "200, 50",
+            "Location": "724, 1977"
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.Modules.MethodModule, UML Diagram drawer",
+            "Type": 2,
+            "DefaultText": " + method()",
+            "WidthLine": 3.0,
+            "Color": "0, 0, 0",
+            "Font": "Arial, 14pt",
+            "TextFields": {
+              "$type": "System.Collections.Generic.List`1[[UML_Diagram_drawer.Forms.TextField, UML Diagram drawer]], mscorlib",
+              "$values": [
+                {
+                  "$type": "UML_Diagram_drawer.Forms.TextField, UML Diagram drawer",
+                  "Text": " + method()",
+                  "Font": "Arial, 14pt",
+                  "StringFormat": {
+                    "$type": "System.Drawing.StringFormat, System.Drawing",
+                    "FormatFlags": 0,
+                    "Alignment": 0,
+                    "LineAlignment": 1,
+                    "HotkeyPrefix": 0,
+                    "Trimming": 1,
+                    "DigitSubstitutionMethod": 0,
+                    "DigitSubstitutionLanguage": 0
+                  },
+                  "Color": "0, 0, 0",
+                  "Location": "724, 2027",
+                  "Size": "200, 50"
+                }
+              ]
+            },
+            "StringFormat": {
+              "$type": "System.Drawing.StringFormat, System.Drawing",
+              "FormatFlags": 0,
+              "Alignment": 0,
+              "LineAlignment": 1,
+              "HotkeyPrefix": 0,
+              "Trimming": 1,
+              "DigitSubstitutionMethod": 0,
+              "DigitSubstitutionLanguage": 0
+            },
+            "Size": "200, 50",
+            "Location": "724, 2027"
+          }
+        ]
+      },
+      "TitleText": "<interfase>\nInterfase name",
+      "IsSelected": false,
+      "WidthLine": 3.0,
+      "ContactPoints": {
+        "$type": "UML_Diagram_drawer.Forms.ContactPoint[], UML Diagram drawer",
+        "$values": [
+          {
+            "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+            "Location": "824, 1927",
+            "Side": 4
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+            "Location": "924, 2002",
+            "Side": 1
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+            "Location": "724, 2002",
+            "Side": 3
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+            "Location": "824, 2077",
+            "Side": 2
+          }
+        ]
+      },
+      "BackGroundColor": "128, 128, 128",
+      "Font": "Arial, 14pt",
+      "Type": 1,
+      "Size": "200, 150",
+      "Location": "724, 1927"
+    },
+    {
+      "$type": "UML_Diagram_drawer.Forms.Form, UML Diagram drawer",
+      "Modules": {
+        "$type": "System.Collections.Generic.List`1[[UML_Diagram_drawer.Forms.AbstactModule, UML Diagram drawer]], mscorlib",
+        "$values": [
+          {
+            "$type": "UML_Diagram_drawer.Forms.Modules.TitleModule, UML Diagram drawer",
+            "Type": 0,
+            "DefaultText": "Class Name",
+            "WidthLine": 3.0,
+            "Color": "0, 0, 0",
+            "Font": "Arial, 14pt",
+            "TextFields": {
+              "$type": "System.Collections.Generic.List`1[[UML_Diagram_drawer.Forms.TextField, UML Diagram drawer]], mscorlib",
+              "$values": [
+                {
+                  "$type": "UML_Diagram_drawer.Forms.TextField, UML Diagram drawer",
+                  "Text": "Class Name",
+                  "Font": "Arial, 14pt",
+                  "StringFormat": {
+                    "$type": "System.Drawing.StringFormat, System.Drawing",
+                    "FormatFlags": 0,
+                    "Alignment": 1,
+                    "LineAlignment": 1,
+                    "HotkeyPrefix": 0,
+                    "Trimming": 1,
+                    "DigitSubstitutionMethod": 0,
+                    "DigitSubstitutionLanguage": 0
+                  },
+                  "Color": "0, 0, 0",
+                  "Location": "2439, 1827",
+                  "Size": "200, 50"
+                }
+              ]
+            },
+            "StringFormat": {
+              "$type": "System.Drawing.StringFormat, System.Drawing",
+              "FormatFlags": 0,
+              "Alignment": 1,
+              "LineAlignment": 1,
+              "HotkeyPrefix": 0,
+              "Trimming": 1,
+              "DigitSubstitutionMethod": 0,
+              "DigitSubstitutionLanguage": 0
+            },
+            "Size": "200, 50",
+            "Location": "2439, 1827"
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.Modules.FieldModule, UML Diagram drawer",
+            "Type": 1,
+            "DefaultText": " + field : type",
+            "WidthLine": 3.0,
+            "Color": "0, 0, 0",
+            "Font": "Arial, 14pt",
+            "TextFields": {
+              "$type": "System.Collections.Generic.List`1[[UML_Diagram_drawer.Forms.TextField, UML Diagram drawer]], mscorlib",
+              "$values": [
+                {
+                  "$type": "UML_Diagram_drawer.Forms.TextField, UML Diagram drawer",
+                  "Text": " + field : type",
+                  "Font": "Arial, 14pt",
+                  "StringFormat": {
+                    "$type": "System.Drawing.StringFormat, System.Drawing",
+                    "FormatFlags": 0,
+                    "Alignment": 0,
+                    "LineAlignment": 1,
+                    "HotkeyPrefix": 0,
+                    "Trimming": 1,
+                    "DigitSubstitutionMethod": 0,
+                    "DigitSubstitutionLanguage": 0
+                  },
+                  "Color": "0, 0, 0",
+                  "Location": "2439, 1877",
+                  "Size": "200, 50"
+                }
+              ]
+            },
+            "StringFormat": {
+              "$type": "System.Drawing.StringFormat, System.Drawing",
+              "FormatFlags": 0,
+              "Alignment": 0,
+              "LineAlignment": 1,
+              "HotkeyPrefix": 0,
+              "Trimming": 1,
+              "DigitSubstitutionMethod": 0,
+              "DigitSubstitutionLanguage": 0
+            },
+            "Size": "200, 50",
+            "Location": "2439, 1877"
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.Modules.MethodModule, UML Diagram drawer",
+            "Type": 2,
+            "DefaultText": " + method()",
+            "WidthLine": 3.0,
+            "Color": "0, 0, 0",
+            "Font": "Arial, 14pt",
+            "TextFields": {
+              "$type": "System.Collections.Generic.List`1[[UML_Diagram_drawer.Forms.TextField, UML Diagram drawer]], mscorlib",
+              "$values": [
+                {
+                  "$type": "UML_Diagram_drawer.Forms.TextField, UML Diagram drawer",
+                  "Text": " + method()",
+                  "Font": "Arial, 14pt",
+                  "StringFormat": {
+                    "$type": "System.Drawing.StringFormat, System.Drawing",
+                    "FormatFlags": 0,
+                    "Alignment": 0,
+                    "LineAlignment": 1,
+                    "HotkeyPrefix": 0,
+                    "Trimming": 1,
+                    "DigitSubstitutionMethod": 0,
+                    "DigitSubstitutionLanguage": 0
+                  },
+                  "Color": "0, 0, 0",
+                  "Location": "2439, 1927",
+                  "Size": "200, 50"
+                }
+              ]
+            },
+            "StringFormat": {
+              "$type": "System.Drawing.StringFormat, System.Drawing",
+              "FormatFlags": 0,
+              "Alignment": 0,
+              "LineAlignment": 1,
+              "HotkeyPrefix": 0,
+              "Trimming": 1,
+              "DigitSubstitutionMethod": 0,
+              "DigitSubstitutionLanguage": 0
+            },
+            "Size": "200, 50",
+            "Location": "2439, 1927"
+          }
+        ]
+      },
+      "TitleText": "Class Name",
+      "IsSelected": true,
+      "WidthLine": 3.0,
+      "ContactPoints": {
+        "$type": "UML_Diagram_drawer.Forms.ContactPoint[], UML Diagram drawer",
+        "$values": [
+          {
+            "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+            "Location": "2539, 1827",
+            "Side": 4
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+            "Location": "2639, 1902",
+            "Side": 1
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+            "Location": "2439, 1902",
+            "Side": 3
+          },
+          {
+            "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+            "Location": "2539, 1977",
+            "Side": 2
+          }
+        ]
+      },
+      "BackGroundColor": "128, 128, 128",
+      "Font": "Arial, 14pt",
+      "Type": 0,
+      "Size": "200, 150",
+      "Location": "2439, 1827"
+    }
+  ]
+}
+123ImSplitter!PleaseDontTouchMe!321
+{
+  "$type": "System.Collections.Generic.List`1[[UML_Diagram_drawer.Arrows.Arrow, UML Diagram drawer]], mscorlib",
+  "$values": [
+    {
+      "$type": "UML_Diagram_drawer.Arrows.Arrow, UML Diagram drawer",
+      "ArrowHead": {
+        "$type": "UML_Diagram_drawer.Arrows.ArrowHeads.ThreePointArrowHead, UML Diagram drawer"
+      },
+      "ArrowLine": {
+        "$type": "UML_Diagram_drawer.Arrows.ArrowLines.SolidArrowLine, UML Diagram drawer"
+      },
+      "ArrowNock": {
+        "$type": "UML_Diagram_drawer.Arrows.ArrowNocks.FilledRhombus, UML Diagram drawer"
+      },
+      "Color": "0, 0, 0",
+      "WidthLine": 3.0,
+      "StartPoint": {
+        "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+        "Location": "417, 1933",
+        "Side": 4
+      },
+      "EndPoint": {
+        "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+        "Location": "724, 2002",
+        "Side": 3
+      },
+      "IsSelected": false
+    },
+    {
+      "$type": "UML_Diagram_drawer.Arrows.Arrow, UML Diagram drawer",
+      "ArrowHead": {
+        "$type": "UML_Diagram_drawer.Arrows.ArrowHeads.TriangleArrowHead, UML Diagram drawer"
+      },
+      "ArrowLine": {
+        "$type": "UML_Diagram_drawer.Arrows.ArrowLines.SolidArrowLine, UML Diagram drawer"
+      },
+      "ArrowNock": null,
+      "Color": "0, 0, 0",
+      "WidthLine": 3.0,
+      "StartPoint": {
+        "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+        "Location": "417, 2083",
+        "Side": 2
+      },
+      "EndPoint": {
+        "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+        "Location": "553, 2207",
+        "Side": 3
+      },
+      "IsSelected": false
+    },
+    {
+      "$type": "UML_Diagram_drawer.Arrows.Arrow, UML Diagram drawer",
+      "ArrowHead": {
+        "$type": "UML_Diagram_drawer.Arrows.ArrowHeads.TriangleArrowHead, UML Diagram drawer"
+      },
+      "ArrowLine": {
+        "$type": "UML_Diagram_drawer.Arrows.ArrowLines.DashArrowLine, UML Diagram drawer"
+      },
+      "ArrowNock": null,
+      "Color": "Blue",
+      "WidthLine": 9.0,
+      "StartPoint": {
+        "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+        "Location": "4280, 3984",
+        "Side": 4
+      },
+      "EndPoint": {
+        "$type": "UML_Diagram_drawer.Forms.ContactPoint, UML Diagram drawer",
+        "Location": "2439, 1902",
+        "Side": 3
+      },
+      "IsSelected": false
+    }
+  ]
+}

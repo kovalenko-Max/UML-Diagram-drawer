@@ -398,7 +398,7 @@
         ]
       },
       "TitleText": "Class Name",
-      "IsSelected": false,
+      "IsSelected": true,
       "WidthLine": 3.0,
       "ContactPoints": {
         "$type": "UML_Diagram_drawer.Forms.ContactPoint[], UML Diagram drawer",
